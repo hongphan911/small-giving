@@ -1,28 +1,15 @@
 import Page from 'components/Page';
 import React from 'react';
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Row,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button} from 'reactstrap';
+import {FaEdit} from 'react-icons/fa';
+import{MdDelete} from'react-icons/md';
+const tableTypes = ['hover'];
 
 class ModalPage extends React.Component {
   state = {
-    modal: false,
-    modal_backdrop: false,
     modal_nested_parent: false,
     modal_nested: false,
-    backdrop: true,
   };
-
   toggle = modalType => () => {
     if (!modalType) {
       return this.setState({
@@ -30,170 +17,179 @@ class ModalPage extends React.Component {
       });
     }
 
-    this.setState({
+this.setState({
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
-
   render() {
     return (
-      <Page title="Modals" breadcrumbs={[{ name: 'modals', active: true }]}>
-        <Row>
-          <Col md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>Modal</CardHeader>
-              <CardBody>
-                <Button onClick={this.toggle()}>Launch Modal</Button>
-                <Modal
-                  isOpen={this.state.modal}
-                  toggle={this.toggle()}
-                  className={this.props.className}>
-                  <ModalHeader toggle={this.toggle()}>Modal title</ModalHeader>
-                  <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button color="primary" onClick={this.toggle()}>
-                      Do Something
-                    </Button>{' '}
-                    <Button color="secondary" onClick={this.toggle()}>
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader className="d-flex justify-content-between">
-                Backdrop
-                <ButtonGroup size="sm">
-                  <Button
-                    onClick={() => this.setState({ backdrop: true })}
-                    color="primary"
-                    active={this.state.backdrop}>
-                    true
-                  </Button>
-                  <Button
-                    onClick={() => this.setState({ backdrop: false })}
-                    color="primary"
-                    active={!this.state.backdrop}>
-                    false
-                  </Button>
-                  <Button
-                    onClick={() => this.setState({ backdrop: 'static' })}
-                    color="primary"
-                    active={this.state.backdrop === 'static'}>
-                    static
-                  </Button>
-                </ButtonGroup>
-              </CardHeader>
-              <CardBody>
-                <p>Backdrop state: {`${this.state.backdrop}`}</p>
-                <Button onClick={this.toggle('backdrop')}>Launch Modal</Button>
-                <Modal
-                  isOpen={this.state.modal_backdrop}
-                  toggle={this.toggle('backdrop')}
-                  backdrop={this.state.backdrop}>
-                  <ModalHeader toggle={this.toggle('backdrop')}>
-                    Modal title
+      <Page
+        className="ModalPage"
+        title="Nạp tiền"
+        breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'nạp tiền', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+                    <CardBody>
+                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle('nested_parent')}>
+                      + Thêm mới
+                      </Badge>
+                      <Modal
+                          isOpen={this.state.modal_nested_parent}
+                          toggle={this.toggle('nested_parent')}
+                          size="lg"
+                          className={this.props.className}>
+                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                            Thêm mới
                   </ModalHeader>
                   <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    <Row>
+                      <Col xl={6} lg={12} md={12}>
+                        <Card>
+                          <CardBody>
+                            <Form>
+                              <Label for="exampleEmail"> Mã giao dịch nạp tiền</Label>
+                                  <Input
+                                    type="email"
+                                    name="email"
+                                  />
+                            </Form>
+                            <Form>
+                              <Label for="exampleEmail">Số tiền</Label>
+                                <Input
+                                    type="email"
+                                    name="email"
+                                  />
+                            </Form>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                      <Col xl={6} lg={12} md={12}>
+                        <Card>
+                          <CardBody>
+                            <Form>
+                                <Label for="exampleEmail">Nội dung</Label>
+                                  <Input
+                                    type="email"
+                                    name="email"
+                                  />
+                            </Form>
+                            <Form>
+                                <Label for="exampleEmail"> Thời gian</Label>
+                                  <Input
+                                    type="email"
+                                    name="email"
+                                  />
+                            </Form>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
+                      Lưu
+                    </Button>
+                  </Row>
                   </ModalBody>
-                  <ModalFooter>
-                    <Button color="primary" onClick={this.toggle('backdrop')}>
-                      Do Something
-                    </Button>{' '}
-                    <Button color="secondary" onClick={this.toggle('backdrop')}>
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              </CardBody>
-            </Card>
-          </Col>
-
-          <Col md="12" sm="12" xs="12">
-            <Card>
-              <CardHeader>Nested</CardHeader>
-              <CardBody>
-                <Button color="danger" onClick={this.toggle('nested_parent')}>
-                  Launch Modal
-                </Button>
-                <Modal
-                  isOpen={this.state.modal_nested_parent}
-                  toggle={this.toggle('nested_parent')}
-                  className={this.props.className}>
-                  <ModalHeader toggle={this.toggle('nested_parent')}>
-                    Modal title
-                  </ModalHeader>
-                  <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                    <br />
-                    <Button color="success" onClick={this.toggle('nested')}>
-                      Show Nested Model
-                    </Button>
-                    <Modal
-                      isOpen={this.state.modal_nested}
-                      toggle={this.toggle('nested')}>
-                      <ModalHeader>Nested Modal title</ModalHeader>
-                      <ModalBody>Stuff and things</ModalBody>
-                      <ModalFooter>
-                        <Button color="primary" onClick={this.toggle('nested')}>
-                          Done
-                        </Button>{' '}
-                        <Button
-                          color="secondary"
-                          onClick={this.toggle('nested_parent')}>
-                          All Done
-                        </Button>
-                      </ModalFooter>
-                    </Modal>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button
-                      color="primary"
-                      onClick={this.toggle('nested_parent')}>
-                      Do Something
-                    </Button>{' '}
-                    <Button
-                      color="secondary"
-                      onClick={this.toggle('nested_parent')}>
-                      Cancel
-                    </Button>
-                  </ModalFooter>
-                </Modal>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+                  </Modal>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                        <thead>
+                      <tr className="table-danger">
+                        <th>STT</th>
+                        <th>Mã GDNT</th>
+                        <th> Nội dung</th>
+                        <th>Thời gian</th> 
+                        <th>Số tiền</th> 
+                        <th>Tác vụ</th> 
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>13/4/2010</td> 
+                            <td>120000</td> 
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>28/6/2020</td> 
+                            <td>100000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>14/8/2019</td> 
+                            <td>50000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>4/7/2020</td>
+                            <td>60000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>4/7/2019</td>
+                            <td>60000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>7/3/2020</td>
+                            <td>7000</td>
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                              </td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Wendy</td>
+                            <td>the Magic</td>
+                            <td>12/9/2010</td>
+                            <td>200000</td>  
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                            <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+      ))}
       </Page>
     );
   }
 }
-
 export default ModalPage;

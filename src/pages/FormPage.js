@@ -1,7 +1,6 @@
 import Page from 'components/Page';
-import WidgetPage from 'pages/WidgetPage';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
@@ -14,27 +13,21 @@ const getRandomMoney = () => {
 
 class FormPage extends React.Component {
   state = {
-    show: false,
+    modal_nested_parent: false,
+    modal_nested: false,
   };
-  toggle = () => {
-    this.setState({
-      show: !this.state.show,
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
+
+this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
   render() {
-    const externalCloseBtn = (
-      <Badge
-        className="close can-click"
-        style={{
-          position: 'absolute',
-          top: '15px',
-          right: '20px',
-          fontSize: '3rem',
-        }}
-        onClick={this.toggle}>
-        &times;
-      </Badge>
-    );
     return (
       <Page
         className="FormPage"
@@ -46,19 +39,90 @@ class FormPage extends React.Component {
           <Col>
             <Card className="mb-3">
                     <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle}>
+                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle('nested_parent')}>
                       + Thêm mới
                       </Badge>
                       <Modal
-                  isOpen={this.state.show}
-                  toggle={this.toggle}
-                  size="lg"
-                  backdrop="static"
-                  backdropClassName="modal-backdrop-light"
-                  external={externalCloseBtn}
-                  centered>
-                  <ModalBody>
-                  <WidgetPage/>
+                        isOpen={this.state.modal_nested_parent}
+                        toggle={this.toggle('nested_parent')}
+                        size="lg"
+                        className={this.props.className}>
+                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                      Thêm mới
+                      </ModalHeader>
+                      <ModalBody>
+                      <Row>
+                        <Col xl={6} lg={12} md={12}>
+                          <Card>
+                            <CardBody>
+                              <Form>
+                                <FormGroup >
+                                <Label for="exampleEmail"> Tên khảo sát</Label>
+                                    <Input
+                                      type="email"
+                                      name="email"
+                                    />
+                                </FormGroup>
+                                <FormGroup >
+                                <Label for="exampleSelect">Mã khảo sát</Label>
+                                <Input type="select" name="select" />
+                                </FormGroup>
+                                <FormGroup >
+                                  <Label for="exampleEmail"> Người làm khảo sát</Label>
+                                  <Input
+                                    type="email"
+                                    name="email"
+                                    id="exampleEmail"
+                                  />
+                                </FormGroup>
+                              </Form>
+                            </CardBody>
+                          </Card>
+                        </Col>
+
+                        <Col xl={6} lg={12} md={12}>
+                          <Card>
+                            <CardBody>
+                              <Form>
+                              <FormGroup>
+                                    <Label for="exampleDate">Thời gian bắt đầu</Label>
+                                    <Input
+                                      type="date"
+                                      name="date"
+                                      id="exampleDate"
+                                    />
+                                  </FormGroup>
+                                <FormGroup>
+                                    <Label for="exampleDate">Thời gian kết thúc</Label>
+                                    <Input
+                                      type="date"
+                                      name="date"
+                                      id="exampleDate"
+                                    />
+                                  </FormGroup>
+                                  <FormGroup>
+                                  <Label for="exampleEmail">Số tiền cho khảo sát </Label>
+                                    <Input
+                                      type="email"
+                                      name="email"
+                                    />
+                                </FormGroup>
+                              </Form>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                        <Col xl={12}>
+                        <Form>
+                            <Label for="exampleUrl">Link khảo sát</Label>
+                              <Input type="url" name="url" />
+                        </Form>
+                        </Col>
+                        
+                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')} >
+                            Lưu
+                        </Button>
+                      </Row>
+                  
                   </ModalBody></Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
