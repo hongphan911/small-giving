@@ -39,34 +39,30 @@ const sidebarBackground = {
 };
 
 const taikhoan = [
-  { to: '/buttons', name: 'Người dùng', exact: false, Icon: FaUserAlt },
-  {
-    to: '/button-groups',
-    name: 'Nhóm người dùng',
-    exact: false,
-    Icon: TiGroup,
-  },
+  { to: '/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup,},
+  { to: '/nd', name: 'Người dùng', exact: false, Icon: FaUserAlt },
+  
 ];
 
 const hoatdong = [
-   { to: '/input-groups', name: 'danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/alerts', name: 'tin hoạt động', exact: false, Icon: FaRegNewspaper },
+   { to: '/danhsachhd', name: 'danh sách hoạt động', exact: false, Icon: FaClipboardList },
+    { to: '/tinhd', name: 'tin hoạt động', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
-    { to: '/typography', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
-    { to: '/tables', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
-    { to: '/dropdowns',name: 'Tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
+    { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
+    { to: '/bcnaptien', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
+    { to: '/bcquyengop',name: 'Tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
-  { to: '/forms', name: 'tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/khaosat', name: 'tạo khảo sát', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  {to: '/modals', name: 'nạp tiền', exact: false, Icon: GiReceiveMoney},
-  { to: '/badges', name: 'chuyển tiền', exact: false, Icon: GiPayMoney},
+  {to: '/naptien', name: 'nạp tiền', exact: false, Icon: GiReceiveMoney},
+  { to: '/chuyentien', name: 'chuyển tiền', exact: false, Icon: GiPayMoney},
 ];
 
 const navItems1 = [
-  { to: '/', name: 'Chủ nhiệm', exact: true, Icon: FaHome },
+  { to: '/', name: 'Small Giving', exact: true, Icon: FaHome },
   {
       to: '/phanquyen',
       name: 'phân quyền',
@@ -77,7 +73,7 @@ const navItems1 = [
 ];
 
 const navItems2 = [
-  { to: '/progress', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
+  { to: '/gopy', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
 ];
 
 const bem = bn.create('sidebar');

@@ -10,7 +10,7 @@
   z-index: 5;
   width: $cr-sidebar-width;
   font-weight: 200;
-  color: #fff;
+  color: #545454;
   background-position: center center;
   background-size: cover;
   transition: left 0.1s ease-in;
@@ -39,8 +39,8 @@
   &::after {
     z-index: 3;
     // sublime light
-    background: #ae1e17; /* fallback for old browsers */
-    background: linear-gradient(to bottom, #f17777, #cf4c45, #ae1e17);
+    background: #ae1f17; /* fallback for old browsers */
+    background: linear-gradient(to bottom, #f17777, #cf4c45, #ae1f17);
     opacity: 1;
   }
 

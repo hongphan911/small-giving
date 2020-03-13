@@ -8,22 +8,22 @@ import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 
-const AlertPage = React.lazy(() => import('pages/AlertPage'));
+const tinhd = React.lazy(() => import('pages/tinhd'));
 const AuthModalPage = React.lazy(() => import('pages/AuthModalPage'));
-const BadgePage = React.lazy(() => import('pages/BadgePage'));
-const ButtonGroupPage = React.lazy(() => import('pages/ButtonGroupPage'));
-const ButtonPage = React.lazy(() => import('pages/ButtonPage'));
+const chuyentien = React.lazy(() => import('pages/chuyentien'));
+const nhomnd = React.lazy(() => import('pages/nhomnd'));
+const nd = React.lazy(() => import('pages/nd'));
 const CardPage = React.lazy(() => import('pages/CardPage'));
 const ChartPage = React.lazy(() => import('pages/ChartPage'));
-const DashboardPage = React.lazy(() => import('pages/DashboardPage'));
-const DropdownPage = React.lazy(() => import('pages/DropdownPage'));
-const FormPage = React.lazy(() => import('pages/FormPage'));
-const InputGroupPage = React.lazy(() => import('pages/InputGroupPage'));
-const ModalPage = React.lazy(() => import('pages/ModalPage'));
-const ProgressPage = React.lazy(() => import('pages/ProgressPage'));
-const TablePage = React.lazy(() => import('pages/TablePage'));
+const trangchu = React.lazy(() => import('pages/trangchu'));
+const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
+const khaosat = React.lazy(() => import('pages/khaosat'));
+const danhsachhd = React.lazy(() => import('pages/danhsachhd'));
+const naptien = React.lazy(() => import('pages/naptien'));
+const gopy = React.lazy(() => import('pages/gopy'));
+const bcnaptien = React.lazy(() => import('pages/bcnaptien'));
 const Phanquyen = React.lazy(() => import('pages/phanquyen'));
-const TypographyPage = React.lazy(() => import('pages/TypographyPage'));
+const bctaitro = React.lazy(() => import('pages/bctaitro'));
 const WidgetPage = React.lazy(() => import('pages/WidgetPage'));
 
 const getBasename = () => {
@@ -55,26 +55,22 @@ class App extends React.Component {
 
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>
-                <Route exact path="/" component={DashboardPage} />
+                <Route exact path="/" component={trangchu} />
                 <Route exact path="/login-modal" component={AuthModalPage} />
-                <Route exact path="/buttons" component={ButtonPage} />
+                <Route exact path="/nd" component={nd} />
                 <Route exact path="/cards" component={CardPage} />
                 <Route exact path="/widgets" component={WidgetPage} />
-                <Route exact path="/typography" component={TypographyPage} />
-                <Route exact path="/alerts" component={AlertPage} />
-                <Route exact path="/tables" component={TablePage} />
+                <Route exact path="/bctaitro" component={bctaitro} />
+                <Route exact path="/tinhd" component={tinhd} />
+                <Route exact path="/bcnaptien" component={bcnaptien} />
                 <Route exact path="/phanquyen" component={Phanquyen} />
-                <Route exact path="/badges" component={BadgePage} />
-                <Route
-                  exact
-                  path="/button-groups"
-                  component={ButtonGroupPage}
-                />
-                <Route exact path="/dropdowns" component={DropdownPage} />
-                <Route exact path="/progress" component={ProgressPage} />
-                <Route exact path="/modals" component={ModalPage} />
-                <Route exact path="/forms" component={FormPage} />
-                <Route exact path="/input-groups" component={InputGroupPage} />
+                <Route exact path="/chuyentien" component={chuyentien} />
+                <Route exact path="/nhomnd" component={nhomnd}/>
+                <Route exact path="/bcquyengop" component={bcquyengop} />
+                <Route exact path="/gopy" component={gopy} />
+                <Route exact path="/naptien" component={naptien} />
+                <Route exact path="/khaosat" component={khaosat} />
+                <Route exact path="/danhsachhd" component={danhsachhd} />
                 <Route exact path="/charts" component={ChartPage} />
               </React.Suspense>
             </MainLayout>

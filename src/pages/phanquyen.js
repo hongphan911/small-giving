@@ -1,344 +1,188 @@
 import Page from 'components/Page';
 import React from 'react';
-import { Card, CardBody, CardHeader, Col, Row, Table } from 'reactstrap';
+import { Button,CardSubtitle,
+   CardText ,ButtonGroup, Card, CardBody, CardHeader, Col, Row, Table,DropdownItem, DropdownMenu, DropdownToggle, UncontrolledButtonDropdown} from 'reactstrap';
+
 
 const tableTypes = ['striped'];
+class ButtonPage extends React.Component {
+  state = {
+    rSelected: null,
+    cSelected: [],
+    aSelected: "Chọn đối tượng",
+  };
+  
+  onCheckboxBtnClick(selected) {
+    const index = this.state.cSelected.indexOf(selected);
+    if (index < 0) {
+      this.state.cSelected.push(selected);
+    } else {
+      this.state.cSelected.splice(index, 1);
+    }
+    this.setState({ cSelected: [...this.state.cSelected] });
+  }
+  
 
-const Phanquyen = () => {
-  return (
-    <Page
-      title="Phân quyền"
-      breadcrumbs={[{ name: 'phân quyền', active: true }]}
-      className="TablePage"
-    >
-      {tableTypes.map((tableType, index) => (
-        <Row key={index}>
-          <Col>
-            <Card className="mb-3">
-              <CardHeader>{tableType || 'default'}</CardHeader>
-              <CardBody>
+  render() {
+    return (
+      <Page
+        title="Phân quyền"
+        breadcrumbs={[{ name: 'Phân quyền', active: true }]}
+        className="TablePage"
+      >
+        {tableTypes.map((tableType, index) => (
+          <Row key={index}>
+            <Col>
+              <Card className="mb-3">
+                <CardHeader >
+                  <Row>
+                    <Col>
+                        <UncontrolledButtonDropdown>
+                          <DropdownToggle caret>{this.state.aSelected}</DropdownToggle>
+                          <DropdownMenu >
+                            <DropdownItem onClick={() => this.setState({ aSelected: "Phụ trách CLB" })}
+                                          active={this.state.aSelected === "Phụ trách CLB"}>Phụ trách CLB</DropdownItem>
+                            <DropdownItem onClick={() => this.setState({ aSelected: "Cộng tác viên viết bài" })}
+                                          active={this.state.rSelected === "Cộng tác viên viết bài"}>Cộng tác viên viết bài</DropdownItem>
+                            <DropdownItem onClick={() => this.setState({ aSelected: "Cộng tác viên kế toán" })}
+                                          active={this.state.rSelected === "Cộng tác viên kế toán"}>Cộng tác viên kế toán</DropdownItem>
+                          </DropdownMenu>
+                        </UncontrolledButtonDropdown>
+                    </Col>
+                  </Row>
+                </CardHeader>
+
+                <CardBody>
+                <Table {...{ [tableType || 'default']: true }}>
                 <Row>
-                  <Col>
-                    <Card body>
+                  <Col md={8}>
+                    <Card>
+                      <CardBody>
                       <Table {...{ [tableType || 'default']: true }}>
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
-                        </tbody>
-                      </Table>
-                    </Card>
-                  </Col>
+                      <thead></thead>
+                      <tbody>
+                        
 
-                  <Col>
-                    <Card body>
-                      <Table dark>
-                        <thead>
-                          <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                        <tr>
+                          <td>
+                        <CardSubtitle >Phân quyền</CardSubtitle> 
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(1)}
+                            active={this.state.cSelected.includes(1)}
+                            > </Button> Phân quyền<br/>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Quản trị tài khoản</CardSubtitle>                         
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(2)}
+                            active={this.state.cSelected.includes(2)}
+                            > </Button> Nhóm người dùng<br/>
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(3)}
+                            active={this.state.cSelected.includes(3)}
+                            > </Button> Người dùng <br/>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Quản trị hoạt động thiện nguyện</CardSubtitle>                          
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(4)}
+                            active={this.state.cSelected.includes(4)}
+                            > </Button> Danh sách hoạt động<br/>
+
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(5)}
+                            active={this.state.cSelected.includes(5)}
+                            > </Button> Tin hoạt động<br/>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Quản trị hoạt động tài trợ</CardSubtitle>                         
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(6)}
+                            active={this.state.cSelected.includes(6)}
+                            > </Button> Danh sách khảo sát<br/>                          
+                          </td>
+                        </tr>
+                        
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Quản trị luồng quyên góp</CardSubtitle>                          
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(7)}
+                            active={this.state.cSelected.includes(7)}
+                            > </Button> Nạp tiền<br/>                                                  
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(8)}
+                            active={this.state.cSelected.includes(8)}
+                            > </Button> Chuyển tiền<br/>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Quản trị góp ý</CardSubtitle>                          
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(9)}
+                            active={this.state.cSelected.includes(9)}
+                            > </Button> Quản trị góp ý<br/>                          
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          <CardSubtitle >Báo cáo</CardSubtitle>                          
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(10)}
+                            active={this.state.cSelected.includes(10)}
+                            > </Button> Nạp tiền<br/>
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(11)}
+                            active={this.state.cSelected.includes(11)}
+                            > </Button> Khảo sát<br/>
+                          <Button
+                            color="primary"
+                            onClick={() => this.onCheckboxBtnClick(12)}
+                            active={this.state.cSelected.includes(12)}
+                            > </Button> Quyên góp<br/>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                          </tr>
+                          
                         </tbody>
                       </Table>
-                    </Card>
-                  </Col>
+                    </CardBody>
+                  </Card>
+                </Col>
+
                 </Row>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      ))}
+                </Table>                
+               </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        ))}
+      </Page>
+    );
+  };
+}
 
-      <Row>
-        <Col>
-          <Card className="mb-3">
-            <CardHeader>Contextual</CardHeader>
-            <CardBody>
-              <Table>
-                <thead>
-                  <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="table-active">
-                    <th scope="row">Active</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Default</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-
-                  <tr className="table-primary">
-                    <th scope="row">Primary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-secondary">
-                    <th scope="row">Secondary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-success">
-                    <th scope="row">Success</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-danger">
-                    <th scope="row">Danger</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-warning">
-                    <th scope="row">Warning</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-info">
-                    <th scope="row">Info</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-light">
-                    <th scope="row">Light</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-dark">
-                    <th scope="row">Dark</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card className="mb-3">
-            <CardHeader>Contextual</CardHeader>
-            <CardBody>
-              <Table dark>
-                <thead>
-                  <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                    <th scope="col">Column heading</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="table-active">
-                    <th scope="row">Active</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Default</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-
-                  <tr className="table-primary">
-                    <th scope="row">Primary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-secondary">
-                    <th scope="row">Secondary</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-success">
-                    <th scope="row">Success</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-danger">
-                    <th scope="row">Danger</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-warning">
-                    <th scope="row">Warning</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-info">
-                    <th scope="row">Info</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-light">
-                    <th scope="row">Light</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                  <tr className="table-dark">
-                    <th scope="row">Dark</th>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                    <td>Column content</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Card className="mb-3">
-            <CardHeader>Responsive</CardHeader>
-            <CardBody>
-              <Table responsive>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Card className="mb-3">
-            <CardHeader>Size</CardHeader>
-            <CardBody>
-              <Table size="sm">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Page>
-  );
-};
-
-export default Phanquyen;
+export default ButtonPage;
