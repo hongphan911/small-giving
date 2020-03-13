@@ -23,17 +23,10 @@ const Page = ({
   return (
     <Tag className={classes} {...restProps}>
       <div className={bem.e('header')}>
-        {title && typeof title === 'string' ? (
-          <Typography type="h1" className={bem.e('title')}>
-            {title}
-          </Typography>
-        ) : (
-            title
-          )}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
             <FaHandHoldingHeart size="1.5em" />
-            <BreadcrumbItem>trang chủ</BreadcrumbItem>
+            <BreadcrumbItem>Small Giving</BreadcrumbItem>
             {breadcrumbs.length &&
               breadcrumbs.map(({ name, active }, index) => (
                 <BreadcrumbItem key={index} active={active}>

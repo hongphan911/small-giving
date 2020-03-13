@@ -54,8 +54,8 @@ const hoatdong = [
 ];
 const baocao = [
     { to: '/typography', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
-    { to: '/tables', name: 'tổng tiền nạp', exact: false, Icon: MdAttachMoney },
-    { to: '/dropdowns',name: 'tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
+    { to: '/tables', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
+    { to: '/dropdowns',name: 'Tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
   { to: '/forms', name: 'tạo khảo sát', exact: false, Icon: TiThListOutline, },
@@ -68,7 +68,7 @@ const luongtien = [
 const navItems1 = [
   { to: '/', name: 'Chủ nhiệm', exact: true, Icon: FaHome },
   {
-      to: '/login-modal',
+      to: '/phanquyen',
       name: 'phân quyền',
       exact: false,
       Icon: MdSecurity,
@@ -84,11 +84,11 @@ const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
   state = {
-    isOpentaikhoan:true,
-    isOpenhoatdong:true,
-    isOpenbaocao:true,
-    isOpentaitro:true,
-    isOpenluongtien:true,
+    isOpentaikhoan:false,
+    isOpenhoatdong:false,
+    isOpenbaocao:false,
+    isOpentaitro:false,
+    isOpenluongtien:false,
   };
 
   handleClick = name => () => {
