@@ -1,0 +1,93 @@
+// page
+.cr-page {
+  min-height: 100vh;
+  &__header {
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    display: flex;
+    align-items: flex-end;
+    align-self: center;
+  }
+
+  &__title {
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 0;
+    }
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__breadcrumb {
+    @include media-breakpoint-down(sm) {
+      align-self: flex-start;
+    }
+    align-self: flex-end;
+    padding: 0;
+    text-transform: capitalize;
+    background: theme-color('light');
+  }
+
+  .row {
+    // stylelint-disable-next-line
+    .col,
+    > [class^='col-'] {
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.cr-page-spinner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.table-striped{
+  .card-subtitle{
+    font-weight: bold;
+    color: #545454;
+    margin: 5px 0;
+  }
+  .card-body{
+    .btn{
+      padding: 0.35rem 0.35rem !important;
+      border-radius: 50% !important;
+    }
+    .btn-primary{
+      background: #ffffff ;
+      border: 2px solid #545454 ;
+      margin:0 0 5px 20px;
+    }
+    .btn-primary:not(:disabled):not(.disabled):active{
+      background-color: #ae1f17 !important;
+      
+    }
+    .btn-primary:not(:disabled):not(.disabled).active{
+      background-color: #ae1f17 !important;
+      border-color: #ae1f17 !important ;
+    }
+  
+  }
+
+}
+.btn-secondary{
+  background: #ae1f17 !important;
+  border-color: #ae1f17 !important ;
+}
+.dropdown-item.active, .dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background: #ae1f17 !important;
+}
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.show > .btn-primary.dropdown-toggle:focus{
+  box-shadow: none !important;
+}
+/*.btn-primary:not(:disabled):not(.disabled):active,
+ .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle{
+   border: #ae1f17 !important;
+ }*/
