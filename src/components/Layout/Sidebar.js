@@ -1,30 +1,25 @@
-import logo200Image from 'assets/img/logo/logo_200.png';
-import sidebarBgImage from 'assets/img/sidebar/sidebar-4.jpg';
+import logo200Image from 'assets/img/logo/Anh cut.png';
+import sidebarBgImage from 'assets/img/sidebar/sidebar-6.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { 
+  FaHome, 
+  FaUserAlt, 
+  FaClipboardList, 
+  FaRegNewspaper, 
+  FaRegMoneyBillAlt, 
+  FaTable } 
+  from 'react-icons/fa';
+import{TiThListOutline , TiGroup} from 'react-icons/ti';
+import{GiMoneyStack, GiPayMoney, GiReceiveMoney} from 'react-icons/gi';
 import {
-  MdAccountCircle,
-  MdArrowDropDownCircle,
-  MdBorderAll,
+  MdAttachMoney,
   MdBrush,
-  MdChromeReaderMode,
-  MdDashboard,
-  MdExtension,
-  MdGroupWork,
-  MdInsertChart,
+  MdAccountCircle,
   MdKeyboardArrowDown,
-  MdNotificationsActive,
-  MdPages,
-  MdRadioButtonChecked,
-  MdSend,
-  MdStar,
+  MdWork,
+  MdSecurity,
   MdTextFields,
-  MdViewCarousel,
-  MdViewDay,
-  MdViewList,
-  MdWeb,
-  MdWidgets,
 } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
 import {
@@ -43,58 +38,57 @@ const sidebarBackground = {
   backgroundRepeat: 'no-repeat',
 };
 
-const navQTTK = [
-  { to: '/buttons', name: 'Nhóm người dùng', exact: false, Icon: MdSend },
-  { to: '/button-groups', name: 'Người dùng', exact: false, Icon: MdSend},
-];
-
-const navQTHD = [
-  { to: '/typography', name: 'Danh sách hoạt động', exact: false, Icon: MdSend },
-  { to: '/tables', name: 'Tin hoạt động', exact: false, Icon: MdSend },
-];
-const navQTTT = [
-  { to: '/typography', name: 'Danh sách khảo sát', exact: false, Icon: MdSend },
-];
-const navQTLT = [
-  { to: '/typography', name: 'Nạp tiền', exact: false, Icon: MdSend },
-  { to: '/tables', name: 'Chuyển tiền', exact: false, Icon: MdSend },
-];
-const navBC = [
-  { to: '/typography', name: 'Nạp tiền', exact: false, Icon: MdSend },
-  { to: '/tables', name: 'Khảo sát', exact: false, Icon: MdSend },
-  { to: '/tables', name: 'Quyên góp', exact: false, Icon: MdSend },
-];
-
-/*const pageContents = [
-  { to: '/login', name: 'Đăng', exact: false, Icon: MdAccountCircle },
+const taikhoan = [
+  { to: '/buttons', name: 'Người dùng', exact: false, Icon: FaUserAlt },
   {
-    to: '/login-modal',
-    name: 'login modal',
+    to: '/button-groups',
+    name: 'Nhóm người dùng',
     exact: false,
-    Icon: MdViewCarousel,
+    Icon: TiGroup,
   },
-];*/
+];
+
+const hoatdong = [
+   { to: '/input-groups', name: 'danh sách hoạt động', exact: false, Icon: FaClipboardList },
+    { to: '/alerts', name: 'tin hoạt động', exact: false, Icon: FaRegNewspaper },
+];
+const baocao = [
+    { to: '/typography', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
+    { to: '/tables', name: 'tổng tiền nạp', exact: false, Icon: MdAttachMoney },
+    { to: '/dropdowns',name: 'tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
+];
+const taitro = [
+  { to: '/forms', name: 'tạo khảo sát', exact: false, Icon: TiThListOutline, },
+];
+const luongtien = [
+  {to: '/modals', name: 'nạp tiền', exact: false, Icon: GiReceiveMoney},
+  { to: '/badges', name: 'chuyển tiền', exact: false, Icon: GiPayMoney},
+];
 
 const navItems1 = [
-  { to: '/', name: 'Small Giving', exact: true, Icon: MdRadioButtonChecked },
-  { to: '/phanquyen', name: 'phân quyền', exact: true, Icon: MdRadioButtonChecked },
-  
+  { to: '/', name: 'Chủ nhiệm', exact: true, Icon: FaHome },
+  {
+      to: '/login-modal',
+      name: 'phân quyền',
+      exact: false,
+      Icon: MdSecurity,
+    },
+
 ];
+
 const navItems2 = [
-  { to: '/cards', name: 'quản trị góp ý', exact: false, Icon: MdRadioButtonChecked },
-  
+  { to: '/progress', name: 'Quản trị góp ý', exact: false, Icon: MdBrush },
 ];
 
 const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
   state = {
-    isOpenQTTK: false,
-    isOpenQTHD: false,
-    isOpenQTTT: false,
-    isOpenQTLT: false,
-    isOpenBC: false,
-    isOpenPages: false,
+    isOpentaikhoan:true,
+    isOpenhoatdong:true,
+    isOpenbaocao:true,
+    isOpentaitro:true,
+    isOpenluongtien:true,
   };
 
   handleClick = name => () => {
@@ -116,13 +110,13 @@ class Sidebar extends React.Component {
             <SourceLink className="navbar-brand d-flex">
               <img
                 src={logo200Image}
-                width="40"
-                height="30"
+                width="50"
+                height="40"
                 className="pr-2"
                 alt=""
               />
               <span className="text-white">
-                Reduction <FaGithub />
+                Small Giving 
               </span>
             </SourceLink>
           </Navbar>
@@ -145,18 +139,18 @@ class Sidebar extends React.Component {
 
             <NavItem
               className={bem.e('nav-item')}
-              onClick={this.handleClick('QTTK')}
+              onClick={this.handleClick('taikhoan')}
             >
               <BSNavLink className={bem.e('nav-item-collapse')}>
-                <div className="d-flex">
-                  <MdRadioButtonChecked className={bem.e('nav-item-icon')} />
-                  <span className="text-uppercase">Quản trị tài khoản</span>
+                <div className="text-uppercase">
+                  <MdAccountCircle className={bem.e('nav-item-icon')} />
+                  <span className="">Quản trị tài khoản</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
                   style={{
                     padding: 0,
-                    transform: this.state.isOpenQTTK
+                    transform: this.state.isOpentaikhoan
                       ? 'rotate(0deg)'
                       : 'rotate(-90deg)',
                     transitionDuration: '0.3s',
@@ -165,12 +159,12 @@ class Sidebar extends React.Component {
                 />
               </BSNavLink>
             </NavItem>
-            <Collapse isOpen={this.state.isOpenQTTK}>
-              {navQTTK.map(({ to, name, exact, Icon }, index) => (
+            <Collapse isOpen={this.state.isOpentaikhoan}>
+              {taikhoan.map(({ to, name, exact, Icon }, index) => (
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className=""
+                    className="text-uppercase"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -185,18 +179,18 @@ class Sidebar extends React.Component {
 
             <NavItem
               className={bem.e('nav-item')}
-              onClick={this.handleClick('QTHD')}
+              onClick={this.handleClick('hoatdong')}
             >
               <BSNavLink className={bem.e('nav-item-collapse')}>
-                <div className="d-flex">
-                  <MdRadioButtonChecked className={bem.e('nav-item-icon')} />
-                  <span className="text-uppercase">Quản trị HĐ thiện nguyện</span>
+                <div className="text-uppercase">
+                  <MdWork className={bem.e('nav-item-icon')} />
+                  <span className="">Quản trị hoạt động tình nguyện</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
                   style={{
                     padding: 0,
-                    transform: this.state.isOpenQTHD
+                    transform: this.state.isOpenhoatdong
                       ? 'rotate(0deg)'
                       : 'rotate(-90deg)',
                     transitionDuration: '0.3s',
@@ -205,12 +199,12 @@ class Sidebar extends React.Component {
                 />
               </BSNavLink>
             </NavItem>
-            <Collapse isOpen={this.state.isOpenQTHD}>
-              {navQTHD.map(({ to, name, exact, Icon }, index) => (
+            <Collapse isOpen={this.state.isOpenhoatdong}>
+              {hoatdong.map(({ to, name, exact, Icon }, index) => (
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className=""
+                    className="text-uppercase"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -225,18 +219,18 @@ class Sidebar extends React.Component {
 
             <NavItem
               className={bem.e('nav-item')}
-              onClick={this.handleClick('QTTT')}
+              onClick={this.handleClick('taitro')}
             >
               <BSNavLink className={bem.e('nav-item-collapse')}>
-                <div className="d-flex">
-                  <MdRadioButtonChecked className={bem.e('nav-item-icon')} />
-                  <span className="text-uppercase">Quản trị HĐ tài trợ</span>
+                <div className="text-uppercase">
+                  <FaTable className={bem.e('nav-item-icon')} />
+                  <span className="">quản trị hoạt động tài trợ</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
                   style={{
                     padding: 0,
-                    transform: this.state.isOpenQTTT
+                    transform: this.state.isOpentaitro
                       ? 'rotate(0deg)'
                       : 'rotate(-90deg)',
                     transitionDuration: '0.3s',
@@ -245,12 +239,12 @@ class Sidebar extends React.Component {
                 />
               </BSNavLink>
             </NavItem>
-            <Collapse isOpen={this.state.isOpenQTTT}>
-              {navQTTT.map(({ to, name, exact, Icon }, index) => (
+            <Collapse isOpen={this.state.isOpentaitro}>
+              {taitro.map(({ to, name, exact, Icon }, index) => (
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className=""
+                    className="text-uppercase"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -265,18 +259,18 @@ class Sidebar extends React.Component {
 
             <NavItem
               className={bem.e('nav-item')}
-              onClick={this.handleClick('QTLT')}
+              onClick={this.handleClick('luongtien')}
             >
               <BSNavLink className={bem.e('nav-item-collapse')}>
-                <div className="d-flex">
-                  <MdRadioButtonChecked className={bem.e('nav-item-icon')} />
-                  <span className="text-uppercase">Quản trị luồng tiền</span>
+                <div className="text-uppercase">
+                  <GiMoneyStack className={bem.e('nav-item-icon')} />
+                  <span className="">Quản trị luồng quyên góp</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
                   style={{
                     padding: 0,
-                    transform: this.state.isOpenQTLT
+                    transform: this.state.isOpenluongtien
                       ? 'rotate(0deg)'
                       : 'rotate(-90deg)',
                     transitionDuration: '0.3s',
@@ -285,12 +279,12 @@ class Sidebar extends React.Component {
                 />
               </BSNavLink>
             </NavItem>
-            <Collapse isOpen={this.state.isOpenQTLT}>
-              {navQTLT.map(({ to, name, exact, Icon }, index) => (
+            <Collapse isOpen={this.state.isOpenluongtien}>
+              {luongtien.map(({ to, name, exact, Icon }, index) => (
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className=""
+                    className="text-uppercase"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -319,20 +313,20 @@ class Sidebar extends React.Component {
               </NavItem>
             ))}
 
-            <NavItem
+          <NavItem
               className={bem.e('nav-item')}
-              onClick={this.handleClick('BC')}
+              onClick={this.handleClick('baocao')}
             >
               <BSNavLink className={bem.e('nav-item-collapse')}>
-                <div className="d-flex">
-                  <MdRadioButtonChecked className={bem.e('nav-item-icon')} />
-                  <span className="text-uppercase">Báo Cáo</span>
+                <div className="text-uppercase">
+                  <FaTable className={bem.e('nav-item-icon')} />
+                  <span className="">báo cáo</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
                   style={{
                     padding: 0,
-                    transform: this.state.isOpenBC
+                    transform: this.state.isOpenbaocao
                       ? 'rotate(0deg)'
                       : 'rotate(-90deg)',
                     transitionDuration: '0.3s',
@@ -341,12 +335,12 @@ class Sidebar extends React.Component {
                 />
               </BSNavLink>
             </NavItem>
-            <Collapse isOpen={this.state.isOpenBC}>
-              {navBC.map(({ to, name, exact, Icon }, index) => (
+            <Collapse isOpen={this.state.isOpenbaocao}>
+              {baocao.map(({ to, name, exact, Icon }, index) => (
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className=""
+                    className="text-uppercase"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -358,7 +352,6 @@ class Sidebar extends React.Component {
                 </NavItem>
               ))}
             </Collapse>
-
 
           </Nav>
         </div>

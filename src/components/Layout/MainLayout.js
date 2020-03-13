@@ -31,10 +31,10 @@ class MainLayout extends React.Component {
 
       this.notificationSystem.addNotification({
         title: <MdImportantDevices />,
-        message: 'Welome to Reduction Admin!',
+        message: 'Welome to Small Giving !',
         level: 'info',
       });
-    }, 1500);
+    }, 1000);
 
     setTimeout(() => {
       if (!this.notificationSystem) {
@@ -44,10 +44,10 @@ class MainLayout extends React.Component {
       this.notificationSystem.addNotification({
         title: <MdLoyalty />,
         message:
-          'Reduction is carefully designed template powered by React and Bootstrap4!',
+          'Small Giving is made by Management Information System of Banking Academy!',
         level: 'info',
       });
-    }, 2500);
+    }, 2000);
   }
 
   // close sidebar when

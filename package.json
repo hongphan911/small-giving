@@ -11,6 +11,7 @@
     "faker": "^4.1.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
+    "react-bootstrap-table": "file:react-bootstrap-table",
     "react-chartjs-2": "^2.7.4",
     "react-component-queries": "^2.3.0",
     "react-d3-map": "^0.8.3",
@@ -23,6 +24,7 @@
     "react-router-dom": "^4.3.1",
     "react-simple-maps": "^0.12.1",
     "react-sizeme": "^2.5.2",
+    "react-table": "^7.0.0-rc.16",
     "reactstrap": "^7.1.0",
     "victory": "^32.0.0"
   },

@@ -4,6 +4,7 @@ import PropTypes from 'utils/propTypes';
 import bn from 'utils/bemnames';
 
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import {FaHandHoldingHeart} from 'react-icons/fa';
 
 import Typography from './Typography';
 
@@ -22,10 +23,17 @@ const Page = ({
   return (
     <Tag className={classes} {...restProps}>
       <div className={bem.e('header')}>
-        
+        {title && typeof title === 'string' ? (
+          <Typography type="h1" className={bem.e('title')}>
+            {title}
+          </Typography>
+        ) : (
+            title
+          )}
         {breadcrumbs && (
           <Breadcrumb className={bem.e('breadcrumb')}>
-            <BreadcrumbItem>Small Giving</BreadcrumbItem>
+            <FaHandHoldingHeart size="1.5em" />
+            <BreadcrumbItem>trang chủ</BreadcrumbItem>
             {breadcrumbs.length &&
               breadcrumbs.map(({ name, active }, index) => (
                 <BreadcrumbItem key={index} active={active}>

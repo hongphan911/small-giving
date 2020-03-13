@@ -20,7 +20,6 @@ const DropdownPage = React.lazy(() => import('pages/DropdownPage'));
 const FormPage = React.lazy(() => import('pages/FormPage'));
 const InputGroupPage = React.lazy(() => import('pages/InputGroupPage'));
 const ModalPage = React.lazy(() => import('pages/ModalPage'));
-const Phanquyen = React.lazy(() => import('pages/Phanquyen'));
 const ProgressPage = React.lazy(() => import('pages/ProgressPage'));
 const TablePage = React.lazy(() => import('pages/TablePage'));
 const TypographyPage = React.lazy(() => import('pages/TypographyPage'));
@@ -63,9 +62,12 @@ class App extends React.Component {
                 <Route exact path="/typography" component={TypographyPage} />
                 <Route exact path="/alerts" component={AlertPage} />
                 <Route exact path="/tables" component={TablePage} />
-                <Route exact path="/phanquyen" component={Phanquyen} />
                 <Route exact path="/badges" component={BadgePage} />
-                <Route exact path="/button-groups" component={ButtonGroupPage}/>
+                <Route
+                  exact
+                  path="/button-groups"
+                  component={ButtonGroupPage}
+                />
                 <Route exact path="/dropdowns" component={DropdownPage} />
                 <Route exact path="/progress" component={ProgressPage} />
                 <Route exact path="/modals" component={ModalPage} />

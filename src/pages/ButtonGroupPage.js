@@ -1,130 +1,140 @@
 import Page from 'components/Page';
 import React from 'react';
-import { Button, ButtonGroup, ButtonToolbar, Card, CardBody, CardHeader, CardText, Col, DropdownItem, DropdownMenu, DropdownToggle, Row, UncontrolledButtonDropdown } from 'reactstrap';
-
-
-
-const ButtonGroupPage = () => {
-  return (
-    <Page
-      title="Button Groups"
-      breadcrumbs={[{ name: 'button groups', active: true }]}
-    >
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Button Groups</CardHeader>
-            <CardBody>
-              <ButtonGroup className="mr-3 mb-3">
-                <Button color="primary">Left</Button>
-                <Button color="primary">Middle</Button>
-                <Button color="primary">Right</Button>
-              </ButtonGroup>
-
-              <ButtonGroup className="mr-3 mb-3">
-                <Button>Left</Button>
-                <Button>Middle</Button>
-                <Button>Right</Button>
-              </ButtonGroup>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card>
-            <CardHeader>Button Toolbar</CardHeader>
-            <CardBody>
-              <ButtonToolbar>
-                <ButtonGroup className="mr-2">
-                  <Button>1</Button>
-                  <Button>2</Button>
-                  <Button>3</Button>
-                  <Button>4</Button>
-                </ButtonGroup>
-                <ButtonGroup className="mr-2">
-                  <Button>5</Button>
-                  <Button>6</Button>
-                  <Button>7</Button>
-                </ButtonGroup>
-                <ButtonGroup className="mr-2">
-                  <Button>8</Button>
-                </ButtonGroup>
-              </ButtonToolbar>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Nesting</CardHeader>
-            <CardBody>
-              <ButtonGroup>
-                <Button>1</Button>
-                <Button>2</Button>
-                <UncontrolledButtonDropdown>
-                  <DropdownToggle caret>Dropdown</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Dropdown Link</DropdownItem>
-                    <DropdownItem>Dropdown Link</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledButtonDropdown>
-              </ButtonGroup>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card>
-            <CardHeader>Vertical variation</CardHeader>
-            <CardBody>
-              <ButtonGroup vertical>
-                <Button>1</Button>
-                <Button>2</Button>
-                <UncontrolledButtonDropdown>
-                  <DropdownToggle caret>Dropdown</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Dropdown Link</DropdownItem>
-                    <DropdownItem>Dropdown Link</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledButtonDropdown>
-              </ButtonGroup>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Sizing</CardHeader>
-            <CardBody>
-              <CardText>Large</CardText>
-              <ButtonGroup size="lg">
-                <Button>Left</Button>
-                <Button>Middle</Button>
-                <Button>Right</Button>
-              </ButtonGroup>
-
-              <CardText className="mt-3">Default</CardText>
-              <ButtonGroup>
-                <Button>Left</Button>
-                <Button>Middle</Button>
-                <Button>Right</Button>
-              </ButtonGroup>
-
-              <CardText className="mt-3">Small</CardText>
-              <ButtonGroup size="sm">
-                <Button>Left</Button>
-                <Button>Middle</Button>
-                <Button>Right</Button>
-              </ButtonGroup>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Page>
-  );
-};
-
+import CardPage from'pages/CardPage';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody} from 'reactstrap';
+import {FaEdit} from 'react-icons/fa';
+import{MdDelete} from'react-icons/md';
+const tableTypes = ['hover'];
+class ButtonGroupPage extends React.Component {
+  state = {
+    show: false,
+  };
+  toggle = () => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
+  render() {
+    const externalCloseBtn = (
+      <Badge
+        className="close can-click"
+        style={{
+          position: 'absolute',
+          top: '15px',
+          right: '20px',
+          fontSize: '3rem',
+        }}
+        onClick={this.toggle}>
+        &times;
+      </Badge>
+    );
+    return (
+      <Page
+        className="ButtonPage"
+        title="Nhóm người dùng"
+        breadcrumbs={[{name:'quản trị tài khoản'}, { name: 'nhóm người dùng', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+                    <CardBody>
+                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle}>
+                      + Thêm mới
+                      </Badge>
+                      <Modal
+                  isOpen={this.state.show}
+                  toggle={this.toggle}
+                  size="sm"
+                  backdrop="static"
+                  backdropClassName="modal-backdrop-light"
+                  external={externalCloseBtn}
+                  centered>
+                  <ModalBody>
+                  <CardPage/>
+                  </ModalBody></Modal>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                        <thead>
+                          <tr className="table-danger">
+                            <th>STT</th>
+                            <th>Mã nhóm</th>
+                            <th>Tên nhóm</th>
+                            <th>Tác vụ</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                              </td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Wendy</td>
+                            <td>the Magic</td>
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                            <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+                  ))}
+      </Page>
+    );
+  }
+}
 export default ButtonGroupPage;
