@@ -1,8 +1,7 @@
 import Page from 'components/Page';
 import ChartPage from 'pages/ChartPage';
-import CardPage from 'pages/CardPage';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
@@ -14,27 +13,21 @@ const getRandomMoney = () => {
 };
 class InputGroupPage extends React.Component {
   state = {
-    show: false,
+    modal_nested_parent: false,
+    modal_nested: false,
   };
-  toggle = () => {
-    this.setState({
-      show: !this.state.show,
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
+
+this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
   render() {
-    const externalCloseBtn = (
-      <Badge
-        className="close can-click"
-        style={{
-          position: 'absolute',
-          top: '15px',
-          right: '20px',
-          fontSize: '3rem',
-        }}
-        onClick={this.toggle}>
-        &times;
-      </Badge>
-    );
     return (
       <Page
         className="InputGroupPage"
@@ -46,17 +39,17 @@ class InputGroupPage extends React.Component {
           <Col>
             <Card className="mb-3">
                     <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle}>
+                      <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle('nested_parent')}>
                       + Thêm mới
                       </Badge>
                       <Modal
-                  isOpen={this.state.show}
-                  toggle={this.toggle}
+                  isOpen={this.state.modal_nested_parent}
+                  toggle={this.toggle('nested_parent')}
                   size="lg"
-                  backdrop="static"
-                  backdropClassName="modal-backdrop-light"
-                  external={externalCloseBtn}
-                  centered>
+                  className={this.props.className}>
+                  <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                   Thêm mới
+                  </ModalHeader>
                   <ModalBody>
                   <ChartPage/>
                   </ModalBody></Modal>

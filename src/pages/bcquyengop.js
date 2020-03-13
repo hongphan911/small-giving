@@ -1,164 +1,99 @@
 import Page from 'components/Page';
 import React from 'react';
-import {
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  Row,
-  UncontrolledButtonDropdown,
-} from 'reactstrap';
-import { getThemeColors } from 'utils/colors';
+import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
+const tableTypes = ['hover'];
 
-const colors = getThemeColors();
-
-const DropdownPage = () => {
-  return (
-    <Page title="Dropdowns" breadcrumbs={[{ name: 'dropdowns', active: true }]}>
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Single button dropdowns</CardHeader>
-            <CardBody>
-              {colors.map((color, index) => (
-                <UncontrolledButtonDropdown key={index}>
-                  <DropdownToggle
-                    caret
-                    color={color}
-                    className="text-capitalize m-1">
-                    {color}
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledButtonDropdown>
-              ))}
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card>
-            <CardHeader>Split button dropdowns</CardHeader>
-            <CardBody>
-              {colors.map((color, index) => (
-                <UncontrolledButtonDropdown
-                  key={index}
-                  className="text-capitalize m-1">
-                  <Button color={color}>{color}</Button>
-                  <DropdownToggle caret color={color} />
-                  <DropdownMenu>
-                    <DropdownItem header>Header</DropdownItem>
-                    <DropdownItem disabled>Action</DropdownItem>
-                    <DropdownItem>Another Action</DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem>Another Action</DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledButtonDropdown>
-              ))}
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Sizing</CardHeader>
-            <CardBody>
-              <UncontrolledButtonDropdown className="m-1">
-                <DropdownToggle caret size="lg">
-                  Large
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-
-              <UncontrolledButtonDropdown className="m-1">
-                <DropdownToggle caret>Normal</DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-
-              <UncontrolledButtonDropdown className="m-1">
-                <DropdownToggle caret size="sm">
-                  Small
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card>
-            <CardHeader>Dropup</CardHeader>
-            <CardBody>
-              <UncontrolledButtonDropdown direction="up">
-                <DropdownToggle caret size="lg">
-                  Dropup
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Alignment</CardHeader>
-            <CardBody>
-              <UncontrolledButtonDropdown className="m-1">
-                <DropdownToggle caret>
-                  This dropdown's menu is right-aligned
-                </DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem header>Header</DropdownItem>
-                  <DropdownItem disabled>Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-
-              <UncontrolledButtonDropdown className="m-1">
-                <DropdownToggle caret>
-                  This dropdown's menu is left-aligned
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem header>Header</DropdownItem>
-                  <DropdownItem disabled>Action</DropdownItem>
-                  <DropdownItem>Another Action</DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>Another Action</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledButtonDropdown>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Page>
-  );
-};
-
+class DropdownPage extends React.Component {
+  render() {
+    return (
+      <Page
+        className="DropdownPage"
+        title="Tổng quyên góp"
+        breadcrumbs={[{name:'báo cáo'},{ name: 'tổng quyên góp', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+                    <CardBody>
+                      <Row>
+                    <Col xl={6} lg={12} md={12}>
+                    <Form>
+                  <Label for="exampleDate">Từ ngày</Label>
+                  <Input type="date"name="date"/> 
+                  </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                  <Label for="exampleDate">Đến ngày</Label>
+                <Input type="date" name="date"/>
+                  </Form>
+                  </Col>
+                  </Row>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                        <thead>
+                      <tr className="table-danger">
+                        <th>STT</th>
+                        <th>Tên hoạt động</th>
+                        <th> Nhà hảo tâm</th>
+                        <th>Số tiền</th> 
+                      </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>120000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>100000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>50000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>60000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>60000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>7000</td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Wendy</td>
+                            <td>the Magic</td>
+                            <td>200000</td>  
+                          </tr>
+                        </tbody>
+                      </Table>
+                      <Button outline color="danger" size="lg">
+                  Xuất ra Exel
+                </Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+      ))}
+      </Page>
+    );
+  }
+}
 export default DropdownPage;

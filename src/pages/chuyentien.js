@@ -1,176 +1,201 @@
-import React from 'react';
-
-import {
-  Row,
-  Col,
-  Card,
-  CardHeader,
-  CardBody,
-  Badge,
-  Button,
-} from 'reactstrap';
-
 import Page from 'components/Page';
+import React from 'react';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button} from 'reactstrap';
+import {FaEdit} from 'react-icons/fa';
+import{MdDelete} from'react-icons/md';
+const tableTypes = ['hover'];
+class BadgePage extends React.Component {
+  state = {
+    modal_nested_parent: false,
+    modal_nested: false,
+  };
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
 
-const BadgePage = () => {
-  return (
-    <Page title="Badges" breadcrumbs={[{ name: 'badges', active: true }]}>
-      <Row>
-        <Col md={6}>
-          <Card>
-            <CardHeader>Scale to parent</CardHeader>
-            <CardBody>
-              <h1>
-                Heading <Badge color="secondary">New</Badge>
-              </h1>
-              <h2>
-                Heading <Badge color="secondary">New</Badge>
-              </h2>
-              <h3>
-                Heading <Badge color="secondary">New</Badge>
-              </h3>
-              <h4>
-                Heading <Badge color="secondary">New</Badge>
-              </h4>
-              <h5>
-                Heading <Badge color="secondary">New</Badge>
-              </h5>
-              <h6>
-                Heading <Badge color="secondary">New</Badge>
-              </h6>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={6}>
-          <Card>
-            <CardHeader>with buttons</CardHeader>
-            <CardBody>
-              <Button color="primary" className="mr-1">
-                Notifications <Badge color="secondary">4</Badge>
-              </Button>
-              <Button color="info" className="mr-1">
-                Notifications <Badge color="danger">4</Badge>
-              </Button>
-              <Button color="secondary" className="mr-1">
-                Notifications <Badge color="secondary">4</Badge>
-              </Button>
-            </CardBody>
-
-            <CardBody>
-              <Button color="primary" outline className="mr-1">
-                Notifications <Badge color="primary">4</Badge>
-              </Button>
-              <Button color="info" outline className="mr-1">
-                Notifications <Badge color="info">4</Badge>
-              </Button>
-              <Button color="secondary" outline className="mr-1">
-                Notifications <Badge color="secondary">4</Badge>
-              </Button>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col md={4}>
-          <Card>
-            <CardHeader>Contextual variations</CardHeader>
-            <CardBody>
-              <Badge color="primary" className="mr-1">
-                Primary
-              </Badge>
-              <Badge color="secondary" className="mr-1">
-                Secondary
-              </Badge>
-              <Badge color="success" className="mr-1">
-                Success
-              </Badge>
-              <Badge color="danger" className="mr-1">
-                Danger
-              </Badge>
-              <Badge color="warning" className="mr-1">
-                Warning
-              </Badge>
-              <Badge color="info" className="mr-1">
-                Info
-              </Badge>
-              <Badge color="light" className="mr-1">
-                Light
-              </Badge>
-              <Badge color="dark" className="mr-1">
-                Dark
-              </Badge>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={4}>
-          <Card>
-            <CardHeader>Pills</CardHeader>
-            <CardBody>
-              <Badge color="primary" pill className="mr-1">
-                Primary
-              </Badge>
-              <Badge color="secondary" pill className="mr-1">
-                Secondary
-              </Badge>
-              <Badge color="success" pill className="mr-1">
-                Success
-              </Badge>
-              <Badge color="danger" pill className="mr-1">
-                Danger
-              </Badge>
-              <Badge color="warning" pill className="mr-1">
-                Warning
-              </Badge>
-              <Badge color="info" pill className="mr-1">
-                Info
-              </Badge>
-              <Badge color="light" pill className="mr-1">
-                Light
-              </Badge>
-              <Badge color="dark" pill className="mr-1">
-                Dark
-              </Badge>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col md={4}>
-          <Card>
-            <CardHeader>Links</CardHeader>
-            <CardBody>
-              <Badge href="#" color="primary" className="mr-1">
-                Primary
-              </Badge>
-              <Badge href="#" color="secondary" className="mr-1">
-                Secondary
-              </Badge>
-              <Badge href="#" color="success" className="mr-1">
-                Success
-              </Badge>
-              <Badge href="#" color="danger" className="mr-1">
-                Danger
-              </Badge>
-              <Badge href="#" color="warning" className="mr-1">
-                Warning
-              </Badge>
-              <Badge href="#" color="info" className="mr-1">
-                Info
-              </Badge>
-              <Badge href="#" color="light" className="mr-1">
-                Light
-              </Badge>
-              <Badge href="#" color="dark" className="mr-1">
-                Dark
-              </Badge>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Page>
-  );
-};
-
+this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+    });
+  };
+  render() {
+    return (
+      <Page
+        className="BadgePage"
+        title="Chuyển tiền"
+        breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'chuyển tiền', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+              <CardBody>
+                <Badge color="danger" pill className=" mb-3 p-2 can-click" onClick={this.toggle('nested_parent')}>
+                + Thêm mới
+                </Badge>
+                <Modal
+                  isOpen={this.state.modal_nested_parent}
+                  toggle={this.toggle('nested_parent')}
+                  size="lg"
+                  className={this.props.className}>
+                  <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                   Thêm mới
+                  </ModalHeader>
+                  <ModalBody>
+                  <Row>
+                    <Col xl={6} lg={12} md={12}>
+                      <Card>
+                        <CardBody>
+                          <Form>
+                            <Label for="exampleEmail"> Mã giao dịch</Label>
+                                <Input
+                                  type="email"
+                                  name="email"
+                                />
+                          </Form>
+                          <Form>
+                              <Label for="exampleEmail">Số tiền</Label>
+                                <Input
+                                  type="email"
+                                  name="email"
+                                />
+                          </Form>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Col xl={6} lg={12} md={12}>
+                      <Card>
+                        <CardBody>
+                          <Form>
+                              <Label for="exampleEmail">Tài khoản nguồn</Label>
+                                <Input
+                                  type="email"
+                                  name="email"
+                                />
+                          </Form>
+                          <Form>
+                              <Label for="exampleEmail"> Tài khoản đích</Label>
+                                <Input
+                                  type="email"
+                                  name="email"
+                                />
+                          </Form>
+                        </CardBody>
+                      </Card>
+                    </Col>
+                    <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
+                      Lưu
+                    </Button>
+                  </Row>
+                  </ModalBody></Modal>
+                      <Table {...{ [tableType || 'default']: true }}>
+                        <thead>
+                      <tr className="table-danger">
+                        <th>STT</th>
+                        <th>Mã GD</th>
+                        <th> Tài khoản nguồn</th>
+                        <th>Tài khoản đích</th> 
+                        <th>Thời gian</th>
+                        <th>Số tiền</th> 
+                        <th>Tác vụ</th> 
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>Bind</td>
+                            <td>12/5/2020</td> 
+                            <td>120000</td> 
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>Ding</td>
+                            <td>26/2/2020</td> 
+                            <td>100000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>MEng</td> 
+                            <td>31/1/2020</td>
+                            <td>50000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>Wing</td>
+                            <td>19/9/2020</td>
+                            <td>60000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>20/2/2020</td>
+                            <td>60000</td> 
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                            <td>17/3/2019</td>
+                            <td>7000</td>
+                            <td>
+                              <FaEdit className="can-click " size="1.5em"/>
+                              <MdDelete className="can-click" size="1.5em"/>
+                              </td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Wendy</td>
+                            <td>the Magic</td>
+                            <td>@facebook</td>
+                            <td>25/3/2010</td>
+                            <td>200000</td>  
+                            <td>
+                            <FaEdit className="can-click " size="1.5em"/>
+                            <MdDelete className="can-click" size="1.5em"/>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+      ))}
+      </Page>
+    );
+  }
+}
 export default BadgePage;

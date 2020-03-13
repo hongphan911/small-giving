@@ -1,138 +1,99 @@
 import Page from 'components/Page';
-import Typography from 'components/Typography';
 import React from 'react';
-import { Card, CardBody, CardHeader, Col, Row } from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
+const tableTypes = ['hover'];
 
-const TypographyPage = () => {
-  return (
-    <Page
-      title="Typography"
-      breadcrumbs={[{ name: 'typography', active: true }]}>
-      <Row>
-        <Col>
-          <Card>
-            <CardHeader>Headings</CardHeader>
-            <CardBody>
-              <Typography type="h1">h1 Heading</Typography>
-              <Typography type="h2">h2 Heading</Typography>
-              <Typography type="h3">h3 Heading</Typography>
-              <Typography type="h4">h4 Heading</Typography>
-              <Typography type="h5">h5 Heading</Typography>
-              <Typography type="h6">h6 Heading</Typography>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <CardHeader>Display</CardHeader>
-            <CardBody>
-              <Typography type="display-1">Display 1</Typography>
-              <Typography type="display-2">Display 2</Typography>
-              <Typography type="display-3">Display 3</Typography>
-              <Typography type="display-4">Display 4</Typography>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row className="mb-3" />
-
-      <Row>
-        <Col>
-          <Card>
-            <CardHeader>Text Colors</CardHeader>
-            <CardBody>
-              <Typography className="text-primary">.text-primary</Typography>
-              <Typography className="text-secondary">
-                .text-secondary
-              </Typography>
-              <Typography className="text-success">.text-success</Typography>
-              <Typography className="text-danger">.text-danger</Typography>
-              <Typography className="text-warning">.text-warning</Typography>
-              <Typography className="text-info">.text-info</Typography>
-              <Typography className="text-light bg-dark">
-                .text-light
-              </Typography>
-              <Typography className="text-dark">.text-dark</Typography>
-              <Typography className="text-muted">.text-muted</Typography>
-              <Typography className="text-white bg-dark">
-                .text-white
-              </Typography>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <CardHeader>Inline text elements</CardHeader>
-            <CardBody>
-              <p>
-                You can use the mark tag to <mark>highlight</mark> text.
-              </p>
-              <p>
-                <del>
-                  This line of text is meant to be treated as deleted text.
-                </del>
-              </p>
-              <p>
-                <s>
-                  This line of text is meant to be treated as no longer
-                  accurate.
-                </s>
-              </p>
-              <p>
-                <ins>
-                  This line of text is meant to be treated as an addition to the
-                  document.
-                </ins>
-              </p>
-              <p>
-                <u>This line of text will render as underlined</u>
-              </p>
-              <p>
-                <small>
-                  This line of text is meant to be treated as fine print.
-                </small>
-              </p>
-              <p>
-                <strong>This line rendered as bold text.</strong>
-              </p>
-              <p>
-                <em>This line rendered as italicized text.</em>
-              </p>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Card>
-            <CardHeader>Blockquote</CardHeader>
-            <CardBody>
-              <Typography type="blockquote">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                posuere erat a ante.
-              </Typography>
-            </CardBody>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <CardHeader>Lead</CardHeader>
-            <CardBody>
-              <Typography type="lead">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-                posuere erat a ante.
-              </Typography>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-    </Page>
-  );
-};
-
+class TypographyPage extends React.Component {
+  render() {
+    return (
+      <Page
+        className="TypographyPage"
+        title="Nguồn tài trợ"
+        breadcrumbs={[{name:'báo cáo'},{ name: 'nguồn tài trợ', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+                    <CardBody>
+                      <Row>
+                    <Col xl={6} lg={12} md={12}>
+                    <Form>
+                  <Label for="exampleDate">Từ ngày</Label>
+                  <Input type="date"name="date"/> 
+                  </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                  <Label for="exampleDate">Đến ngày</Label>
+                <Input type="date" name="date"/>
+                  </Form>
+                  </Col>
+                  </Row>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                        <thead>
+                      <tr className="table-danger">
+                        <th>STT</th>
+                        <th>Nhà tài trợ</th>
+                        <th> Tên khảo sát</th>
+                        <th>Số tiền khảo sát</th> 
+                      </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>120000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>100000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>50000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                            <td>60000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>60000</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>7000</td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Wendy</td>
+                            <td>the Magic</td>
+                            <td>200000</td>  
+                          </tr>
+                        </tbody>
+                      </Table>
+                      <Button outline color="danger" size="lg">
+                  Xuất ra Exel
+                </Button>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+      ))}
+      </Page>
+    );
+  }
+}
 export default TypographyPage;
