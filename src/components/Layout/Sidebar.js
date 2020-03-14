@@ -45,8 +45,8 @@ const taikhoan = [
 ];
 
 const hoatdong = [
-   { to: '/danhsachhd', name: 'danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/tinhd', name: 'tin hoạt động', exact: false, Icon: FaRegNewspaper },
+   { to: '/danhsachhd', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+    { to: '/tinhd', name: 'Tin hoạt động', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
     { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
@@ -54,11 +54,11 @@ const baocao = [
     { to: '/bcquyengop',name: 'Tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
-  { to: '/khaosat', name: 'tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  {to: '/naptien', name: 'nạp tiền', exact: false, Icon: GiReceiveMoney},
-  { to: '/chuyentien', name: 'chuyển tiền', exact: false, Icon: GiPayMoney},
+  {to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney},
+  { to: '/chuyentien', name: 'Chuyển tiền', exact: false, Icon: GiPayMoney},
 ];
 
 const navItems1 = [
@@ -160,7 +160,7 @@ class Sidebar extends React.Component {
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className="text-uppercase"
+                    className="pd-30"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -200,7 +200,7 @@ class Sidebar extends React.Component {
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className="text-uppercase"
+                    className="pd-30"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -240,7 +240,7 @@ class Sidebar extends React.Component {
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className="text-uppercase"
+                    className="pd-30"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -280,7 +280,7 @@ class Sidebar extends React.Component {
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className="text-uppercase"
+                    className="pd-30"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"
@@ -336,7 +336,7 @@ class Sidebar extends React.Component {
                 <NavItem key={index} className={bem.e('nav-item')}>
                   <BSNavLink
                     id={`navItem-${name}-${index}`}
-                    className="text-uppercase"
+                    className="pd-30"
                     tag={NavLink}
                     to={to}
                     activeClassName="active"

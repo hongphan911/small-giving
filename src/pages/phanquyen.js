@@ -34,8 +34,8 @@ class ButtonPage extends React.Component {
           <Row key={index}>
             <Col>
               <Card className="mb-3">
-                <CardHeader >
-                  <Row>
+                <CardBody>
+                <Row>
                     <Col>
                         <UncontrolledButtonDropdown>
                           <DropdownToggle caret>{this.state.aSelected}</DropdownToggle>
@@ -50,9 +50,6 @@ class ButtonPage extends React.Component {
                         </UncontrolledButtonDropdown>
                     </Col>
                   </Row>
-                </CardHeader>
-
-                <CardBody>
                 <Table {...{ [tableType || 'default']: true }}>
                 <Row>
                   <Col md={8}>
