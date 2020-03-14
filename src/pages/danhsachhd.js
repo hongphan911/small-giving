@@ -1,9 +1,10 @@
 import Page from 'components/Page';
-import ChartPage from 'pages/ChartPage';
+// import ChartPage from 'pages/ChartPage';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
+import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
 const getRandomInt = () => {
   return Math.floor(Math.random() * (100 - 20) + 20);
@@ -51,8 +52,76 @@ this.setState({
                    Thêm mới
                   </ModalHeader>
                   <ModalBody>
-                  <ChartPage/>
-                  </ModalBody></Modal>
+                  <Row>
+                    <Col xl={6} lg={12} md={12}>
+                      <Card>
+                        <CardBody>
+                          <Form>
+                            <FormGroup >
+                            <Label for="exampleEmail"> Mã họat động</Label>
+                                <Input type="email" name="email"/>
+                            </FormGroup>
+                            <FormGroup>
+                              <Label for="exampleEmail">Tên hoạt động</Label>
+                              <Input type="email" name="email" />
+                            </FormGroup>
+                            <FormGroup >
+                            <Label for="exampleEmail"> Địa chỉ</Label>
+                                <Input  type="email"  name="email"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="exampleImage"> Hình ảnh</Label>
+                                <Input type="file" name="image" />
+                              </FormGroup>
+                          </Form>
+                        </CardBody>
+                      </Card>
+                    </Col>
+
+                    <Col xl={6} lg={12} md={12}>
+                      <Card>
+                        <CardBody>
+                          <Form>
+                            <FormGroup>
+                                <Label for="exampleDate">Ngày bắt đầu</Label>
+                                <Input
+                                  type="date"
+                                  name="date"
+                                  id="exampleDate"
+                                />
+                              </FormGroup>
+                              <FormGroup>
+                                <Label for="exampleDate">Ngày kết thúc</Label>
+                                <Input
+                                  type="date"
+                                  name="date"
+                                  id="exampleDate"
+                                />
+                              </FormGroup>
+                              <FormGroup >
+                            <Label for="exampleEmail"> Tổng tiền</Label>
+                                <Input  type="email"  name="email"/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="exampleVideo"> Video</Label>
+                                <Input type="file" name="video" />
+                              </FormGroup>
+                          </Form>
+                        </CardBody>
+                      </Card>
+                      </Col>
+                      <Col xl={12}>
+                        <Form>
+                            <Label for="exampleText">Nội dung</Label>
+                              <Input type="textarea" name="text" />
+                        </Form>
+                        </Col>
+                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
+                          Lưu
+                        </Button>
+                      </Row>                  
+                  </ModalBody>
+                  </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger ">
@@ -78,10 +147,13 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
-                            <td> <Button color="link">Xem</Button></td> 
+                            <td> 
+                            </td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                           <tr>
@@ -97,6 +169,8 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                           <tr>
@@ -112,6 +186,8 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                           <tr>
@@ -127,6 +203,8 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                           <tr>
@@ -142,6 +220,8 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                           <tr>
@@ -157,6 +237,8 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
+                              <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                               </td>
                           </tr>
                         <tr>
@@ -172,6 +254,8 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>
+                            <GoChecklist className="can-click" size="1.5em"/>
+                              <GoPin className="can-click" size="1.5em"/>
                             </td>
                           </tr>
                         </tbody>
