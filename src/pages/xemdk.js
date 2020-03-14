@@ -8,11 +8,7 @@ const tableTypes = ['hover'];
 class ChartPage extends React.Component {
   render() {
     return (
-      <Page
-        // className="ChartPage"
-        // title="Quản trị góp ý"
-        // breadcrumbs={[{ name: 'quản trị góp ý', active: true }]}
-      >
+      <Page>
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
           <Col>

@@ -1,10 +1,5 @@
 import { Content, Footer, Header, Sidebar } from 'components/Layout';
 import React from 'react';
-import {
-  MdImportantDevices,
-  // MdCardGiftcard,
-  MdLoyalty,
-} from 'react-icons/md';
 import NotificationSystem from 'react-notification-system';
 import { NOTIFICATION_SYSTEM_STYLE } from 'utils/constants';
 
@@ -22,33 +17,8 @@ class MainLayout extends React.Component {
   }
 
   componentDidMount() {
-    this.checkBreakpoint(this.props.breakpoint);
-
-    setTimeout(() => {
-      if (!this.notificationSystem) {
-        return;
-      }
-
-      this.notificationSystem.addNotification({
-        title: <MdImportantDevices />,
-        message: 'Welome to Small Giving !',
-        level: 'info',
-      });
-    }, 1000);
-
-    setTimeout(() => {
-      if (!this.notificationSystem) {
-        return;
-      }
-
-      this.notificationSystem.addNotification({
-        title: <MdLoyalty />,
-        message:
-          'Small Giving is made by Management Information System of Banking Academy!',
-        level: 'info',
-      });
-    }, 2000);
-  }
+   this.checkBreakpoint(this.props.breakpoint);
+   }
 
   // close sidebar when
   handleContentClick = event => {
