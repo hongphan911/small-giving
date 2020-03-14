@@ -158,6 +158,7 @@ class Header extends React.Component {
                     </ListGroupItem>
                     <ListGroupItem tag="button" action className="border-light">
                       <MdExitToApp /> Signout
+                      
                     </ListGroupItem>
                   </ListGroup>
                 </UserCard>

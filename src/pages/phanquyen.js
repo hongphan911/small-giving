@@ -1,7 +1,7 @@
 import Page from 'components/Page';
 import React from 'react';
 import { Button,CardSubtitle,
- Card, CardBody, CardHeader, Col, Row, Table,DropdownItem, DropdownMenu, DropdownToggle, UncontrolledButtonDropdown} from 'reactstrap';
+ Card, CardBody, Col, Row, Table,DropdownItem, DropdownMenu, DropdownToggle, UncontrolledButtonDropdown} from 'reactstrap';
 
 
 const tableTypes = ['striped'];

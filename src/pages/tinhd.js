@@ -6,12 +6,6 @@ import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
-const getRandomInt = () => {
-  return Math.floor(Math.random() * (100 - 20) + 20);
-};
-const getRandomMoney = () => {
-  return Math.floor(Math.random() * 200000 );
-};
 class InputGroupPage extends React.Component {
   state = {
     modal_nested_parent: false,
@@ -69,8 +63,6 @@ this.setState({
                               <Label for="exampleText">Tên tin</Label>
                               <Input type="text" name="text" />
                             </FormGroup>
-                            
-                            
                           </Form>
                         </CardBody>
                       </Card>
@@ -81,14 +73,6 @@ this.setState({
                         <CardBody>
                           <Form>
                           <FormGroup>
-                                <Label for="exampleImage"> Hình ảnh</Label>
-                                <Input type="file" name="image" />
-                              </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleVideo"> Video</Label>
-                                <Input type="file" name="video" />
-                              </FormGroup>
-                            <FormGroup>
                                 <Label for="exampleDate">Thời gian tạo tin</Label>
                                 <Input
                                   type="date"
@@ -96,11 +80,18 @@ this.setState({
                                   id="exampleDate"
                                 />
                               </FormGroup>
-                            
                               <FormGroup >
                             <Label for="exampleText"> Tiêu đề thông báo</Label>
                                 <Input  type="text"  name="text"/>
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="exampleImage"> Hình ảnh</Label>
+                                <Input type="file" name="image" />
+                              </FormGroup>
+                              <FormGroup>
+                                <Label for="exampleVideo"> Video</Label>
+                                <Input type="file" name="video" />
+                              </FormGroup>
                           </Form>
                         </CardBody>
                       </Card>
@@ -132,8 +123,7 @@ this.setState({
                           <th scope="row">1</th>
                             <td>ffđf</td>
                             <td>Otto</td>
-                            
-                            <td> </td> 
+                            <td>fdfkmelke </td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -145,9 +135,7 @@ this.setState({
                           <th scope="row">2</th>
                             <td>Jacob</td>
                             <td>Mkjfe</td>
-                              
-                            <td>{getRandomInt()}</td> 
-                            
+                            <td></td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -159,9 +147,7 @@ this.setState({
                           <th scope="row">3</th>
                             <td>Larry</td>
                             <td>the Bird</td>
-                            
-                            <td>{getRandomInt()}</td> 
-                            
+                            <td>djiojnkmvef</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -173,9 +159,7 @@ this.setState({
                           <th scope="row">4</th>
                             <td>Jacob</td>
                             <td>Thornton</td>
-                            
-                            <td>{getRandomInt()}</td> 
-                           
+                            <td>cndkndkfewokfmf</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -187,9 +171,7 @@ this.setState({
                           <th scope="row">5</th>
                             <td>Mark</td>
                             <td>Otto</td>
-                            
-                            <td>{getRandomInt()}</td> 
-                           
+                            <td>fedjgkewmgew</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -201,9 +183,7 @@ this.setState({
                           <th scope="row">6</th>
                             <td>Larry</td>
                             <td>the Bird</td>
-                              
-                            <td>{getRandomInt()}</td> 
-                            
+                            <td>dfheiunwelkgm</td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -215,9 +195,7 @@ this.setState({
                         <th scope="row">7</th>
                             <td>Wendy</td>
                             <td>the Magic</td>
-                            
-                            <td>{getRandomInt()}</td> 
-                            
+                            <td>cbdijgnewwigeoig</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>
