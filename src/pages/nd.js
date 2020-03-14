@@ -51,10 +51,10 @@ this.setState({
                         <CardBody>
                           <Form>
                             <FormGroup >
-                            <Label for="exampleEmail"> Mã tài khoản</Label>
+                            <Label for="exampleText"> Mã tài khoản</Label>
                                 <Input
-                                  type="email"
-                                  name="email"
+                                  type="text"
+                                  name="text"
                                 />
                             </FormGroup>
                             <FormGroup >
@@ -62,28 +62,22 @@ this.setState({
                             <Input type="select" name="select" />
                             </FormGroup>
                             <FormGroup >
-                              <Label for="exampleEmail"> Số điện thoại</Label>
+                              <Label for="exampleText"> Số điện thoại</Label>
                               <Input
-                                type="email"
-                                name="email"
-                                id="exampleEmail"
+                                type="text"
+                                name="text"
+                                id="exampleText"
                               />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="examplePassword">Password</Label>
+                              <Label for="exampleEmail">Email </Label>
                                 <Input
-                                  type="password"
-                                  name="password"
+                                  type="email"
+                                  name="email"
                                 />
-                              </FormGroup>
-                              <FormGroup>
-                              <Label for="exampleNumber">Số tài khoản</Label>
-                              <Input
-                                type="number"
-                                name="number"
-                                id="exampleNumber"
-                              />
                             </FormGroup>
+                            
+                              
                           </Form>
                         </CardBody>
                       </Card>
@@ -93,12 +87,13 @@ this.setState({
                       <Card>
                         <CardBody>
                           <Form>
-                            <FormGroup>
-                              <Label for="exampleEmail">Tên tài khoản </Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
+                          <FormGroup >
+                              <Label for="exampleText"> Họ tên</Label>
+                              <Input
+                                type="text"
+                                name="text"
+                                id="exampleText"
+                              />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="exampleDate">Ngày sinh</Label>
@@ -108,13 +103,7 @@ this.setState({
                                   id="exampleDate"
                                 />
                               </FormGroup>
-                              <FormGroup>
-                              <Label for="exampleEmail">Email </Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                            </FormGroup>
+                              
                             <FormGroup>
                                 <Label for="exampleSelect">Giới tính</Label>
                                 <Input type="select" name="select">
@@ -122,6 +111,14 @@ this.setState({
                                   <option>Nữ</option>
                                 </Input>
                               </FormGroup>
+                              <FormGroup>
+                                <Label for="examplePassword">Password</Label>
+                                <Input
+                                  type="password"
+                                  name="password"
+                                />
+                              </FormGroup>
+                              
                           </Form>
                         </CardBody>
                       </Card>
@@ -139,9 +136,10 @@ this.setState({
                             <th>Mã TK</th>
                             <th>Tên TK</th>
                             <th>SĐT</th>
-                            <th>Mật khẩu</th>
-                            <th> Số dư tài khoản</th>
                             <th>Email</th>
+                            <th>Mật khẩu</th>
+                            <th> Số dư TK</th>
+                            <th> Huy hiệu</th>
                             <th>Tác vụ</th>
                           </tr>
                         </thead>
@@ -151,9 +149,10 @@ this.setState({
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>094093243</td>
+                            <td>tuhr@gmail.com</td>
                             <td>fkjdnfkn</td> 
                             <td>120000</td> 
-                            <td>tuhr@gmail.com</td> 
+                            <td>sát thủ áo đen</td>
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -164,9 +163,10 @@ this.setState({
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>048897580</td>
+                            <td>tiwr@yahoo.com</td>
                             <td>hfiudhsfdn</td> 
-                            <td>100000</td> 
-                            <td>tiwr@yahoo.com</td> 
+                            <td>100000</td>                            
+                            <td>sát thủ áo đen</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -180,6 +180,7 @@ this.setState({
                             <td>hgfjjyjy</td> 
                             <td>50000</td> 
                             <td>rjflkjfjeklejk</td> 
+                            <td>rjflkjfjeklejk</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -191,8 +192,9 @@ this.setState({
                             <td>Thornton</td>
                             <td>@fat</td>
                             <td>08493598</td> 
+                            <td>ytie@gmail.com</td>
                             <td>60000</td> 
-                            <td>ytie@gmail.com</td> 
+                            <td>rjflkjfjeklejk</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -205,7 +207,9 @@ this.setState({
                             <td>@mdo</td>
                             <td>085837859</td> 
                             <td>fhgjrlkr</td> 
-                            <td>kglkflg</td> <td>
+                            <td>kglkflg</td> 
+                            <td>kglkflg</td> 
+                            <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
                             </td>
@@ -215,7 +219,10 @@ this.setState({
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>@twitter</td>
-                            <td></td> <td></td> <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td>ccccc</td>
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -226,7 +233,10 @@ this.setState({
                             <td>Wendy</td>
                             <td>the Magic</td>
                             <td>@facebook</td>
-                            <td></td> <td></td> <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td></td> 
+                            <td>sss</td>
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>

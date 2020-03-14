@@ -48,14 +48,14 @@ this.setState({
                       <Card>
                         <CardBody>
                           <Form>
-                            <Label for="exampleEmail"> Mã tài khoản</Label>
+                            <Label for="exampleEmail"> Mã nhóm</Label>
                                 <Input
                                   type="email"
                                   name="email"
                                 />
                           </Form>
                           <Form>
-                              <Label for="exampleEmail">Tên tài khoản </Label>
+                              <Label for="exampleEmail">Tên nhóm </Label>
                                 <Input
                                   type="email"
                                   name="email"
