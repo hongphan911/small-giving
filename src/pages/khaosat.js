@@ -56,25 +56,26 @@ this.setState({
                           <Card>
                             <CardBody>
                               <Form>
+                                
                                 <FormGroup >
-                                <Label for="exampleEmail"> Tên khảo sát</Label>
+                                <Label for="exampleText">Mã khảo sát</Label>
+                                <Input type="text" name="text" />
+                                </FormGroup>
+                                <FormGroup >
+                                <Label for="exampleText"> Tên khảo sát</Label>
                                     <Input
-                                      type="email"
-                                      name="email"
+                                      type="text"
+                                      name="text"
                                     />
                                 </FormGroup>
                                 <FormGroup >
-                                <Label for="exampleSelect">Mã khảo sát</Label>
-                                <Input type="select" name="select" />
+                                <Label for="exampleText"> Nhà tài trợ</Label>
+                                    <Input
+                                      type="text"
+                                      name="text"
+                                    />
                                 </FormGroup>
-                                <FormGroup >
-                                  <Label for="exampleEmail"> Người làm khảo sát</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                    id="exampleEmail"
-                                  />
-                                </FormGroup>
+                                
                               </Form>
                             </CardBody>
                           </Card>
@@ -130,12 +131,12 @@ this.setState({
                             <th>STT</th>
                             <th>Mã KS</th>
                             <th>Tên KS</th>
-                            <th>Thời gian BĐ</th>
-                            <th>Thời gian KT</th>
-                            <th> Số tiền KS</th>
-                            <th> Số tiền sau KS</th>
-                            <th> Số người làm KS</th>
-                            <th> Số người còn lại</th>
+                            <th>Bắt đầu</th>
+                            <th>Kết thúc</th>
+                            
+                            <th> Số dư</th>
+                            <th> Đã tham gia</th>
+                            
                             <th>Tác vụ</th>
                           </tr>
                         </thead>
@@ -147,8 +148,7 @@ this.setState({
                             <td>12/2/2020</td>
                             <td>12/2/2202</td> 
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
+                            
                             <td>{getRandomInt()}</td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
@@ -162,8 +162,7 @@ this.setState({
                             <td>16/5/2019</td> 
                             <td>24/3/2020</td>
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
+                             
                             <td>{getRandomInt()}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
@@ -177,8 +176,7 @@ this.setState({
                             <td>23/7/2020</td> 
                             <td>13/8/2020</td>
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
+                             
                             <td>{getRandomInt()}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
@@ -192,8 +190,7 @@ this.setState({
                             <td>5/6/2020</td> 
                             <td>21/6/2020</td>
                             <td>{getRandomMoney()}</td>  
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
+                            
                             <td>{getRandomInt()}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
@@ -207,8 +204,7 @@ this.setState({
                             <td>11/3/2020</td> 
                             <td>1/4/2020</td>
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
+                            
                             <td>{getRandomInt()}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
@@ -222,8 +218,7 @@ this.setState({
                             <td>24/12/2019</td> 
                             <td>2/1/2020</td>
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
+                            
                             <td>{getRandomInt()}</td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
@@ -237,8 +232,7 @@ this.setState({
                             <td>18/2/2020</td> 
                             <td>23/2/2020</td>
                             <td>{getRandomMoney()}</td> 
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
+                            
                             <td>{getRandomInt()}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>

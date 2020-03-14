@@ -112,8 +112,24 @@
    border-radius: 5px !important;
  }
  .table-hover{
+   tr{
+     &:hover{
+       td{
+        color: #ae1f17;
+       }
+       th{
+        color: #ae1f17;
+       }
+     }
+   }
   td{
     padding: 0.75rem;
+    font-size: 14px;
+    vertical-align: middle;
+    text-align: center;
+   
+   }
+   th{
     font-size: 14px;
     vertical-align: middle;
     text-align: center;
@@ -147,4 +163,41 @@
  }
  .modal-title{
    color: #ae1f17;
+ }
+ .btn-outline-danger{
+   color: #ae1f17;
+   border-color: #ae1f17;
+   margin: auto;
+   font-size: 15px;
+    font-weight: bold;
+   &:hover{
+     background-color: #ae1f17;
+     border-color: #ae1f17;
+
+   }
+ }
+ svg{
+   font-size: 15px;
+   height: 16px;
+   width: auto;
+   padding: 0 3px;
+   &:hover{
+     color: #ae1f17;
+     height: 18px;
+     width: auto;
+     transform: rotate3d(0.3s);
+
+   }
+ }
+ path{
+  font-size: 15px;
+ }
+ .btn-outline-danger:not(:disabled):not(.disabled):active, 
+ .btn-outline-danger:not(:disabled):not(.disabled).active, 
+ .show > .btn-outline-danger.dropdown-toggle{
+  background-color: #ae1f17;
+  border-color: #ae1f17;
+ }
+ .btn-lg{
+   padding: 5px 10px !important;
  }

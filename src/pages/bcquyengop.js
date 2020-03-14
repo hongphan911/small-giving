@@ -85,7 +85,7 @@ class DropdownPage extends React.Component {
                         </tbody>
                       </Table>
                       <Button outline color="danger" size="lg">
-                  Xuất ra Exel
+                  Xuất ra Excel
                 </Button>
                     </CardBody>
                   </Card>

@@ -44,7 +44,8 @@ this.setState({
                   </ModalHeader>
                   <ModalBody>
                   <Row>
-                    <Col>
+                    
+                    <Col md={12}>
                       <Card>
                         <CardBody>
                           <Form>
@@ -63,11 +64,17 @@ this.setState({
                           </Form>
                         </CardBody>
                       </Card>
-                      <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
+                      
+                    </Col>
+                    
+                    <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
                             Lưu
                       </Button>
-                    </Col>
+
+                    
+                      
                   </Row>
+                  
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
