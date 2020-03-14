@@ -1,6 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button, InputGroup , InputGroupText} from 'reactstrap';
 const tableTypes = ['hover'];
 
 class DropdownPage extends React.Component {
@@ -84,9 +84,15 @@ class DropdownPage extends React.Component {
                           </tr>
                         </tbody>
                       </Table>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                      <tr className="table-danger">
+                        <th>Tổng tiền</th> 
+                      </tr>
+                      <tr><td>145000000</td></tr> 
+                      </Table>
                       <Button outline color="danger" size="lg">
-                  Xuất ra Exel
-                </Button>
+                        Xuất ra Exel
+                      </Button>
                     </CardBody>
                   </Card>
                   </Col>

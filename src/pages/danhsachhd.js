@@ -1,5 +1,5 @@
 import Page from 'components/Page';
-// import ChartPage from 'pages/ChartPage';
+import ChartPage from 'pages/ChartPage';
 import React from 'react';
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
@@ -15,7 +15,8 @@ const getRandomMoney = () => {
 class InputGroupPage extends React.Component {
   state = {
     modal_nested_parent: false,
-    modal_nested: false,
+    modal_nested_xem: false,
+    modal_nested:false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -148,6 +149,17 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
                             <td> 
+                            <Button color="link" className="can-click" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            <Modal
+                            isOpen={this.state.modal_nested_xem}
+                            toggle={this.toggle('nested_xem')}
+                            size="lg"
+                            className={this.props.className}>
+                              <ModalHeader className="text-danger" toggle={this.toggle('nested_xem')}>
+                                Xem đăng kí
+                                </ModalHeader>
+                              <ModalBody><ChartPage/></ModalBody>
+                              </Modal>
                             </td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
@@ -165,7 +177,9 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -182,7 +196,9 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -199,7 +215,9 @@ this.setState({
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -216,7 +234,9 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -233,7 +253,9 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
@@ -250,7 +272,9 @@ this.setState({
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
-                            <td><Button color="link">Xem</Button></td> 
+                            <td>
+                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
+                            </td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>

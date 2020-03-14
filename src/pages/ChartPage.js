@@ -1,78 +1,83 @@
+import Page from 'components/Page';
 import React from 'react';
-import {
-   Form, Label, Input, Button, FormGroup,Card, CardBody, Col, Row
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table} from 'reactstrap';
+
+const tableTypes = ['hover'];
+
+
 class ChartPage extends React.Component {
   render() {
     return (
-      <Row>
-      <Col xl={6} lg={12} md={12}>
-        <Card>
-          <CardBody>
-            <Form>
-              <FormGroup >
-              <Label for="exampleEmail"> Mã họat động</Label>
-                  <Input type="email" name="email"/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail">Tên hoạt động</Label>
-                <Input type="email" name="email" />
-              </FormGroup>
-              <FormGroup >
-              <Label for="exampleEmail"> Địa chỉ</Label>
-                  <Input  type="email"  name="email"/>
-              </FormGroup>
-              <FormGroup>
-                  <Label for="exampleImage"> Hình ảnh</Label>
-                  <Input type="file" name="image" />
-                </FormGroup>
-            </Form>
-          </CardBody>
-        </Card>
-      </Col>
-
-      <Col xl={6} lg={12} md={12}>
-        <Card>
-          <CardBody>
-            <Form>
-              <FormGroup>
-                  <Label for="exampleDate">Ngày bắt đầu</Label>
-                  <Input
-                    type="date"
-                    name="date"
-                    id="exampleDate"
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label for="exampleDate">Ngày kết thúc</Label>
-                  <Input
-                    type="date"
-                    name="date"
-                    id="exampleDate"
-                  />
-                </FormGroup>
-                <FormGroup >
-              <Label for="exampleEmail"> Tổng tiền</Label>
-                  <Input  type="email"  name="email"/>
-              </FormGroup>
-              <FormGroup>
-                  <Label for="exampleVideo"> Video</Label>
-                  <Input type="file" name="video" />
-                </FormGroup>
-            </Form>
-          </CardBody>
-        </Card>
-        </Col>
-        <Col xl={12}>
-          <Form>
-              <Label for="exampleText">Nội dung</Label>
-                <Input type="textarea" name="text" />
-          </Form>
-          </Col>
-          <Button color="danger" pill className="px-4 my-3 can-click">
-            Lưu
-          </Button>
-        </Row>
+      <Page
+        // className="ChartPage"
+        // title="Quản trị góp ý"
+        // breadcrumbs={[{ name: 'quản trị góp ý', active: true }]}
+      >
+      {tableTypes.map((tableType, index) => (
+        <Row key={index}>
+          <Col>
+            <Card className="mb-3">
+                    <CardBody>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                        <thead>
+                          <tr className="table-danger">
+                          <th>STT</th>
+                            <th>Mã đăng kí</th>
+                            <th>Tên người tham gia</th>
+                            <th> SĐT</th> 
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>6384</td>
+                            <td>Mark</td>
+                            <td>094093243</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2</th>
+                            <td>5883</td>
+                            <td>Jacob</td>
+                            <td>048897580</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">3</th>
+                            <td>849</td>
+                            <td>Larry</td>
+                            <td>048584533</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">4</th>
+                            <td>7822</td>
+                            <td>Jacob</td>
+                            <td>08493598</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">5</th>
+                            <td>728</td>
+                            <td>Otto</td>
+                            <td>085837859</td> 
+                          </tr>
+                          <tr>
+                            <th scope="row">6</th>
+                            <td>378</td>
+                            <td>Larry</td>
+                            <td>094835983</td>
+                          </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>7382</td>
+                            <td>Wendy</td>
+                            <td>08984983589</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                    </CardBody>
+                  </Card>
+                  </Col>
+                  </Row>
+      ))}
+      </Page>
     );
   }
 }

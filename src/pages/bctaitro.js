@@ -84,6 +84,12 @@ class TypographyPage extends React.Component {
                           </tr>
                         </tbody>
                       </Table>
+                      <Table {...{ [tableType || 'hover']: true }}>
+                      <tr className="table-danger">
+                        <th>Tổng tiền</th> 
+                      </tr>
+                      <tr><td>145000000</td></tr> 
+                      </Table>
                       <Button outline color="danger" size="lg">
                   Xuất ra Exel
                 </Button>
