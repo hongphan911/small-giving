@@ -85,14 +85,36 @@ class TypographyPage extends React.Component {
                         </tbody>
                       </Table>
                       <Table {...{ [tableType || 'hover']: true }}>
-                      <tr className="table-danger">
-                        <th>Tổng tiền</th> 
-                      </tr>
-                      <tr><td>145000000</td></tr> 
+                        <Row>
+                          <Col  md={8} className="sum-left">
+                            <div className="sum"> Tổng tiền
+
+                            </div>
+
+                          </Col>
+                          <Col md={4} className="sum-right">
+                            <div className="sum"> 14500000
+
+                            </div>
+
+                          </Col>
+                        </Row> 
                       </Table>
-                      <Button outline color="danger" size="lg">
-                  Xuất ra Excel
-                </Button>
+                      <div className="button-bottom" >
+                        <Row>
+                        <Col md={6} className="center">
+                        <Button outline color="danger" size="lg">
+                        Báo cáo
+                      </Button>
+                        </Col>
+                        <Col md={6} className="center">
+                        <Button outline color="danger" size="lg">
+                        Xuất ra Excel
+                      </Button>
+
+                        </Col>
+                        </Row>
+                      </div>
                     </CardBody>
                   </Card>
                   </Col>

@@ -112,16 +112,20 @@
    border-radius: 5px !important;
  }
  .table-hover{
-   tr{
-     &:hover{
-       td{
-        color: #ae1f17;
-       }
-       th{
-        color: #ae1f17;
-       }
-     }
+   tbody{
+    tr{
+      &:hover{
+        td{
+         color: #ae1f17;
+        }
+        th{
+         color: #ae1f17;
+        }
+      }
+    }
+
    }
+   
   td{
     padding: 0.75rem;
     font-size: 14px;
@@ -203,3 +207,20 @@
  .btn-lg{
    padding: 5px 10px !important;
  }
+ .sum-left{
+   padding-right: 0 !important;
+ }
+ .sum-right{
+   padding-left: 0 !important;
+ }
+ .sum{
+  background-color: #ae1f17;
+  color: #fff;
+  text-align: center;
+  padding: 7px 0;
+ }
+ .button-bottom{
+   .center{
+     text-align: center;
+   }
+}

@@ -1,4 +1,4 @@
-import { STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
+import AuthForm,{ STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
 import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
@@ -7,6 +7,9 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
+import { Button, Modal, ModalBody } from 'reactstrap';
+import ProfileLayout from './components/Layout/ProfileLayout';
+
 
 const tinhd = React.lazy(() => import('pages/tinhd'));
 const AuthModalPage = React.lazy(() => import('pages/AuthModalPage'));
@@ -24,6 +27,7 @@ const gopy = React.lazy(() => import('pages/gopy'));
 const bcnaptien = React.lazy(() => import('pages/bcnaptien'));
 const Phanquyen = React.lazy(() => import('pages/phanquyen'));
 const bctaitro = React.lazy(() => import('pages/bctaitro'));
+const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
 const WidgetPage = React.lazy(() => import('pages/WidgetPage'));
 
 const getBasename = () => {
@@ -31,9 +35,45 @@ const getBasename = () => {
 };
 
 class App extends React.Component {
+  state = {
+    showLogin: false,
+    setLogin: false,
+    authState: STATE_LOGIN,
+  };
+
+  handleLogin = () => {
+    this.setState({
+      showLogin: !this.state.showLogin,
+    });
+  };
+
+  handleAuthState = authState => {
+    this.setState({
+      authState,
+    });
+  };
   render() {
     return (
-      <BrowserRouter basename={getBasename()}>
+      <div>
+        {this.state.showLogin === true
+          ? <Modal
+            isOpen={this.state.showLogin}
+            toggle={this.handleLogin}
+            size="sm"
+            backdrop="static"
+            backdropClassName="modal-backdrop-light"
+            // external={externalCloseBtn}
+            centered>
+            <ModalBody>
+              <AuthForm
+                authState={this.state.authState}
+                onChangeAuthState={this.handleAuthState}
+                onLogin={() => {
+                  this.setState({ showLogin: false })}}
+              />
+            </ModalBody>
+          </Modal>
+      :<BrowserRouter basename={getBasename()}>
         <GAListener>
           <Switch>
             <LayoutRoute
@@ -74,10 +114,16 @@ class App extends React.Component {
                 <Route exact path="/xemdk" component={xemdk} />
               </React.Suspense>
             </MainLayout>
+            <ProfileLayout>
+                  <Route exact path="/profile" component={ProfileUser}/>
+                </ProfileLayout>
             <Redirect to="/" />
+
           </Switch>
         </GAListener>
       </BrowserRouter>
+  }
+  </div>
     );
   }
 }
