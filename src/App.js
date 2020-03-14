@@ -14,7 +14,7 @@ const chuyentien = React.lazy(() => import('pages/chuyentien'));
 const nhomnd = React.lazy(() => import('pages/nhomnd'));
 const nd = React.lazy(() => import('pages/nd'));
 const CardPage = React.lazy(() => import('pages/CardPage'));
-const ChartPage = React.lazy(() => import('pages/ChartPage'));
+const xemdk = React.lazy(() => import('pages/xemdk'));
 const trangchu = React.lazy(() => import('pages/trangchu'));
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const khaosat = React.lazy(() => import('pages/khaosat'));
@@ -71,7 +71,7 @@ class App extends React.Component {
                 <Route exact path="/naptien" component={naptien} />
                 <Route exact path="/khaosat" component={khaosat} />
                 <Route exact path="/danhsachhd" component={danhsachhd} />
-                <Route exact path="/charts" component={ChartPage} />
+                <Route exact path="/xemdk" component={xemdk} />
               </React.Suspense>
             </MainLayout>
             <Redirect to="/" />

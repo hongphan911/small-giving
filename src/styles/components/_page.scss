@@ -134,6 +134,22 @@
     vertical-align: middle;
     text-align: center;
    }
+   svg{
+    font-size: 15px;
+    height: 16px;
+    width: auto;
+    padding: 0 3px;
+    &:hover{
+      color: #ae1f17;
+      height: 18px;
+      width: auto;
+      transform: rotate3d(0.3s);
+ 
+    }
+  }
+  path{
+   font-size: 15px;
+  }
 
  }
  .breadcrumb{
@@ -176,22 +192,8 @@
 
    }
  }
- svg{
-   font-size: 15px;
-   height: 16px;
-   width: auto;
-   padding: 0 3px;
-   &:hover{
-     color: #ae1f17;
-     height: 18px;
-     width: auto;
-     transform: rotate3d(0.3s);
-
-   }
- }
- path{
-  font-size: 15px;
- }
+ 
+ 
  .btn-outline-danger:not(:disabled):not(.disabled):active, 
  .btn-outline-danger:not(:disabled):not(.disabled).active, 
  .show > .btn-outline-danger.dropdown-toggle{

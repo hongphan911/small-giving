@@ -62,7 +62,7 @@ const luongtien = [
 ];
 
 const navItems1 = [
-  { to: '/', name: 'Small Giving', exact: true, Icon: FaHome },
+  
   {
       to: '/phanquyen',
       name: 'phân quyền',
