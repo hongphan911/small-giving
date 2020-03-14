@@ -58,20 +58,21 @@ this.setState({
                         <CardBody>
                           <Form>
                             <FormGroup >
-                            <Label for="exampleEmail"> Mã họat động</Label>
-                                <Input type="email" name="email"/>
+                            <Label for="exampleText"> Mã họat động</Label>
+                                <Input type="text" name="text"/>
                             </FormGroup>
                             <FormGroup>
-                              <Label for="exampleEmail">Tên hoạt động</Label>
-                              <Input type="email" name="email" />
+                              <Label for="exampleText">Tên hoạt động</Label>
+                              <Input type="text" name="text" />
                             </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleEmail"> Địa chỉ</Label>
-                                <Input  type="email"  name="email"/>
-                            </FormGroup>
+                            
                             <FormGroup>
                                 <Label for="exampleImage"> Hình ảnh</Label>
                                 <Input type="file" name="image" />
+                              </FormGroup>
+                              <FormGroup>
+                                <Label for="exampleVideo"> Video</Label>
+                                <Input type="file" name="video" />
                               </FormGroup>
                           </Form>
                         </CardBody>
@@ -99,13 +100,14 @@ this.setState({
                                 />
                               </FormGroup>
                               <FormGroup >
-                            <Label for="exampleEmail"> Tổng tiền</Label>
-                                <Input  type="email"  name="email"/>
+                            <Label for="exampleText"> Địa chỉ</Label>
+                                <Input  type="text"  name="text"/>
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleVideo"> Video</Label>
-                                <Input type="file" name="video" />
-                              </FormGroup>
+                              <FormGroup >
+                            <Label for="exampleNumber"> Tổng tiền dự kiến</Label>
+                                <Input  type="number"  name="number"/>
+                            </FormGroup>
+                            
                           </Form>
                         </CardBody>
                       </Card>
@@ -128,11 +130,10 @@ this.setState({
                             <th> STT</th>
                             <th> Mã HĐ</th>
                             <th> Tên HĐ</th>
-                            <th> Thời gian BĐ</th> 
-                            <th> Thời gian KT</th> 
-                            <th> Số tiền dự kiến</th>
-                            <th> Số tiền quyên góp</th>
-                            <th> Số người</th> 
+                            <th> Bắt đầu</th> 
+                            <th> Kết thúc</th> 
+                            <th> Đã quyên góp</th>
+                            <th> Lượt quyên góp</th> 
                             <th> Xem đăng kí</th> 
                             <th> Tác vụ</th>  
                           </tr>
@@ -144,7 +145,7 @@ this.setState({
                             <td>Otto</td>
                             <td>12/2/2020</td>
                             <td>12/2/2202</td> 
-                            <td>{getRandomMoney()}</td> 
+                            
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
                             <td> 
@@ -162,7 +163,7 @@ this.setState({
                             <td>Mkjfe</td>
                             <td>16/5/2019</td> 
                             <td>24/3/2020</td>
-                            <td>{getRandomMoney()}</td> 
+                            
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
@@ -179,7 +180,7 @@ this.setState({
                             <td>the Bird</td>
                             <td>23/7/2020</td> 
                             <td>13/8/2020</td>
-                            <td>{getRandomMoney()}</td> 
+                            
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
@@ -196,7 +197,7 @@ this.setState({
                             <td>Thornton</td>
                             <td>5/6/2020</td> 
                             <td>21/6/2020</td>
-                            <td>{getRandomMoney()}</td>  
+                              
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
@@ -213,7 +214,7 @@ this.setState({
                             <td>Otto</td>
                             <td>11/3/2020</td> 
                             <td>1/4/2020</td>
-                            <td>{getRandomMoney()}</td> 
+                            
                             <td>{getRandomMoney()}</td> 
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
@@ -230,7 +231,7 @@ this.setState({
                             <td>the Bird</td>
                             <td>24/12/2019</td> 
                             <td>2/1/2020</td>
-                            <td>{getRandomMoney()}</td> 
+                             
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
@@ -247,7 +248,7 @@ this.setState({
                             <td>the Magic</td>
                             <td>18/2/2020</td> 
                             <td>23/2/2020</td>
-                            <td>{getRandomMoney()}</td> 
+                             
                             <td>{getRandomMoney()}</td>  
                             <td>{getRandomInt()}</td> 
                             <td><Button color="link">Xem</Button></td> 
