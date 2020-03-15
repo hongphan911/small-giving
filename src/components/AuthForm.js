@@ -1,4 +1,4 @@
-import logo200Image from 'assets/img/logo/logo_200.png';
+import logo200Image from 'assets/img/logo/Anh cut.png';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
@@ -18,19 +18,19 @@ class AuthForm extends React.Component {
     this.props.onChangeAuthState(authState);
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-  };
+  //handleSubmit = event => {
+   // event.preventDefault();
+  //};
 
   renderButtonText() {
     const { buttonText } = this.props;
 
     if (!buttonText && this.isLogin) {
-      return 'Login';
+      return 'Đăng nhập';
     }
 
     if (!buttonText && this.isSignup) {
-      return 'Signup';
+      return 'Đăng kí';
     }
 
     return buttonText;
@@ -41,6 +41,10 @@ class AuthForm extends React.Component {
       showLogo,
       usernameLabel,
       usernameInputProps,
+      phoneLabel,
+      phoneInputProps,
+      emailLabel,
+      emailInputProps,
       passwordLabel,
       passwordInputProps,
       confirmPasswordLabel,
@@ -62,10 +66,28 @@ class AuthForm extends React.Component {
             />
           </div>
         )}
-        <FormGroup>
+        {this.isLogin && (
+          <FormGroup>
           <Label for={usernameLabel}>{usernameLabel}</Label>
           <Input {...usernameInputProps} />
         </FormGroup>
+
+        )}
+        
+        {this.isSignup && (
+          <FormGroup>
+          <Label for={emailLabel}>{emailLabel}</Label>
+          <Input {...emailInputProps} />
+        </FormGroup>
+          
+        )}
+        {this.isSignup && (
+          <FormGroup>
+          <Label for={phoneLabel}>{phoneLabel}</Label>
+          <Input {...phoneInputProps} />
+        </FormGroup>
+
+        )}
         <FormGroup>
           <Label for={passwordLabel}>{passwordLabel}</Label>
           <Input {...passwordInputProps} />
@@ -79,7 +101,7 @@ class AuthForm extends React.Component {
         <FormGroup check>
           <Label check>
             <Input type="checkbox" />{' '}
-            {this.isSignup ? 'Agree the terms and policy' : 'Remember me'}
+            {this.isSignup ? 'Đồng ý với chính sách bảo mật' : 'Nhớ mật khẩu'}
           </Label>
         </FormGroup>
         <hr />
@@ -92,15 +114,15 @@ class AuthForm extends React.Component {
         </Button>
 
         <div className="text-center pt-1">
-          <h6>or</h6>
+          <h6>Hoặc</h6>
           <h6>
             {this.isSignup ? (
               <a href="#login" onClick={this.changeAuthState(STATE_LOGIN)}>
-                Login
+                Đăng nhập
               </a>
             ) : (
               <a href="#signup" onClick={this.changeAuthState(STATE_SIGNUP)}>
-                Signup
+                Đăng kí
               </a>
             )}
           </h6>
@@ -128,22 +150,32 @@ AuthForm.propTypes = {
 };
 
 AuthForm.defaultProps = {
-  authState: 'LOGIN',
+  authState: 'Đăng nhập',
   showLogo: true,
-  usernameLabel: 'Email',
-  usernameInputProps: {
+  emailLabel: 'Email',
+  emailInputProps: {
     type: 'email',
     placeholder: 'your@email.com',
   },
-  passwordLabel: 'Password',
+  phoneLabel: 'Số điện thoại',
+  phoneInputProps: {
+    type: 'text',
+    placeholder: 'Nhập số điện thoại',
+  },
+  usernameLabel: 'Email hoặc SĐT',
+  usernameInputProps: {
+    type: 'email',
+    placeholder: 'Email hoặc SĐT',
+  },
+  passwordLabel: 'Mật khẩu',
   passwordInputProps: {
     type: 'password',
-    placeholder: 'your password',
+    placeholder: 'Mật khẩu',
   },
-  confirmPasswordLabel: 'Confirm Password',
+  confirmPasswordLabel: 'Nhập lại mật khẩu',
   confirmPasswordInputProps: {
     type: 'password',
-    placeholder: 'confirm your password',
+    placeholder: 'Nhập lại mật khẩu',
   },
   onLogoClick: () => {},
 };

@@ -224,3 +224,31 @@
      text-align: center;
    }
 }
+.modal-dialog-centered{
+  .btn-block{
+    font-size: 16px;
+  }
+}
+.DashboardPage{
+  .card-title{
+    color: #ae1f17 !important;
+  }
+  .card-header{
+    font-weight: bold;
+    color: #ae1f17;
+  }
+  .card-text{
+    .mb-0{
+      font-weight: 500;
+    }
+  }
+}
+.top-report{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+.bottom-report{
+  text-align: center;
+  color: #545454;
+}

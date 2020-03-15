@@ -71,52 +71,36 @@ class DashboardPage extends React.Component {
           <Col lg={3} md={6} sm={6} xs={12}>
             <NumberWidget
               title="Người dùng"
-              subtitle="Tháng này"
-              number="5.600"
-              color="danger"
-              progress={{
-                value: 75,
-                label: 'Tháng trước',
-              }}
+              
+              number="5 600"
+              
             />
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
             <NumberWidget
               title="HĐ thiện nguyện"
-              subtitle="Tháng này"
+              
               number="35"
-              color="danger"
-              progress={{
-                value: 45,
-                label: 'Tháng trước',
-              }}
+              
             />
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
             <NumberWidget
               title="Trả lời khảo sát"
-              subtitle="Tháng này"
-              number="3.400"
-              color="danger"
-              progress={{
-                value: 90,
-                label: 'Tháng trước',
-              }}
+              
+              number="3 400"
+              
             />
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
             <NumberWidget
-              title="Quyên góp"
-              subtitle="Tháng này"
-              number="12.000.000"
-              color="danger"
-              progress={{
-                value: 60,
-                label: 'Tháng trước',
-              }}
+              title="Lượt quyên góp"
+              
+              number="12 000 000"
+             
             />
           </Col>
         </Row>
@@ -212,9 +196,9 @@ class DashboardPage extends React.Component {
                 <UserProgressTable
                   headers={[
                     <MdPersonPin size={25} />,
-                    'name',
-                    'date',
-                    'participation',
+                    'Họ tên',
+                    'Thời gian',
+                    'Tham gia',
                     '%',
                   ]}
                   usersData={userProgressTableData}
