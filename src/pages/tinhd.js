@@ -63,6 +63,14 @@ this.setState({
                               <Label for="exampleText">Tên tin</Label>
                               <Input type="text" name="text" />
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="exampleDate">Thời gian tạo tin</Label>
+                                <Input
+                                  type="date"
+                                  name="date"
+                                  id="exampleDate"
+                                />
+                              </FormGroup>
                           </Form>
                         </CardBody>
                       </Card>
@@ -72,18 +80,8 @@ this.setState({
                       <Card>
                         <CardBody>
                           <Form>
-                          <FormGroup>
-                                <Label for="exampleDate">Thời gian tạo tin</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              <FormGroup >
-                            <Label for="exampleText"> Tiêu đề thông báo</Label>
-                                <Input  type="text"  name="text"/>
-                            </FormGroup>
+                          
+                              
                             <FormGroup>
                                 <Label for="exampleImage"> Hình ảnh</Label>
                                 <Input type="file" name="image" />
@@ -92,6 +90,14 @@ this.setState({
                                 <Label for="exampleVideo"> Video</Label>
                                 <Input type="file" name="video" />
                               </FormGroup>
+                              <FormGroup >
+                            <Label for="exampleText"> Tiêu đề thông báo</Label>
+                                <Input  type="text"  name="text"/>
+                            </FormGroup>
+                            <FormGroup >
+                            <Label for="exampleSelect">Đối tượng nhận tin</Label>
+                            <Input type="select" name="select" />
+                            </FormGroup>
                           </Form>
                         </CardBody>
                       </Card>

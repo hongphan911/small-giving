@@ -112,16 +112,20 @@
    border-radius: 5px !important;
  }
  .table-hover{
-   tr{
-     &:hover{
-       td{
-        color: #ae1f17;
-       }
-       th{
-        color: #ae1f17;
-       }
-     }
+   tbody{
+    tr{
+      &:hover{
+        td{
+         color: #ae1f17;
+        }
+        th{
+         color: #ae1f17;
+        }
+      }
+    }
+
    }
+   
   td{
     padding: 0.75rem;
     font-size: 14px;
@@ -203,3 +207,48 @@
  .btn-lg{
    padding: 5px 10px !important;
  }
+ .sum-left{
+   padding-right: 0 !important;
+ }
+ .sum-right{
+   padding-left: 0 !important;
+ }
+ .sum{
+  background-color: #ae1f17;
+  color: #fff;
+  text-align: center;
+  padding: 7px 0;
+ }
+ .button-bottom{
+   .center{
+     text-align: center;
+   }
+}
+.modal-dialog-centered{
+  .btn-block{
+    font-size: 16px;
+  }
+}
+.DashboardPage{
+  .card-title{
+    color: #ae1f17 !important;
+  }
+  .card-header{
+    font-weight: bold;
+    color: #ae1f17;
+  }
+  .card-text{
+    .mb-0{
+      font-weight: 500;
+    }
+  }
+}
+.top-report{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+.bottom-report{
+  text-align: center;
+  color: #545454;
+}
