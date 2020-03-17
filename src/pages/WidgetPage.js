@@ -79,10 +79,6 @@ class WidgetPage extends React.Component {
             <Input type="url" name="url" />
       </Form>
       </Col>
-      
-      <Button color="danger" pill className="px-4 my-3 can-click">
-          Lưu
-      </Button>
     </Row>
     );
   }
