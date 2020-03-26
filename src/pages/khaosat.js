@@ -1,6 +1,7 @@
 import Page from 'components/Page';
+import WidgetPage from 'pages/WidgetPage';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, FormGroup, Label, Input, Button} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Button} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
@@ -43,88 +44,20 @@ this.setState({
                       + Thêm mới
                       </Badge>
                       <Modal
-                        isOpen={this.state.modal_nested_parent}
-                        toggle={this.toggle('nested_parent')}
-                        size="lg"
-                        className={this.props.className}>
-                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                      Thêm mới
-                      </ModalHeader>
-                      <ModalBody>
-                      <Row>
-                        <Col xl={6} lg={12} md={12}>
-                          <Card>
-                            <CardBody>
-                              <Form>
-                                
-                                <FormGroup >
-                                <Label for="exampleText">Mã khảo sát</Label>
-                                <Input type="text" name="text" />
-                                </FormGroup>
-                                <FormGroup >
-                                <Label for="exampleText"> Tên khảo sát</Label>
-                                    <Input
-                                      type="text"
-                                      name="text"
-                                    />
-                                </FormGroup>
-                                <FormGroup >
-                                <Label for="exampleText"> Nhà tài trợ</Label>
-                                    <Input
-                                      type="text"
-                                      name="text"
-                                    />
-                                </FormGroup>
-                                
-                              </Form>
-                            </CardBody>
-                          </Card>
-                        </Col>
-
-                        <Col xl={6} lg={12} md={12}>
-                          <Card>
-                            <CardBody>
-                              <Form>
-                              <FormGroup>
-                                    <Label for="exampleDate">Thời gian bắt đầu</Label>
-                                    <Input
-                                      type="date"
-                                      name="date"
-                                      id="exampleDate"
-                                    />
-                                  </FormGroup>
-                                <FormGroup>
-                                    <Label for="exampleDate">Thời gian kết thúc</Label>
-                                    <Input
-                                      type="date"
-                                      name="date"
-                                      id="exampleDate"
-                                    />
-                                  </FormGroup>
-                                  <FormGroup>
-                                  <Label for="exampleEmail">Số tiền cho khảo sát </Label>
-                                    <Input
-                                      type="email"
-                                      name="email"
-                                    />
-                                </FormGroup>
-                              </Form>
-                            </CardBody>
-                          </Card>
-                        </Col>
-                        <Col xl={12}>
-                        <Form>
-                            <Label for="exampleUrl">Link khảo sát</Label>
-                              <Input type="url" name="url" />
-                        </Form>
-                        </Col>
-                        
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')} >
+                          isOpen={this.state.modal_nested_parent}
+                          toggle={this.toggle('nested_parent')}
+                          size="lg"
+                          className={this.props.className}>
+                          <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                          Thêm mới
+                          </ModalHeader>
+                          <ModalBody>
+                          <WidgetPage/>
+                          </ModalBody>
+                          <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
                             Lưu
-                        </Button>
-                      </Row>
-                  
-                  </ModalBody></Modal>
+                          </Button>
+                          </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
@@ -151,7 +84,7 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
+                              <FaEdit className="can-click " size="1.5em" />
                               <MdDelete className="can-click" size="1.5em"/>
                             </td>
                           </tr>

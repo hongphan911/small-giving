@@ -159,7 +159,9 @@ this.setState({
                               <ModalHeader className="text-danger" toggle={this.toggle('nested_xem')}>
                                 Xem đăng kí
                                 </ModalHeader>
-                              <ModalBody><ChartPage/></ModalBody>
+                              <ModalBody>
+                                <ChartPage/>
+                              </ModalBody>
                               </Modal>
                             </td> 
                             <td>

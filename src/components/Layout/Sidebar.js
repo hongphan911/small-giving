@@ -3,7 +3,7 @@ import sidebarBgImage from 'assets/img/sidebar/sidebar-6.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
 import { 
-  FaHome, 
+  // FaHome, 
   FaUserAlt, 
   FaClipboardList, 
   FaRegNewspaper, 
@@ -62,8 +62,7 @@ const luongtien = [
   { to: '/chuyentien', name: 'Chuyển tiền', exact: false, Icon: GiPayMoney},
 ];
 
-const navItems1 = [
-  
+const navItems1 = [ 
   {
       to: '/phanquyen',
       name: 'phân quyền',
