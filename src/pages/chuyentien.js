@@ -51,7 +51,7 @@ this.setState({
                   <CardPage/>
                   </ModalBody>
                   <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                    Lưu
+                    Chuyển
                   </Button>
                   </Modal>
                       <Table {...{ [tableType || 'default']: true }}>
@@ -63,7 +63,7 @@ this.setState({
                         <th>Tài khoản đích</th> 
                         <th>Thời gian</th>
                         <th>Số tiền</th> 
-                        <th>Tác vụ</th> 
+                         
                           </tr>
                         </thead>
                         <tbody>
@@ -74,25 +74,7 @@ this.setState({
                             <td>Bind</td>
                             <td>12/5/2020</td> 
                             <td>120000</td> 
-                            <td>
-                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <Modal
-                                  isOpen={this.state.modal_nested_sua}
-                                  toggle={this.toggle('nested_sua')}
-                                  size="lg"
-                                  className={this.props.className}>
-                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
-                                      Sửa thông tin
-                                  </ModalHeader>
-                                  <ModalBody>
-                                  <CardPage/>
-                                  </ModalBody>
-                                  <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_sua')}>
-                                    Lưu
-                                  </Button>
-                                  </Modal>   
-                              <MdDelete className="can-click" size="1.5em" />
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">2</th>
@@ -101,10 +83,7 @@ this.setState({
                             <td>Ding</td>
                             <td>26/2/2020</td> 
                             <td>100000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">3</th>
@@ -113,10 +92,7 @@ this.setState({
                             <td>MEng</td> 
                             <td>31/1/2020</td>
                             <td>50000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">4</th>
@@ -125,10 +101,7 @@ this.setState({
                             <td>Wing</td>
                             <td>19/9/2020</td>
                             <td>60000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">5</th>
@@ -137,10 +110,7 @@ this.setState({
                             <td>@mdo</td>
                             <td>20/2/2020</td>
                             <td>60000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">6</th>
@@ -149,10 +119,7 @@ this.setState({
                             <td>@twitter</td>
                             <td>17/3/2019</td>
                             <td>7000</td>
-                            <td>
-                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              </td>
+                            
                           </tr>
                         <tr>
                             <th scope="row">7</th>
@@ -161,10 +128,7 @@ this.setState({
                             <td>@facebook</td>
                             <td>25/3/2010</td>
                             <td>200000</td>  
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                         </tbody>
                       </Table>

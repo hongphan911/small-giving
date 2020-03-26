@@ -55,7 +55,7 @@ this.setState({
                           <WidgetPage/>
                           </ModalBody>
                           <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                            Lưu
+                            Đăng tải
                           </Button>
                           </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>

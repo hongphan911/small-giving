@@ -30,7 +30,7 @@ class WidgetPage extends React.Component {
               <Input type="select" name="select" />
               </FormGroup>
               <FormGroup >
-                <Label for="exampleEmail"> Người làm khảo sát</Label>
+                <Label for="exampleEmail"> Thuộc nhà tài trợ</Label>
                 <Input
                   type="email"
                   name="email"
@@ -63,7 +63,14 @@ class WidgetPage extends React.Component {
                   />
                 </FormGroup>
                 <FormGroup>
-                <Label for="exampleEmail">Số tiền cho khảo sát </Label>
+                <Label for="exampleEmail">Tổng tiền khảo sát </Label>
+                  <Input
+                    type="email"
+                    name="email"
+                  />
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleEmail">Số tiền cho mỗi lượt khảo sát </Label>
                   <Input
                     type="email"
                     name="email"

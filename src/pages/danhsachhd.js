@@ -68,12 +68,8 @@ this.setState({
                             </FormGroup>
                             
                             <FormGroup>
-                                <Label for="exampleImage"> Hình ảnh</Label>
+                                <Label for="exampleImage"> Hình ảnh / Video</Label>
                                 <Input type="file" name="image" />
-                              </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleVideo"> Video</Label>
-                                <Input type="file" name="video" />
                               </FormGroup>
                           </Form>
                         </CardBody>
@@ -120,7 +116,7 @@ this.setState({
                         </Form>
                         </Col>
                         <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Lưu
+                          Đăng tải
                         </Button>
                       </Row>                  
                   </ModalBody>
@@ -167,8 +163,7 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -186,8 +181,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -205,8 +199,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -224,8 +217,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -243,8 +235,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -262,8 +253,7 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                               </td>
                           </tr>
                         <tr>
@@ -281,8 +271,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>
-                            <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                            
                             </td>
                           </tr>
                         </tbody>

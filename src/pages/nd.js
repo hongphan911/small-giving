@@ -51,7 +51,7 @@ this.setState({
                         <CardBody>
                           <Form>
                             <FormGroup >
-                            <Label for="exampleText"> Mã tài khoản</Label>
+                            <Label for="exampleText"> Mã người dùng</Label>
                                 <Input
                                   type="text"
                                   name="text"
@@ -133,8 +133,8 @@ this.setState({
                         <thead>
                           <tr className="table-danger">
                             <th>STT</th>
-                            <th>Mã TK</th>
-                            <th>Tên TK</th>
+                            <th>Mã ND</th>
+                            <th>Tên ND</th>
                             <th>SĐT</th>
                             <th>Email</th>
                             <th>Mật khẩu</th>
