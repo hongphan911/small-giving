@@ -19,7 +19,7 @@ class AuthForm extends React.Component {
   };
 
   //handleSubmit = event => {
-   // event.preventDefault();
+  //event.preventDefault();
   //};
 
   renderButtonText() {
@@ -39,6 +39,7 @@ class AuthForm extends React.Component {
   render() {
     const {
       showLogo,
+      onLogin,
       usernameLabel,
       usernameInputProps,
       phoneLabel,
@@ -109,7 +110,8 @@ class AuthForm extends React.Component {
           size="lg"
           className="bg-gradient-theme-left border-0"
           block
-          onClick={this.handleSubmit}>
+          onClick={() =>
+            onLogin()}>
           {this.renderButtonText()}
         </Button>
 
