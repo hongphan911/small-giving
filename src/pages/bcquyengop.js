@@ -3,11 +3,11 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button, InputGroup , InputGroupText} from 'reactstrap';
 const tableTypes = ['hover'];
 
-class DropdownPage extends React.Component {
+class bcquyengop extends React.Component {
   render() {
     return (
       <Page
-        className="DropdownPage"
+        className="bcquyengop"
         title="Tổng quyên góp"
         breadcrumbs={[{name:'báo cáo'},{ name: 'tổng quyên góp', active: true }]}
       >
@@ -126,4 +126,4 @@ class DropdownPage extends React.Component {
     );
   }
 }
-export default DropdownPage;
+export default bcquyengop;

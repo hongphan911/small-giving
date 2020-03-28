@@ -3,11 +3,11 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
 const tableTypes = ['hover'];
 
-class TablePage extends React.Component {
+class bcnaptien extends React.Component {
   render() {
     return (
       <Page
-        className="TablePage"
+        className="bcnaptien"
         title="Tổng tiền nạp"
         breadcrumbs={[{name:'báo cáo'},{ name: 'tổng tiền nạp', active: true }]}
       >
@@ -116,4 +116,4 @@ class TablePage extends React.Component {
     );
   }
 }
-export default TablePage;
+export default bcnaptien;

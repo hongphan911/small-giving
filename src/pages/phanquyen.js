@@ -5,7 +5,7 @@ import { Button,CardSubtitle,
 
 
 const tableTypes = ['striped'];
-class ButtonPage extends React.Component {
+class phanquyen extends React.Component {
   state = {
     rSelected: null,
     cSelected: [],
@@ -182,4 +182,4 @@ class ButtonPage extends React.Component {
   };
 }
 
-export default ButtonPage;
+export default phanquyen;

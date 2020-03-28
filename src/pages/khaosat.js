@@ -12,7 +12,7 @@ const getRandomMoney = () => {
   return Math.floor(Math.random() * 200000 );
 };
 
-class FormPage extends React.Component {
+class khaosat extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -31,7 +31,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="FormPage"
+        className="khaosat"
         title="Tạo khảo sát"
         breadcrumbs={[{name:'quản trị hoạt động tài trợ'},{ name: 'Tạo khảo sát', active: true }]}
       >
@@ -183,4 +183,4 @@ this.setState({
     );
   }
 }
-export default FormPage;
+export default khaosat;

@@ -5,7 +5,7 @@ import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
 
-class ButtonPage extends React.Component {
+class nd extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -24,7 +24,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="ButtonPage"
+        className="nd"
         title="Người dùng"
         breadcrumbs={[{name:'quản trị tài khoản'},{ name: 'người dùng', active: true }]}
       >
@@ -253,4 +253,4 @@ this.setState({
     );
   }
 }
-export default ButtonPage;
+export default nd;

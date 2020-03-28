@@ -12,7 +12,7 @@ const getRandomInt = () => {
 const getRandomMoney = () => {
   return Math.floor(Math.random() * 200000 );
 };
-class InputGroupPage extends React.Component {
+class danhsachhd extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested_xem: false,
@@ -32,7 +32,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="InputGroupPage"
+        className="danhsachhd"
         title="Danh sách hoạt động"
         breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'danh sách hoat động', active: true }]}
       >
@@ -296,4 +296,4 @@ this.setState({
     );
   }
 }
-export default InputGroupPage;
+export default danhsachhd;

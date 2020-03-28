@@ -5,11 +5,11 @@ import { Card, CardBody, Col, Row, Table} from 'reactstrap';
 const tableTypes = ['hover'];
 
 
-class ProgressPage extends React.Component {
+class gopy extends React.Component {
   render() {
     return (
       <Page
-        className="ProgressPage"
+        className="gopy"
         title="Quản trị góp ý"
         breadcrumbs={[{ name: 'quản trị góp ý', active: true }]}
       >
@@ -89,4 +89,4 @@ class ProgressPage extends React.Component {
     );
   }
 }
-export default ProgressPage;
+export default gopy;

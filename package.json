@@ -17,6 +17,7 @@
     "react-d3-map": "^0.8.3",
     "react-dom": "^16.8.4",
     "react-ga": "^2.5.7",
+    "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^3.5.0",
     "react-infinite-calendar": "^2.3.1",
     "react-notification-system": "^0.2.17",

@@ -3,11 +3,11 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
 const tableTypes = ['hover'];
 
-class TypographyPage extends React.Component {
+class bctaitro extends React.Component {
   render() {
     return (
       <Page
-        className="TypographyPage"
+        className="bctaitro"
         title="Nguồn tài trợ"
         breadcrumbs={[{name:'báo cáo'},{ name: 'nguồn tài trợ', active: true }]}
       >
@@ -124,4 +124,4 @@ class TypographyPage extends React.Component {
     );
   }
 }
-export default TypographyPage;
+export default bctaitro;

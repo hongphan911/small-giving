@@ -51,7 +51,7 @@ import { getColor } from 'utils/colors';
 //   today.getDate() - 7,
 // );
 
-class DashboardPage extends React.Component {
+class trangchu extends React.Component {
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
@@ -63,7 +63,7 @@ class DashboardPage extends React.Component {
 
     return (
       <Page
-        className="DashboardPage"
+        className="trangchu"
         title="Dashboard"
         breadcrumbs={[{ name: 'Trang chủ', active: true }]}
       >
@@ -211,4 +211,4 @@ class DashboardPage extends React.Component {
     );
   }
 }
-export default DashboardPage;
+export default trangchu;

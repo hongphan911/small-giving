@@ -5,7 +5,7 @@ import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, 
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
-class BadgePage extends React.Component {
+class chuyentien extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested_xoa: false,
@@ -27,7 +27,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="BadgePage"
+        className="chuyentien"
         title="Chuyển tiền"
         breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'chuyển tiền', active: true }]}
       >
@@ -177,4 +177,4 @@ this.setState({
     );
   }
 }
-export default BadgePage;
+export default chuyentien;

@@ -5,7 +5,7 @@ import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
 
-class ModalPage extends React.Component {
+class naptien extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -24,7 +24,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="ModalPage"
+        className="naptien"
         title="Nạp tiền"
         breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'nạp tiền', active: true }]}
       >
@@ -192,4 +192,4 @@ this.setState({
     );
   }
 }
-export default ModalPage;
+export default naptien;

@@ -6,7 +6,7 @@ import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
-class InputGroupPage extends React.Component {
+class tinhd extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -25,7 +25,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="InputGroupPage"
+        className="tinhd"
         title="Tin hoạt động"
         breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'Tin hoạt động', active: true }]}
       >
@@ -220,4 +220,4 @@ this.setState({
     );
   }
 }
-export default InputGroupPage;
+export default tinhd;

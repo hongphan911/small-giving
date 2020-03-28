@@ -4,7 +4,7 @@ import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Form, Label, 
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
-class ButtonGroupPage extends React.Component {
+class nhomnd extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -161,4 +161,4 @@ this.setState({
     );
   }
 }
-export default ButtonGroupPage;
+export default nhomnd;
