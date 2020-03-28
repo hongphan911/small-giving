@@ -308,3 +308,38 @@
 .bg-gradient-theme{
   border: 2px solid #ddd !important;
 }
+.cr-header{
+  .btn-outline-secondary{
+    color: #ae1f17;
+    background-color: #fff;
+    
+    &:hover{
+      background-color: #fff;
+      box-shadow: none !important;
+      
+
+    }
+  }
+  .btn-outline-secondary:not(:disabled):not(.disabled):active{
+    background-color: #fff;
+    color: #ae1f17;
+    box-shadow: none !important;
+  }
+  .btn-outline-secondary:not(:disabled):not(.disabled):active:focus{
+    box-shadow: none !important;
+  }
+}
+.btn-excel-report{
+  color: #ae1f17 !important;
+    border-color: #ae1f17;
+   padding: 5px 10px !important;
+    background-color: #fff !important;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+    &:hover{
+      color: #fff !important;
+    border-color: #fff;
+    background-color: #ae1f17!important;
+    }
+}

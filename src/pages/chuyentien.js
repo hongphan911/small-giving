@@ -58,7 +58,7 @@ this.setState({
                         <thead>
                       <tr className="table-danger">
                         <th>STT</th>
-                        <th>Mã GD</th>
+                        <th>Mã giao dịch</th>
                         <th> Tài khoản nguồn</th>
                         <th>Tài khoản đích</th> 
                         <th>Thời gian</th>

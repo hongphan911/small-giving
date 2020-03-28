@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
+import ReactToExcel from 'react-html-table-to-excel';
 import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
 const tableTypes = ['hover'];
 
@@ -30,7 +31,7 @@ class TypographyPage extends React.Component {
                   </Form>
                   </Col>
                   </Row>
-                      <Table {...{ [tableType || 'hover']: true }}>
+                      <Table {...{ [tableType || 'hover']: true }} id="table-to-xls-3">
                         <thead>
                       <tr className="table-danger">
                         <th>STT</th>
@@ -108,9 +109,14 @@ class TypographyPage extends React.Component {
                       </Button>
                         </Col>
                         <Col md={6} className="center">
-                        <Button outline color="danger" size="lg">
-                        Xuất ra Excel
-                      </Button>
+                        <ReactToExcel outline color="danger" size="lg"
+                        className="btn btn-excel-report"
+                        table="table-to-xls-3"
+                        filename="excelfile"
+                        sheet="sheet 1"
+                        buttonText="Xuất Excel">
+                        
+                      </ReactToExcel>
 
                         </Col>
                         </Row>
