@@ -56,12 +56,11 @@ const baocao = [
 ];
 const taitro = [
   { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
-  { to: '/khaosat', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
+  { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  {to: '/naptien', name: 'Nạp tiền người dùng', exact: false, Icon: GiReceiveMoney},
-  {to: '/naptien', name: 'Nạp tiền điểm danh', exact: false, Icon: GiReceiveMoney},
-  { to: '/chuyentien', name: 'Chuyển tiền khảo sát', exact: false, Icon: GiPayMoney},
+  {to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney},
+  { to: '/chuyentien', name: 'Chuyển tiền', exact: false, Icon: GiPayMoney},
 ];
 
 const navItems1 = [ 
@@ -262,7 +261,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="text-uppercase">
                   <GiMoneyStack className={bem.e('nav-item-icon')} />
-                  <span className="">Quản trị luồng quyên góp</span>
+                  <span className="">Quản trị giao dịch</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}

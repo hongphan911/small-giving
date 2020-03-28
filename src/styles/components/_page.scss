@@ -280,3 +280,31 @@
   }
 
 }
+.modal-dialog{
+  .modal-header{
+    background-color: #ae1f17;
+    .modal-title{
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  }
+  .btn-danger{
+    color: #ae1f17 !important;
+    border-color: #ae1f17;
+   
+    background-color: #fff !important;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+    &:hover{
+      color: #fff !important;
+    border-color: #fff;
+    background-color: #ae1f17!important;
+    
+    }
+  }
+}
+.bg-gradient-theme{
+  border: 2px solid #ddd !important;
+}

@@ -20,6 +20,7 @@ const xemdk = React.lazy(() => import('pages/xemdk'));
 const trangchu = React.lazy(() => import('pages/trangchu'));
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const khaosat = React.lazy(() => import('pages/khaosat'));
+const diemdanh = React.lazy(() => import('pages/diemdanh'));
 const danhsachhd = React.lazy(() => import('pages/danhsachhd'));
 const naptien = React.lazy(() => import('pages/naptien'));
 const gopy = React.lazy(() => import('pages/gopy'));
@@ -109,6 +110,7 @@ class App extends React.Component {
                 <Route exact path="/gopy" component={gopy} />
                 <Route exact path="/naptien" component={naptien} />
                 <Route exact path="/khaosat" component={khaosat} />
+                <Route exact path="/diemdanh" component={diemdanh} />
                 <Route exact path="/danhsachhd" component={danhsachhd} />
                 <Route exact path="/xemdk" component={xemdk} />
               </React.Suspense>

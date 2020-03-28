@@ -43,35 +43,35 @@ this.setState({
                   size="lg"
                   className={this.props.className}>
                   <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới
+                   Thêm mới tin tức
                   </ModalHeader>
                   <ModalBody>
+                  <Card>
+                        <CardBody>
                   <Row>
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                             <FormGroup >
                             <Label for="exampleText"> Mã tin tức</Label>
                                 <Input type="text" name="text"/>
                             </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleSelect">Thuộc hoạt động</Label>
-                            <Input type="select" name="select" />
-                            </FormGroup>
                             <FormGroup>
                               <Label for="exampleText">Tên tin</Label>
                               <Input type="text" name="text" />
                             </FormGroup>
+                            <FormGroup >
+                            <Label for="exampleSelect">Thuộc hoạt động</Label>
+                            <Input type="select" name="select" />
+                            </FormGroup>
+                            
                           
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                     </Col>
 
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                           
                               
@@ -89,8 +89,7 @@ this.setState({
                             <Input type="select" name="select" />
                             </FormGroup>
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                       </Col>
                       <Col xl={12}>
                         <Form>
@@ -98,11 +97,14 @@ this.setState({
                               <Input type="textarea" name="text" />
                         </Form>
                         </Col>
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
+                        
+                      </Row> 
+                      </CardBody>
+                      </Card>                 
+                  </ModalBody>
+                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
                           Đăng tải
                         </Button>
-                      </Row>                  
-                  </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>

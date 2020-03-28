@@ -42,7 +42,7 @@ this.setState({
                           size="lg"
                           className={this.props.className}>
                       <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                            Thêm mới
+                            Thêm mới giao dịch nạp tiền
                   </ModalHeader>
                   <ModalBody>
                     <Row>
