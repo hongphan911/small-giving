@@ -3,8 +3,51 @@ import React from 'react';
 import ReactToExcel from 'react-html-table-to-excel';
 import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
 const tableTypes = ['hover'];
-
+const initialState ={
+  startdate:"",
+  enddate:"",
+};
 class TablePage extends React.Component {
+  state= initialState;
+  handleChange = event => {
+    const isCheckbox = event.target.type === "checkbox";
+    this.setState({
+      [event.target.name]: isCheckbox
+      ? event.target.checked
+      : event.target.value
+    });
+  };
+  validate = () => {
+    let startdateError = "";
+    let enddateError = "";
+
+
+    if (!this.state.startdate) {
+      startdateError ="Bạn cần chọn một mốc thời gian";
+    }
+    if (!this.state.enddate){
+      enddateError ="Bạn cần chọn một mốc thời gian";
+    }
+    if(this.state.startdate >= this.state.enddate )
+    {
+      enddateError ="Mốc thời gian không hợp lệ";
+    }
+    if (startdateError || enddateError){
+      this.setState({ startdateError,enddateError});
+      return false;
+    }
+    return true;
+
+  };
+  handleSubmit = event => {
+    event.preventDefault();
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      //clear form
+      //this.setState(initialState);
+    }
+  };
   render() {
     return (
       <Page
@@ -13,21 +56,52 @@ class TablePage extends React.Component {
         breadcrumbs={[{name:'báo cáo'},{ name: 'tổng tiền nạp', active: true }]}
       >
       {tableTypes.map((tableType, index) => (
+        <Form onSubmit={this.handleSubmit}>
         <Row key={index}>
           <Col>
             <Card className="mb-3">
                     <CardBody>
-                      <Row>
+                    <Row>
                     <Col xl={6} lg={12} md={12}>
                     <Form>
-                  <Label for="exampleDate">Từ ngày</Label>
-                  <Input type="date"name="date"/> 
+                      <Row>
+                        <Col md={3}>
+                          <Label for="exampleDate">Từ ngày <span className="red-text">*</span></Label>                         
+                        </Col>
+                        <Col md={9}>
+                        <div className="error-text">
+                            {this.state.startdateError} 
+                          </div> 
+                          <Input 
+                          type="date"
+                          name="startdate"
+                          value={this.state.startdate}
+                        onChange={this.handleChange}
+
+                          /> 
+                        </Col>
+                      </Row>
                   </Form>
                   </Col>
                   <Col xl={6} lg={12} md={12}>
                     <Form>
-                  <Label for="exampleDate">Đến ngày</Label>
-                <Input type="date" name="date"/>
+                    <Row>
+                        <Col md={3}>
+                          <Label for="exampleDate">Đến ngày <span className="red-text">*</span></Label>
+                          
+                        </Col>
+                        <Col md={9}>
+                        <div className="error-text">
+                          {this.state.enddateError} 
+                        </div> 
+                          <Input 
+                          type="date"
+                          name="enddate"
+                          value={this.state.enddate}
+                        onChange={this.handleChange}
+                          /> 
+                        </Col>
+                      </Row>
                   </Form>
                   </Col>
                   </Row>
@@ -96,7 +170,7 @@ class TablePage extends React.Component {
                       <div className="button-bottom" >
                         <Row>
                         <Col md={6} className="center">
-                        <Button outline color="danger" size="lg">
+                        <Button className="submit-refix" type="submit" color="danger" size="lg">
                         Báo cáo
                       </Button>
                         </Col>
@@ -117,6 +191,7 @@ class TablePage extends React.Component {
                   </Card>
                   </Col>
                   </Row>
+                  </Form>
       ))}
       </Page>
     );

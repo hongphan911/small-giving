@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
+import CardPage from 'pages/naptienthem'
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
@@ -45,43 +46,7 @@ this.setState({
                             Thêm mới giao dịch nạp tiền
                   </ModalHeader>
                   <ModalBody>
-                    <Row>
-                      <Col xl={12} lg={12} md={12}>
-                        <Card>
-                          <CardBody>
-                            <Form>
-                              <Label for="exampleEmail"> Mã giao dịch nạp tiền</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                            <Form>
-                            <Label for="exampleSelect">Tài khoản nạp</Label>
-                            <Input type="select" name="select" />
-                            </Form>
-                            <Form>
-                              <Label for="exampleEmail">Số tiền</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                            <Form>
-                                <Label for="exampleEmail">Nội dung</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      
-                    <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                      Nạp
-                    </Button>
-                  </Row>
+                    <CardPage/>
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>

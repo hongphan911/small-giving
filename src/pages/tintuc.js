@@ -1,6 +1,7 @@
 import Page from 'components/Page';
 // import ChartPage from 'pages/ChartPage';
 import React from 'react';
+import Tintucthem from 'pages/tintucthem'
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
@@ -46,65 +47,8 @@ this.setState({
                    Thêm mới tin tức
                   </ModalHeader>
                   <ModalBody>
-                  <Card>
-                        <CardBody>
-                  <Row>
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                            <FormGroup >
-                            <Label for="exampleText"> Mã tin tức</Label>
-                                <Input type="text" name="text"/>
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="exampleText">Tên tin</Label>
-                              <Input type="text" name="text" />
-                            </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleSelect">Thuộc hoạt động</Label>
-                            <Input type="select" name="select" />
-                            </FormGroup>
-                            
-                          
-                          </Form>
-                        
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                          
-                              
-                            <FormGroup>
-                                <Label for="exampleImage"> Hình ảnh / Video</Label>
-                                <Input type="file" name="image" />
-                              </FormGroup>
-                              
-                              <FormGroup >
-                            <Label for="exampleText"> Tiêu đề thông báo</Label>
-                                <Input  type="text"  name="text"/>
-                            </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleSelect">Đối tượng nhận thông báo</Label>
-                            <Input type="select" name="select" />
-                            </FormGroup>
-                          </Form>
-                        
-                      </Col>
-                      <Col xl={12}>
-                        <Form>
-                            <Label for="exampleText">Nội dung</Label>
-                              <Input type="textarea" name="text" />
-                        </Form>
-                        </Col>
-                        
-                      </Row> 
-                      </CardBody>
-                      </Card>                 
+                      <Tintucthem/>       
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Đăng tải
-                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>

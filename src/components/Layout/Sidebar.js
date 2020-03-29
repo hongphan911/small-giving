@@ -181,7 +181,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="text-uppercase">
                   <MdWork className={bem.e('nav-item-icon')} />
-                  <span className="">Quản trị hoạt động tình nguyện</span>
+                  <span className="">Quản trị hoạt động thiện nguyện</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}

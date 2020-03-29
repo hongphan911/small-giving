@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
+import Nguoidungthem from 'pages/ndthem'
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
@@ -46,95 +47,8 @@ this.setState({
                    Thêm mới người dùng
                   </ModalHeader>
                   <ModalBody>
-                  <Card>
-                        <CardBody>
-                  <Row>
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                            <FormGroup >
-                            <Label for="exampleText"> Mã người dùng</Label>
-                                <Input
-                                  type="text"
-                                  name="text"
-                                />
-                            </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleSelect">Nhóm người dùng</Label>
-                            <Input type="select" name="select">
-                            <option>Cộng tác viên kế toán</option>
-                            <option>Cộng tác viên viết bài</option>
-                            <option>Chủ nhiệm</option>
-                            <option>Nhà hảo tâm</option>
-                            </Input>
-                            </FormGroup>
-                            <FormGroup >
-                              <Label for="exampleText"> Số điện thoại</Label>
-                              <Input
-                                type="text"
-                                name="text"
-                                id="exampleText"
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="exampleEmail">Email </Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                            </FormGroup>
-                            
-                              
-                          </Form>
-                        
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                          <FormGroup >
-                              <Label for="exampleText"> Họ tên</Label>
-                              <Input
-                                type="text"
-                                name="text"
-                                id="exampleText"
-                              />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleDate">Ngày sinh</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              
-                            <FormGroup>
-                                <Label for="exampleSelect">Giới tính</Label>
-                                <Input type="select" name="select">
-                                  <option>Nam </option>
-                                  <option>Nữ</option>
-                                </Input>
-                              </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleText">Password</Label>
-                                <Input
-                                  type="text"
-                                  name="text"
-                                />
-                              </FormGroup>
-                              
-                          </Form>
-                        
-                      </Col>
-                        
-                      </Row>
-                      </CardBody>
-                      </Card>
+                    <Nguoidungthem/>
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Lưu
-                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>

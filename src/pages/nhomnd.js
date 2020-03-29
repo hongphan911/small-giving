@@ -1,5 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
+import Nhomndthem from 'pages/nhomndthem'
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Form, Label, Input, Button, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
@@ -43,38 +44,7 @@ this.setState({
                    Thêm mới nhóm người dùng
                   </ModalHeader>
                   <ModalBody>
-                  <Row>
-                    
-                    <Col md={12}>
-                      <Card>
-                        <CardBody>
-                          <Form>
-                            <Label for="exampleEmail"> Mã nhóm</Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                          </Form>
-                          <Form>
-                              <Label for="exampleEmail">Tên nhóm </Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                          </Form>
-                        </CardBody>
-                      </Card>
-                      
-                    </Col>
-                    
-                    <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                            Lưu
-                      </Button>
-
-                    
-                      
-                  </Row>
-                  
+                    <Nhomndthem/>
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>

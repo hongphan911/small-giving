@@ -1,5 +1,5 @@
 import Page from 'components/Page';
-
+import Diemdanhthem from 'pages/diemdanhthem'
 import React from 'react';
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
@@ -52,43 +52,8 @@ this.setState({
                           Thêm mới tài khoản điểm danh
                           </ModalHeader>
                           <ModalBody>
-                  <Row>
-                    <Col xl={12} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
-                          <Form>
-                            <FormGroup >
-                            <Label for="exampleText"> Mã tài khoản</Label>
-                                <Input
-                                  type="text"
-                                  name="text"
-                                />
-                            </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleText">Tên tài khoản</Label>
-                            <Input type="text" name="text" />
-                            </FormGroup>
-                            <FormGroup >
-                              <Label for="exampleText"> Số tiền cho mỗi lượt điểm danh</Label>
-                              <Input
-                                type="text"
-                                name="text"
-                                id="exampleText"
-                              />
-                            </FormGroup>
-                        
-                            
-                              
-                          </Form>
-                        </CardBody>
-                      </Card>
-                    </Col>
-
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Lưu
-                        </Button>
-                      </Row>
-                  </ModalBody>
+                              <Diemdanhthem/>
+                          </ModalBody>
                           
                           </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>

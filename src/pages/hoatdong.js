@@ -1,6 +1,7 @@
 import Page from 'components/Page';
 import ChartPage from 'pages/xemdk';
 import React from 'react';
+import Hoatdongthem from 'pages/hoatdongthem'
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
@@ -53,76 +54,8 @@ this.setState({
                    Thêm mới hoạt động
                   </ModalHeader>
                   <ModalBody>
-                  <Card>
-                        <CardBody>
-                  <Row>
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                            <FormGroup >
-                            <Label for="exampleText"> Mã họat động</Label>
-                                <Input type="text" name="text"/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleDate">Ngày bắt đầu</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              <FormGroup >
-                            <Label for="exampleText"> Địa chỉ</Label>
-                                <Input  type="text"  name="text"/>
-                            </FormGroup>
-                            
-                          </Form>
-                        
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                          <FormGroup>
-                              <Label for="exampleText">Tên hoạt động</Label>
-                              <Input type="text" name="text" />
-                            </FormGroup>
-                            
-                              <FormGroup>
-                                <Label for="exampleDate">Ngày kết thúc</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              
-                              <FormGroup >
-                            <Label for="exampleNumber"> Tổng tiền dự kiến</Label>
-                                <Input  type="number"  name="number"/>
-                            </FormGroup>
-                            
-                          </Form>
-                        
-                      </Col>
-                      <Col xl={12}>
-                      <Form>
-                                <Label for="exampleImage"> Hình ảnh / Video</Label>
-                                <Input type="file" name="image" />
-                              </Form>
-                        <Form>
-                            <Label for="exampleText">Nội dung</Label>
-                              <Input type="textarea" name="text" />
-                        </Form>
-                        </Col>
-                        
-                      </Row>   
-                      </CardBody>
-                      </Card>               
+                      <Hoatdongthem/>  
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Đăng tải
-                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
