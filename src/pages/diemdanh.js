@@ -1,5 +1,5 @@
 import Page from 'components/Page';
-import WidgetPage from 'pages/WidgetPage';
+
 import React from 'react';
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';

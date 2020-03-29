@@ -3,6 +3,7 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
+
 const tableTypes = ['hover'];
 
 class ButtonPage extends React.Component {
@@ -60,7 +61,12 @@ this.setState({
                             </FormGroup>
                             <FormGroup >
                             <Label for="exampleSelect">Nhóm người dùng</Label>
-                            <Input type="select" name="select" />
+                            <Input type="select" name="select">
+                            <option>Cộng tác viên kế toán</option>
+                            <option>Cộng tác viên viết bài</option>
+                            <option>Chủ nhiệm</option>
+                            <option>Nhà hảo tâm</option>
+                            </Input>
                             </FormGroup>
                             <FormGroup >
                               <Label for="exampleText"> Số điện thoại</Label>
@@ -111,10 +117,10 @@ this.setState({
                                 </Input>
                               </FormGroup>
                               <FormGroup>
-                                <Label for="examplePassword">Password</Label>
+                                <Label for="exampleText">Password</Label>
                                 <Input
-                                  type="password"
-                                  name="password"
+                                  type="text"
+                                  name="text"
                                 />
                               </FormGroup>
                               

@@ -46,8 +46,8 @@ const taikhoan = [
 ];
 
 const hoatdong = [
-   { to: '/danhsachhd', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/tinhd', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
+   { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+    { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
     { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },

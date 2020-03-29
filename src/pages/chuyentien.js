@@ -1,5 +1,5 @@
 import Page from 'components/Page';
-import CardPage from'pages/CardPage';
+import CardPage from'pages/chuyentienthem';
 import React from 'react';
 import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Button} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
@@ -50,9 +50,8 @@ this.setState({
                   <ModalBody>
                   <CardPage/>
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                    Chuyển
-                  </Button>
+                  
+                  
                   </Modal>
                       <Table {...{ [tableType || 'default']: true }}>
                         <thead>

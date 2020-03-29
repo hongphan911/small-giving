@@ -54,12 +54,12 @@
   .card-body{
     .btn{
       padding: 0.35rem 0.35rem !important;
-      border-radius: 50% !important;
+      
     }
     .btn-primary{
       background: #ffffff ;
       border: 2px solid #545454 ;
-      margin:0 0 5px 20px;
+      margin:0 20px 5px 20px;
     }
     .btn-primary:not(:disabled):not(.disabled):active{
       background-color: #ae1f17 !important;
@@ -342,4 +342,20 @@
     border-color: #fff;
     background-color: #ae1f17!important;
     }
+}
+.red-text{
+  color: #ae1f17;
+}
+.pd-rancach{
+  .row{
+    margin-bottom: 20px;
+  }
+}
+.error-text{
+  text-align: right;
+  font-size: 13px;
+  color: #ae1f17;
+}
+.center-text-submit{
+  text-align: center;
 }
