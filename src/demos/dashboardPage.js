@@ -65,78 +65,7 @@ export const productsData = [
   },
 ];
 
-export const avatarsData = [
-  {
-    avatar: user1Image,
-    name: 'Hồng Phấn',
-    date: '3 ngày trước',
-  },
-  {
-    avatar: user2Image,
-    name: 'Minh thu',
-    date: '1 tuần trước',
-  },
-  {
-    avatar: user3Image,
-    name: 'Minh Tú',
-    date: '2 tuần trước',
-  },
-  {
-    avatar: user4Image,
-    name: 'Thanh Dương',
-    date: '2 tuần trước',
-  },
-  {
-    avatar: user5Image,
-    name: 'Phượng Vũ',
-    date: '1 tháng trước',
-  },
-  {
-    avatar: user6Image,
-    name: 'Hà Mi',
-    date: '1 tháng trước',
-  },
-  {
-    avatar: user7Image,
-    name: 'Tuất Việt',
-    date: '3 tháng trước',
-  },
-  {
-    avatar: user8Image,
-    name: 'John',
-    date: '1 month ago',
-  },
-  {
-    avatar: user9Image,
-    name: 'Shane',
-    date: '7 month ago',
-  },
-  {
-    avatar: user10Image,
-    name: 'Star',
-    date: '1 year ago',
-  },
-  {
-    avatar: user11Image,
-    name: 'Jenny',
-    date: '3 month ago',
-  },
-  {
-    avatar: user12Image,
-    name: 'Park',
-    date: '4 month ago',
-  },
-  {
-    avatar: user13Image,
-    name: 'Dave',
-    date: '9 month ago',
-  },
-  {
-    avatar: user14Image,
-    name: 'Jackson',
-    date: '10 month ago',
-  },
-];
+
 
 export const userProgressTableData = [
   {
@@ -212,19 +141,31 @@ export const todosData = [
 export const chartjs = {
   bar: {
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aut','Sep','Oct','Nov','Dec'],
       datasets: [
         {
           label: 'Expense for this year',
-          backgroundColor: '#6a82fb',
+          backgroundColor: '#545454',
           stack: 'Expense',
-          data: [10000, 30000, 50000, 80000, 60000, 20000, 10000],
+          data: [10000, 30000, 50000, 80000, 60000, 20000, 10000,2000,300,400,900,1700],
         },
         {
           label: 'Expense for last year',
-          backgroundColor: '#fc5c7d',
+          backgroundColor: '#ae1f17',
           stack: 'Expense',
-          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000],
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
+        },
+        {
+          label: 'Expense for last year',
+          backgroundColor: '#000000',
+          stack: 'Expense',
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
+        },
+        {
+          label: 'Expense for last year',
+          backgroundColor: '#aaaaaa',
+          stack: 'Expense',
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
         },
       ],
     },
@@ -291,21 +232,22 @@ export const chartjs = {
   },
   line: {
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aut','Sep','Oct','Nov','Dec'],
       datasets: [
         {
           label: 'Revenue for this year',
           borderColor: '#545454',
           backgroundColor: '#545454',
-          data: [0, 1300, 2200, 3400, 4600, 3500, 3000],
+          data: [0, 1300, 2200, 3400, 4600, 3500, 3000,5000,6000,2000,8000,3000],
         },
 
         {
           label: 'Revenue for last year',
           borderColor: '#ae1f17',
           backgroundColor: '#ae1f17',
-          data: [0, 1300, 2200, 3400, 4600, 3500, 3000],
+          data: [0, 1300, 2200, 3400, 4600, 3500, 3000,4000,2000,1000,6000,1500],
         },
+        
       ],
     },
     options: {

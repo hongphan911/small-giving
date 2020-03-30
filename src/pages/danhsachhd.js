@@ -50,50 +50,21 @@ this.setState({
                   size="lg"
                   className={this.props.className}>
                   <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới
+                   Thêm mới hoạt động
                   </ModalHeader>
                   <ModalBody>
+                  <Card>
+                        <CardBody>
                   <Row>
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                             <FormGroup >
                             <Label for="exampleText"> Mã họat động</Label>
                                 <Input type="text" name="text"/>
                             </FormGroup>
                             <FormGroup>
-                              <Label for="exampleText">Tên hoạt động</Label>
-                              <Input type="text" name="text" />
-                            </FormGroup>
-                            
-                            <FormGroup>
-                                <Label for="exampleImage"> Hình ảnh</Label>
-                                <Input type="file" name="image" />
-                              </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleVideo"> Video</Label>
-                                <Input type="file" name="video" />
-                              </FormGroup>
-                          </Form>
-                        </CardBody>
-                      </Card>
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
-                          <Form>
-                            <FormGroup>
                                 <Label for="exampleDate">Ngày bắt đầu</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleDate">Ngày kết thúc</Label>
                                 <Input
                                   type="date"
                                   name="date"
@@ -104,33 +75,61 @@ this.setState({
                             <Label for="exampleText"> Địa chỉ</Label>
                                 <Input  type="text"  name="text"/>
                             </FormGroup>
+                            
+                          </Form>
+                        
+                    </Col>
+
+                    <Col xl={6} lg={12} md={12}>
+                      
+                          <Form>
+                          <FormGroup>
+                              <Label for="exampleText">Tên hoạt động</Label>
+                              <Input type="text" name="text" />
+                            </FormGroup>
+                            
+                              <FormGroup>
+                                <Label for="exampleDate">Ngày kết thúc</Label>
+                                <Input
+                                  type="date"
+                                  name="date"
+                                  id="exampleDate"
+                                />
+                              </FormGroup>
+                              
                               <FormGroup >
                             <Label for="exampleNumber"> Tổng tiền dự kiến</Label>
                                 <Input  type="number"  name="number"/>
                             </FormGroup>
                             
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                       </Col>
                       <Col xl={12}>
+                      <Form>
+                                <Label for="exampleImage"> Hình ảnh / Video</Label>
+                                <Input type="file" name="image" />
+                              </Form>
                         <Form>
                             <Label for="exampleText">Nội dung</Label>
                               <Input type="textarea" name="text" />
                         </Form>
                         </Col>
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Lưu
-                        </Button>
-                      </Row>                  
+                        
+                      </Row>   
+                      </CardBody>
+                      </Card>               
                   </ModalBody>
+                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
+                          Đăng tải
+                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger ">
                             <th> STT</th>
-                            <th> Mã HĐ</th>
-                            <th> Tên HĐ</th>
+                            
+                            <th> Tên hoạt động</th>
                             <th> Bắt đầu</th> 
                             <th> Kết thúc</th> 
                             <th> Đã quyên góp</th>
@@ -142,7 +141,7 @@ this.setState({
                         <tbody>
                           <tr>
                           <th scope="row">1</th>
-                            <td>Mark</td>
+                            
                             <td>Otto</td>
                             <td>12/2/2020</td>
                             <td>12/2/2202</td> 
@@ -167,13 +166,12 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
                           <th scope="row">2</th>
-                            <td>Jacob</td>
+                            
                             <td>Mkjfe</td>
                             <td>16/5/2019</td> 
                             <td>24/3/2020</td>
@@ -186,13 +184,12 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
                           <th scope="row">3</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>23/7/2020</td> 
                             <td>13/8/2020</td>
@@ -205,13 +202,12 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
                           <th scope="row">4</th>
-                            <td>Jacob</td>
+                            
                             <td>Thornton</td>
                             <td>5/6/2020</td> 
                             <td>21/6/2020</td>
@@ -224,13 +220,12 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
                           <th scope="row">5</th>
-                            <td>Mark</td>
+                            
                             <td>Otto</td>
                             <td>11/3/2020</td> 
                             <td>1/4/2020</td>
@@ -243,13 +238,12 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
                           <th scope="row">6</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>24/12/2019</td> 
                             <td>2/1/2020</td>
@@ -262,13 +256,12 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                               </td>
                           </tr>
                         <tr>
                         <th scope="row">7</th>
-                            <td>Wendy</td>
+                            
                             <td>the Magic</td>
                             <td>18/2/2020</td> 
                             <td>23/2/2020</td>
@@ -281,8 +274,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>
-                            <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                            
                             </td>
                           </tr>
                         </tbody>

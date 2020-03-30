@@ -15,7 +15,9 @@ import {
   //todosData,
   userProgressTableData,
 } from 'demos/dashboardPage';
-import React from 'react';
+import React  
+// { Component }  
+from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import {
   MdBubbleChart,
@@ -43,6 +45,7 @@ import {
   Row,
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
+// import axios from 'axios';
 
 // const today = new Date();
 // const lastWeek = new Date(
@@ -51,10 +54,17 @@ import { getColor } from 'utils/colors';
 //   today.getDate() - 7,
 // );
 
+// <<<<<<< HEAD
 class trangchu extends React.Component {
+// =======
+// class DashboardPage extends React.Component {
+  
+// >>>>>>> 9e521ffdf9f189a38aba87b788b161a8e2a29758
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
+    
+
   }
 
   render() {
@@ -62,6 +72,8 @@ class trangchu extends React.Component {
    // const dangerColor = getColor('danger');
 
     return (
+      
+      
       <Page
         className="trangchu"
         title="Dashboard"
@@ -79,7 +91,7 @@ class trangchu extends React.Component {
 
           <Col lg={3} md={6} sm={6} xs={12}>
             <NumberWidget
-              title="HĐ thiện nguyện"
+              title="Hoạt động thiện nguyện"
               
               number="35"
               
@@ -130,15 +142,15 @@ class trangchu extends React.Component {
                   <Badge color="danger">20.000.000</Badge>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <MdBubbleChart size={25} color={primaryColor} /> Trả lời khảo sát<Badge color="danger">18.000.000</Badge>
+                  <MdBubbleChart size={25} color={primaryColor} /> Trả lời khảo sát{' '}<Badge color="danger">18.000.000</Badge>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <MdShowChart size={25} color={primaryColor} /> Xem quản cáo{' '}
+                  <MdShowChart size={25} color={primaryColor} /> Xem quảng cáo{' '}
                   <Badge color="danger">0</Badge>
                 </ListGroupItem>
                 <ListGroupItem>
-                  <MdPieChart size={25} color={primaryColor} /> Khác
-                  costs <Badge color="danger">0</Badge>
+                  <MdPieChart size={25} color={primaryColor} /> Khác{' '}
+                 <Badge color="danger">0</Badge>
                 </ListGroupItem>
               </ListGroup>
             </Card>
@@ -198,8 +210,7 @@ class trangchu extends React.Component {
                     <MdPersonPin size={25} />,
                     'Họ tên',
                     'Thời gian',
-                    'Tham gia',
-                    '%',
+                    'Số Tiền',                  
                   ]}
                   usersData={userProgressTableData}
                 />
@@ -207,7 +218,9 @@ class trangchu extends React.Component {
             </Card>
           </Col>
         </Row>
+        
       </Page>
+      
     );
   }
 }

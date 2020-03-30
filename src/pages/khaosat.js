@@ -49,21 +49,21 @@ this.setState({
                           size="lg"
                           className={this.props.className}>
                           <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                          Thêm mới
+                          Thêm mới khảo sát
                           </ModalHeader>
                           <ModalBody>
                           <WidgetPage/>
                           </ModalBody>
                           <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                            Lưu
+                            Đăng tải
                           </Button>
                           </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
                             <th>STT</th>
-                            <th>Mã KS</th>
-                            <th>Tên KS</th>
+                            
+                            <th>Tên khảo sát</th>
                             <th>Bắt đầu</th>
                             <th>Kết thúc</th>
                             
@@ -76,7 +76,7 @@ this.setState({
                         <tbody>
                           <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
+                            
                             <td>Otto</td>
                             <td>12/2/2020</td>
                             <td>12/2/2202</td> 
@@ -90,7 +90,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
+                            
                             <td>Mkjfe</td>
                             <td>16/5/2019</td> 
                             <td>24/3/2020</td>
@@ -104,7 +104,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>23/7/2020</td> 
                             <td>13/8/2020</td>
@@ -118,7 +118,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">4</th>
-                            <td>Jacob</td>
+                            
                             <td>Thornton</td>
                             <td>5/6/2020</td> 
                             <td>21/6/2020</td>
@@ -132,7 +132,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">5</th>
-                            <td>Mark</td>
+                           
                             <td>Otto</td>
                             <td>11/3/2020</td> 
                             <td>1/4/2020</td>
@@ -146,7 +146,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">6</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>24/12/2019</td> 
                             <td>2/1/2020</td>
@@ -160,7 +160,7 @@ this.setState({
                           </tr>
                         <tr>
                             <th scope="row">7</th>
-                            <td>Wendy</td>
+                            
                             <td>the Magic</td>
                             <td>18/2/2020</td> 
                             <td>23/2/2020</td>

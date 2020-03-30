@@ -43,64 +43,53 @@ this.setState({
                   size="lg"
                   className={this.props.className}>
                   <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới
+                   Thêm mới tin tức
                   </ModalHeader>
                   <ModalBody>
+                  <Card>
+                        <CardBody>
                   <Row>
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                             <FormGroup >
                             <Label for="exampleText"> Mã tin tức</Label>
                                 <Input type="text" name="text"/>
                             </FormGroup>
-                            <FormGroup >
-                            <Label for="exampleSelect">Thuộc hoạt động</Label>
-                            <Input type="select" name="select" />
-                            </FormGroup>
                             <FormGroup>
                               <Label for="exampleText">Tên tin</Label>
                               <Input type="text" name="text" />
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleDate">Thời gian tạo tin</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
+                            <FormGroup >
+                            <Label for="exampleSelect">Thuộc hoạt động</Label>
+                            <Input type="select" name="select" />
+                            </FormGroup>
+                            
+                          
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                     </Col>
 
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                           
                               
                             <FormGroup>
-                                <Label for="exampleImage"> Hình ảnh</Label>
+                                <Label for="exampleImage"> Hình ảnh / Video</Label>
                                 <Input type="file" name="image" />
                               </FormGroup>
-                              <FormGroup>
-                                <Label for="exampleVideo"> Video</Label>
-                                <Input type="file" name="video" />
-                              </FormGroup>
+                              
                               <FormGroup >
                             <Label for="exampleText"> Tiêu đề thông báo</Label>
                                 <Input  type="text"  name="text"/>
                             </FormGroup>
                             <FormGroup >
-                            <Label for="exampleSelect">Đối tượng nhận tin</Label>
+                            <Label for="exampleSelect">Đối tượng nhận thông báo</Label>
                             <Input type="select" name="select" />
                             </FormGroup>
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                       </Col>
                       <Col xl={12}>
                         <Form>
@@ -108,11 +97,14 @@ this.setState({
                               <Input type="textarea" name="text" />
                         </Form>
                         </Col>
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Lưu
-                        </Button>
-                      </Row>                  
+                        
+                      </Row> 
+                      </CardBody>
+                      </Card>                 
                   </ModalBody>
+                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
+                          Đăng tải
+                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
@@ -133,8 +125,7 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -145,8 +136,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -157,8 +147,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -169,8 +158,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -181,8 +169,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                             </td>
                           </tr>
                           <tr>
@@ -193,8 +180,7 @@ this.setState({
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
-                              <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                              
                               </td>
                           </tr>
                         <tr>
@@ -205,8 +191,7 @@ this.setState({
                             <td>
                             <FaEdit className="can-click " size="1.5em"/>
                             <MdDelete className="can-click" size="1.5em"/>
-                            <GoChecklist className="can-click" size="1.5em"/>
-                              <GoPin className="can-click" size="1.5em"/>
+                            
                             </td>
                           </tr>
                         </tbody>

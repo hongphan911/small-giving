@@ -3,13 +3,12 @@ import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
-import React from 'react';
+import React, { Component } from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 import { Modal, ModalBody } from 'reactstrap';
 import ProfileLayout from './components/Layout/ProfileLayout';
-
 
 const tinhd = React.lazy(() => import('pages/tinhd'));
 const AuthModalPage = React.lazy(() => import('pages/AuthModalPage'));
@@ -21,6 +20,7 @@ const xemdk = React.lazy(() => import('pages/xemdk'));
 const trangchu = React.lazy(() => import('pages/trangchu'));
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const khaosat = React.lazy(() => import('pages/khaosat'));
+const diemdanh = React.lazy(() => import('pages/diemdanh'));
 const danhsachhd = React.lazy(() => import('pages/danhsachhd'));
 const naptien = React.lazy(() => import('pages/naptien'));
 const gopy = React.lazy(() => import('pages/gopy'));
@@ -39,8 +39,8 @@ class App extends React.Component {
     showLogin: false,
     setLogin: false,
     authState: STATE_LOGIN,
+    
   };
-
   handleLogin = () => {
     this.setState({
       showLogin: !this.state.showLogin,
@@ -53,9 +53,9 @@ class App extends React.Component {
     });
   };
   render() {
-    return (
+    return (      
       <div>
-        {this.state.showLogin === true
+          {this.state.showLogin === true
           ? <Modal
             isOpen={this.state.showLogin}
             toggle={this.handleLogin}
@@ -110,6 +110,7 @@ class App extends React.Component {
                 <Route exact path="/gopy" component={gopy} />
                 <Route exact path="/naptien" component={naptien} />
                 <Route exact path="/khaosat" component={khaosat} />
+                <Route exact path="/diemdanh" component={diemdanh} />
                 <Route exact path="/danhsachhd" component={danhsachhd} />
                 <Route exact path="/xemdk" component={xemdk} />
               </React.Suspense>
@@ -122,7 +123,7 @@ class App extends React.Component {
           </Switch>
         </GAListener>
       </BrowserRouter>
-  }
+    }
   </div>
     );
   }

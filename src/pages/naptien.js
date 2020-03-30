@@ -42,11 +42,11 @@ this.setState({
                           size="lg"
                           className={this.props.className}>
                       <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                            Thêm mới
+                            Thêm mới giao dịch nạp tiền
                   </ModalHeader>
                   <ModalBody>
                     <Row>
-                      <Col xl={6} lg={12} md={12}>
+                      <Col xl={12} lg={12} md={12}>
                         <Card>
                           <CardBody>
                             <Form>
@@ -57,18 +57,16 @@ this.setState({
                                   />
                             </Form>
                             <Form>
+                            <Label for="exampleSelect">Tài khoản nạp</Label>
+                            <Input type="select" name="select" />
+                            </Form>
+                            <Form>
                               <Label for="exampleEmail">Số tiền</Label>
                                 <Input
                                     type="email"
                                     name="email"
                                   />
                             </Form>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      <Col xl={6} lg={12} md={12}>
-                        <Card>
-                          <CardBody>
                             <Form>
                                 <Label for="exampleEmail">Nội dung</Label>
                                   <Input
@@ -76,18 +74,12 @@ this.setState({
                                     name="email"
                                   />
                             </Form>
-                            <Form>
-                                <Label for="exampleEmail"> Thời gian</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
                           </CardBody>
                         </Card>
                       </Col>
+                      
                     <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                      Lưu
+                      Nạp
                     </Button>
                   </Row>
                   </ModalBody>
@@ -97,10 +89,10 @@ this.setState({
                       <tr className="table-danger">
                         <th>STT</th>
                         <th>Mã GDNT</th>
-                        <th> Nội dung</th>
+                        <th>Tài khoản nạp</th>
                         <th>Thời gian</th> 
                         <th>Số tiền</th> 
-                        <th>Tác vụ</th> 
+                       
                           </tr>
                         </thead>
                         <tbody>
@@ -110,10 +102,7 @@ this.setState({
                             <td>Otto</td>
                             <td>13/4/2010</td> 
                             <td>120000</td> 
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">2</th>
@@ -121,10 +110,7 @@ this.setState({
                             <td>Thornton</td>
                             <td>28/6/2020</td> 
                             <td>100000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">3</th>
@@ -132,10 +118,7 @@ this.setState({
                             <td>the Bird</td>
                             <td>14/8/2019</td> 
                             <td>50000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">4</th>
@@ -143,10 +126,7 @@ this.setState({
                             <td>@fat</td>
                             <td>4/7/2020</td>
                             <td>60000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">5</th>
@@ -154,10 +134,7 @@ this.setState({
                             <td>Otto</td>
                             <td>4/7/2019</td>
                             <td>60000</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                           <tr>
                             <th scope="row">6</th>
@@ -165,10 +142,7 @@ this.setState({
                             <td>the Bird</td>
                             <td>7/3/2020</td>
                             <td>7000</td>
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              </td>
+                            
                           </tr>
                         <tr>
                             <th scope="row">7</th>
@@ -176,10 +150,7 @@ this.setState({
                             <td>the Magic</td>
                             <td>12/9/2010</td>
                             <td>200000</td>  
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            </td>
+                            
                           </tr>
                         </tbody>
                       </Table>

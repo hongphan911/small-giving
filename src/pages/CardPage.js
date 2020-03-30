@@ -11,7 +11,7 @@ class CardPage extends React.Component {
   render() {
     return (
       <Row>
-      <Col xl={6} lg={12} md={12}>
+      <Col xl={12} lg={12} md={12}>
         <Card>
           <CardBody>
             <Form>
@@ -21,6 +21,15 @@ class CardPage extends React.Component {
                     name="email"
                   />
             </Form>
+            <Form >
+                <Label for="exampleSelect">Tài khoản nguồn</Label>
+                <Input type="select" name="select" />
+            </Form>
+            <Form >
+                <Label for="exampleSelect">Tài khoản đích</Label>
+                <Input type="select" name="select" />
+            </Form>
+            
             <Form>
                 <Label for="exampleEmail">Số tiền</Label>
                   <Input
@@ -31,26 +40,7 @@ class CardPage extends React.Component {
           </CardBody>
         </Card>
       </Col>
-      <Col xl={6} lg={12} md={12}>
-        <Card>
-          <CardBody>
-            <Form>
-                <Label for="exampleEmail">Tài khoản nguồn</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                  />
-            </Form>
-            <Form>
-                <Label for="exampleEmail"> Tài khoản đích</Label>
-                  <Input
-                    type="email"
-                    name="email"
-                  />
-            </Form>
-          </CardBody>
-        </Card>
-      </Col>
+      
     </Row>
     );
   }

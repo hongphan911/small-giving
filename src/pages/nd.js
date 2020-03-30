@@ -42,16 +42,17 @@ this.setState({
                   size="lg"
                   className={this.props.className}>
                   <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới
+                   Thêm mới người dùng
                   </ModalHeader>
                   <ModalBody>
+                  <Card>
+                        <CardBody>
                   <Row>
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                             <FormGroup >
-                            <Label for="exampleText"> Mã tài khoản</Label>
+                            <Label for="exampleText"> Mã người dùng</Label>
                                 <Input
                                   type="text"
                                   name="text"
@@ -79,13 +80,11 @@ this.setState({
                             
                               
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                     </Col>
 
                     <Col xl={6} lg={12} md={12}>
-                      <Card>
-                        <CardBody>
+                      
                           <Form>
                           <FormGroup >
                               <Label for="exampleText"> Họ tên</Label>
@@ -120,21 +119,23 @@ this.setState({
                               </FormGroup>
                               
                           </Form>
-                        </CardBody>
-                      </Card>
+                        
                       </Col>
-                        <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
+                        
+                      </Row>
+                      </CardBody>
+                      </Card>
+                  </ModalBody>
+                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
                           Lưu
                         </Button>
-                      </Row>
-                  </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
                             <th>STT</th>
-                            <th>Mã TK</th>
-                            <th>Tên TK</th>
+                            
+                            <th>Tên người dùng</th>
                             <th>SĐT</th>
                             <th>Email</th>
                             <th>Mật khẩu</th>
@@ -146,7 +147,7 @@ this.setState({
                         <tbody>
                           <tr>
                             <th scope="row">1</th>
-                            <td>Mark</td>
+                            
                             <td>Otto</td>
                             <td>094093243</td>
                             <td>tuhr@gmail.com</td>
@@ -160,7 +161,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">2</th>
-                            <td>Jacob</td>
+                            
                             <td>Thornton</td>
                             <td>048897580</td>
                             <td>tiwr@yahoo.com</td>
@@ -174,7 +175,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">3</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>048584533</td>
                             <td>hgfjjyjy</td> 
@@ -188,7 +189,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">4</th>
-                            <td>Jacob</td>
+                            
                             <td>Thornton</td>
                             <td>@fat</td>
                             <td>08493598</td> 
@@ -202,7 +203,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">5</th>
-                            <td>Mark</td>
+                            
                             <td>Otto</td>
                             <td>@mdo</td>
                             <td>085837859</td> 
@@ -216,7 +217,7 @@ this.setState({
                           </tr>
                           <tr>
                             <th scope="row">6</th>
-                            <td>Larry</td>
+                            
                             <td>the Bird</td>
                             <td>@twitter</td>
                             <td></td> 
@@ -230,7 +231,7 @@ this.setState({
                           </tr>
                         <tr>
                             <th scope="row">7</th>
-                            <td>Wendy</td>
+                            
                             <td>the Magic</td>
                             <td>@facebook</td>
                             <td></td> 

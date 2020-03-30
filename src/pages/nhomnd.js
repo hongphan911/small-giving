@@ -40,7 +40,7 @@ this.setState({
                         toggle={this.toggle('nested_parent')}
                         className={this.props.className}>
                   <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới
+                   Thêm mới nhóm người dùng
                   </ModalHeader>
                   <ModalBody>
                   <Row>

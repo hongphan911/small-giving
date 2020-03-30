@@ -47,7 +47,7 @@ const taikhoan = [
 
 const hoatdong = [
    { to: '/danhsachhd', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/tinhd', name: 'Tin hoạt động', exact: false, Icon: FaRegNewspaper },
+    { to: '/tinhd', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
     { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
@@ -56,6 +56,7 @@ const baocao = [
 ];
 const taitro = [
   { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
   {to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney},
@@ -260,7 +261,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="text-uppercase">
                   <GiMoneyStack className={bem.e('nav-item-icon')} />
-                  <span className="">Quản trị luồng quyên góp</span>
+                  <span className="">Quản trị giao dịch</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}
