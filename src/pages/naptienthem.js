@@ -5,8 +5,12 @@ import {
   // ModalHeader,
   // ModalFooter,
    ModalBody,
-  Form, Label, Input,Row, Col, CardBody, Card
+  Form, Label, Input,Row, Col, CardBody, Card, Container
 } from 'reactstrap';
+import styled from 'styled-components';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
+
 const initialState ={
     id:"",
     account:"",
@@ -38,8 +42,10 @@ class CardPage extends React.Component {
     }
     if (accountError || moneyError){
       this.setState({ accountError, moneyError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
 
   };
@@ -123,11 +129,14 @@ class CardPage extends React.Component {
             </Col>         
         </Row>
         <div className="center-text-submit">
-    
+          <Container>
                 <Button color="danger" type="submit" pill className="px-4 my-3" >
                 Nạp
                 </Button>
-            </div>
+                <NotificationSuccess/>
+                <NotificationDefeat/>
+          </Container>
+        </div>
     </Form>
 
     );
