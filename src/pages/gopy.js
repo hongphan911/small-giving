@@ -3,8 +3,6 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table} from 'reactstrap';
 
 const tableTypes = ['hover'];
-
-
 class gopy extends React.Component {
   render() {
     return (

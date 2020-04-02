@@ -3,7 +3,6 @@ import sidebarBgImage from 'assets/img/sidebar/sidebar-6.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
 import { 
-  // FaHome, 
   FaUserAlt, 
   FaClipboardList, 
   FaRegNewspaper, 
@@ -46,8 +45,8 @@ const taikhoan = [
 ];
 
 const hoatdong = [
-   { to: '/danhsachhd', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/tinhd', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
+   { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+    { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
     { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
@@ -181,7 +180,7 @@ class Sidebar extends React.Component {
               <BSNavLink className={bem.e('nav-item-collapse')}>
                 <div className="text-uppercase">
                   <MdWork className={bem.e('nav-item-icon')} />
-                  <span className="">Quản trị hoạt động tình nguyện</span>
+                  <span className="">Quản trị hoạt động thiện nguyện</span>
                 </div>
                 <MdKeyboardArrowDown
                   className={bem.e('nav-item-icon')}

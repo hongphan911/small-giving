@@ -1,10 +1,12 @@
 import Page from 'components/Page';
-import ChartPage from 'pages/xemdk';
+import Xemdk from 'pages/xemdk';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
+import Hoatdongthem from 'pages/hoatdongthem'
+import Hoatdongsua from 'pages/hoatdongsua'
+import Hoatdongxoa from 'pages/hoatdongxoa'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
-import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
 const getRandomInt = () => {
   return Math.floor(Math.random() * (100 - 20) + 20);
@@ -17,6 +19,8 @@ class danhsachhd extends React.Component {
     modal_nested_parent: false,
     modal_nested_xem: false,
     modal_nested:false,
+    modal_nested_sua:false,
+    modal_nested_xoa: false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -34,7 +38,7 @@ this.setState({
       <Page
         className="danhsachhd"
         title="Danh sách hoạt động"
-        breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'danh sách hoat động', active: true }]}
+        breadcrumbs={[{name:'quản trị hoạt động thiện nguyện'},{ name: 'danh sách hoat động', active: true }]}
       >
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
@@ -53,76 +57,8 @@ this.setState({
                    Thêm mới hoạt động
                   </ModalHeader>
                   <ModalBody>
-                  <Card>
-                        <CardBody>
-                  <Row>
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                            <FormGroup >
-                            <Label for="exampleText"> Mã họat động</Label>
-                                <Input type="text" name="text"/>
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="exampleDate">Ngày bắt đầu</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              <FormGroup >
-                            <Label for="exampleText"> Địa chỉ</Label>
-                                <Input  type="text"  name="text"/>
-                            </FormGroup>
-                            
-                          </Form>
-                        
-                    </Col>
-
-                    <Col xl={6} lg={12} md={12}>
-                      
-                          <Form>
-                          <FormGroup>
-                              <Label for="exampleText">Tên hoạt động</Label>
-                              <Input type="text" name="text" />
-                            </FormGroup>
-                            
-                              <FormGroup>
-                                <Label for="exampleDate">Ngày kết thúc</Label>
-                                <Input
-                                  type="date"
-                                  name="date"
-                                  id="exampleDate"
-                                />
-                              </FormGroup>
-                              
-                              <FormGroup >
-                            <Label for="exampleNumber"> Tổng tiền dự kiến</Label>
-                                <Input  type="number"  name="number"/>
-                            </FormGroup>
-                            
-                          </Form>
-                        
-                      </Col>
-                      <Col xl={12}>
-                      <Form>
-                                <Label for="exampleImage"> Hình ảnh / Video</Label>
-                                <Input type="file" name="image" />
-                              </Form>
-                        <Form>
-                            <Label for="exampleText">Nội dung</Label>
-                              <Input type="textarea" name="text" />
-                        </Form>
-                        </Col>
-                        
-                      </Row>   
-                      </CardBody>
-                      </Card>               
+                      <Hoatdongthem/>  
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                          Đăng tải
-                        </Button>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
@@ -159,13 +95,36 @@ this.setState({
                                 Xem đăng kí
                                 </ModalHeader>
                               <ModalBody>
-                                <ChartPage/>
+                                <Xemdk/>
                               </ModalBody>
                               </Modal>
                             </td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  size="lg"
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin hoạt động
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Hoatdongsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                       Xóa hoạt động
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Hoatdongxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                               
                             </td>
                           </tr>
@@ -182,10 +141,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/></td>
                           </tr>
                           <tr>
                           <th scope="row">3</th>
@@ -200,8 +157,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               
                             </td>
                           </tr>
@@ -218,8 +175,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               
                             </td>
                           </tr>
@@ -236,8 +193,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               
                             </td>
                           </tr>
@@ -254,8 +211,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               
                               </td>
                           </tr>
@@ -272,8 +229,8 @@ this.setState({
                               <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
                             </td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             
                             </td>
                           </tr>

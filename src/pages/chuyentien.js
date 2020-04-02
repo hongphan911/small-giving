@@ -1,16 +1,12 @@
 import Page from 'components/Page';
-import CardPage from'pages/CardPage';
+import Chuyentienthem from'pages/chuyentienthem';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Button} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 const tableTypes = ['hover'];
 class chuyentien extends React.Component {
   state = {
     modal_nested_parent: false,
-    modal_nested_xoa: false,
     modal_nested:false,
-    modal_nested_sua:false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -48,17 +44,16 @@ this.setState({
                    Thêm mới giao dịch chuyển tiền
                   </ModalHeader>
                   <ModalBody>
-                  <CardPage/>
+                  <Chuyentienthem/>
                   </ModalBody>
-                  <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                    Chuyển
-                  </Button>
+                  
+                  
                   </Modal>
                       <Table {...{ [tableType || 'default']: true }}>
                         <thead>
                       <tr className="table-danger">
                         <th>STT</th>
-                        <th>Mã GD</th>
+                        <th>Mã giao dịch</th>
                         <th> Tài khoản nguồn</th>
                         <th>Tài khoản đích</th> 
                         <th>Thời gian</th>

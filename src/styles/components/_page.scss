@@ -54,12 +54,12 @@
   .card-body{
     .btn{
       padding: 0.35rem 0.35rem !important;
-      border-radius: 50% !important;
+      
     }
     .btn-primary{
       background: #ffffff ;
       border: 2px solid #545454 ;
-      margin:0 0 5px 20px;
+      margin:0 20px 5px 20px;
     }
     .btn-primary:not(:disabled):not(.disabled):active{
       background-color: #ae1f17 !important;
@@ -307,4 +307,70 @@
 }
 .bg-gradient-theme{
   border: 2px solid #ddd !important;
+}
+.cr-header{
+  .btn-outline-secondary{
+    color: #ae1f17;
+    background-color: #fff;
+    
+    &:hover{
+      background-color: #fff;
+      box-shadow: none !important;
+      
+
+    }
+  }
+  .btn-outline-secondary:not(:disabled):not(.disabled):active{
+    background-color: #fff;
+    color: #ae1f17;
+    box-shadow: none !important;
+  }
+  .btn-outline-secondary:not(:disabled):not(.disabled):active:focus{
+    box-shadow: none !important;
+  }
+}
+.btn-excel-report{
+  color: #ae1f17 !important;
+    border-color: #ae1f17;
+   padding: 5px 10px !important;
+    background-color: #fff !important;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+    &:hover{
+      color: #fff !important;
+    border-color: #fff;
+    background-color: #ae1f17!important;
+    }
+}
+.submit-refix{
+  color: #ae1f17 !important;
+    border-color: #ae1f17;
+   padding: 5px 10px !important;
+    background-color: #fff !important;
+    margin: auto;
+    font-size: 15px;
+    font-weight: bold;
+    &:hover{
+      color: #fff !important;
+    border-color: #fff;
+    background-color: #ae1f17!important;
+    }
+
+}
+.red-text{
+  color: #ae1f17;
+}
+.pd-rancach{
+  .row{
+    margin-bottom: 20px;
+  }
+}
+.error-text{
+  text-align: right;
+  font-size: 13px;
+  color: #ae1f17;
+}
+.center-text-submit{
+  text-align: center;
 }

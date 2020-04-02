@@ -1,8 +1,7 @@
 import Page from 'components/Page';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import Naptienthem from 'pages/naptienthem'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 const tableTypes = ['hover'];
 
 class naptien extends React.Component {
@@ -39,56 +38,20 @@ this.setState({
                       <Modal
                           isOpen={this.state.modal_nested_parent}
                           toggle={this.toggle('nested_parent')}
-                          size="lg"
+                          //size="lg"
                           className={this.props.className}>
                       <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
                             Thêm mới giao dịch nạp tiền
                   </ModalHeader>
                   <ModalBody>
-                    <Row>
-                      <Col xl={12} lg={12} md={12}>
-                        <Card>
-                          <CardBody>
-                            <Form>
-                              <Label for="exampleEmail"> Mã giao dịch nạp tiền</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                            <Form>
-                            <Label for="exampleSelect">Tài khoản nạp</Label>
-                            <Input type="select" name="select" />
-                            </Form>
-                            <Form>
-                              <Label for="exampleEmail">Số tiền</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                            <Form>
-                                <Label for="exampleEmail">Nội dung</Label>
-                                  <Input
-                                    type="email"
-                                    name="email"
-                                  />
-                            </Form>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                      
-                    <Button color="danger" pill className="px-4 my-3" onClick={this.toggle('nested_parent')}>
-                      Nạp
-                    </Button>
-                  </Row>
+                    <Naptienthem/>
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                       <tr className="table-danger">
                         <th>STT</th>
-                        <th>Mã GDNT</th>
+                        <th>Mã giao dịch</th>
                         <th>Tài khoản nạp</th>
                         <th>Thời gian</th> 
                         <th>Số tiền</th> 

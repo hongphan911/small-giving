@@ -3,7 +3,6 @@ import React from 'react';
 import { Button,CardSubtitle,
  Card, CardBody, Col, Row, Table,DropdownItem, DropdownMenu, DropdownToggle, UncontrolledButtonDropdown} from 'reactstrap';
 
-
 const tableTypes = ['striped'];
 class phanquyen extends React.Component {
   state = {

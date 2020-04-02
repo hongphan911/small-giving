@@ -5,7 +5,7 @@ import { Card, CardBody, Col, Row, Table} from 'reactstrap';
 const tableTypes = ['hover'];
 
 
-class ChartPage extends React.Component {
+class Xemdk extends React.Component {
   render() {
     return (
       <Page>
@@ -77,4 +77,4 @@ class ChartPage extends React.Component {
     );
   }
 }
-export default ChartPage;
+export default Xemdk;

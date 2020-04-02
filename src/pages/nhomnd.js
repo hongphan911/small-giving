@@ -1,13 +1,18 @@
 import Page from 'components/Page';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Form, Label, Input, Button, ModalHeader} from 'reactstrap';
+import Nhomndthem from 'pages/nhomndthem'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
+import Nhomndsua from 'pages/nhomndsua';
+import Nhomndxoa from 'pages/nhomndxoa';
 const tableTypes = ['hover'];
 class nhomnd extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
+    modal_nested_sua:false,
+    modal_nested_xoa: false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -43,38 +48,7 @@ this.setState({
                    Thêm mới nhóm người dùng
                   </ModalHeader>
                   <ModalBody>
-                  <Row>
-                    
-                    <Col md={12}>
-                      <Card>
-                        <CardBody>
-                          <Form>
-                            <Label for="exampleEmail"> Mã nhóm</Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                          </Form>
-                          <Form>
-                              <Label for="exampleEmail">Tên nhóm </Label>
-                                <Input
-                                  type="email"
-                                  name="email"
-                                />
-                          </Form>
-                        </CardBody>
-                      </Card>
-                      
-                    </Col>
-                    
-                    <Button color="danger" pill className="px-4 my-3 can-click" onClick={this.toggle('nested_parent')}>
-                            Lưu
-                      </Button>
-
-                    
-                      
-                  </Row>
-                  
+                    <Nhomndthem/>
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
@@ -92,8 +66,30 @@ this.setState({
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin nhóm người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Nhomndsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                                  <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa nhóm người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                 <Nhomndxoa/>
+                                  </ModalBody> 
+                                  </Modal>   
                             </td>
                           </tr>
                           <tr>
@@ -101,8 +97,8 @@ this.setState({
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -110,8 +106,8 @@ this.setState({
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -119,8 +115,8 @@ this.setState({
                             <td>Jacob</td>
                             <td>Thornton</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -128,8 +124,8 @@ this.setState({
                             <td>Mark</td>
                             <td>Otto</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -137,8 +133,8 @@ this.setState({
                             <td>Larry</td>
                             <td>the Bird</td>
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               </td>
                           </tr>
                         <tr>
@@ -146,8 +142,8 @@ this.setState({
                             <td>Wendy</td>
                             <td>the Magic</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                         </tbody>
