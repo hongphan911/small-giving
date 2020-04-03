@@ -4,9 +4,18 @@ import {
   //  Modal,
   // ModalHeader,
   // ModalFooter,
+<<<<<<< HEAD
   //  ModalBody,
   Form, Label, Input,Row, Col, CardBody, Card
+=======
+   ModalBody,
+  Form, Label, Input,Row, Col, CardBody, Card, Container
+>>>>>>> 3529cfc058a4237bfaa577d924e05d956ef54cd7
 } from 'reactstrap';
+import styled from 'styled-components';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
+
 const initialState ={
     id:"",
     account:"",
@@ -38,8 +47,10 @@ class Naptienthem extends React.Component {
     }
     if (accountError || moneyError){
       this.setState({ accountError, moneyError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
 
   };
@@ -124,11 +135,14 @@ class Naptienthem extends React.Component {
             </Col>         
         </Row>
         <div className="center-text-submit">
-    
+          <Container>
                 <Button color="danger" type="submit" pill className="px-4 my-3" >
                 Nạp
                 </Button>
-            </div>
+                <NotificationSuccess/>
+                <NotificationDefeat/>
+          </Container>
+        </div>
     </Form>
 
     );

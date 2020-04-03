@@ -9,7 +9,11 @@ import {
   Input,
   Label,
   Row,
+  Container,
 } from 'reactstrap';
+import styled from 'styled-components';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
 const initialState ={
   id:"",
@@ -57,8 +61,10 @@ class Khaosatthem extends React.Component {
     }
     if (nameError || urlError || eachturnError || totalError ){
       this.setState({ nameError, urlError, eachturnError, totalError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
 
   };
@@ -192,10 +198,14 @@ class Khaosatthem extends React.Component {
     </CardBody>
       </Card>
       <div className="center-text-submit">
+        <Container>
     
-                  <Button color="danger" type="submit" pill className="px-4 my-3" >
-                  Đăng tải
-                </Button>
+            <Button color="danger" type="submit" pill className="px-4 my-3" >
+            Đăng tải
+          </Button>
+          <NotificationSuccess/>
+          <NotificationDefeat/>
+        </Container>
                 </div>
       </Form>
     );

@@ -1,16 +1,21 @@
-import AuthForm,{ STATE_LOGIN, STATE_SIGNUP } from 'components/AuthForm';
+import AuthForm,{ STATE_LOGIN} from 'components/AuthForm';
 import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
 import AuthPage from 'pages/AuthPage';
+<<<<<<< HEAD
 import React
 // { Component } 
 from 'react';
+=======
+import React from 'react';
+>>>>>>> 3529cfc058a4237bfaa577d924e05d956ef54cd7
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
 import { Modal, ModalBody } from 'reactstrap';
 import ProfileLayout from './components/Layout/ProfileLayout';
+import { Link } from 'react-router-dom';
 
 const tintuc = React.lazy(() => import('pages/tintuc'));
 const tintucthem = React.lazy(() => import('pages/tintucthem'));
@@ -71,14 +76,14 @@ const getBasename = () => {
 
 class App extends React.Component {
   state = {
-    showLogin: false,
-    setLogin: false,
+    showLogin: true,
+    setLogin: true,
     authState: STATE_LOGIN,
     
   };
   handleLogin = () => {
     this.setState({
-      showLogin: !this.state.showLogin,
+      showLogin: false,
     });
   };
 
@@ -88,7 +93,8 @@ class App extends React.Component {
     });
   };
   render() {
-    return (      
+    return (  
+          
       <div>
           {this.state.showLogin === true
           ? <Modal
@@ -103,12 +109,11 @@ class App extends React.Component {
               <AuthForm
                 authState={this.state.authState}
                 onChangeAuthState={this.handleAuthState}
-                onLogin={() => {
-                  this.setState({ showLogin: false})}}
+                onLogin={this.handleLogin}
               />
             </ModalBody>
           </Modal>
-      :<BrowserRouter basename={getBasename()}>
+      : <BrowserRouter basename={getBasename()}>
         <GAListener>
           <Switch>
             <LayoutRoute
@@ -119,14 +124,7 @@ class App extends React.Component {
                 <AuthPage {...props} authState={STATE_LOGIN} />
               )}
             />
-            <LayoutRoute
-              exact
-              path="/signup"
-              layout={EmptyLayout}
-              component={props => (
-                <AuthPage {...props} authState={STATE_SIGNUP} />
-              )}
-            />
+            
 
             <MainLayout breakpoint={this.props.breakpoint}>
               <React.Suspense fallback={<PageSpinner />}>

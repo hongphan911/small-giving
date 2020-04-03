@@ -2,23 +2,22 @@ import logo200Image from 'assets/img/logo/Anh cut.png';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { CardContent } from '@material-ui/core';
+import { Col, Row } from 'react-bootstrap';
 
-const initialState ={
-  email:"",
-  phone:"",
-  username:"",
-  password:"",
-  repassword:"",
-  emailError:"",
-  phoneError:"",
-  usernameError:"",
-  passwordError:"",
-  repasswordError:"",
-  
-};
+
 
 class AuthForm extends React.Component {
-  state= initialState;
+  constructor(props) {
+    super(props);
+    this.state = {
+      username:"",
+      password:"",
+      usernameError:"",
+      passwordError:"",
+    };
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
     this.setState({
@@ -28,31 +27,15 @@ class AuthForm extends React.Component {
     });
   };
   validate = () => {
-    let emailError = "";
-    let phoneError = "";
+
     let usernameError = "";
     let passwordError = "";
-    let repasswordError = "";
 
-
-    if (!this.state.email) {
-      emailError ="Không được bỏ chống!";
-    }
-    if (!this.state.phone) {
-      phoneError ="Không được bỏ chống!";
-    }
     if (!this.state.username){
       usernameError ="Không được bỏ chống!";
     }
     if (!this.state.password){
       passwordError ="Không được bỏ chống!";
-    }
-    if (!this.state.repassword){
-      repasswordError ="Không được bỏ chống!";
-    }
-    if (emailError || phoneError || passwordError|| repasswordError){
-      this.setState({ emailError, phoneError, passwordError, repasswordError});
-      return false;
     }
     if (usernameError || passwordError ){
       this.setState({ usernameError, passwordError});
@@ -67,7 +50,7 @@ class AuthForm extends React.Component {
     if (isValid) {
       console.log(this.state);
       //clear form
-      this.setState(initialState);
+      //this.setState(initialState);
     }
   };
 
@@ -75,15 +58,31 @@ class AuthForm extends React.Component {
     return this.props.authState === STATE_LOGIN;
   }
 
-  get isSignup() {
+  /*get isSignup() {
     return this.props.authState === STATE_SIGNUP;
-  }
+  }*/
 
   changeAuthState = authState => event => {
     event.preventDefault();
 
     this.props.onChangeAuthState(authState);
   };
+  handleLogin () {
+    let config = {
+      body: JSON.stringify({
+        Email: this.state.email,
+        MatKhau: this.state.password
+      })
+    }
+    fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
+    };
 
   //handleSubmit = event => {
   //event.preventDefault();
@@ -96,9 +95,9 @@ class AuthForm extends React.Component {
       return 'Đăng nhập';
     }
 
-    if (!buttonText && this.isSignup) {
+    /*if (!buttonText && this.isSignup) {
       return 'Đăng kí';
-    }
+    }*/
 
     return buttonText;
   }
@@ -106,17 +105,11 @@ class AuthForm extends React.Component {
   render() {
     const {
       showLogo,
-      onLogin,
+  
       usernameLabel,
-      usernameInputProps,
-      phoneLabel,
-      phoneInputProps,
-      emailLabel,
-      emailInputProps,
+      usernameInputProps,    
       passwordLabel,
       passwordInputProps,
-      confirmPasswordLabel,
-      confirmPasswordInputProps,
       children,
       onLogoClick,
     } = this.props;
@@ -124,7 +117,7 @@ class AuthForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         {showLogo && (
-          <div className="text-center pb-4">
+          <div className="text-center">
             <img
               src={logo200Image}
               className="rounded"
@@ -132,10 +125,11 @@ class AuthForm extends React.Component {
               alt="logo"
               onClick={onLogoClick}
             />
+            <span className="title-logo">Small Giving</span>
           </div>
         )}
-        {this.isLogin && (
-          <FormGroup>
+        
+          <FormGroup className="mg-0">
           <Label for={usernameLabel}>{usernameLabel}</Label>
           <div className="error-text">
                   {this.state.usernameError} 
@@ -147,37 +141,9 @@ class AuthForm extends React.Component {
           />
         </FormGroup>
 
-        )}
         
-        {this.isSignup && (
-          <FormGroup>
-          <Label for={emailLabel}>{emailLabel}</Label>
-          <div className="error-text">
-                  {this.state.emailError} 
-                </div> 
-          <Input {...emailInputProps} 
-          name="email"
-          value={this.state.email}
-          onChange={this.handleChange}
-          />
-        </FormGroup>
-          
-        )}
-        {this.isSignup && (
-          <FormGroup>
-          <Label for={phoneLabel}>{phoneLabel}</Label>
-          <div className="error-text">
-                  {this.state.phoneError} 
-                </div> 
-          <Input {...phoneInputProps} 
-          name="phone"
-          value={this.state.phone}
-          onChange={this.handleChange}
-          />
-        </FormGroup>
-
-        )}
-        <FormGroup>
+        
+        <FormGroup >
           <Label for={passwordLabel}>{passwordLabel}</Label>
           <div className="error-text">
                   {this.state.passwordError} 
@@ -188,61 +154,30 @@ class AuthForm extends React.Component {
           onChange={this.handleChange}
           />
         </FormGroup>
-        {this.isSignup && (
-          <FormGroup>
-            <Label for={confirmPasswordLabel}>{confirmPasswordLabel}</Label>
-            <div className="error-text">
-                  {this.state.repasswordError} 
-                </div> 
-            <Input {...confirmPasswordInputProps}
-            name="repassword"
-            value={this.state.repassword}
-            onChange={this.handleChange}
-             />
-          </FormGroup>
-        )}
+        
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{' '}
-            {this.isSignup ? 'Đồng ý với chính sách bảo mật' : 'Nhớ mật khẩu'}
+            <Input type="checkbox" />{'Nhớ mật khẩu'}
           </Label>
         </FormGroup>
-        <hr />
-        <Button
-          size="lg"
-          className="bg-gradient-theme-left border-0"
-          block
-          onClick={() =>
-            onLogin()}>
-          {this.renderButtonText()}
-        </Button>
-
-        <div className="text-center pt-1">
-          <h6>Hoặc</h6>
-          <h6>
-            {this.isSignup ? (
-              <a href="#login" onClick={this.changeAuthState(STATE_LOGIN)}>
-                Đăng nhập
-              </a>
-            ) : (
-              <a href="#signup" onClick={this.changeAuthState(STATE_SIGNUP)}>
-                Đăng kí
-              </a>
-            )}
-          </h6>
-        </div>
-
-        {children}
+        <hr />                      
+              <div className="bt-submit">               
+                <Button type="submit" onClick={this.props.onLogin}>Đăng nhập</Button>               
+              </div>
+              <div className="forgot-password">
+                <a href="/">
+                  Quên mật khẩu?
+                </a>
+              </div>
       </Form>
     );
   }
 }
 
 export const STATE_LOGIN = 'LOGIN';
-export const STATE_SIGNUP = 'SIGNUP';
 
 AuthForm.propTypes = {
-  authState: PropTypes.oneOf([STATE_LOGIN, STATE_SIGNUP]).isRequired,
+  authState: PropTypes.oneOf([STATE_LOGIN]).isRequired,
   showLogo: PropTypes.bool,
   usernameLabel: PropTypes.string,
   usernameInputProps: PropTypes.object,
@@ -256,41 +191,21 @@ AuthForm.propTypes = {
 AuthForm.defaultProps = {
   authState: 'Đăng nhập',
   showLogo: true,
-  emailLabel: 'Email',
-  emailInputProps: {
-    type: 'email',
-    placeholder: 'your@email.com',
-    
-    
-  },
-  phoneLabel: 'Số điện thoại',
-  phoneInputProps: {
-    type: 'text',
-    placeholder: 'Nhập số điện thoại',
-    
-    
-  },
-  usernameLabel: 'Email hoặc SĐT',
+  
+  
   usernameInputProps: {
     type: 'email',
     placeholder: 'Email hoặc SĐT',
     
     
   },
-  passwordLabel: 'Mật khẩu',
+  
   passwordInputProps: {
     type: 'password',
-    placeholder: 'Mật khẩu',
-    
-    
-  },
-  confirmPasswordLabel: 'Nhập lại mật khẩu',
-  confirmPasswordInputProps: {
-    type: 'password',
-    placeholder: 'Nhập lại mật khẩu',
-    
+    placeholder: 'Mật khẩu',   
     
   },
+  
   onLogoClick: () => {},
 };
 

@@ -117,7 +117,7 @@ class Header extends React.Component {
                   <ListGroup flush>
                     
                     <ListGroupItem tag="button" action className="border-light">
-                      <MdExitToApp /> Signout
+                      <MdExitToApp /> Đăng xuất
                       
                     </ListGroupItem>
                   </ListGroup>

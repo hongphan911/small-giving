@@ -1,8 +1,20 @@
 import React from 'react';
 import {
    Button,
+<<<<<<< HEAD
   Form, Label, Input,Row, Col, CardBody, Card
+=======
+   Modal,
+  // ModalHeader,
+  // ModalFooter,
+   ModalBody,
+  Form, Label, Input,Row, Col, CardBody, Card, Container
+>>>>>>> 3529cfc058a4237bfaa577d924e05d956ef54cd7
 } from 'reactstrap';
+import styled from 'styled-components';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
+
 const initialState ={
     id:"",
     fromaccount:"",
@@ -40,8 +52,10 @@ class Chuyentienthem extends React.Component {
     }
     if (fromaccountError || toaccountError || moneyError){
       this.setState({ fromaccountError, toaccountError, moneyError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
 
   };
@@ -151,12 +165,15 @@ class Chuyentienthem extends React.Component {
       
     </Row>
     <div className="center-text-submit">
-    
+        <Container>
                   <Button color="danger" type="submit" pill className="px-4 my-3" >
                   Chuyển
                 </Button>
-                </div>
-                </Form>
+                <NotificationSuccess/>
+                <NotificationDefeat/>
+          </Container>
+      </div>
+    </Form>
 
     );
   }

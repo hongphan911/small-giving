@@ -9,7 +9,11 @@ import {
   Input,
   Label,
   Row,
+  Container,
 } from 'reactstrap';
+import styled from 'styled-components';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
 const initialState ={
   id:"",
@@ -52,8 +56,10 @@ class Tintucthem extends React.Component {
     
     if (idhoatdongError || nameError  || contentError ){
       this.setState({ idhoatdongError, nameError, contentError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
 
   };
@@ -159,9 +165,13 @@ class Tintucthem extends React.Component {
                       </CardBody>
                       </Card>                       
                 <div className="center-text-submit">   
+                <Container>
                   <Button color="danger" type="submit" pill className="px-4 my-3" >
                   Đăng tải
-                </Button>
+                  </Button>
+                  <NotificationSuccess/>
+                  <NotificationDefeat/>
+                  </Container>
                 </div>
       </Form>
     );
