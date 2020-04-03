@@ -15,7 +15,9 @@ import {
   //todosData,
   userProgressTableData,
 } from 'demos/dashboardPage';
+import {labels, title, datasets, responsive, legend, tooltips, hover, scales} from 'demos/chartjs';
 import React , { Component }  from 'react';
+
 import { Bar, Line } from 'react-chartjs-2';
 import {
   MdBubbleChart,
@@ -53,13 +55,101 @@ import axios from 'axios';
 // );
 
 class DashboardPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      datasumuser: [],
+      datasumact:[],
+      datasumsurvey:[],
+      datasumgiving:[],
+      datanaptien:[],
+      datakhaosat:[],
+      datanamnay:[]
+    };
+  }
   
   componentDidMount() {
     // this is needed, because InfiniteCalendar forces window scroll
     window.scrollTo(0, 0);
-    
+    this.getsumuser();
+    this.getsumact();
+    this.getsumsurvey();
+    this.getsumgiving();
+    this.getnaptien();
+    this.getkhaosat();
+    this.getnamnay();
 
   }
+  getnamnay = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/quyengopnamnay.php')
+      .then((response) => response.json())
+      .then((datanamnay) => {
+        this.setState({
+          datanamnay: datanamnay,
+          }, () => console.log('kiemtradulieu', this.state.datanamnay),
+        );
+      });
+  };
+  getsumuser = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/soluongnguoidung.php')
+      .then((response) => response.json())
+      .then((datasumuser) => {
+        this.setState({
+          datasumuser: datasumuser,
+          }, () => console.log('kiemtradulieu', this.state.datasumuser),
+        );
+      });
+  };
+  getsumact = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/soluonghoatdong.php')
+      .then((response) => response.json())
+      .then((datasumact) => {
+        this.setState({
+          datasumact: datasumact,
+          }, () => console.log('kiemtradulieu', this.state.datasumact),
+        );
+      });
+  };
+  getsumsurvey = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/soluottraloiks.php')
+      .then((response) => response.json())
+      .then((datasumsurvey) => {
+        this.setState({
+          datasumsurvey: datasumsurvey,
+          }, () => console.log('kiemtradulieu', this.state.datasumsurvey),
+        );
+      });
+  };
+  getsumgiving = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/soluotquyengop.php')
+      .then((response) => response.json())
+      .then((datasumgiving) => {
+        this.setState({
+          datasumgiving: datasumgiving,
+          }, () => console.log('kiemtradulieu', this.state.datasumgiving),
+        );
+      });
+  };
+  getnaptien = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/tongnaptien.php')
+      .then((response) => response.json())
+      .then((datanaptien) => {
+        this.setState({
+          datanaptien: datanaptien,
+          }, () => console.log('kiemtradulieu', this.state.datanaptien),
+        );
+      });
+  };
+  getkhaosat = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/tongkhaosat.php')
+      .then((response) => response.json())
+      .then((datakhaosat) => {
+        this.setState({
+          datakhaosat: datakhaosat,
+          }, () => console.log('kiemtradulieu', this.state.datakhaosat),
+        );
+      });
+  };
 
   render() {
     const primaryColor = getColor('primary');
@@ -75,40 +165,57 @@ class DashboardPage extends React.Component {
       >
         <Row>
           <Col lg={3} md={6} sm={6} xs={12}>
+          {this.state.datasumuser.map((Item, index) => {
+            return (
             <NumberWidget
               title="Người dùng"
               
-              number="5 600"
+              number={Item.soluong}
               
             />
+            );
+            })}
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
+          {this.state.datasumact.map((Item, index) => {
+            return (
             <NumberWidget
               title="Hoạt động thiện nguyện"
               
-              number="35"
+              number={Item.soluong}
               
             />
+            );
+            })}
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
+          {this.state.datasumsurvey.map((Item, index) => {
+            return (
             <NumberWidget
               title="Trả lời khảo sát"
               
-              number="3 400"
+              number={Item.soluong}
               
             />
+            );
+            })}
           </Col>
 
           <Col lg={3} md={6} sm={6} xs={12}>
+          {this.state.datasumgiving.map((Item, index) => {
+            return (
             <NumberWidget
               title="Lượt quyên góp"
               
-              number="12 000 000"
+              number={Item.soluong}
              
             />
+            );
+            })}
           </Col>
+          
         </Row>
 
         <Row>
@@ -116,10 +223,12 @@ class DashboardPage extends React.Component {
             <Card>
               <CardHeader>
                 Tổng quyên góp{' '}
-                <small className="text-muted text-capitalize">2020</small>
               </CardHeader>
               <CardBody>
-                <Line data={chartjs.line.data} options={chartjs.line.options} />
+                
+              <Line data={chartjs.line.data} options={chartjs.line.options} />
+                
+                
               </CardBody>
             </Card>
           </Col>
@@ -132,11 +241,21 @@ class DashboardPage extends React.Component {
               </CardBody>
               <ListGroup flush>
                 <ListGroupItem>
+                  
                   <MdInsertChart size={25} color={primaryColor} /> Nạp tiền{' '}
-                  <Badge color="danger">20.000.000</Badge>
+                  {this.state.datanaptien.map((Item, index) => {
+                   return (
+                  <Badge color="danger">{Item.tongnap}</Badge>
+                    );
+                  })}
                 </ListGroupItem>
                 <ListGroupItem>
-                  <MdBubbleChart size={25} color={primaryColor} /> Trả lời khảo sát{' '}<Badge color="danger">18.000.000</Badge>
+                  <MdBubbleChart size={25} color={primaryColor} /> Trả lời khảo sát{' '}
+                  {this.state.datakhaosat.map((Item, index) => {
+                   return (
+                   <Badge color="danger">{Item.tongkhaosat}</Badge>
+                  );
+                  })}
                 </ListGroupItem>
                 <ListGroupItem>
                   <MdShowChart size={25} color={primaryColor} /> Xem quảng cáo{' '}
@@ -179,18 +298,8 @@ class DashboardPage extends React.Component {
           <Col md="6" sm="12" xs="12">
             <Card>
               <CardHeader>Hoạt động thiện nguyện gần đây</CardHeader>
-              <CardBody>
-                {productsData.map(
-                  ({ id, image, title, description, right }) => (
-                    <ProductMedia
-                      key={id}
-                      image={image}
-                      title={title}
-                      description={description}
-                      right={right}
-                    />
-                  ),
-                )}
+              <CardBody>               
+                    <ProductMedia/>                  
               </CardBody>
             </Card>
           </Col>
@@ -200,13 +309,7 @@ class DashboardPage extends React.Component {
               <CardHeader>Người dùng mới</CardHeader>
               <CardBody>
                 <UserProgressTable
-                  headers={[
-                    <MdPersonPin size={25} />,
-                    'Họ tên',
-                    'Thời gian',
-                    'Số Tiền',                  
-                  ]}
-                  usersData={userProgressTableData}
+                
                 />
               </CardBody>
             </Card>

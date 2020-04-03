@@ -14,10 +14,28 @@ const getRandomMoney = () => {
   return Math.floor(Math.random() * 200000 );
 };
 class InputGroupPage extends React.Component {
-  state = {
-    modal_nested_parent: false,
-    modal_nested_xem: false,
-    modal_nested:false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
+      modal_nested_xem: false,
+      modal_nested:false,
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/showhoatdong.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -60,8 +78,6 @@ this.setState({
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger ">
-                            <th> STT</th>
-                            
                             <th> Tên hoạt động</th>
                             <th> Bắt đầu</th> 
                             <th> Kết thúc</th> 
@@ -72,15 +88,16 @@ this.setState({
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                          <th scope="row">1</th>
+                        {this.state.data.map((Item, index) => {
+                          return (
+                        
+                          <tr>                           
+                            <td>{Item.TenHoatDong}</td>
+                            <td>{Item.ThoiGianBD}</td>
+                            <td>{Item.ThoiGianKT}</td> 
                             
-                            <td>Otto</td>
-                            <td>12/2/2020</td>
-                            <td>12/2/2202</td> 
-                            
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
+                            <td>{Item.SoDuTK}</td> 
+                            <td>{Item.SoNguoi}</td> 
                             <td> 
                             <Button color="link" className="can-click" onClick={this.toggle('nested_xem')}>Xem</Button>
                             <Modal
@@ -102,114 +119,8 @@ this.setState({
                               
                             </td>
                           </tr>
-                          <tr>
-                          <th scope="row">2</th>
-                            
-                            <td>Mkjfe</td>
-                            <td>16/5/2019</td> 
-                            <td>24/3/2020</td>
-                            
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">3</th>
-                            
-                            <td>the Bird</td>
-                            <td>23/7/2020</td> 
-                            <td>13/8/2020</td>
-                            
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">4</th>
-                            
-                            <td>Thornton</td>
-                            <td>5/6/2020</td> 
-                            <td>21/6/2020</td>
-                              
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">5</th>
-                            
-                            <td>Otto</td>
-                            <td>11/3/2020</td> 
-                            <td>1/4/2020</td>
-                            
-                            <td>{getRandomMoney()}</td> 
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">6</th>
-                            
-                            <td>the Bird</td>
-                            <td>24/12/2019</td> 
-                            <td>2/1/2020</td>
-                             
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                              </td>
-                          </tr>
-                        <tr>
-                        <th scope="row">7</th>
-                            
-                            <td>the Magic</td>
-                            <td>18/2/2020</td> 
-                            <td>23/2/2020</td>
-                             
-                            <td>{getRandomMoney()}</td>  
-                            <td>{getRandomInt()}</td> 
-                            <td>
-                              <Button color="link" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            </td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            
-                            </td>
-                          </tr>
+                          );
+                          })}
                         </tbody>
                       </Table>
                     </CardBody>

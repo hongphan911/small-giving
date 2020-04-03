@@ -6,9 +6,27 @@ import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
 class ButtonGroupPage extends React.Component {
-  state = {
-    modal_nested_parent: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
     modal_nested: false,
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -50,76 +68,26 @@ this.setState({
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
-                            <th>STT</th>
+                            
                             <th>Mã nhóm</th>
                             <th>Tên nhóm</th>
                             <th>Tác vụ</th>
                           </tr>
                         </thead>
                         <tbody>
+                        {this.state.data.map((Item, index) => {
+                          return (
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            
+                            <td>{Item.idNhom}</td>
+                            <td>{Item.TenNhom}</td>
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
                             </td>
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              </td>
-                          </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>Wendy</td>
-                            <td>the Magic</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
+                          );
+                        })}
                         </tbody>
                       </Table>
                     </CardBody>

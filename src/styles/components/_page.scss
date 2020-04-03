@@ -394,3 +394,14 @@
     font-size: 15px;
   }
 }
+.aaa{
+ max-width: 250px  !important;
+}
+.activities-fix{
+  .media-body{
+    max-width: 250px;
+  }
+  .media-right{
+    padding-left: 50px;
+  }
+}

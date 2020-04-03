@@ -5,6 +5,7 @@ import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { CardContent } from '@material-ui/core';
 import { Col, Row } from 'react-bootstrap';
+import Cookies from 'js-cookie';
 
 
 
@@ -67,22 +68,29 @@ class AuthForm extends React.Component {
 
     this.props.onChangeAuthState(authState);
   };
-  handleLogin () {
+  handleLogin() {
     let config = {
+      method: "POST",
       body: JSON.stringify({
-        Email: this.state.email,
-        MatKhau: this.state.password
-      })
-    }
+        Email: this.state.username,
+        MatKhau: this.state.password,
+      }),
+    };
     fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
       .then((response) => response.json())
       .then((data) => {
-        this.setState({
-            data: data,
-          }, () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.token === "ERROR") {
+          
+          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email");
+          
+        } else {
+          Cookies.set('small-giving', data.token, { expires: 1 });
+          this.props.onLogin();
+          //window.location.reload();
+        }
       });
-    };
+      
+  }
 
   //handleSubmit = event => {
   //event.preventDefault();
@@ -128,6 +136,15 @@ class AuthForm extends React.Component {
             <span className="title-logo">Small Giving</span>
           </div>
         )}
+
+
+
+
+
+
+
+
+
         
           <FormGroup className="mg-0">
           <Label for={usernameLabel}>{usernameLabel}</Label>
@@ -135,9 +152,14 @@ class AuthForm extends React.Component {
                   {this.state.usernameError} 
                 </div> 
           <Input {...usernameInputProps} 
+          label="username"
           name="username"
           value={this.state.username}
-          onChange={this.handleChange}
+          onChange={(val)=> {
+                    this.setState({
+                      username: val.target.value
+                    })
+                  }}
           />
         </FormGroup>
 
@@ -149,9 +171,14 @@ class AuthForm extends React.Component {
                   {this.state.passwordError} 
                 </div> 
           <Input {...passwordInputProps} 
+          label="password"
           name="password"
           value={this.state.password}
-          onChange={this.handleChange}
+          onChange={(val) => {
+            this.setState({
+              password: val.target.value
+            })
+          }}
           />
         </FormGroup>
         
@@ -162,7 +189,7 @@ class AuthForm extends React.Component {
         </FormGroup>
         <hr />                      
               <div className="bt-submit">               
-                <Button type="submit" onClick={this.props.onLogin}>Đăng nhập</Button>               
+                <Button type="submit" onClick={()=>this.handleLogin()}>Đăng nhập</Button>               
               </div>
               <div className="forgot-password">
                 <a href="/">

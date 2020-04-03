@@ -8,9 +8,27 @@ import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
 
 class ButtonPage extends React.Component {
-  state = {
-    modal_nested_parent: false,
-    modal_nested: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
+      modal_nested: false,
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -52,9 +70,7 @@ this.setState({
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
-                          <tr className="table-danger">
-                            <th>STT</th>
-                            
+                          <tr className="table-danger">                                                       
                             <th>Tên người dùng</th>
                             <th>SĐT</th>
                             <th>Email</th>
@@ -65,104 +81,22 @@ this.setState({
                           </tr>
                         </thead>
                         <tbody>
+                        {this.state.data.map((Item, index) => {
+                          return (
                           <tr>
-                            <th scope="row">1</th>
-                            
-                            <td>Otto</td>
-                            <td>094093243</td>
-                            <td>tuhr@gmail.com</td>
-                            <td>fkjdnfkn</td> 
-                            <td>120000</td> 
-                            <td>sát thủ áo đen</td>
+                            <td>{Item.TenNguoiDung}</td>
+                            <td>{Item.SDT}</td>
+                            <td>{Item.Email}</td>
+                            <td>{Item.MatKhau}</td> 
+                            <td>{Item.SoDuTK}</td> 
+                            <td>{Item.HuyHieu}</td>
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
                               <MdDelete className="can-click" size="1.5em"/>
                             </td>
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            
-                            <td>Thornton</td>
-                            <td>048897580</td>
-                            <td>tiwr@yahoo.com</td>
-                            <td>hfiudhsfdn</td> 
-                            <td>100000</td>                            
-                            <td>sát thủ áo đen</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            
-                            <td>the Bird</td>
-                            <td>048584533</td>
-                            <td>hgfjjyjy</td> 
-                            <td>50000</td> 
-                            <td>rjflkjfjeklejk</td> 
-                            <td>rjflkjfjeklejk</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                            <td>08493598</td> 
-                            <td>ytie@gmail.com</td>
-                            <td>60000</td> 
-                            <td>rjflkjfjeklejk</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>085837859</td> 
-                            <td>fhgjrlkr</td> 
-                            <td>kglkflg</td> 
-                            <td>kglkflg</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                            <td></td> 
-                            <td></td> 
-                            <td></td> 
-                            <td>ccccc</td>
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              </td>
-                          </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            
-                            <td>the Magic</td>
-                            <td>@facebook</td>
-                            <td></td> 
-                            <td></td> 
-                            <td></td> 
-                            <td>sss</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            </td>
-                          </tr>
+                           );
+                          })}
                         </tbody>
                       </Table>
                     </CardBody>

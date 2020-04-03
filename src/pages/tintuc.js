@@ -8,9 +8,27 @@ import{MdDelete} from'react-icons/md';
 import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
 class InputGroupPage extends React.Component {
-  state = {
-    modal_nested_parent: false,
-    modal_nested: false,
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
+      modal_nested:false,
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/showtintuc.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -27,8 +45,8 @@ this.setState({
     return (
       <Page
         className="InputGroupPage"
-        title="Tin hoạt động"
-        breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'Tin hoạt động', active: true }]}
+        title="Tin tức"
+        breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'Tin tức', active: true }]}
       >
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
@@ -52,92 +70,27 @@ this.setState({
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
-                          <tr className="table-danger ">
-                            <th> STT</th>
-                            <th> Mã Tin</th>
+                          <tr className="table-danger ">                                                        
                             <th> Tên tin</th> 
                             <th> Nội dung</th>
+                            <th> Tiêu đề thông báo</th>
                             <th> Tác vụ</th>  
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                          <th scope="row">1</th>
-                            <td>ffđf</td>
-                            <td>Otto</td>
-                            <td>fdfkmelke </td> 
+                        {this.state.data.map((Item, index) => {
+                          return (
+                          <tr>                          
+                            <td>{Item.TenTin}</td>
+                            <td>{Item.NoiDung}</td>
+                            <td>{Item.TieuDeThongBao}</td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
+                              <MdDelete className="can-click" size="1.5em"/>                              
                             </td>
                           </tr>
-                          <tr>
-                          <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Mkjfe</td>
-                            <td></td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>djiojnkmvef</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>cndkndkfewokfmf</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">5</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>fedjgkewmgew</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>dfheiunwelkgm</td> 
-                            <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
-                              
-                              </td>
-                          </tr>
-                        <tr>
-                        <th scope="row">7</th>
-                            <td>Wendy</td>
-                            <td>the Magic</td>
-                            <td>cbdijgnewwigeoig</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
-                            
-                            </td>
-                          </tr>
+                          );
+                        })}
                         </tbody>
                       </Table>
                     </CardBody>
