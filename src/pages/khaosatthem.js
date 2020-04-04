@@ -31,7 +31,7 @@ const initialState ={
   totalError:"",
 };
 
-class WidgetPage extends React.Component {
+class Khaosatthem extends React.Component {
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -48,16 +48,16 @@ class WidgetPage extends React.Component {
     let totalError = "";
 
     if (!this.state.name) {
-      nameError ="Không được bỏ chống!";
+      nameError ="Không được bỏ trống!";
     }
     if (!this.state.url) {
-      urlError ="Không được bỏ chống!";
+      urlError ="Không được bỏ trống!";
     }
     if (!this.state.eachturn){
-      eachturnError ="Không được bỏ chống!";
+      eachturnError ="Không được bỏ trống!";
     }
     if (!this.state.total){
-      totalError ="Không được bỏ chống!";
+      totalError ="Không được bỏ trống!";
     }
     if (nameError || urlError || eachturnError || totalError ){
       this.setState({ nameError, urlError, eachturnError, totalError});
@@ -95,6 +95,7 @@ class WidgetPage extends React.Component {
               <FormGroup >
               <Label for="exampleText">Mã khảo sát</Label>
                   <Input
+                  disabled="true"
                     type="text"
                     name="id"
                     value={this.state.id}
@@ -210,4 +211,4 @@ class WidgetPage extends React.Component {
     );
   }
 }
-export default WidgetPage;
+export default Khaosatthem;

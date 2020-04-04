@@ -7,7 +7,8 @@ const initialState ={
   startdate:"",
   enddate:"",
 };
-class TypographyPage extends React.Component {
+class bctaitro extends React.Component {
+
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -48,10 +49,11 @@ class TypographyPage extends React.Component {
       //this.setState(initialState);
     }
   };
+
   render() {
     return (
       <Page
-        className="TypographyPage"
+        className="bctaitro"
         title="Nguồn tài trợ"
         breadcrumbs={[{name:'báo cáo'},{ name: 'nguồn tài trợ', active: true }]}
       >
@@ -188,8 +190,7 @@ class TypographyPage extends React.Component {
                         table="table-to-xls-3"
                         filename="excelfile"
                         sheet="sheet 1"
-                        buttonText="Xuất Excel">
-                        
+                        buttonText="Xuất Excel">  
                       </ReactToExcel>
 
                         </Col>
@@ -205,4 +206,4 @@ class TypographyPage extends React.Component {
     );
   }
 }
-export default TypographyPage;
+export default bctaitro;

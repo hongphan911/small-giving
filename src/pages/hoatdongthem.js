@@ -49,13 +49,13 @@ class Hoatdongthem extends React.Component {
     let contentError = "";
 
     if (!this.state.name) {
-        nameError ="Không được bỏ chống!";
+        nameError ="Không được bỏ trống!";
     }
     if (!this.state.total) {
-        totalError ="Không được bỏ chống!";
+        totalError ="Không được bỏ trống!";
     }
     if (!this.state.content){
-        contentError ="Không được bỏ chống!";
+        contentError ="Không được bỏ trống!";
     }
     if (!this.state.image){
         imageError ="Bạn chưa chọn ảnh/video!";
@@ -90,6 +90,7 @@ class Hoatdongthem extends React.Component {
                             <FormGroup >
                             <Label for="exampleText"> Mã họat động</Label>
                                 <Input 
+                                disabled="true"
                                 type="text" 
                                 name="id"
                                 value={this.state.id}

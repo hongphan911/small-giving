@@ -1,13 +1,9 @@
 import React from 'react';
 import {
    Button,
-   Modal,
-  // ModalHeader,
-  // ModalFooter,
-   ModalBody,
   Form, Label, Input,Row, Col, CardBody, Card, Container
 } from 'reactstrap';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
 import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 

@@ -3,7 +3,6 @@ import sidebarBgImage from 'assets/img/sidebar/sidebar-6.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
 import { 
-  // FaHome, 
   FaUserAlt, 
   FaClipboardList, 
   FaRegNewspaper, 

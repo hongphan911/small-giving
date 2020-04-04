@@ -6,7 +6,7 @@ import bn from 'utils/bemnames';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {FaHandHoldingHeart} from 'react-icons/fa';
 
-import Typography from './Typography';
+// import Typography from './Typography';
 
 const bem = bn.create('page');
 

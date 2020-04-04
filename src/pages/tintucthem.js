@@ -45,13 +45,13 @@ class Tintucthem extends React.Component {
     let contentError = "";
 
     if (!this.state.name) {
-        nameError ="Không được bỏ chống!";
+        nameError ="Không được bỏ trống!";
     }
     if (!this.state.idhoatdong) {
-        idhoatdongError ="Không được bỏ chống!";
+        idhoatdongError ="Không được bỏ trống!";
     }
     if (!this.state.content){
-        contentError ="Không được bỏ chống!";
+        contentError ="Không được bỏ trống!";
     }
     
     if (idhoatdongError || nameError  || contentError ){
@@ -83,6 +83,7 @@ class Tintucthem extends React.Component {
                             <FormGroup >
                             <Label for="exampleText"> Mã tin tức</Label>
                                 <Input 
+                                disabled="true"
                                 type="text" 
                                 name="id"
                                 value={this.state.id}

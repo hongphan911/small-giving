@@ -1,12 +1,10 @@
 import Page from 'components/Page';
 import React from 'react';
-import CardPage from 'pages/naptienthem'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import Naptienthem from 'pages/naptienthem'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 const tableTypes = ['hover'];
 
-class ModalPage extends React.Component {
+class naptien extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
@@ -25,7 +23,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="ModalPage"
+        className="naptien"
         title="Nạp tiền"
         breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'nạp tiền', active: true }]}
       >
@@ -40,13 +38,13 @@ this.setState({
                       <Modal
                           isOpen={this.state.modal_nested_parent}
                           toggle={this.toggle('nested_parent')}
-                          size="lg"
+                          //size="lg"
                           className={this.props.className}>
                       <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
                             Thêm mới giao dịch nạp tiền
                   </ModalHeader>
                   <ModalBody>
-                    <CardPage/>
+                    <Naptienthem/>
                   </ModalBody>
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
@@ -128,4 +126,4 @@ this.setState({
     );
   }
 }
-export default ModalPage;
+export default naptien;

@@ -1,7 +1,9 @@
 import Page from 'components/Page';
 import React from 'react';
 import Nhomndthem from 'pages/nhomndthem'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Form, Label, Input, Button, ModalHeader} from 'reactstrap';
+import Nhomndsua from 'pages/nhomndsua'
+import Nhomndxoa from 'pages/nhomndxoa'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody,ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
@@ -12,6 +14,8 @@ class ButtonGroupPage extends React.Component {
       data: [],
       modal_nested_parent: false,
     modal_nested: false,
+    modal_nested_sua:false,
+    modal_nested_xoa:false
     };
   }
   componentDidMount() {
@@ -58,13 +62,13 @@ this.setState({
                         isOpen={this.state.modal_nested_parent}
                         toggle={this.toggle('nested_parent')}
                         className={this.props.className}>
-                  <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới nhóm người dùng
-                  </ModalHeader>
-                  <ModalBody>
-                    <Nhomndthem/>
-                  </ModalBody>
-                  </Modal>
+                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                      Thêm mới nhóm người dùng
+                      </ModalHeader>
+                      <ModalBody>
+                        <Nhomndthem/>
+                      </ModalBody>
+                      </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
@@ -82,8 +86,30 @@ this.setState({
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin nhóm người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Nhomndsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa nhóm người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Nhomndxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                             </td>
                           </tr>
                           );

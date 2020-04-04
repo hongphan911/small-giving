@@ -1,7 +1,9 @@
 import Page from 'components/Page';
-import WidgetPage from 'pages/khaosatthem';
+import Khaosatthem from 'pages/khaosatthem';
+import Khaosatsua from 'pages/khaosatsua';
+import Khaosatxoa from 'pages/khaosatxoa';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Button} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
@@ -12,10 +14,12 @@ const getRandomMoney = () => {
   return Math.floor(Math.random() * 200000 );
 };
 
-class FormPage extends React.Component {
+class khaosat extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
+    modal_nested_sua:false,
+    modal_nested_xoa:false
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -31,7 +35,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="FormPage"
+        className="khaosat"
         title="Tạo khảo sát"
         breadcrumbs={[{name:'quản trị hoạt động tài trợ'},{ name: 'Tạo khảo sát', active: true }]}
       >
@@ -52,7 +56,7 @@ this.setState({
                           Thêm mới khảo sát
                           </ModalHeader>
                           <ModalBody>
-                          <WidgetPage/>
+                          <Khaosatthem/>
                           </ModalBody>
                           
                           </Modal>
@@ -82,8 +86,31 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em" />
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  size="lg"
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin khảo sát
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Khaosatsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa khảo sát
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Khaosatxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                             </td>
                           </tr>
                           <tr>
@@ -96,8 +123,8 @@ this.setState({
                              
                             <td>{getRandomInt()}</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -110,8 +137,8 @@ this.setState({
                              
                             <td>{getRandomInt()}</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -124,8 +151,8 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -138,8 +165,8 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -152,8 +179,8 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               </td>
                           </tr>
                         <tr>
@@ -166,8 +193,8 @@ this.setState({
                             
                             <td>{getRandomInt()}</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                            <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                         </tbody>
@@ -181,4 +208,4 @@ this.setState({
     );
   }
 }
-export default FormPage;
+export default khaosat;

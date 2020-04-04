@@ -2,17 +2,12 @@ import Page from 'components/Page';
 import ChartPage from 'pages/xemdk';
 import React from 'react';
 import Hoatdongthem from 'pages/hoatdongthem'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader, Form, FormGroup, Label, Input} from 'reactstrap';
+import Hoatdongsua from 'pages/hoatdongsua'
+import Hoatdongxoa from 'pages/hoatdongxoa'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, Button, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
-import {GoChecklist, GoPin} from 'react-icons/go';
 const tableTypes = ['hover'];
-const getRandomInt = () => {
-  return Math.floor(Math.random() * (100 - 20) + 20);
-};
-const getRandomMoney = () => {
-  return Math.floor(Math.random() * 200000 );
-};
 class InputGroupPage extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +16,8 @@ class InputGroupPage extends React.Component {
       modal_nested_parent: false,
       modal_nested_xem: false,
       modal_nested:false,
+      modal_nested_sua:false,
+      modal_nested_xoa:false
     };
   }
   componentDidMount() {
@@ -115,8 +112,31 @@ this.setState({
                               </Modal>
                             </td> 
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  size="lg"
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin hoạt động
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Hoatdongsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa hoạt động
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Hoatdongxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                               
                             </td>
                           </tr>

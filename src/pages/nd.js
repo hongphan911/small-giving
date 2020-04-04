@@ -1,7 +1,9 @@
 import Page from 'components/Page';
 import React from 'react';
 import Nguoidungthem from 'pages/ndthem'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
+import Nguoidungsua from 'pages/ndsua'
+import Nguoidungxoa from 'pages/ndxoa'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 
@@ -14,6 +16,8 @@ class ButtonPage extends React.Component {
       data: [],
       modal_nested_parent: false,
       modal_nested: false,
+      modal_nested_sua:false,
+      modal_nested_xoa:false
     };
   }
   componentDidMount() {
@@ -93,8 +97,31 @@ this.setState({
                             <td>{Item.SoDuTK}</td> 
                             <td>{Item.HuyHieu}</td>
                             <td>
-                              <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  size="lg"
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa thông tin người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Nguoidungsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa người dùng
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Nguoidungxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                             </td>
                           </tr>
                            );

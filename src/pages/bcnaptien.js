@@ -7,7 +7,7 @@ const initialState ={
   startdate:"",
   enddate:"",
 };
-class TablePage extends React.Component {
+class bcnaptien extends React.Component {
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -51,7 +51,7 @@ class TablePage extends React.Component {
   render() {
     return (
       <Page
-        className="TablePage"
+        className="bcnaptien"
         title="Tổng tiền nạp"
         breadcrumbs={[{name:'báo cáo'},{ name: 'tổng tiền nạp', active: true }]}
       >
@@ -197,4 +197,4 @@ class TablePage extends React.Component {
     );
   }
 }
-export default TablePage;
+export default bcnaptien;

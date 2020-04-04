@@ -1,21 +1,18 @@
 import Page from 'components/Page';
 import Diemdanhthem from 'pages/diemdanhthem'
+import Diemdanhsua from 'pages/diemdanhsua'
+import Diemdanhxoa from 'pages/diemdanhxoa'
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Form, Label, Input, Button, FormGroup} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
-const getRandomInt = () => {
-  return Math.floor(Math.random() * (100 - 20) + 20);
-};
-const getRandomMoney = () => {
-  return Math.floor(Math.random() * 200000 );
-};
-
 class FormPage extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
+    modal_nested_sua:false,
+    modal_nested_xoa: false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -73,8 +70,31 @@ this.setState({
                             <td>14</td>
                             <td>12</td>
                             <td>
-                              <FaEdit className="can-click " size="1.5em" />
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_sua}
+                                  toggle={this.toggle('nested_sua')}
+                                  size="lg"
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
+                                      Sửa tài khoản điểm danh
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Diemdanhsua/>
+                                  </ModalBody>
+                                  </Modal>   
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <Modal
+                                  isOpen={this.state.modal_nested_xoa}
+                                  toggle={this.toggle('nested_xoa')}
+                                  className={this.props.className}>
+                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
+                                      Xóa tài khoản điểm danh
+                                  </ModalHeader>
+                                  <ModalBody>
+                                  <Diemdanhxoa/>
+                                  </ModalBody>
+                                  </Modal>   
                             </td>
                           </tr>
                           <tr>
@@ -84,8 +104,8 @@ this.setState({
                             <td>33</td> 
                             
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           <tr>
@@ -94,8 +114,8 @@ this.setState({
                             <td>16</td>
                             <td>44</td> 
                             <td>
-                            <FaEdit className="can-click " size="1.5em"/>
-                              <MdDelete className="can-click" size="1.5em"/>
+                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
+                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                             </td>
                           </tr>
                           

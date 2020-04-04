@@ -3,9 +3,8 @@ import React from 'react';
 import { Button,CardSubtitle,
  Card, CardBody, Col, Row, Table,DropdownItem, DropdownMenu, DropdownToggle, UncontrolledButtonDropdown} from 'reactstrap';
 
-
 const tableTypes = ['striped'];
-class ButtonPage extends React.Component {
+class phanquyen extends React.Component {
   state = {
     rSelected: null,
     cSelected: [],
@@ -182,4 +181,4 @@ class ButtonPage extends React.Component {
   };
 }
 
-export default ButtonPage;
+export default phanquyen;

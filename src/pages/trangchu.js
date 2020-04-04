@@ -10,19 +10,18 @@ import { IconWidget, NumberWidget } from 'components/Widget';
 import {
   // avatarsData,
   chartjs,
-  productsData,
+  //productsData,
   //supportTicketsData,
   //todosData,
-  userProgressTableData,
+  //userProgressTableData,
 } from 'demos/dashboardPage';
-import {labels, title, datasets, responsive, legend, tooltips, hover, scales} from 'demos/chartjs';
-import React , { Component }  from 'react';
+//import {labels, title, datasets, responsive, legend, tooltips, hover, scales} from 'demos/chartjs';
+import React  from 'react';
 
 import { Bar, Line } from 'react-chartjs-2';
 import {
   MdBubbleChart,
   MdInsertChart,
-  MdPersonPin,
   MdPieChart,
   MdRateReview,
   MdShare,
@@ -45,7 +44,7 @@ import {
   Row,
 } from 'reactstrap';
 import { getColor } from 'utils/colors';
-import axios from 'axios';
+//import axios from 'axios';
 
 // const today = new Date();
 // const lastWeek = new Date(

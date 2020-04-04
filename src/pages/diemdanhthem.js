@@ -37,7 +37,7 @@ class Diemdanhthem extends React.Component {
     let moneyError = "";
 
     if (!this.state.money) {
-      moneyError ="Không được bỏ chống!";
+      moneyError ="Không được bỏ trống!";
     }
     
     if (moneyError ){
@@ -73,6 +73,7 @@ class Diemdanhthem extends React.Component {
                     </Col>
                     <Col md={8}>
                         <Input
+                            disabled="true"
                             type="text"
                             name="id"
                             value={this.state.id}

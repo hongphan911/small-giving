@@ -1,13 +1,13 @@
 import Page from 'components/Page';
 import React from 'react';
 import ReactToExcel from 'react-html-table-to-excel';
-import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button, InputGroup , InputGroupText} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Form, Label, Input, Button} from 'reactstrap';
 const tableTypes = ['hover'];
 const initialState ={
   startdate:"",
   enddate:"",
 };
-class DropdownPage extends React.Component {
+class bcquyengop extends React.Component {
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -51,7 +51,7 @@ class DropdownPage extends React.Component {
   render() {
     return (
       <Page
-        className="DropdownPage"
+        className="bcquyengop"
         title="Tổng quyên góp"
         breadcrumbs={[{name:'báo cáo'},{ name: 'tổng quyên góp', active: true }]}
       >
@@ -189,9 +189,7 @@ class DropdownPage extends React.Component {
                         filename="excelfile"
                         sheet="sheet 1"
                         buttonText="Xuất Excel">
-                        
                       </ReactToExcel>
-
                         </Col>
                         </Row>
                       </div>
@@ -207,4 +205,4 @@ class DropdownPage extends React.Component {
     );
   }
 }
-export default DropdownPage;
+export default bcquyengop;

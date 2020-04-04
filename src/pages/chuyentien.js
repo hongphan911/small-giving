@@ -1,16 +1,12 @@
 import Page from 'components/Page';
-import CardPage from'pages/chuyentienthem';
+import Chuyentienthem from'pages/chuyentienthem';
 import React from 'react';
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader, Button} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
 const tableTypes = ['hover'];
-class BadgePage extends React.Component {
+class chuyentien extends React.Component {
   state = {
     modal_nested_parent: false,
-    modal_nested_xoa: false,
     modal_nested:false,
-    modal_nested_sua:false,
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -27,7 +23,7 @@ this.setState({
   render() {
     return (
       <Page
-        className="BadgePage"
+        className="chuyentien"
         title="Chuyển tiền"
         breadcrumbs={[{name:'quản trị luồng quyên góp'},{ name: 'chuyển tiền', active: true }]}
       >
@@ -48,7 +44,7 @@ this.setState({
                    Thêm mới giao dịch chuyển tiền
                   </ModalHeader>
                   <ModalBody>
-                  <CardPage/>
+                  <Chuyentienthem/>
                   </ModalBody>
                   
                   
@@ -140,4 +136,4 @@ this.setState({
     );
   }
 }
-export default BadgePage;
+export default chuyentien;

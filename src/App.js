@@ -7,9 +7,9 @@ import React from 'react';
 import componentQueries from 'react-component-queries';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './styles/reduction.scss';
-import { Button, Modal, ModalBody } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 import ProfileLayout from './components/Layout/ProfileLayout';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const tintuc = React.lazy(() => import('pages/tintuc'));
 const tintucthem = React.lazy(() => import('pages/tintucthem'));
@@ -60,8 +60,6 @@ const gopy = React.lazy(() => import('pages/gopy'));
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const bctaitro = React.lazy(() => import('pages/bctaitro'));
 const bcnaptien = React.lazy(() => import('pages/bcnaptien'));
-
-
 
 
 const getBasename = () => {

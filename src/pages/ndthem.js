@@ -93,6 +93,7 @@ class Nguoidungthem extends React.Component {
                             <FormGroup >
                             <Label for="exampleText"> Mã người dùng</Label>
                                 <Input
+                                disabled="true"
                                   type="text"
                                   name="id"
                                   value={this.state.id}
