@@ -1,17 +1,9 @@
 import React from 'react';
 import {
    Button,
-<<<<<<< HEAD
-  Form, Label, Input,Row, Col, CardBody, Card
-=======
-   Modal,
-  // ModalHeader,
-  // ModalFooter,
-   ModalBody,
   Form, Label, Input,Row, Col, CardBody, Card, Container
->>>>>>> 3529cfc058a4237bfaa577d924e05d956ef54cd7
 } from 'reactstrap';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
 import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
@@ -25,7 +17,7 @@ const initialState ={
     toaccountError:"",
     moneyError:""
 };
-class Chuyentienthem extends React.Component {
+class CardPage extends React.Component {
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -85,7 +77,6 @@ class Chuyentienthem extends React.Component {
               <Col md={9}>
                 
                   <Input
-                  disabled="true"
                     type="email"
                     name="id"
                     value={this.state.id}
@@ -178,4 +169,4 @@ class Chuyentienthem extends React.Component {
     );
   }
 }
-export default Chuyentienthem;
+export default CardPage;

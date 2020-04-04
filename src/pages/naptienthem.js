@@ -1,18 +1,7 @@
 import React from 'react';
 import {
-   Button,
-  //  Modal,
-  // ModalHeader,
-  // ModalFooter,
-<<<<<<< HEAD
-  //  ModalBody,
-  Form, Label, Input,Row, Col, CardBody, Card
-=======
-   ModalBody,
-  Form, Label, Input,Row, Col, CardBody, Card, Container
->>>>>>> 3529cfc058a4237bfaa577d924e05d956ef54cd7
-} from 'reactstrap';
-import styled from 'styled-components';
+   Button,Form, Label, Input,Row, Col, CardBody, Card, Container } from 'reactstrap';
+//import styled from 'styled-components';
 import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
 import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
@@ -24,7 +13,7 @@ const initialState ={
     accountError:"",
     moneyError:""
 };
-class Naptienthem extends React.Component {
+class CardPage extends React.Component {
   state= initialState;
   handleChange = event => {
     const isCheckbox = event.target.type === "checkbox";
@@ -78,7 +67,6 @@ class Naptienthem extends React.Component {
                 </Col>
                 <Col md={9}>
                         <Input
-                        disabled="true"
                         type="email"
                         name="id"
                         value={this.state.id}
@@ -148,4 +136,4 @@ class Naptienthem extends React.Component {
     );
   }
 }
-export default Naptienthem;
+export default CardPage;

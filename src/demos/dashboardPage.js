@@ -130,6 +130,7 @@ export const todosData = [
 ];
 
 export const chartjs = {
+  
   bar: {
     data: {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aut','Sep','Oct','Nov','Dec'],
@@ -229,6 +230,7 @@ export const chartjs = {
           label: 'Revenue for this year',
           borderColor: '#545454',
           backgroundColor: '#545454',
+          
           data: [0, 1300, 2200, 3400, 4600, 3500, 3000,5000,6000,2000,8000,3000],
         },
 

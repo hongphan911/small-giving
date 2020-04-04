@@ -1,18 +1,36 @@
 import Page from 'components/Page';
 import React from 'react';
 import Nhomndthem from 'pages/nhomndthem'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
+import Nhomndsua from 'pages/nhomndsua'
+import Nhomndxoa from 'pages/nhomndxoa'
+import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody,ModalHeader} from 'reactstrap';
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
-import Nhomndsua from 'pages/nhomndsua';
-import Nhomndxoa from 'pages/nhomndxoa';
 const tableTypes = ['hover'];
-class nhomnd extends React.Component {
-  state = {
-    modal_nested_parent: false,
+class ButtonGroupPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
     modal_nested: false,
     modal_nested_sua:false,
-    modal_nested_xoa: false,
+    modal_nested_xoa:false
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -44,27 +62,29 @@ this.setState({
                         isOpen={this.state.modal_nested_parent}
                         toggle={this.toggle('nested_parent')}
                         className={this.props.className}>
-                  <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                   Thêm mới nhóm người dùng
-                  </ModalHeader>
-                  <ModalBody>
-                    <Nhomndthem/>
-                  </ModalBody>
-                  </Modal>
+                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
+                      Thêm mới nhóm người dùng
+                      </ModalHeader>
+                      <ModalBody>
+                        <Nhomndthem/>
+                      </ModalBody>
+                      </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
-                            <th>STT</th>
+                            
                             <th>Mã nhóm</th>
                             <th>Tên nhóm</th>
                             <th>Tác vụ</th>
                           </tr>
                         </thead>
                         <tbody>
+                        {this.state.data.map((Item, index) => {
+                          return (
                           <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
+                            
+                            <td>{Item.idNhom}</td>
+                            <td>{Item.TenNhom}</td>
                             <td>
                             <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
                               <Modal
@@ -78,7 +98,7 @@ this.setState({
                                   <Nhomndsua/>
                                   </ModalBody>
                                   </Modal>   
-                                  <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               <Modal
                                   isOpen={this.state.modal_nested_xoa}
                                   toggle={this.toggle('nested_xoa')}
@@ -87,65 +107,13 @@ this.setState({
                                       Xóa nhóm người dùng
                                   </ModalHeader>
                                   <ModalBody>
-                                 <Nhomndxoa/>
-                                  </ModalBody> 
+                                  <Nhomndxoa/>
+                                  </ModalBody>
                                   </Modal>   
                             </td>
                           </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">5</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>
-                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              </td>
-                          </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>Wendy</td>
-                            <td>the Magic</td>
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            </td>
-                          </tr>
+                          );
+                        })}
                         </tbody>
                       </Table>
                     </CardBody>
@@ -157,4 +125,4 @@ this.setState({
     );
   }
 }
-export default nhomnd;
+export default ButtonGroupPage;

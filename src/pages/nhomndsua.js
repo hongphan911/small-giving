@@ -5,16 +5,17 @@ import {
   CardBody,
   Col,
   Form,
-  // FormGroup,
   Input,
   Label,
   Row,
+  Container
 } from 'reactstrap';
+import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
+import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
 const initialState ={
   id:"",
   name:"",
-  
   nameError:""
 };
 
@@ -38,9 +39,12 @@ class Nhomndsua extends React.Component {
     
     if (nameError){
       this.setState({ nameError});
+      notifydefeat('this is a notify');
       return false;
     }
+    notifysuccess('this is a notify');
     return true;
+    
 
   };
   handleSubmit = event => {
@@ -86,10 +90,15 @@ class Nhomndsua extends React.Component {
                     </Card>                     
                 </Col>   
             </Row>
-                <div className="center-text-submit">   
+            <div className="center-text-submit"> 
+                <Container>
                   <Button color="danger" type="submit" pill className="px-4 my-3" >
-                  Cập nhật
+                  Lưu
                 </Button>
+                <NotificationSuccess/>
+                <NotificationDefeat/>
+                </Container>  
+
                 </div>
       </Form>
     );

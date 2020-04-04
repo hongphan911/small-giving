@@ -29,6 +29,8 @@ import {
   PopoverBody,
 } from 'reactstrap';
 import bn from 'utils/bemnames';
+import Cookies from 'js-cookie';
+import AuthForm,{ STATE_LOGIN} from '../AuthForm'
 
 const bem = bn.create('header');
 
@@ -50,7 +52,13 @@ class Header extends React.Component {
     isOpenNotificationPopover: false,
     isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : ""
   };
+  handleLogout () {
+    Cookies.remove('small-giving')
+    window.location.reload()
+  }
+
 
   toggleNotificationPopover = () => {
     this.setState({
@@ -117,7 +125,9 @@ class Header extends React.Component {
                   <ListGroup flush>
                     
                     <ListGroupItem tag="button" action className="border-light">
-                      <MdExitToApp /> Đăng xuất
+                      <div onClick={()=> this.handleLogout()}> 
+                      <MdExitToApp /> Đăng xuất 
+                      </div>
                       
                     </ListGroupItem>
                   </ListGroup>

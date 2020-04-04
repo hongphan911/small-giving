@@ -7,10 +7,30 @@ import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} 
 import {FaEdit} from 'react-icons/fa';
 import{MdDelete} from'react-icons/md';
 const tableTypes = ['hover'];
-class tinhd extends React.Component {
-  state = {
-    modal_nested_parent: false,
-    modal_nested: false,
+class InputGroupPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+      modal_nested_parent: false,
+      modal_nested:false,
+      modal_nested_sua:false,
+      modal_nested_xoa:false
+    };
+  }
+  componentDidMount() {
+    this.getdata();
+  }
+
+  getdata = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/showtintuc.php')
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+            data: data,
+          }, () => console.log('kiemtradulieu', this.state.data),
+        );
+      });
   };
   toggle = modalType => () => {
     if (!modalType) {
@@ -26,9 +46,9 @@ this.setState({
   render() {
     return (
       <Page
-        className="tinhd"
+        className="InputGroupPage"
         title="Tin tức"
-        breadcrumbs={[{name:'quản trị hoạt động thiện nguyện'},{ name: 'Tin tức', active: true }]}
+        breadcrumbs={[{name:'quản trị hoạt động tình nguyện'},{ name: 'Tin tức', active: true }]}
       >
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
@@ -52,20 +72,20 @@ this.setState({
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
-                          <tr className="table-danger ">
-                            <th> STT</th>
-                            <th> Mã Tin</th>
-                            <th> Tên tin</th> 
-                            <th> Nội dung</th>
+                          <tr className="table-danger ">                                                        
+                            <th> ID</th> 
+                            <th> Tên Tin</th>
+                            <th> Tiêu đề thông báo</th>
                             <th> Tác vụ</th>  
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                          <th scope="row">1</th>
-                            <td>ffđf</td>
-                            <td>Otto</td>
-                            <td>fdfkmelke </td> 
+                        {this.state.data.map((Item, index) => {
+                          return (
+                          <tr>                          
+                            <td>{Item.idTin}</td>
+                            <td>{Item.TenTin}</td>
+                            <td>{Item.TieuDeThongBao}</td> 
                             <td>
                             <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
                               <Modal
@@ -80,7 +100,7 @@ this.setState({
                                   <Tintucsua/>
                                   </ModalBody>
                                   </Modal>   
-                                  <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
+                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
                               <Modal
                                   isOpen={this.state.modal_nested_xoa}
                                   toggle={this.toggle('nested_xoa')}
@@ -91,76 +111,11 @@ this.setState({
                                   <ModalBody>
                                   <Tintucxoa/>
                                   </ModalBody>
-                                  </Modal>  
-                              
+                                  </Modal>                          
                             </td>
                           </tr>
-                          <tr>
-                          <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Mkjfe</td>
-                            <td></td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>djiojnkmvef</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">4</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>cndkndkfewokfmf</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">5</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>fedjgkewmgew</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              
-                            </td>
-                          </tr>
-                          <tr>
-                          <th scope="row">6</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>dfheiunwelkgm</td> 
-                            <td>
-                              <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              
-                              </td>
-                          </tr>
-                        <tr>
-                        <th scope="row">7</th>
-                            <td>Wendy</td>
-                            <td>the Magic</td>
-                            <td>cbdijgnewwigeoig</td> 
-                            <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                            <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                            
-                            </td>
-                          </tr>
+                          );
+                        })}
                         </tbody>
                       </Table>
                     </CardBody>
@@ -172,4 +127,4 @@ this.setState({
     );
   }
 }
-export default tinhd;
+export default InputGroupPage;

@@ -18,6 +18,8 @@ class khaosat extends React.Component {
   state = {
     modal_nested_parent: false,
     modal_nested: false,
+    modal_nested_sua:false,
+    modal_nested_xoa:false
   };
   toggle = modalType => () => {
     if (!modalType) {

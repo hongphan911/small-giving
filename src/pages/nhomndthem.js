@@ -5,13 +5,12 @@ import {
   CardBody,
   Col,
   Form,
-  // FormGroup,
   Input,
   Label,
   Row,
   Container,
 } from 'reactstrap';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
 import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
 
@@ -72,7 +71,7 @@ class Nhomndthem extends React.Component {
                         <Form>
                         <Label for="exampleEmail"> Mã nhóm</Label>
                             <Input
-                            disabled="true"
+                                disabled="true"
                                 type="email"
                                 name="id"
                                 value={this.state.id}
