@@ -78,11 +78,11 @@ this.setState({
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger ">
+                            <th> ID</th>
                             <th> Tên hoạt động</th>
                             <th> Bắt đầu</th> 
                             <th> Kết thúc</th> 
                             <th> Đã quyên góp</th>
-                            <th> Lượt quyên góp</th> 
                             <th> Xem đăng kí</th> 
                             <th> Tác vụ</th>  
                           </tr>
@@ -91,13 +91,14 @@ this.setState({
                         {this.state.data.map((Item, index) => {
                           return (
                         
-                          <tr>                           
+                          <tr>    
+                            <td>{Item.idHoatDong}</td>                       
                             <td>{Item.TenHoatDong}</td>
                             <td>{Item.ThoiGianBD}</td>
                             <td>{Item.ThoiGianKT}</td> 
                             
                             <td>{Item.SoDuTK}</td> 
-                            <td>{Item.SoNguoi}</td> 
+                             
                             <td> 
                             <Button color="link" className="can-click" onClick={this.toggle('nested_xem')}>Xem</Button>
                             <Modal

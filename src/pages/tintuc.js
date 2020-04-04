@@ -71,8 +71,8 @@ this.setState({
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger ">                                                        
-                            <th> Tên tin</th> 
-                            <th> Nội dung</th>
+                            <th> ID</th> 
+                            <th> Tên Tin</th>
                             <th> Tiêu đề thông báo</th>
                             <th> Tác vụ</th>  
                           </tr>
@@ -81,8 +81,8 @@ this.setState({
                         {this.state.data.map((Item, index) => {
                           return (
                           <tr>                          
+                            <td>{Item.idTin}</td>
                             <td>{Item.TenTin}</td>
-                            <td>{Item.NoiDung}</td>
                             <td>{Item.TieuDeThongBao}</td> 
                             <td>
                               <FaEdit className="can-click " size="1.5em"/>

@@ -70,7 +70,8 @@ this.setState({
                   </Modal>
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
-                          <tr className="table-danger">                                                       
+                          <tr className="table-danger">
+                            <th>ID</th>                                                       
                             <th>Tên người dùng</th>
                             <th>SĐT</th>
                             <th>Email</th>
@@ -84,6 +85,7 @@ this.setState({
                         {this.state.data.map((Item, index) => {
                           return (
                           <tr>
+                            <td>{Item.idNguoiDung}</td>
                             <td>{Item.TenNguoiDung}</td>
                             <td>{Item.SDT}</td>
                             <td>{Item.Email}</td>
