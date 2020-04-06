@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-} from 'reactstrap';
+import {} from 'reactstrap';
 class AuthPage extends React.Component {
   render() {
-    return (
-      <button></button>
-    );
+    return <button></button>;
   }
 }
 export default AuthPage;
