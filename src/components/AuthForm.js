@@ -72,14 +72,15 @@ class AuthForm extends React.Component {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        Email: this.state.username,
+        //Email: this.state.username,
+        SDT: this.state.username,
         MatKhau: this.state.password,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/Dangnhap/dangnhap.php', config)
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/dangnhapadmin.php', config)
       .then((response) => response.json())
       .then((data) => {
-        if (data.token === "ERROR") {
+        if (data.token === "Error") {
           
           console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email");
           
@@ -221,7 +222,7 @@ AuthForm.defaultProps = {
   
   
   usernameInputProps: {
-    type: 'email',
+    type: 'text',
     placeholder: 'Email hoặc SĐT',
     
     
