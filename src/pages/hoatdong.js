@@ -90,7 +90,6 @@ class hoatdong extends React.Component {
                       <Hoatdongthem />
                     </ModalBody>
                   </Modal>
-<<<<<<< HEAD
                   <Modal
                     isOpen={this.state.modal_xemdk}
                     toggle={this.toggle('xemdk')}
@@ -177,47 +176,6 @@ class hoatdong extends React.Component {
                                 Xem
                               </Button>
                             </td>
-=======
-                      <Table {...{ [tableType || 'hover']: true }}>
-                        <thead>
-                          <tr className="table-danger ">
-                            <th> ID</th>
-                            <th> Tên hoạt động</th>
-                            <th> Bắt đầu</th> 
-                            <th> Kết thúc</th> 
-                            <th> Đã quyên góp</th>
-                            <th> Xem đăng kí</th> 
-                            <th> Tác vụ</th>  
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map((Item, index) => {
-                          return (
-                        
-                          <tr>    
-                            <td>{Item.idHoatDong}</td>                       
-                            <td>{Item.TenHoatDong}</td>
-                            <td>{Item.ThoiGianBD}</td>
-                            <td>{Item.ThoiGianKT}</td> 
-                            
-                            <td>{Item.SoDuTK}</td> 
-                             
-                            <td> 
-                            <Button color="link" className="can-click" onClick={this.toggle('nested_xem')}>Xem</Button>
-                            <Modal
-                            isOpen={this.state.modal_nested_xem}
-                            toggle={this.toggle('nested_xem')}
-                            size="lg"
-                            className={this.props.className}>
-                              <ModalHeader className="text-danger" toggle={this.toggle('nested_xem')}>
-                                Xem đăng kí
-                                </ModalHeader>
-                              <ModalBody>
-                                <ChartPage/>
-                              </ModalBody>
-                              </Modal>
-                            </td> 
->>>>>>> 53fe8c465c597b150f2296042ce26f01e2b5324e
                             <td>
                               <FaEdit
                                 className="can-click "

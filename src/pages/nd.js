@@ -86,7 +86,6 @@ class nd extends React.Component {
                       <Nguoidungthem />
                     </ModalBody>
                   </Modal>
-<<<<<<< HEAD
                   <Modal
                     isOpen={this.state.modal_sua}
                     toggle={this.toggle('sua')}
@@ -142,26 +141,7 @@ class nd extends React.Component {
                     <tbody>
                       {this.state.data.map(Item => {
                         return (
-=======
-                      <Table {...{ [tableType || 'hover']: true }}>
-                        <thead>
-                          <tr className="table-danger">
-                            <th>ID</th>                                                       
-                            <th>Tên người dùng</th>
-                            <th>SĐT</th>
-                            <th>Email</th>
-                            <th>Mật khẩu</th>
-                            <th> Số dư TK</th>
-                            <th> Huy hiệu</th>
-                            <th>Tác vụ</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map((Item, index) => {
-                          return (
->>>>>>> 53fe8c465c597b150f2296042ce26f01e2b5324e
                           <tr>
-                            <td>{Item.idNguoiDung}</td>
                             <td>{Item.TenNguoiDung}</td>
                             <td>{Item.SDT}</td>
                             <td>{Item.Email}</td>
