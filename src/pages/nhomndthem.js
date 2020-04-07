@@ -8,7 +8,10 @@ import {
   Input,
   Label,
   Row,
-  Container,Modal, ModalBody, ModalHeader
+  Container,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
 import NotificationSuccess, {
@@ -60,56 +63,52 @@ class Nhomndthem extends React.Component {
   };
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Thêm mới nhóm người dùng
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
-              <Row>
-                      
-                  <Col md={12}>
-                      <Card>
-                      <CardBody>
-                          <Form>
-                          <Label for="exampleEmail"> Mã nhóm</Label>
-                              <Input
-                                  disabled="true"
-                                  type="email"
-                                  name="id"
-                                  value={this.state.id}
-                                  onChange={this.handleChange}
-                              />
-                          </Form>
-                          <Form>
-                              <Label for="exampleEmail">Tên nhóm <span className="red-text">*</span> </Label>
-                              <div className="error-text">
-                                  {this.state.nameError} 
-                              </div>
-                              <Input
-                                  type="email"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={this.handleChange}
-                              />
-                          </Form>
-                      </CardBody>
-                      </Card>                     
-                  </Col>   
-              </Row>
-                  <div className="center-text-submit"> 
-                  <Container>
-                    <Button color="danger" type="submit" pill className="px-4 my-3" >
-                    Lưu
-                  </Button>
-                  <NotificationSuccess/>
-                  <NotificationDefeat/>
-                  </Container>  
-
-                  </div>
-        </Form>
-
+            <Row>
+              <Col md={12}>
+                <Card>
+                  <CardBody>
+                    <Form>
+                      <Label for="exampleEmail"> Mã nhóm</Label>
+                      <Input
+                        //disabled="true"
+                        type="email"
+                        name="id"
+                        value={this.state.id}
+                        onChange={this.handleChange}
+                      />
+                    </Form>
+                    <Form>
+                      <Label for="exampleEmail">
+                        Tên nhóm <span className="red-text">*</span>{' '}
+                      </Label>
+                      <div className="error-text">{this.state.nameError}</div>
+                      <Input
+                        type="email"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.handleChange}
+                      />
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Lưu
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+            </div>
+          </Form>
         </ModalBody>
       </Modal>
     );

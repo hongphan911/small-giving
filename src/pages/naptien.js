@@ -1,17 +1,7 @@
 import Page from 'components/Page';
 import React from 'react';
 import Naptienthem from 'pages/naptienthem';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 const tableTypes = ['hover'];
 
 class naptien extends React.Component {
@@ -19,9 +9,19 @@ class naptien extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_them: false,
+      showModalThem: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -38,17 +38,17 @@ class naptien extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page
@@ -64,27 +64,17 @@ class naptien extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Modal
-                    isOpen={this.state.modal_them}
-                    toggle={this.toggle('them')}
+                  <Naptienthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('them')}
-                    >
-                      Thêm mới giao dịch nạp tiền
-                    </ModalHeader>
-                    <ModalBody>
-                      <Naptienthem />
-                    </ModalBody>
-                  </Modal>
+                  />
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.toggle('them')}
+                    onClick={this.handleShowModalThem}
                   >
                     + Thêm mới
                   </Badge>

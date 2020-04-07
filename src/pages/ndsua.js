@@ -8,7 +8,11 @@ import {
   FormGroup,
   Input,
   Label,
-  Row,Modal, ModalBody, ModalHeader
+  Row,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Container,
 } from 'reactstrap';
 import NotificationSuccess, {
   notifysuccess,
@@ -17,23 +21,21 @@ import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
 
-const initialState ={
-  id:"",
-  name:"",
-  email:"",
-  phone:"",
-  sex:"",
-  dateofbirth:"",
-  password:"",
-  idnhom:"",
-  
-  emailError:"",
-  phoneError:"",
-  idnhomError:"",
-  passwordError:"",
-  
-};
+const initialState = {
+  id: '',
+  name: '',
+  email: '',
+  phone: '',
+  sex: '',
+  dateofbirth: '',
+  password: '',
+  idnhom: '',
 
+  emailError: '',
+  phoneError: '',
+  idnhomError: '',
+  passwordError: '',
+};
 
 class Nguoidungsua extends React.Component {
   state = initialState;
@@ -57,11 +59,9 @@ class Nguoidungsua extends React.Component {
     if (!this.state.idnhom) {
       idnhomError = 'Không được bỏ trống!';
     }
-    if (!this.state.email){
-        emailError ="Không được bỏ trống!";
-        // emailError: đây là biến này
-
-
+    if (!this.state.email) {
+      emailError = 'Không được bỏ trống!';
+      // emailError: đây là biến này
     }
     if (!this.state.password) {
       passwordError = 'Không được bỏ trống!';
@@ -74,6 +74,7 @@ class Nguoidungsua extends React.Component {
     notifysuccess('this is a notify');
     return true;
   };
+
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
@@ -83,130 +84,141 @@ class Nguoidungsua extends React.Component {
       this.setState(initialState);
     }
   };
-  
+
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Sửa thông tin người dùng
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
             <Card>
-              <CardBody>                        
-                <Row>                  
-                  <Col xl={6} lg={12} md={12}>                    
-                      <Form>
-                        <FormGroup >
+              <CardBody>
+                <Row>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
                         <Label for="exampleText"> Mã người dùng</Label>
-                            <Input
-                            disabled="true"
-                              type="text"
-                              name="id"
-                              value={this.state.id}
-                            onChange={this.handleChange}
-                            />
-                        </FormGroup>
-                        <FormGroup >
-                        <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
+                        <Input
+                          disabled="true"
+                          type="text"
+                          name="id"
+                          value={this.state.id}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">
+                          Nhóm người dùng <span className="red-text">*</span>
+                        </Label>
                         <div className="error-text">
-                            {this.state.idnhomError} 
+                          {this.state.idnhomError}
                         </div>
-                        <Input 
-                        type="select" 
-                        name="idnhom"
-                        value={this.state.idnhom}
-                        onChange={this.handleChange}
+                        <Input
+                          type="select"
+                          name="idnhom"
+                          value={this.state.idnhom}
+                          onChange={this.handleChange}
                         >
-                        <option>Cộng tác viên kế toán</option>
-                        <option>Cộng tác viên viết bài</option>
-                        <option>Chủ nhiệm</option>
-                        <option>Nhà hảo tâm</option>
+                          <option>Cộng tác viên kế toán</option>
+                          <option>Cộng tác viên viết bài</option>
+                          <option>Chủ nhiệm</option>
+                          <option>Nhà hảo tâm</option>
                         </Input>
-                        </FormGroup>
-                        <FormGroup >
-                          <Label for="exampleText"> Số điện thoại <span className="red-text">*</span></Label>
-                          <div className="error-text">
-                            {this.state.phoneError} 
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          {' '}
+                          Số điện thoại <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.phoneError}
                         </div>
-                          <Input
-                            type="phone"
-                            name="phone"
-                            value={this.state.phone}
-                            onChange={this.handleChange}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <Label for="exampleEmail">Email <span className="red-text">*</span></Label>
-                          <div className="error-text">
-                            {this.state.emailError} 
+                        <Input
+                          type="phone"
+                          name="phone"
+                          value={this.state.phone}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleEmail">
+                          Email <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.emailError}
                         </div>
-                            <Input
-                              type="email"
-                              name="email"
-                              value={this.state.email}
-                                onChange={this.handleChange}
-                            />
-                        </FormGroup>        
-                      </Form>                       
-                </Col>
-                <Col xl={6} lg={12} md={12}>                      
-                      <Form>
-                      <FormGroup >
-                          <Label for="exampleText"> Họ tên</Label>
-                          <Input
-                            type="text"
-                            name="name"
-                            value={this.state.name}
-                            onChange={this.handleChange}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleDate">Ngày sinh</Label>
-                            <Input
-                              type="date"
-                              name="dateofbirth"
-                              value={this.state.dateofbirth}
-                                onChange={this.handleChange}
-                            />
-                          </FormGroup>                              
-                        <FormGroup>
-                            <Label for="exampleSelect">Giới tính</Label>
-                            <Input 
-                            type="select" 
-                            name="sex"
-                            value={this.state.sex}
-                            onChange={this.handleChange}
-                            >
-                              <option>Nam </option>
-                              <option>Nữ</option>
-                            </Input>
-                          </FormGroup>
-                          <FormGroup>
-                            <Label for="exampleText">Password <span className="red-text">*</span></Label>
-                            <div className="error-text">
-                            {this.state.passwordError} 
+                        <Input
+                          type="email"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
+                        <Label for="exampleText"> Họ tên</Label>
+                        <Input
+                          type="text"
+                          name="name"
+                          value={this.state.name}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleDate">Ngày sinh</Label>
+                        <Input
+                          type="date"
+                          name="dateofbirth"
+                          value={this.state.dateofbirth}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">Giới tính</Label>
+                        <Input
+                          type="select"
+                          name="sex"
+                          value={this.state.sex}
+                          onChange={this.handleChange}
+                        >
+                          <option>Nam </option>
+                          <option>Nữ</option>
+                        </Input>
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          Password <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.passwordError}
                         </div>
-                            <Input
-                              type="text"
-                              name="password"
-                              value={this.state.password}
-                                onChange={this.handleChange}
-                            />
-                          </FormGroup>                              
-                      </Form>                        
-                  </Col>                                           
-                </Row>                       
+                        <Input
+                          type="text"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
-            <div className="center-text-submit">   
-              <Button color="danger" type="submit" pill className="px-4 my-3" >
-              Cập nhật
-            </Button>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Cập nhật
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
             </div>
-        </Form>
-
+          </Form>
         </ModalBody>
       </Modal>
     );

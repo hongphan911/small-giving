@@ -10,6 +10,9 @@ import {
   Label,
   Row,
   Container,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
 import NotificationSuccess, {
@@ -62,81 +65,88 @@ class Diemdanhthem extends React.Component {
   };
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Row>
-          <Col xl={12} lg={12} md={12}>
-            <Card>
-              <CardBody className="pd-rancach">
-                <Form>
-                  <FormGroup>
-                    <Row>
-                      <Col md={4}>
-                        <Label for="exampleText"> Mã tài khoản</Label>
-                      </Col>
-                      <Col md={8}>
-                        <Input
-                          disabled="true"
-                          type="text"
-                          name="id"
-                          value={this.state.id}
-                          onChange={this.handleChange}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col md={4}>
-                        <Label for="exampleText">Tên tài khoản</Label>
-                      </Col>
-                      <Col md={8}>
-                        <Input
-                          type="text"
-                          name="name"
-                          value={this.state.name}
-                          onChange={this.handleChange}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                  <FormGroup>
-                    <Row>
-                      <Col md={4}>
-                        <Label for="exampleText">
-                          {' '}
-                          Số tiền cho mỗi lượt{' '}
-                          <span className="red-text">*</span>
-                        </Label>
-                      </Col>
-                      <Col md={8}>
-                        <div className="error-text">
-                          {this.state.moneyError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="money"
-                          value={this.state.money}
-                          onChange={this.handleChange}
-                        />
-                      </Col>
-                    </Row>
-                  </FormGroup>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+      <Modal isOpen={this.props.show}>
+        <ModalHeader className="text-danger" toggle={this.props.onHide}>
+          Thêm mới tài khoản điểm danh
+        </ModalHeader>
+        <ModalBody>
+          <Form onSubmit={this.handleSubmit}>
+            <Row>
+              <Col xl={12} lg={12} md={12}>
+                <Card>
+                  <CardBody className="pd-rancach">
+                    <Form>
+                      <FormGroup>
+                        <Row>
+                          <Col md={4}>
+                            <Label for="exampleText"> Mã tài khoản</Label>
+                          </Col>
+                          <Col md={8}>
+                            <Input
+                              disabled="true"
+                              type="text"
+                              name="id"
+                              value={this.state.id}
+                              onChange={this.handleChange}
+                            />
+                          </Col>
+                        </Row>
+                      </FormGroup>
+                      <FormGroup>
+                        <Row>
+                          <Col md={4}>
+                            <Label for="exampleText">Tên tài khoản</Label>
+                          </Col>
+                          <Col md={8}>
+                            <Input
+                              type="text"
+                              name="name"
+                              value={this.state.name}
+                              onChange={this.handleChange}
+                            />
+                          </Col>
+                        </Row>
+                      </FormGroup>
+                      <FormGroup>
+                        <Row>
+                          <Col md={4}>
+                            <Label for="exampleText">
+                              {' '}
+                              Số tiền cho mỗi lượt{' '}
+                              <span className="red-text">*</span>
+                            </Label>
+                          </Col>
+                          <Col md={8}>
+                            <div className="error-text">
+                              {this.state.moneyError}
+                            </div>
+                            <Input
+                              type="number"
+                              name="money"
+                              value={this.state.money}
+                              onChange={this.handleChange}
+                            />
+                          </Col>
+                        </Row>
+                      </FormGroup>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
 
-        <div className="center-text-submit">
-          <Container>
-            <Button color="danger" type="submit" pill className="px-4 my-3">
-              Lưu
-            </Button>
-            <NotificationSuccess />
-            <NotificationDefeat />
-          </Container>
-        </div>
-      </Form>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Lưu
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+            </div>
+          </Form>
+        </ModalBody>
+      </Modal>
     );
   }
 }

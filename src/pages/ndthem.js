@@ -9,7 +9,10 @@ import {
   Input,
   Label,
   Row,
-  Container,Modal, ModalBody, ModalHeader
+  Container,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
 import NotificationSuccess, {
@@ -18,20 +21,20 @@ import NotificationSuccess, {
 import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
-const initialState ={
-  id:"",
-  name:"",
-  email:"",
-  phone:"",
-  sex:"",
-  dateofbirth:"",
-  password:"",
-  idnhom:"",
-  
-  emailError:"",
-  phoneError:"",
-  idnhomError:"",
-  passwordError:"",
+const initialState = {
+  id: '',
+  name: '',
+  email: '',
+  phone: '',
+  sex: '',
+  dateofbirth: '',
+  password: '',
+  idnhom: '',
+
+  emailError: '',
+  phoneError: '',
+  idnhomError: '',
+  passwordError: '',
   dataselect: [],
 };
 
@@ -87,18 +90,19 @@ class Nguoidungthem extends React.Component {
 
   getdataselect = async () => {
     fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
-      .then((response) => response.json())
-      .then((dataselect) => {
-        this.setState({
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
             dataselect: dataselect,
-          }, () => console.log('kiemtradulieu', this.state.dataselect),
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
         );
       });
   };
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Thêm mới người dùng
         </ModalHeader>
@@ -108,124 +112,128 @@ class Nguoidungthem extends React.Component {
               <CardBody>
                 <Row>
                   <Col xl={6} lg={12} md={12}>
-                    
-                        <Form>
-                          <FormGroup >
-                          <Label for="exampleText"> Mã người dùng</Label>
-                              <Input
-                              disabled="true"
-                                type="text"
-                                name="id"
-                                value={this.state.id}
-                              onChange={this.handleChange}
-                              />
-                          </FormGroup>                      
-                          <FormGroup >                      
-                          <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
-                          <div className="error-text">
-                              {this.state.idnhomError} 
-                          </div>
-                          
-                          <Input 
-                          type="select" 
+                    <Form>
+                      <FormGroup>
+                        <Label for="exampleText"> Mã người dùng</Label>
+                        <Input
+                          //disabled="true"
+                          type="text"
+                          name="id"
+                          value={this.state.id}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">
+                          Nhóm người dùng <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.idnhomError}
+                        </div>
+
+                        <Input
+                          type="select"
                           name="idnhom"
                           value={this.state.idnhom}
                           onChange={this.handleChange}
-                          >{this.state.dataselect.map((Item, index) => {
-                            return (
-                          <option>{Item.TenNhom}</option>
-                          );
+                        >
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenNhom}</option>;
                           })}
-                          </Input>
-                          
-                          </FormGroup>
-                          
-                          <FormGroup >
-                            <Label for="exampleText"> Số điện thoại <span className="red-text">*</span></Label>
-                            <div className="error-text">
-                              {this.state.phoneError} 
-                          </div>
-                            <Input
-                              type="phone"
-                              name="phone"
-                              value={this.state.phone}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <Label for="exampleEmail">Email <span className="red-text">*</span></Label>
-                            <div className="error-text">
-                              {this.state.emailError} 
-                          </div>
-                              <Input
-                                type="email"
-                                name="email"
-                                value={this.state.email}
-                                  onChange={this.handleChange}
-                              />
-                          </FormGroup>        
-                        </Form>                       
-                  </Col>
-                  <Col xl={6} lg={12} md={12}>                      
-                        <Form>
-                        <FormGroup >
-                            <Label for="exampleText"> Họ tên</Label>
-                            <Input
-                              type="text"
-                              name="name"
-                              value={this.state.name}
-                              onChange={this.handleChange}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                              <Label for="exampleDate">Ngày sinh</Label>
-                              <Input
-                                type="date"
-                                name="dateofbirth"
-                                value={this.state.dateofbirth}
-                                  onChange={this.handleChange}
-                              />
-                            </FormGroup>                              
-                          <FormGroup>
-                              <Label for="exampleSelect">Giới tính</Label>
-                              <Input 
-                              type="select" 
-                              name="sex"
-                              value={this.state.sex}
-                              onChange={this.handleChange}
-                              >
-                                <option>Nam </option>
-                                <option>Nữ</option>
-                              </Input>
-                            </FormGroup>
-                            <FormGroup>
-                              <Label for="exampleText">Password <span className="red-text">*</span></Label>
-                              <div className="error-text">
-                              {this.state.passwordError} 
-                          </div>
-                              <Input
-                                type="text"
-                                name="password"
-                                value={this.state.password}
-                                  onChange={this.handleChange}
-                              />
-                            </FormGroup>                              
-                        </Form>                        
-                    </Col>                       
-                  </Row>
-                </CardBody>
-              </Card>
-            <div className="center-text-submit">
-              <Container>  
-                <Button color="danger" type="submit" pill className="px-4 my-3" >
-                Lưu
-                </Button>
-                <NotificationSuccess/>
-                <NotificationDefeat/>
-              </Container> 
-            </div>
-        </Form>
+                        </Input>
+                      </FormGroup>
 
+                      <FormGroup>
+                        <Label for="exampleText">
+                          Số điện thoại <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.phoneError}
+                        </div>
+                        <Input
+                          type="phone"
+                          name="phone"
+                          value={this.state.phone}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleEmail">
+                          Email <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.emailError}
+                        </div>
+                        <Input
+                          type="email"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
+                        <Label for="exampleText"> Họ tên</Label>
+                        <Input
+                          type="text"
+                          name="name"
+                          value={this.state.name}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleDate">Ngày sinh</Label>
+                        <Input
+                          type="date"
+                          name="dateofbirth"
+                          value={this.state.dateofbirth}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">Giới tính</Label>
+                        <Input
+                          type="select"
+                          name="sex"
+                          value={this.state.sex}
+                          onChange={this.handleChange}
+                        >
+                          <option>Nam </option>
+                          <option>Nữ</option>
+                        </Input>
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          Password <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.passwordError}
+                        </div>
+                        <Input
+                          type="text"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Lưu
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+            </div>
+          </Form>
         </ModalBody>
       </Modal>
     );
