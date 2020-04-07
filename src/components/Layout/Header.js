@@ -52,8 +52,13 @@ class Header extends React.Component {
     isOpenNotificationPopover: false,
     isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
-    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : ""
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+    user: [],
+    
+    
+    
   };
+  
   handleLogout () {
     Cookies.remove('small-giving')
     window.location.reload()
@@ -99,7 +104,7 @@ class Header extends React.Component {
 
         <Nav navbar className={bem.e('nav-right')}>
           
-
+          
           <NavItem>
             <NavLink id="Popover2">
               <Avatar
@@ -115,9 +120,10 @@ class Header extends React.Component {
               className="p-0 border-0"
               style={{ minWidth: 250 }}
             >
+              
               <PopoverBody className="p-0 border-light">
                 <UserCard
-                  title="Hồng Phấn"
+                  title={this.state.user.TenNguoiDung}
                   subtitle="Cộng tác viên kế toán"
                   
                   className="border-light"
@@ -133,6 +139,7 @@ class Header extends React.Component {
                   </ListGroup>
                 </UserCard>
               </PopoverBody>
+               
             </Popover>
           </NavItem>
         </Nav>

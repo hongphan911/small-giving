@@ -10,7 +10,7 @@ import './styles/reduction.scss';
 import { Modal, ModalBody } from 'reactstrap';
 import ProfileLayout from './components/Layout/ProfileLayout';
 //import { Link } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 const tintuc = React.lazy(() => import('pages/tintuc'));
 const tintucthem = React.lazy(() => import('pages/tintucthem'));
 const tintucsua = React.lazy(() => import('pages/tintucsua'));
@@ -71,8 +71,32 @@ class App extends React.Component {
     showLogin: true,
     setLogin: true,
     authState: STATE_LOGIN,
+    token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+    user: []
     
   };
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            user: data
+          }, ()=>console.log("data>>", data))
+        })
+    }
+  }
+
   handleLogin = () => {
     this.setState({
       showLogin: false,
@@ -88,7 +112,7 @@ class App extends React.Component {
     return (  
           
       <div>
-          {this.state.showLogin === true
+          {this.state.token === ""
           ? <Modal
             isOpen={this.state.showLogin}
             toggle={this.handleLogin}

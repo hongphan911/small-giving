@@ -87,7 +87,7 @@ class AuthForm extends React.Component {
         } else {
           Cookies.set('small-giving', data.token, { expires: 1 });
           this.props.onLogin();
-          //window.location.reload();
+          window.location.reload();
         }
       });
       

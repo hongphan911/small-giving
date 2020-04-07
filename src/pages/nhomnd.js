@@ -12,12 +12,42 @@ class ButtonGroupPage extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_nested_parent: false,
-    modal_nested: false,
-    modal_nested_sua:false,
-    modal_nested_xoa:false
+    modal_nested: false,    
+    showModalThem: false,
+    showModalSua: false,
+    showModalXoa: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
+  handleShowModalSua = () => {
+    this.setState({
+      showModalSua: true,
+    });
+  };
+  handleCloseModalSua = () => {
+    this.setState({
+      showModalSua: false,
+    });
+  };
+  handleShowModalXoa = () => {
+    this.setState({
+      showModalXoa: true,
+    });
+  };
+  handleCloseModalXoa = () => {
+    this.setState({
+      showModalXoa: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -55,20 +85,16 @@ this.setState({
           <Col>
             <Card className="mb-3">
                     <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click " onClick={this.toggle('nested_parent')}>
+                      <Badge color="danger" pill className=" mb-3 p-2 can-click " 
+                      onClick={this.handleShowModalThem}>>
                       + Thêm mới
-                      </Badge>
-                      <Modal
-                        isOpen={this.state.modal_nested_parent}
-                        toggle={this.toggle('nested_parent')}
-                        className={this.props.className}>
-                      <ModalHeader className="text-danger" toggle={this.toggle('nested_parent')}>
-                      Thêm mới nhóm người dùng
-                      </ModalHeader>
-                      <ModalBody>
-                        <Nhomndthem/>
-                      </ModalBody>
-                      </Modal>
+                      </Badge>                    
+                        <Nhomndthem
+                        show={this.state.showModalThem}
+                        onHide={this.handleCloseModalThem}
+                        size="lg"
+                        className={this.props.className}
+                        />
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
@@ -86,30 +112,20 @@ this.setState({
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.toggle('nested_sua')}/>
-                              <Modal
-                                  isOpen={this.state.modal_nested_sua}
-                                  toggle={this.toggle('nested_sua')}
-                                  className={this.props.className}>
-                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_sua')}>
-                                      Sửa thông tin nhóm người dùng
-                                  </ModalHeader>
-                                  <ModalBody>
-                                  <Nhomndsua/>
-                                  </ModalBody>
-                                  </Modal>   
-                              <MdDelete className="can-click" size="1.5em" onClick={this.toggle('nested_xoa')}/>
-                              <Modal
-                                  isOpen={this.state.modal_nested_xoa}
-                                  toggle={this.toggle('nested_xoa')}
-                                  className={this.props.className}>
-                                  <ModalHeader className="text-danger" toggle={this.toggle('nested_xoa')}>
-                                      Xóa nhóm người dùng
-                                  </ModalHeader>
-                                  <ModalBody>
-                                  <Nhomndxoa/>
-                                  </ModalBody>
-                                  </Modal>   
+                            <FaEdit className="can-click " size="1.5em" onClick={this.handleShowModalSua}/>                              
+                                  <Nhomndsua
+                                  show={this.state.showModalSua}
+                                  onHide={this.handleCloseModalSua}
+                                  size="lg"
+                                  className={this.props.className}
+                                  />                                  
+                              <MdDelete className="can-click" size="1.5em" onClick={this.handleShowModalXoa}/>                              
+                                  <Nhomndxoa
+                                  show={this.state.showModalXoa}
+                                  onHide={this.handleCloseModalXoa}
+                                  size="lg"
+                                  className={this.props.className}
+                                  />                                 
                             </td>
                           </tr>
                           );
