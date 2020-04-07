@@ -1,13 +1,23 @@
 import Page from 'components/Page';
 import React from 'react';
-import Nhomndthem from 'pages/nhomndthem'
-import Nhomndsua from 'pages/nhomndsua'
-import Nhomndxoa from 'pages/nhomndxoa'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody,ModalHeader} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import Nhomndthem from 'pages/nhomndthem';
+import Nhomndsua from 'pages/nhomndsua';
+import Nhomndxoa from 'pages/nhomndxoa';
+import {
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Table,
+  Badge,
+  Modal,
+  ModalBody,
+  ModalHeader,
+} from 'reactstrap';
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
-class ButtonGroupPage extends React.Component {
+class nhomnd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,11 +64,13 @@ class ButtonGroupPage extends React.Component {
 
   getdata = async () => {
     fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
+      .then(response => response.json())
+      .then(data => {
+        this.setState(
+          {
             data: data,
-          }, () => console.log('kiemtradulieu', this.state.data),
+          },
+          () => console.log('kiemtradulieu', this.state.data),
         );
       });
   };
@@ -69,7 +81,7 @@ class ButtonGroupPage extends React.Component {
       });
     }
 
-this.setState({
+    this.setState({
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
@@ -78,7 +90,10 @@ this.setState({
       <Page
         className="ButtonPage"
         title="Nhóm người dùng"
-        breadcrumbs={[{name:'quản trị tài khoản'}, { name: 'nhóm người dùng', active: true }]}
+        breadcrumbs={[
+          { name: 'quản trị tài khoản' },
+          { name: 'nhóm người dùng', active: true },
+        ]}
       >
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
@@ -108,7 +123,6 @@ this.setState({
                         {this.state.data.map((Item, index) => {
                           return (
                           <tr>
-                            
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
@@ -128,17 +142,17 @@ this.setState({
                                   />                                 
                             </td>
                           </tr>
-                          );
-                        })}
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                  </Card>
-                  </Col>
-                  </Row>
-                  ))}
+                        );
+                      })}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        ))}
       </Page>
     );
   }
 }
-export default ButtonGroupPage;
+export default nhomnd;

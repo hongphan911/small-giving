@@ -11,11 +11,13 @@ import {
   Row,
   Container,Modal, ModalBody, ModalHeader
 } from 'reactstrap';
-import styled from 'styled-components';
-import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
-import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
-
-
+//import styled from 'styled-components';
+import NotificationSuccess, {
+  notifysuccess,
+} from '../components/Notification/notificationSuccess';
+import NotificationDefeat, {
+  notifydefeat,
+} from '../components/Notification/notificationDefeat';
 const initialState ={
   id:"",
   name:"",
@@ -34,42 +36,40 @@ const initialState ={
 };
 
 class Nguoidungthem extends React.Component {
-  state= initialState;
+  state = initialState;
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
+    const isCheckbox = event.target.type === 'checkbox';
     this.setState({
       [event.target.name]: isCheckbox
-      ? event.target.checked
-      : event.target.value
+        ? event.target.checked
+        : event.target.value,
     });
   };
   validate = () => {
-    let emailError = "";
-    let phoneError = "";
-    let idnhomError = "";
-    let passwordError = "";
+    let emailError = '';
+    let phoneError = '';
+    let idnhomError = '';
+    let passwordError = '';
 
     if (!this.state.phone) {
-        phoneError ="Không được bỏ chống!";
+      phoneError = 'Không được bỏ trống!';
     }
     if (!this.state.idnhom) {
-        idnhomError ="Không được bỏ chống!";
+      idnhomError = 'Không được bỏ trống!';
     }
-    if (!this.state.email){
-        emailError ="Không được bỏ chống!";
+    if (!this.state.email) {
+      emailError = 'Không được bỏ trống!';
     }
-    if (!this.state.password){
-        passwordError ="Không được bỏ chống!";
+    if (!this.state.password) {
+      passwordError = 'Không được bỏ trống!';
     }
-    if (phoneError || idnhomError || emailError || passwordError ){
-      this.setState({ phoneError, idnhomError, emailError, passwordError});
+    if (phoneError || idnhomError || emailError || passwordError) {
+      this.setState({ phoneError, idnhomError, emailError, passwordError });
       notifydefeat('this is a notify');
       return false;
-      
     }
     notifysuccess('this is a notify');
     return true;
-
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -79,7 +79,6 @@ class Nguoidungthem extends React.Component {
       //clear form
       this.setState(initialState);
       //notification
-      
     }
   };
   componentDidMount() {
@@ -229,7 +228,6 @@ class Nguoidungthem extends React.Component {
 
         </ModalBody>
       </Modal>
-      
     );
   }
 }

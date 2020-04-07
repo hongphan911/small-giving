@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {Button, Card, CardBody, Modal, ModalBody, ModalHeader} from 'reactstrap';
 class Nhomndxoa extends React.Component {
@@ -19,6 +18,8 @@ class Nhomndxoa extends React.Component {
         </ModalBody>
       </Modal>
        
+
+
     );
   }
 }

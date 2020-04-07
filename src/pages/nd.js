@@ -1,15 +1,24 @@
 import Page from 'components/Page';
 import React from 'react';
-import Nguoidungthem from 'pages/ndthem'
-import Nguoidungsua from 'pages/ndsua'
-import Nguoidungxoa from 'pages/ndxoa'
-import { Card, CardBody, Col, Row, Table, Badge, Modal, ModalBody, ModalHeader} from 'reactstrap';
-import {FaEdit} from 'react-icons/fa';
-import{MdDelete} from'react-icons/md';
+import Nguoidungthem from 'pages/ndthem';
+import Nguoidungsua from 'pages/ndsua';
+import Nguoidungxoa from 'pages/ndxoa';
+import {
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Table,
+  Badge,
+  Modal,
+  ModalBody,
+  ModalHeader,
+} from 'reactstrap';
+import { FaEdit } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 
 const tableTypes = ['hover'];
-
-class ButtonPage extends React.Component {
+class nd extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,11 +65,13 @@ class ButtonPage extends React.Component {
 
   getdata = async () => {
     fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
+      .then(response => response.json())
+      .then(data => {
+        this.setState(
+          {
             data: data,
-          }, () => console.log('kiemtradulieu', this.state.data),
+          },
+          () => console.log('kiemtradulieu', this.state.data),
         );
       });
   };
@@ -71,16 +82,19 @@ class ButtonPage extends React.Component {
       });
     }
 
-this.setState({
+    this.setState({
       [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
     });
   };
   render() {
     return (
       <Page
-        className="ButtonPage"
+        className="nd"
         title="Người dùng"
-        breadcrumbs={[{name:'quản trị tài khoản'},{ name: 'người dùng', active: true }]}
+        breadcrumbs={[
+          { name: 'quản trị tài khoản' },
+          { name: 'người dùng', active: true },
+        ]}
       >
       {tableTypes.map((tableType, index) => (
         <Row key={index}>
@@ -118,8 +132,8 @@ this.setState({
                             <td>{Item.TenNguoiDung}</td>
                             <td>{Item.SDT}</td>
                             <td>{Item.Email}</td>
-                            <td>{Item.MatKhau}</td> 
-                            <td>{Item.SoDuTK}</td> 
+                            <td>{Item.MatKhau}</td>
+                            <td>{Item.SoDuTK}</td>
                             <td>{Item.HuyHieu}</td>
                             <td>
                             <FaEdit className="can-click" size="1.5em" onClick={this.handleShowModalSua}/>
@@ -138,17 +152,17 @@ this.setState({
                                   />                                  
                             </td>
                           </tr>
-                           );
-                          })}
-                        </tbody>
-                      </Table>
-                    </CardBody>
-                  </Card>
-                  </Col>
-                  </Row>
-      ))}
+                        );
+                      })}
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+        ))}
       </Page>
     );
   }
 }
-export default ButtonPage;
+export default nd;

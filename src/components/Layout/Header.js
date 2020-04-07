@@ -1,21 +1,11 @@
 import Avatar from 'components/Avatar';
 import { UserCard } from 'components/Card';
-import Notifications from 'components/Notifications';
+//import Notifications from 'components/Notifications';
 import SearchInput from 'components/SearchInput';
-import { notificationsData } from 'demos/header';
-import withBadge from 'hocs/withBadge';
+//import { notificationsData } from 'demos/header';
+//import withBadge from 'hocs/withBadge';
 import React from 'react';
-import {
-  MdClearAll,
-  MdExitToApp,
-  MdHelp,
-  MdInsertChart,
-  MdMessage,
-  MdNotificationsActive,
-  MdNotificationsNone,
-  MdPersonPin,
-  MdSettingsApplications,
-} from 'react-icons/md';
+import { MdClearAll, MdExitToApp } from 'react-icons/md';
 import {
   Button,
   ListGroup,
@@ -30,22 +20,22 @@ import {
 } from 'reactstrap';
 import bn from 'utils/bemnames';
 import Cookies from 'js-cookie';
-import AuthForm,{ STATE_LOGIN} from '../AuthForm'
+//import AuthForm,{ STATE_LOGIN} from '../AuthForm'
 
 const bem = bn.create('header');
 
-const MdNotificationsActiveWithBadge = withBadge({
-  size: 'md',
-  color: 'primary',
-  style: {
-    top: -10,
-    right: -10,
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  children: <small>5</small>,
-})(MdNotificationsActive);
+// const MdNotificationsActiveWithBadge = withBadge({
+//   size: 'md',
+//   color: 'primary',
+//   style: {
+//     top: -10,
+//     right: -10,
+//     display: 'inline-flex',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+//   children: <small>5</small>,
+// })(MdNotificationsActive);
 
 class Header extends React.Component {
   state = {
@@ -53,17 +43,12 @@ class Header extends React.Component {
     isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
-    user: [],
-    
-    
-    
-  };
-  
+    user: [],     
+  }; 
   handleLogout () {
     Cookies.remove('small-giving')
     window.location.reload()
   }
-
 
   toggleNotificationPopover = () => {
     this.setState({
@@ -89,7 +74,7 @@ class Header extends React.Component {
   };
 
   render() {
-    const { isNotificationConfirmed } = this.state;
+    //const { isNotificationConfirmed } = this.state;
 
     return (
       <Navbar light expand className={bem.b('bg-white')}>
@@ -103,8 +88,6 @@ class Header extends React.Component {
         </Nav>
 
         <Nav navbar className={bem.e('nav-right')}>
-          
-          
           <NavItem>
             <NavLink id="Popover2">
               <Avatar
@@ -125,16 +108,13 @@ class Header extends React.Component {
                 <UserCard
                   title={this.state.user.TenNguoiDung}
                   subtitle="Cộng tác viên kế toán"
-                  
                   className="border-light"
                 >
                   <ListGroup flush>
-                    
                     <ListGroupItem tag="button" action className="border-light">
-                      <div onClick={()=> this.handleLogout()}> 
-                      <MdExitToApp /> Đăng xuất 
+                      <div onClick={() => this.handleLogout()}>
+                        <MdExitToApp /> Đăng xuất
                       </div>
-                      
                     </ListGroupItem>
                   </ListGroup>
                 </UserCard>

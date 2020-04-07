@@ -11,43 +11,43 @@ import {
   Container,Modal, ModalBody, ModalHeader
 } from 'reactstrap';
 //import styled from 'styled-components';
-import NotificationSuccess, { notifysuccess } from '../components/Notification/notificationSuccess';
-import NotificationDefeat, { notifydefeat } from '../components/Notification/notificationDefeat';
+import NotificationSuccess, {
+  notifysuccess,
+} from '../components/Notification/notificationSuccess';
+import NotificationDefeat, {
+  notifydefeat,
+} from '../components/Notification/notificationDefeat';
 
-
-const initialState ={
-  id:"",
-  name:"",  
-  nameError:""
+const initialState = {
+  id: '',
+  name: '',
+  nameError: '',
 };
 
 class Nhomndthem extends React.Component {
-  state= initialState;
+  state = initialState;
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
+    const isCheckbox = event.target.type === 'checkbox';
     this.setState({
       [event.target.name]: isCheckbox
-      ? event.target.checked
-      : event.target.value
+        ? event.target.checked
+        : event.target.value,
     });
   };
   validate = () => {
-    let nameError = "";
-   
+    let nameError = '';
 
     if (!this.state.name) {
-        nameError ="Bạn chưa nhập tên nhóm!";
+      nameError = 'Bạn chưa nhập tên nhóm!';
     }
-    
-    if (nameError){
-      this.setState({ nameError});
+
+    if (nameError) {
+      this.setState({ nameError });
       notifydefeat('this is a notify');
       return false;
     }
     notifysuccess('this is a notify');
     return true;
-    
-
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -56,8 +56,6 @@ class Nhomndthem extends React.Component {
       console.log(this.state);
       //clear form
       this.setState(initialState);
-      
-      
     }
   };
   render() {
@@ -114,7 +112,6 @@ class Nhomndthem extends React.Component {
 
         </ModalBody>
       </Modal>
-      
     );
   }
 }
