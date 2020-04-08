@@ -3,17 +3,7 @@ import Khaosatthem from 'pages/khaosatthem';
 import Khaosatsua from 'pages/khaosatsua';
 import Khaosatxoa from 'pages/khaosatxoa';
 import React from 'react';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -22,11 +12,41 @@ class khaosat extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_them: false,
-      modal_sua: false,
-      modal_xoa: false,
+      showModalThem: false,
+      showModalSua: false,
+      showModalXoa: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
+  handleShowModalSua = () => {
+    this.setState({
+      showModalSua: true,
+    });
+  };
+  handleCloseModalSua = () => {
+    this.setState({
+      showModalSua: false,
+    });
+  };
+  handleShowModalXoa = () => {
+    this.setState({
+      showModalXoa: true,
+    });
+  };
+  handleCloseModalXoa = () => {
+    this.setState({
+      showModalXoa: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -43,17 +63,17 @@ class khaosat extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page
@@ -69,59 +89,30 @@ class khaosat extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Modal
-                    isOpen={this.state.modal_them}
-                    toggle={this.toggle('them')}
+                  <Khaosatthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('them')}
-                    >
-                      Thêm mới khảo sát
-                    </ModalHeader>
-                    <ModalBody>
-                      <Khaosatthem />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_sua}
-                    toggle={this.toggle('sua')}
+                  />
+                  <Khaosatsua
+                    show={this.state.showModalSua}
+                    onHide={this.handleCloseModalSua}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('sua')}
-                    >
-                      Sửa thông tin khảo sát
-                    </ModalHeader>
-                    <ModalBody>
-                      <Khaosatsua />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_xoa}
-                    toggle={this.toggle('xoa')}
+                  />
+                  <Khaosatxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('xoa')}
-                    >
-                      Xóa khảo sát
-                    </ModalHeader>
-                    <ModalBody>
-                      <Khaosatxoa />
-                    </ModalBody>
-                  </Modal>
+                  />
 
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.toggle('them')}
+                    onClick={this.handleShowModalThem}
                   >
                     + Thêm mới
                   </Badge>
@@ -151,12 +142,12 @@ class khaosat extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.toggle('sua')}
+                                onClick={this.handleShowModalSua}
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.toggle('xoa')}
+                                onClick={this.handleShowModalXoa}
                               />
                             </td>
                           </tr>

@@ -3,17 +3,7 @@ import React from 'react';
 import Nhomndthem from 'pages/nhomndthem';
 import Nhomndsua from 'pages/nhomndsua';
 import Nhomndxoa from 'pages/nhomndxoa';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -27,6 +17,7 @@ class nhomnd extends React.Component {
     showModalSua: false,
     showModalXoa: false,
     idNhom:"",
+
     };
   }
   handleShowModalThem = () => {
@@ -77,17 +68,17 @@ class nhomnd extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page

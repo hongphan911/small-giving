@@ -9,6 +9,9 @@ import {
   CardBody,
   Card,
   Container,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
 import NotificationSuccess, {
@@ -25,6 +28,7 @@ const initialState = {
 
   accountError: '',
   moneyError: '',
+  dataselect: [],
 };
 class Naptienthem extends React.Component {
   state = initialState;
@@ -63,85 +67,109 @@ class Naptienthem extends React.Component {
       this.setState(initialState);
     }
   };
+  componentDidMount() {
+    this.getdataselect();
+  }
+
+  getdataselect = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Row>
-          <Col xl={12} lg={12} md={12}>
-            <Card>
-              <CardBody className="pd-rancach">
-                <Form>
-                  <Row>
-                    <Col md={3}>
-                      <Label for="exampleEmail"> Mã giao dịch</Label>
-                    </Col>
-                    <Col md={9}>
-                      <Input
-                        type="email"
-                        name="id"
-                        value={this.state.id}
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                  </Row>
-                </Form>
-                <Form>
-                  <Row>
-                    <Col md={3}>
-                      <Label for="exampleSelect">
-                        Tài khoản nạp <span className="red-text">*</span>
-                      </Label>
-                    </Col>
-                    <Col md={9}>
-                      <div className="error-text">
-                        {this.state.accountError}
-                      </div>
-                      <Input
-                        type="select"
-                        name="account"
-                        value={this.state.account}
-                        onChange={this.handleChange}
-                      >
-                        <option></option>
-                        <option>hong hanh</option>
-                        <option>hong nhung</option>
-                        <option>huyen my</option>
-                      </Input>
-                    </Col>
-                  </Row>
-                </Form>
-                <Form>
-                  <Row>
-                    <Col md={3}>
-                      <Label for="exampleNumber">
-                        Số tiền <span className="red-text">*</span>
-                      </Label>
-                    </Col>
-                    <Col md={9}>
-                      <div className="error-text">{this.state.moneyError}</div>
-                      <Input
-                        type="number"
-                        name="money"
-                        value={this.state.money}
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                  </Row>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <div className="center-text-submit">
-          <Container>
-            <Button color="danger" type="submit" pill className="px-4 my-3">
-              Nạp
-            </Button>
-            <NotificationSuccess />
-            <NotificationDefeat />
-          </Container>
-        </div>
-      </Form>
+      <Modal isOpen={this.props.show}>
+        <ModalHeader className="text-danger" toggle={this.props.onHide}>
+          Thêm mới nạp tiền
+        </ModalHeader>
+        <ModalBody>
+          <Form onSubmit={this.handleSubmit}>
+            <Row>
+              <Col xl={12} lg={12} md={12}>
+                <Card>
+                  <CardBody className="pd-rancach">
+                    <Form>
+                      <Row>
+                        <Col md={3}>
+                          <Label for="exampleEmail"> Mã giao dịch</Label>
+                        </Col>
+                        <Col md={9}>
+                          <Input
+                            type="email"
+                            name="id"
+                            value={this.state.id}
+                            onChange={this.handleChange}
+                          />
+                        </Col>
+                      </Row>
+                    </Form>
+                    <Form>
+                      <Row>
+                        <Col md={3}>
+                          <Label for="exampleSelect">
+                            Tài khoản nạp <span className="red-text">*</span>
+                          </Label>
+                        </Col>
+                        <Col md={9}>
+                          <div className="error-text">
+                            {this.state.accountError}
+                          </div>
+                          <Input
+                            type="select"
+                            name="account"
+                            value={this.state.account}
+                            onChange={this.handleChange}
+                          >
+                            {this.state.dataselect.map(Item => {
+                              return <option>{Item.TenNguoiDung}</option>;
+                            })}
+                          </Input>
+                        </Col>
+                      </Row>
+                    </Form>
+                    <Form>
+                      <Row>
+                        <Col md={3}>
+                          <Label for="exampleNumber">
+                            Số tiền <span className="red-text">*</span>
+                          </Label>
+                        </Col>
+                        <Col md={9}>
+                          <div className="error-text">
+                            {this.state.moneyError}
+                          </div>
+                          <Input
+                            type="number"
+                            name="money"
+                            value={this.state.money}
+                            onChange={this.handleChange}
+                          />
+                        </Col>
+                      </Row>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Nạp
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+            </div>
+          </Form>
+        </ModalBody>
+      </Modal>
     );
   }
 }

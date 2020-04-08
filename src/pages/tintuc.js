@@ -3,17 +3,7 @@ import React from 'react';
 import Tintucthem from 'pages/tintucthem';
 import Tintucsua from 'pages/tintucsua';
 import Tintucxoa from 'pages/tintucxoa';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -22,11 +12,41 @@ class tintuc extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_them: false,
-      modal_sua: false,
-      modal_xoa: false,
+      showModalThem: false,
+      showModalSua: false,
+      showModalXoa: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
+  handleShowModalSua = () => {
+    this.setState({
+      showModalSua: true,
+    });
+  };
+  handleCloseModalSua = () => {
+    this.setState({
+      showModalSua: false,
+    });
+  };
+  handleShowModalXoa = () => {
+    this.setState({
+      showModalXoa: true,
+    });
+  };
+  handleCloseModalXoa = () => {
+    this.setState({
+      showModalXoa: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -43,17 +63,17 @@ class tintuc extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page
@@ -69,58 +89,29 @@ class tintuc extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Modal
-                    isOpen={this.state.modal_them}
-                    toggle={this.toggle('them')}
+                  <Tintucthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('them')}
-                    >
-                      Thêm mới tin tức
-                    </ModalHeader>
-                    <ModalBody>
-                      <Tintucthem />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_sua}
-                    toggle={this.toggle('sua')}
+                  />
+                  <Tintucsua
+                    show={this.state.showModalSua}
+                    onHide={this.handleCloseModalSua}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('sua')}
-                    >
-                      Sửa tin tức
-                    </ModalHeader>
-                    <ModalBody>
-                      <Tintucsua />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_xoa}
-                    toggle={this.toggle('xoa')}
+                  />
+                  <Tintucxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('xoa')}
-                    >
-                      Xóa tin tức
-                    </ModalHeader>
-                    <ModalBody>
-                      <Tintucxoa />
-                    </ModalBody>
-                  </Modal>
+                  />
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.toggle('them')}
+                    onClick={this.handleShowModalThem}
                   >
                     + Thêm mới
                   </Badge>
@@ -144,13 +135,13 @@ class tintuc extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.toggle('sua')}
+                                onClick={this.handleShowModalSua}
                               />
 
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.toggle('xoa')}
+                                onClick={this.handleShowModalXoa}
                               />
                             </td>
                           </tr>

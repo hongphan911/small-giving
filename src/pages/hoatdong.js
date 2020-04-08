@@ -4,18 +4,7 @@ import React from 'react';
 import Hoatdongthem from 'pages/hoatdongthem';
 import Hoatdongsua from 'pages/hoatdongsua';
 import Hoatdongxoa from 'pages/hoatdongxoa';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  Button,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge, Button } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
@@ -24,12 +13,52 @@ class hoatdong extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_them: false,
-      modal_xemdk: false,
-      modal_sua: false,
-      modal_xoa: false,
+      showModalThem: false,
+      showModalSua: false,
+      showModalXoa: false,
+      showModalXem: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
+  handleShowModalSua = () => {
+    this.setState({
+      showModalSua: true,
+    });
+  };
+  handleCloseModalSua = () => {
+    this.setState({
+      showModalSua: false,
+    });
+  };
+  handleShowModalXoa = () => {
+    this.setState({
+      showModalXoa: true,
+    });
+  };
+  handleCloseModalXoa = () => {
+    this.setState({
+      showModalXoa: false,
+    });
+  };
+  handleShowModalXem = () => {
+    this.setState({
+      showModalXem: true,
+    });
+  };
+  handleCloseModalXem = () => {
+    this.setState({
+      showModalXem: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -48,17 +77,17 @@ class hoatdong extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page
@@ -74,75 +103,36 @@ class hoatdong extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Modal
-                    isOpen={this.state.modal_them}
-                    toggle={this.toggle('them')}
+                  <Hoatdongthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('them')}
-                    >
-                      Thêm mới hoạt động
-                    </ModalHeader>
-                    <ModalBody>
-                      <Hoatdongthem />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_xemdk}
-                    toggle={this.toggle('xemdk')}
+                  />
+                  <Hoatdongsua
+                    show={this.state.showModalSua}
+                    onHide={this.handleCloseModalSua}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('xemdk')}
-                    >
-                      Xem đăng kí
-                    </ModalHeader>
-                    <ModalBody>
-                      <Xemdk />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_sua}
-                    toggle={this.toggle('sua')}
+                  />
+                  <Hoatdongxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('sua')}
-                    >
-                      Sửa thông tin hoạt động
-                    </ModalHeader>
-                    <ModalBody>
-                      <Hoatdongsua />
-                    </ModalBody>
-                  </Modal>
-                  <Modal
-                    isOpen={this.state.modal_xoa}
-                    toggle={this.toggle('xoa')}
+                  />
+                  <Xemdk
+                    show={this.state.showModalXem}
+                    onHide={this.handleCloseModalXem}
+                    size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('xoa')}
-                    >
-                      Xóa hoạt động
-                    </ModalHeader>
-                    <ModalBody>
-                      <Hoatdongxoa />
-                    </ModalBody>
-                  </Modal>
+                  />
 
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.toggle('them')}
+                    onClick={this.handleShowModalThem}
                   >
                     + Thêm mới
                   </Badge>
@@ -173,7 +163,7 @@ class hoatdong extends React.Component {
                               <Button
                                 color="link"
                                 className="can-click"
-                                onClick={this.toggle('xemdk')}
+                                onClick={this.handleShowModalXem}
                               >
                                 Xem
                               </Button>
@@ -182,12 +172,12 @@ class hoatdong extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.toggle('sua')}
+                                onClick={this.handleShowModalSua}
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.toggle('xoa')}
+                                onClick={this.handleShowModalXoa}
                               />
                             </td>
                           </tr>

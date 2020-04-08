@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Card, CardBody,Modal, ModalBody,Input, ModalHeader, Label} from 'reactstrap';
+
 class Nguoidungxoa extends React.Component {
   componentDidMount= () =>{
     console.log("check>>>", this.props.chooseId);
@@ -7,8 +8,7 @@ class Nguoidungxoa extends React.Component {
   }
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Xóa người dùng
         </ModalHeader>
@@ -17,11 +17,12 @@ class Nguoidungxoa extends React.Component {
             <CardBody> <p>Bạn có chắc chắn muốn xóa mã người dùng này ?</p> 
                 </CardBody>
               <Button color="danger" pill className="px-4 my-3" >
+
               Xóa
-              </Button>
-        </Card>
+            </Button>
+          </Card>
         </ModalBody>
-      </Modal>       
+      </Modal>
     );
   }
 }

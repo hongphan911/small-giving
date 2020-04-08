@@ -8,7 +8,10 @@ import {
   Input,
   Label,
   Row,
-  Container,Modal, ModalBody, ModalHeader
+  Container,
+  Modal,
+  ModalBody,
+  ModalHeader,
 } from 'reactstrap';
 import NotificationSuccess, {
   notifysuccess,
@@ -63,8 +66,7 @@ class Nhomndsua extends React.Component {
   };
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Sửa thông tin nhóm người dùng
         </ModalHeader>
@@ -116,11 +118,8 @@ class Nhomndsua extends React.Component {
 
                   </div>
         </Form>
-
         </ModalBody>
       </Modal>
-      
-
     );
   }
 }

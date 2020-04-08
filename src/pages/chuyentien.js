@@ -18,9 +18,19 @@ class chuyentien extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_them: false,
+      showModalThem: false,
     };
   }
+  handleShowModalThem = () => {
+    this.setState({
+      showModalThem: true,
+    });
+  };
+  handleCloseModalThem = () => {
+    this.setState({
+      showModalThem: false,
+    });
+  };
   componentDidMount() {
     this.getdata();
   }
@@ -66,27 +76,17 @@ class chuyentien extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Modal
-                    isOpen={this.state.modal_them}
-                    toggle={this.toggle('them')}
+                  <Chuyentienthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
                     size="lg"
                     className={this.props.className}
-                  >
-                    <ModalHeader
-                      className="text-danger"
-                      toggle={this.toggle('them')}
-                    >
-                      Thêm mới giao dịch chuyển tiền
-                    </ModalHeader>
-                    <ModalBody>
-                      <Chuyentienthem />
-                    </ModalBody>
-                  </Modal>
+                  />
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.toggle('them')}
+                    onClick={this.handleShowModalThem}
                   >
                     + Thêm mới
                   </Badge>
@@ -105,8 +105,8 @@ class chuyentien extends React.Component {
                         return (
                           <tr>
                             <td>{Item.idGiaoDich}</td>
-                            <td>{Item.TenNguoiDung}</td>
                             <td>{Item.TenKhaoSat}</td>
+                            <td>{Item.TenNguoiDung}</td>
                             <td>{Item.ThoiGian}</td>
                             <td>{Item.SoTien}</td>
                           </tr>

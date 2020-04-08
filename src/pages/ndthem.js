@@ -33,6 +33,7 @@ const initialState ={
   phoneError:"",
   idnhomError:"",
   passwordError:"",
+
   dataselect: [],
 };
 class Nguoidungthem extends React.Component {
@@ -93,13 +94,13 @@ class Nguoidungthem extends React.Component {
         this.setState({
           dataselect: dataselect,
         }, () => console.log('kiemtradulieu', this.state.dataselect),
+
         );
       });
   };
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Thêm mới người dùng
         </ModalHeader>
@@ -123,6 +124,7 @@ class Nguoidungthem extends React.Component {
                       </FormGroup>
                       <FormGroup >
                         <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
+
                         <div className="error-text">
                           {this.state.idnhomError}
                         </div>
@@ -147,6 +149,7 @@ class Nguoidungthem extends React.Component {
 
                       <FormGroup >
                         <Label for="exampleText"> Số điện thoại <span className="red-text">*</span></Label>
+
                         <div className="error-text">
                           {this.state.phoneError}
                         </div>
@@ -163,6 +166,7 @@ class Nguoidungthem extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleEmail">Email <span className="red-text">*</span></Label>
+
                         <div className="error-text">
                           {this.state.emailError}
                         </div>
@@ -234,6 +238,7 @@ class Nguoidungthem extends React.Component {
                               password: val.target.value
                             })
                           }}
+
                         />
                       </FormGroup>
                     </Form>
@@ -244,6 +249,7 @@ class Nguoidungthem extends React.Component {
             <div className="center-text-submit">
               <Container>
                 <Button color="danger" type="submit" pill className="px-4 my-3" >
+
                   Lưu
                 </Button>
                 <NotificationSuccess />
@@ -251,7 +257,6 @@ class Nguoidungthem extends React.Component {
               </Container>
             </div>
           </Form>
-
         </ModalBody>
       </Modal>
     );

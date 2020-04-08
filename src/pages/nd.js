@@ -3,17 +3,7 @@ import React from 'react';
 import Nguoidungthem from 'pages/ndthem';
 import Nguoidungsua from 'pages/ndsua';
 import Nguoidungxoa from 'pages/ndxoa';
-import {
-  Card,
-  CardBody,
-  Col,
-  Row,
-  Table,
-  Badge,
-  Modal,
-  ModalBody,
-  ModalHeader,
-} from 'reactstrap';
+import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 
@@ -23,7 +13,6 @@ class nd extends React.Component {
     super(props);
     this.state = {
       data: [],
-      modal_nested: false,     
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
@@ -79,17 +68,17 @@ class nd extends React.Component {
         );
       });
   };
-  toggle = modalType => () => {
-    if (!modalType) {
-      return this.setState({
-        modal: !this.state.modal,
-      });
-    }
+  // toggle = modalType => () => {
+  //   if (!modalType) {
+  //     return this.setState({
+  //       modal: !this.state.modal,
+  //     });
+  //   }
 
-    this.setState({
-      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-    });
-  };
+  //   this.setState({
+  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+  //   });
+  // };
   render() {
     return (
       <Page
@@ -110,6 +99,7 @@ class nd extends React.Component {
                       + Thêm mới
                       </Badge>                                  
                     <Nguoidungthem
+
                     show={this.state.showModalThem}
                     onHide={() =>this.handleCloseModalThem()}
                     size="lg"
@@ -132,6 +122,7 @@ class nd extends React.Component {
                         <tbody>
                         {this.state.data.map((Item, index) => {
                           return (
+
                           <tr>
                             <td>{Item.idNguoiDung}</td>
                             <td>{Item.TenNguoiDung}</td>
@@ -159,6 +150,7 @@ class nd extends React.Component {
                                   className={this.props.className}
                                   chooseId={this.state.idNguoiDung}
                                   />                                  
+
                             </td>
                           </tr>
                         );

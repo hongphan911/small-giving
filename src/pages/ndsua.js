@@ -8,7 +8,11 @@ import {
   FormGroup,
   Input,
   Label,
-  Row,Modal, ModalBody, ModalHeader
+  Row,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Container,
 } from 'reactstrap';
 import NotificationSuccess, {
   notifysuccess,
@@ -16,6 +20,7 @@ import NotificationSuccess, {
 import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
+
 
 const initialState ={
   id:"",
@@ -33,7 +38,6 @@ const initialState ={
   passwordError:"",
   datasua: [],
 };
-
 
 class Nguoidungsua extends React.Component {
   state = initialState;
@@ -74,11 +78,9 @@ class Nguoidungsua extends React.Component {
     if (!this.state.idnhom) {
       idnhomError = 'Không được bỏ trống!';
     }
-    if (!this.state.email){
-        emailError ="Không được bỏ trống!";
-        // emailError: đây là biến này
-
-
+    if (!this.state.email) {
+      emailError = 'Không được bỏ trống!';
+      // emailError: đây là biến này
     }
     if (!this.state.password) {
       passwordError = 'Không được bỏ trống!';
@@ -91,6 +93,7 @@ class Nguoidungsua extends React.Component {
     notifysuccess('this is a notify');
     return true;
   };
+
   handleSubmit = event => {
     event.preventDefault();
     const isValid = this.validate();
@@ -100,11 +103,10 @@ class Nguoidungsua extends React.Component {
       this.setState(initialState);
     }
   };
-  
+
   render() {
     return (
-      <Modal isOpen={this.props.show}
-      >
+      <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
           Sửa thông tin người dùng
         </ModalHeader>
@@ -128,8 +130,9 @@ class Nguoidungsua extends React.Component {
                         </FormGroup>
                         <FormGroup >
                         <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
+
                         <div className="error-text">
-                            {this.state.idnhomError} 
+                          {this.state.idnhomError}
                         </div>
                         <Input 
                         type="select" 
@@ -140,17 +143,21 @@ class Nguoidungsua extends React.Component {
                             idnhom: val.target.value
                           })
                         }}
+
                         >
-                        <option>Cộng tác viên kế toán</option>
-                        <option>Cộng tác viên viết bài</option>
-                        <option>Chủ nhiệm</option>
-                        <option>Nhà hảo tâm</option>
+                          <option>Cộng tác viên kế toán</option>
+                          <option>Cộng tác viên viết bài</option>
+                          <option>Chủ nhiệm</option>
+                          <option>Nhà hảo tâm</option>
                         </Input>
-                        </FormGroup>
-                        <FormGroup >
-                          <Label for="exampleText"> Số điện thoại <span className="red-text">*</span></Label>
-                          <div className="error-text">
-                            {this.state.phoneError} 
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          {' '}
+                          Số điện thoại <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.phoneError}
                         </div>
                           <Input
                             type="phone"
@@ -245,13 +252,16 @@ class Nguoidungsua extends React.Component {
               })}                      
               </CardBody>
             </Card>
-            <div className="center-text-submit">   
-              <Button color="danger" type="submit" pill className="px-4 my-3" >
-              Cập nhật
-            </Button>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Cập nhật
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
             </div>
-        </Form>
-
+          </Form>
         </ModalBody>
       </Modal>
     );
