@@ -26,6 +26,7 @@ class nhomnd extends React.Component {
     showModalThem: false,
     showModalSua: false,
     showModalXoa: false,
+    idNhom:"",
     };
   }
   handleShowModalThem = () => {
@@ -38,9 +39,10 @@ class nhomnd extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = () => {
+  handleShowModalSua = (id) => {
     this.setState({
       showModalSua: true,
+      idNhom:id,
     });
   };
   handleCloseModalSua = () => {
@@ -48,9 +50,10 @@ class nhomnd extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = () => {
+  handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
+      idNhom:id,
     });
   };
   handleCloseModalXoa = () => {
@@ -101,7 +104,7 @@ class nhomnd extends React.Component {
             <Card className="mb-3">
                     <CardBody>
                       <Badge color="danger" pill className=" mb-3 p-2 can-click " 
-                      onClick={this.handleShowModalThem}>>
+                      onClick={this.handleShowModalThem}>
                       + Thêm mới
                       </Badge>                    
                         <Nhomndthem
@@ -126,19 +129,23 @@ class nhomnd extends React.Component {
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em" onClick={this.handleShowModalSua}/>                              
+                            <FaEdit className="can-click " size="1.5em" 
+                            onClick={() => this.handleShowModalSua(Item.idNhom)}/>                              
                                   <Nhomndsua
                                   show={this.state.showModalSua}
                                   onHide={this.handleCloseModalSua}
                                   size="lg"
                                   className={this.props.className}
+                                  chooseId={this.state.idNhom}
                                   />                                  
-                              <MdDelete className="can-click" size="1.5em" onClick={this.handleShowModalXoa}/>                              
+                              <MdDelete className="can-click" size="1.5em" 
+                              onClick={() => this.handleShowModalXoa(Item.idNhom)}/>                              
                                   <Nhomndxoa
                                   show={this.state.showModalXoa}
                                   onHide={this.handleCloseModalXoa}
                                   size="lg"
                                   className={this.props.className}
+                                  chooseId={this.state.idNhom}
                                   />                                 
                             </td>
                           </tr>

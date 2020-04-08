@@ -45,6 +45,28 @@ class Header extends React.Component {
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
     user: [],     
   }; 
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data)=> {
+          this.setState({
+            user: data
+          }, ()=>console.log("data>>", data))
+        })
+    }
+  }
+  
   handleLogout () {
     Cookies.remove('small-giving')
     window.location.reload()
@@ -77,6 +99,7 @@ class Header extends React.Component {
     //const { isNotificationConfirmed } = this.state;
 
     return (
+      
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
           <Button outline onClick={this.handleSidebarControlButton}>
@@ -86,9 +109,11 @@ class Header extends React.Component {
         <Nav navbar>
           <SearchInput />
         </Nav>
+        
 
         <Nav navbar className={bem.e('nav-right')}>
-          <NavItem>
+        {this.state.token !== ""
+          ?<NavItem>
             <NavLink id="Popover2">
               <Avatar
                 onClick={this.toggleUserCardPopover}
@@ -122,8 +147,12 @@ class Header extends React.Component {
                
             </Popover>
           </NavItem>
+          :<NavItem></NavItem>
+          }
         </Nav>
+  
       </Navbar>
+    
     );
   }
 }

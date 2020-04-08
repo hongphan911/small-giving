@@ -25,6 +25,10 @@ const initialState = {
 
 class Nhomndsua extends React.Component {
   state = initialState;
+  componentDidMount= () =>{
+    console.log("check>>>", this.props.chooseId);
+    
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -74,11 +78,11 @@ class Nhomndsua extends React.Component {
                           <Form>
                           <Label for="exampleEmail"> Mã nhóm</Label>
                               <Input
-                              disabled="true"
-                                  type="email"
-                                  name="id"
-                                  value={this.state.id}
-                                  onChange={this.handleChange}
+                                disabled="true"
+                                type="email"
+                                name="id"
+                                value={this.props.chooseId}
+                                
                               />
                           </Form>
                           <Form>
@@ -90,7 +94,11 @@ class Nhomndsua extends React.Component {
                                   type="email"
                                   name="name"
                                   value={this.state.name}
-                                  onChange={this.handleChange}
+                                  onChange={(val) => {
+                                    this.setState({
+                                      name: val.target.value
+                                    })
+                                  }}
                               />
                           </Form>
                       </CardBody>

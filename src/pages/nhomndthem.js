@@ -78,8 +78,7 @@ class Nhomndthem extends React.Component {
                                   disabled="true"
                                   type="email"
                                   name="id"
-                                  value={this.state.id}
-                                  onChange={this.handleChange}
+                                  value={this.state.id}                             
                               />
                           </Form>
                           <Form>
@@ -91,7 +90,11 @@ class Nhomndthem extends React.Component {
                                   type="email"
                                   name="name"
                                   value={this.state.name}
-                                  onChange={this.handleChange}
+                                  onChange={(val) => {
+                                    this.setState({
+                                      name: val.target.value
+                                    })
+                                  }}
                               />
                           </Form>
                       </CardBody>

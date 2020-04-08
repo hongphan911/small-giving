@@ -22,7 +22,7 @@ const initialState ={
   name:"",
   email:"",
   phone:"",
-  sex:"",
+  stk:"",
   dateofbirth:"",
   password:"",
   idnhom:"",
@@ -31,12 +31,29 @@ const initialState ={
   phoneError:"",
   idnhomError:"",
   passwordError:"",
-  
+  datasua: [],
 };
 
 
 class Nguoidungsua extends React.Component {
   state = initialState;
+  componentDidMount= () =>{
+    console.log("check>>>", this.props.chooseId);
+    this.getdatasua();
+  }
+
+  getdatasua = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php')
+      .then(response => response.json())
+      .then(datasua => {
+        this.setState(
+          {
+            datasua: datasua,
+          },
+          () => console.log('kiemtradulieu', this.state.datasua),
+        );
+      });
+  };
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -92,20 +109,21 @@ class Nguoidungsua extends React.Component {
           Sửa thông tin người dùng
         </ModalHeader>
         <ModalBody>
-          <Form onSubmit={this.handleSubmit}>
+          <Form onSubmit={()=>this.handleSubmit()}>
             <Card>
-              <CardBody>                        
+              <CardBody> 
+              {this.state.datasua.map((Item, index) => {
+                          return (                       
                 <Row>                  
                   <Col xl={6} lg={12} md={12}>                    
                       <Form>
                         <FormGroup >
                         <Label for="exampleText"> Mã người dùng</Label>
                             <Input
-                            disabled="true"
+                              disabled="true"
                               type="text"
                               name="id"
-                              value={this.state.id}
-                            onChange={this.handleChange}
+                              value={this.props.chooseId}
                             />
                         </FormGroup>
                         <FormGroup >
@@ -117,7 +135,11 @@ class Nguoidungsua extends React.Component {
                         type="select" 
                         name="idnhom"
                         value={this.state.idnhom}
-                        onChange={this.handleChange}
+                        onChange={(val) => {
+                          this.setState({
+                            idnhom: val.target.value
+                          })
+                        }}
                         >
                         <option>Cộng tác viên kế toán</option>
                         <option>Cộng tác viên viết bài</option>
@@ -134,7 +156,11 @@ class Nguoidungsua extends React.Component {
                             type="phone"
                             name="phone"
                             value={this.state.phone}
-                            onChange={this.handleChange}
+                            onChange={(val) => {
+                              this.setState({
+                                phone: val.target.value
+                              })
+                            }}
                           />
                         </FormGroup>
                         <FormGroup>
@@ -146,7 +172,11 @@ class Nguoidungsua extends React.Component {
                               type="email"
                               name="email"
                               value={this.state.email}
-                                onChange={this.handleChange}
+                              onChange={(val) => {
+                                this.setState({
+                                  email: val.target.value
+                                })
+                              }}
                             />
                         </FormGroup>        
                       </Form>                       
@@ -159,7 +189,11 @@ class Nguoidungsua extends React.Component {
                             type="text"
                             name="name"
                             value={this.state.name}
-                            onChange={this.handleChange}
+                            onChange={(val) => {
+                              this.setState({
+                                name: val.target.value
+                              })
+                            }}
                           />
                         </FormGroup>
                         <FormGroup>
@@ -168,20 +202,25 @@ class Nguoidungsua extends React.Component {
                               type="date"
                               name="dateofbirth"
                               value={this.state.dateofbirth}
-                                onChange={this.handleChange}
+                              onChange={(val) => {
+                                this.setState({
+                                  dateofbirth: val.target.value
+                                })
+                              }}
                             />
                           </FormGroup>                              
                         <FormGroup>
-                            <Label for="exampleSelect">Giới tính</Label>
+                            <Label for="exampleText">Số tài khoản</Label>
                             <Input 
-                            type="select" 
-                            name="sex"
-                            value={this.state.sex}
-                            onChange={this.handleChange}
-                            >
-                              <option>Nam </option>
-                              <option>Nữ</option>
-                            </Input>
+                            type="text" 
+                            name="stk"
+                            value={this.state.stk}
+                            onChange={(val) => {
+                              this.setState({
+                                stk: val.target.value
+                              })
+                            }}
+                            />
                           </FormGroup>
                           <FormGroup>
                             <Label for="exampleText">Password <span className="red-text">*</span></Label>
@@ -192,12 +231,18 @@ class Nguoidungsua extends React.Component {
                               type="text"
                               name="password"
                               value={this.state.password}
-                                onChange={this.handleChange}
+                              onChange={(val) => {
+                                this.setState({
+                                  password: val.target.value
+                                })
+                              }}
                             />
                           </FormGroup>                              
                       </Form>                        
                   </Col>                                           
-                </Row>                       
+                </Row> 
+                );
+              })}                      
               </CardBody>
             </Card>
             <div className="center-text-submit">   

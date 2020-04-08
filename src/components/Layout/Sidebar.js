@@ -117,22 +117,6 @@ class Sidebar extends React.Component {
             </SourceLink>
           </Navbar>
           <Nav vertical>
-            {navItems1.map(({ to, name, exact, Icon }, index) => (
-              <NavItem key={index} className={bem.e('nav-item')}>
-                <BSNavLink
-                  id={`navItem-${name}-${index}`}
-                  className="text-uppercase"
-                  tag={NavLink}
-                  to={to}
-                  activeClassName="active"
-                  exact={exact}
-                >
-                  <Icon className={bem.e('nav-item-icon')} />
-                  <span className="">{name}</span>
-                </BSNavLink>
-              </NavItem>
-            ))}
-
             <NavItem
               className={bem.e('nav-item')}
               onClick={this.handleClick('taikhoan')}

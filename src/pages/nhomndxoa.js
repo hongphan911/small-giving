@@ -10,7 +10,7 @@ class Nhomndxoa extends React.Component {
         </ModalHeader>
         <ModalBody>
           <Card>
-          <CardBody> <p>Bạn có chắc chắn muốn xóa nhóm người dùng này ?</p> </CardBody>
+          <CardBody> <p>Bạn có chắc chắn muốn xóa nhóm người dùng này ? </p> </CardBody>
           <Button color="danger" pill className="px-4 my-3" >
           Xóa
         </Button></Card>
