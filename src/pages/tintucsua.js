@@ -96,8 +96,8 @@ class Tintucsua extends React.Component {
                           disabled="true"
                           type="text"
                           name="id"
-                          value={this.state.id}
-                          onChange={this.handleChange}
+                          value={this.props.chooseId}
+                          
                         />
                       </FormGroup>
                       <FormGroup>
@@ -109,7 +109,11 @@ class Tintucsua extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              name: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -123,7 +127,11 @@ class Tintucsua extends React.Component {
                           type="select"
                           name="idhoatdong"
                           value={this.state.idhoatdong}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              idhoatdong: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                     </Form>
@@ -136,7 +144,11 @@ class Tintucsua extends React.Component {
                           type="file"
                           name="image"
                           value={this.state.image}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              image: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -145,7 +157,11 @@ class Tintucsua extends React.Component {
                           type="text"
                           name="title"
                           value={this.state.title}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              title: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -156,8 +172,16 @@ class Tintucsua extends React.Component {
                           type="select"
                           name="receiver"
                           value={this.state.receiver}
-                          onChange={this.handleChange}
-                        />
+                          onChange={(val) => {
+                            this.setState({
+                              receiver: val.target.value
+                            })
+                          }}
+                        >
+                          <option>Tất cả mọi người</option>
+                          <option>Người quyên góp cho hoạt động</option>
+                          <option>người đăng kí nhận thông báo</option>
+                          </Input>
                       </FormGroup>
                     </Form>
                   </Col>
@@ -173,7 +197,11 @@ class Tintucsua extends React.Component {
                         type="textarea"
                         name="content"
                         value={this.state.content}
-                        onChange={this.handleChange}
+                        onChange={(val) => {
+                          this.setState({
+                            content: val.target.value
+                          })
+                        }}
                       />
                     </Form>
                   </Col>

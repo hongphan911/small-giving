@@ -36,28 +36,53 @@ const initialState ={
   phoneError:"",
   idnhomError:"",
   passwordError:"",
-  datasua: [],
+  dataselect: [],
+  datashow:[],
+  idND: ""
 };
 
 class Nguoidungsua extends React.Component {
   state = initialState;
-  componentDidMount= () =>{
+  componentWillReceiveProps= () =>{
     console.log("check>>>", this.props.chooseId);
-    this.getdatasua();
+    this.getdataselect();
+    this.getdatashow();
+    this.setState({
+        idND: this.props.chooseId
+    })
   }
-
-  getdatasua = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php')
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiDung: this.state.idND,
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/select.php', config )
       .then(response => response.json())
-      .then(datasua => {
+      .then(datashow => {
         this.setState(
           {
-            datasua: datasua,
+            datashow: datashow,
           },
-          () => console.log('kiemtradulieu', this.state.datasua),
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
+  getdataselect = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+      .then((response) => response.json())
+      .then((dataselect) => {
+        this.setState({
+          dataselect: dataselect,
+        }, () => console.log('kiemtradulieu', this.state.dataselect),
+
         );
       });
   };
+  
+
+  
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -111,10 +136,13 @@ class Nguoidungsua extends React.Component {
           Sửa thông tin người dùng
         </ModalHeader>
         <ModalBody>
-          <Form onSubmit={()=>this.handleSubmit()}>
+        
+          <Form onSubmit={()=>this.handleSubmit()}
+          isOpen={()=> this.getdatashow()}
+          >
             <Card>
-              <CardBody> 
-              {this.state.datasua.map((Item, index) => {
+              <CardBody>
+              {this.state.datashow.map((item, index) => {
                           return (                       
                 <Row>                  
                   <Col xl={6} lg={12} md={12}>                    
@@ -137,24 +165,21 @@ class Nguoidungsua extends React.Component {
                         <Input 
                         type="select" 
                         name="idnhom"
-                        value={this.state.idnhom}
+                        value={item.idNhom}
                         onChange={(val) => {
                           this.setState({
                             idnhom: val.target.value
                           })
                         }}
-
-                        >
-                          <option>Cộng tác viên kế toán</option>
-                          <option>Cộng tác viên viết bài</option>
-                          <option>Chủ nhiệm</option>
-                          <option>Nhà hảo tâm</option>
+                        >{this.state.dataselect.map((Item, index) => {
+                          return (
+                          <option>{Item.TenNhom}</option>
+                          );
+                        })}
                         </Input>
                       </FormGroup>
                       <FormGroup>
-                        <Label for="exampleText">
-                          {' '}
-                          Số điện thoại <span className="red-text">*</span>
+                        <Label for="exampleText">{' '}Số điện thoại <span className="red-text">*</span>
                         </Label>
                         <div className="error-text">
                           {this.state.phoneError}
@@ -162,7 +187,7 @@ class Nguoidungsua extends React.Component {
                           <Input
                             type="phone"
                             name="phone"
-                            value={this.state.phone}
+                            value={item.SDT}
                             onChange={(val) => {
                               this.setState({
                                 phone: val.target.value
@@ -178,7 +203,7 @@ class Nguoidungsua extends React.Component {
                             <Input
                               type="email"
                               name="email"
-                              value={this.state.email}
+                              value={item.Email}
                               onChange={(val) => {
                                 this.setState({
                                   email: val.target.value
@@ -195,7 +220,7 @@ class Nguoidungsua extends React.Component {
                           <Input
                             type="text"
                             name="name"
-                            value={this.state.name}
+                            value={item.TenNguoiDung}
                             onChange={(val) => {
                               this.setState({
                                 name: val.target.value
@@ -208,7 +233,7 @@ class Nguoidungsua extends React.Component {
                             <Input
                               type="date"
                               name="dateofbirth"
-                              value={this.state.dateofbirth}
+                              value={item.NgaySinh}
                               onChange={(val) => {
                                 this.setState({
                                   dateofbirth: val.target.value
@@ -221,7 +246,7 @@ class Nguoidungsua extends React.Component {
                             <Input 
                             type="text" 
                             name="stk"
-                            value={this.state.stk}
+                            value={item.STK}
                             onChange={(val) => {
                               this.setState({
                                 stk: val.target.value
@@ -237,7 +262,7 @@ class Nguoidungsua extends React.Component {
                             <Input
                               type="text"
                               name="password"
-                              value={this.state.password}
+                              value={item.MatKhau}
                               onChange={(val) => {
                                 this.setState({
                                   password: val.target.value
@@ -247,14 +272,17 @@ class Nguoidungsua extends React.Component {
                           </FormGroup>                              
                       </Form>                        
                   </Col>                                           
-                </Row> 
+                </Row>
                 );
               })}                      
               </CardBody>
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit" pill 
+                className="px-4 my-3"
+                //onClick={() => this.handleUpdate()}
+                >
                   Cập nhật
                 </Button>
                 <NotificationSuccess />
@@ -262,6 +290,7 @@ class Nguoidungsua extends React.Component {
               </Container>
             </div>
           </Form>
+          
         </ModalBody>
       </Modal>
     );

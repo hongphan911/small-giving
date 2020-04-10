@@ -101,8 +101,8 @@ class Hoatdongsua extends React.Component {
                           disabled="true"
                           type="text"
                           name="id"
-                          value={this.state.id}
-                          onChange={this.handleChange}
+                          value={this.props.chooseId}
+                          
                         />
                       </FormGroup>
                       <FormGroup>
@@ -111,7 +111,11 @@ class Hoatdongsua extends React.Component {
                           type="date"
                           name="startdate"
                           value={this.state.startdate}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              startdate: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -120,7 +124,11 @@ class Hoatdongsua extends React.Component {
                           type="text"
                           name="address"
                           value={this.state.address}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              address: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                     </Form>
@@ -136,7 +144,11 @@ class Hoatdongsua extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              name: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
 
@@ -146,7 +158,11 @@ class Hoatdongsua extends React.Component {
                           type="date"
                           name="enddate"
                           value={this.state.enddate}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              enddate: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
 
@@ -162,7 +178,11 @@ class Hoatdongsua extends React.Component {
                           type="number"
                           name="total"
                           value={this.state.total}
-                          onChange={this.handleChange}
+                          onChange={(val) => {
+                            this.setState({
+                              total: val.target.value
+                            })
+                          }}
                         />
                       </FormGroup>
                     </Form>
@@ -178,7 +198,11 @@ class Hoatdongsua extends React.Component {
                         type="file"
                         name="image"
                         value={this.state.image}
-                        onChange={this.handleChange}
+                        onChange={(val) => {
+                          this.setState({
+                            image: val.target.value
+                          })
+                        }}
                       />
                     </Form>
                     <Form>
@@ -192,7 +216,11 @@ class Hoatdongsua extends React.Component {
                         type="textarea"
                         name="content"
                         value={this.state.content}
-                        onChange={this.handleChange}
+                        onChange={(val) => {
+                          this.setState({
+                            content: val.target.value
+                          })
+                        }}
                       />
                     </Form>
                   </Col>

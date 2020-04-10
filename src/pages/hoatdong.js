@@ -17,6 +17,7 @@ class hoatdong extends React.Component {
       showModalSua: false,
       showModalXoa: false,
       showModalXem: false,
+      idHoatDong: "",
     };
   }
   handleShowModalThem = () => {
@@ -29,9 +30,10 @@ class hoatdong extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = () => {
+  handleShowModalSua = (id) => {
     this.setState({
       showModalSua: true,
+      idHoatDong:id,
     });
   };
   handleCloseModalSua = () => {
@@ -39,9 +41,10 @@ class hoatdong extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = () => {
+  handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
+      idHoatDong:id,
     });
   };
   handleCloseModalXoa = () => {
@@ -49,9 +52,10 @@ class hoatdong extends React.Component {
       showModalXoa: false,
     });
   };
-  handleShowModalXem = () => {
+  handleShowModalXem = (id) => {
     this.setState({
       showModalXem: true,
+      idHoatDong:id,
     });
   };
   handleCloseModalXem = () => {
@@ -105,34 +109,37 @@ class hoatdong extends React.Component {
                 <CardBody>
                   <Hoatdongthem
                     show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
+                    onHide={() => this.handleCloseModalThem ()}
                     size="lg"
                     className={this.props.className}
                   />
                   <Hoatdongsua
                     show={this.state.showModalSua}
-                    onHide={this.handleCloseModalSua}
+                    onHide={() => this.handleCloseModalSua()}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idHoatDong}
                   />
                   <Hoatdongxoa
                     show={this.state.showModalXoa}
-                    onHide={this.handleCloseModalXoa}
+                    onHide={() => this.handleCloseModalXoa ()}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idHoatDong}
                   />
                   <Xemdk
                     show={this.state.showModalXem}
-                    onHide={this.handleCloseModalXem}
+                    onHide={() => this.handleCloseModalXem ()}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idHoatDong}
                   />
 
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.handleShowModalThem}
+                    onClick={() => this.handleShowModalThem ()}
                   >
                     + Thêm mới
                   </Badge>
@@ -163,7 +170,7 @@ class hoatdong extends React.Component {
                               <Button
                                 color="link"
                                 className="can-click"
-                                onClick={this.handleShowModalXem}
+                                onClick={() => this.handleShowModalXem(Item.idHoatDong)}
                               >
                                 Xem
                               </Button>
@@ -172,12 +179,12 @@ class hoatdong extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.handleShowModalSua}
+                                onClick={() => this.handleShowModalSua(Item.idHoatDong)}
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.handleShowModalXoa}
+                                onClick={() => this.handleShowModalXoa(Item.idHoatDong)}
                               />
                             </td>
                           </tr>

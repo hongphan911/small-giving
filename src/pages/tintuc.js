@@ -15,6 +15,7 @@ class tintuc extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
+      idTin:"",
     };
   }
   handleShowModalThem = () => {
@@ -27,9 +28,10 @@ class tintuc extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = () => {
+  handleShowModalSua = (id) => {
     this.setState({
       showModalSua: true,
+      idTin:id,
     });
   };
   handleCloseModalSua = () => {
@@ -37,9 +39,10 @@ class tintuc extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = () => {
+  handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
+      idTin:id,
     });
   };
   handleCloseModalXoa = () => {
@@ -91,27 +94,29 @@ class tintuc extends React.Component {
                 <CardBody>
                   <Tintucthem
                     show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
+                    onHide={() => this.handleCloseModalThem()}
                     size="lg"
                     className={this.props.className}
                   />
                   <Tintucsua
                     show={this.state.showModalSua}
-                    onHide={this.handleCloseModalSua}
+                    onHide={() => this.handleCloseModalSua()}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idTin}
                   />
                   <Tintucxoa
                     show={this.state.showModalXoa}
-                    onHide={this.handleCloseModalXoa}
+                    onHide={() => this.handleCloseModalXoa()}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idTin}
                   />
                   <Badge
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.handleShowModalThem}
+                    onClick={() => this.handleShowModalThem()}
                   >
                     + Thêm mới
                   </Badge>
@@ -135,13 +140,13 @@ class tintuc extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.handleShowModalSua}
+                                onClick={() => this.handleShowModalSua(Item.idTin)}
                               />
 
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.handleShowModalXoa}
+                                onClick={() => this.handleShowModalXoa(Item.idTin)}
                               />
                             </td>
                           </tr>

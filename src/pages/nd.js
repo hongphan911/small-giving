@@ -17,12 +17,14 @@ class nd extends React.Component {
       showModalSua: false,
       showModalXoa: false,
       idNguoiDung: "",
+
     };
   }
+
   handleShowModalThem = () => {
     this.setState({
       showModalThem: true,
-      
+
     });
   };
   handleCloseModalThem = () => {
@@ -32,9 +34,11 @@ class nd extends React.Component {
   };
   handleShowModalSua = (id) => {
     this.setState({
+      idNguoiDung: id,
       showModalSua: true,
-      idNguoiDung:id,
+
     });
+
   };
   handleCloseModalSua = () => {
     this.setState({
@@ -44,7 +48,7 @@ class nd extends React.Component {
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idNguoiDung:id,
+      idNguoiDung: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -54,6 +58,7 @@ class nd extends React.Component {
   };
   componentDidMount() {
     this.getdata();
+
   }
 
   getdata = async () => {
@@ -89,40 +94,38 @@ class nd extends React.Component {
           { name: 'người dùng', active: true },
         ]}
       >
-      {tableTypes.map((tableType, index) => (
-        <Row key={index}>
-          <Col>
-            <Card className="mb-3">
-                    <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click" 
-                      onClick={() => this.handleShowModalThem()}>
-                      + Thêm mới
-                      </Badge>                                  
-                    <Nguoidungthem
+        {tableTypes.map((tableType, index) => (
+          <Row key={index}>
+            <Col>
+              <Card className="mb-3">
+                <CardBody>
+                  <Badge color="danger" pill className=" mb-3 p-2 can-click"
+                    onClick={() => this.handleShowModalThem()}>
+                    + Thêm mới
+                      </Badge>
+                  <Nguoidungthem
 
                     show={this.state.showModalThem}
-                    onHide={() =>this.handleCloseModalThem()}
+                    onHide={() => this.handleCloseModalThem()}
                     size="lg"
                     className={this.props.className}
-                    
-                    />                                   
-                      <Table {...{ [tableType || 'hover']: true }}>
-                        <thead>
-                          <tr className="table-danger">
-                            <th>ID</th>                                                       
-                            <th>Tên người dùng</th>
-                            <th>SĐT</th>
-                            <th>Email</th>
-                            <th>Mật khẩu</th>
-                            <th> Số dư TK</th>
-                            <th> Huy hiệu</th>
-                            <th>Tác vụ</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map((Item, index) => {
-                          return (
 
+                  />
+                  <Table {...{ [tableType || 'hover']: true }}>
+                    <thead>
+                      <tr className="table-danger">
+                        <th>ID</th>
+                        <th>Tên người dùng</th>
+                        <th>SĐT</th>
+                        <th>Email</th>
+                        <th>Mật khẩu</th>
+                        <th> Số dư TK</th>
+                        <th> Huy hiệu</th>
+                        <th>Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.data.map((Item, index) => (
                           <tr>
                             <td>{Item.idNguoiDung}</td>
                             <td>{Item.TenNguoiDung}</td>
@@ -132,29 +135,33 @@ class nd extends React.Component {
                             <td>{Item.SoDuTK}</td>
                             <td>{Item.HuyHieu}</td>
                             <td>
-                            <FaEdit className="can-click" size="1.5em" 
-                            onClick={() => this.handleShowModalSua(Item.idNguoiDung)}/>
-                                  <Nguoidungsua
-                                  show={this.state.showModalSua}
-                                  onHide={()=>this.handleCloseModalSua()}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNguoiDung}
-                                  />                                 
-                              <MdDelete className="can-click" size="1.5em" 
-                              onClick={() => this.handleShowModalXoa(Item.idNguoiDung)}/> 
-                                  <Nguoidungxoa
-                                  show={this.state.showModalXoa}
-                                  onHide={() =>this.handleCloseModalXoa()}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNguoiDung}
-                                  />                                  
+                              <button onClick={() => this.handleShowModalSua(Item.idNguoiDung)}>
+                                <FaEdit size="1.5em"
+                                />
+                              </button>
+
+                              <Nguoidungsua
+                                show={this.state.showModalSua}
+                                onHide={() => this.handleCloseModalSua()}
+                                size="lg"
+                                className={this.props.className}
+                                chooseId={this.state.idNguoiDung}
+
+                              />
+                              <MdDelete className="can-click" size="1.5em"
+                                onClick={() => this.handleShowModalXoa(Item.idNguoiDung)} />
+                              <Nguoidungxoa
+                                show={this.state.showModalXoa}
+                                onHide={() => this.handleCloseModalXoa()}
+                                size="lg"
+                                className={this.props.className}
+                                chooseId={this.state.idNguoiDung}
+                              />
 
                             </td>
                           </tr>
-                        );
-                      })}
+                        )
+                      )}
                     </tbody>
                   </Table>
                 </CardBody>
