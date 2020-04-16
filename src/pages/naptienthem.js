@@ -128,7 +128,7 @@ class Naptienthem extends React.Component {
                             onChange={this.handleChange}
                           >
                             {this.state.dataselect.map(Item => {
-                              return <option>{Item.TenNguoiDung}</option>;
+                              return <option>{Item.SDT}</option>;
                             })}
                           </Input>
                         </Col>

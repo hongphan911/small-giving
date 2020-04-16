@@ -20,6 +20,12 @@ class hoatdong extends React.Component {
       idHoatDong: "",
     };
   }
+  componentDidUpdate(preProps, preState, future) {
+    const { idHoatDong } = this.state;
+    if (preState.idHoatDong != idHoatDong) {
+      this.handleShowModalSua(idHoatDong);
+    }
+  }
   handleShowModalThem = () => {
     this.setState({
       showModalThem: true,
@@ -33,7 +39,7 @@ class hoatdong extends React.Component {
   handleShowModalSua = (id) => {
     this.setState({
       showModalSua: true,
-      idHoatDong:id,
+      idHoatDong: id,
     });
   };
   handleCloseModalSua = () => {
@@ -44,7 +50,7 @@ class hoatdong extends React.Component {
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idHoatDong:id,
+      idHoatDong: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -55,7 +61,7 @@ class hoatdong extends React.Component {
   handleShowModalXem = (id) => {
     this.setState({
       showModalXem: true,
-      idHoatDong:id,
+      idHoatDong: id,
     });
   };
   handleCloseModalXem = () => {
@@ -109,7 +115,7 @@ class hoatdong extends React.Component {
                 <CardBody>
                   <Hoatdongthem
                     show={this.state.showModalThem}
-                    onHide={() => this.handleCloseModalThem ()}
+                    onHide={() => this.handleCloseModalThem()}
                     size="lg"
                     className={this.props.className}
                   />
@@ -122,14 +128,14 @@ class hoatdong extends React.Component {
                   />
                   <Hoatdongxoa
                     show={this.state.showModalXoa}
-                    onHide={() => this.handleCloseModalXoa ()}
+                    onHide={() => this.handleCloseModalXoa()}
                     size="lg"
                     className={this.props.className}
                     chooseId={this.state.idHoatDong}
                   />
                   <Xemdk
                     show={this.state.showModalXem}
-                    onHide={() => this.handleCloseModalXem ()}
+                    onHide={() => this.handleCloseModalXem()}
                     size="lg"
                     className={this.props.className}
                     chooseId={this.state.idHoatDong}
@@ -139,7 +145,7 @@ class hoatdong extends React.Component {
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={() => this.handleShowModalThem ()}
+                    onClick={() => this.handleShowModalThem()}
                   >
                     + Thêm mới
                   </Badge>

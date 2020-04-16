@@ -38,24 +38,24 @@ class naptien extends React.Component {
         );
       });
   };
-  // toggle = modalType => () => {
-  //   if (!modalType) {
-  //     return this.setState({
-  //       modal: !this.state.modal,
-  //     });
-  //   }
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
 
-  //   this.setState({
-  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-  //   });
-  // };
+    this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+    });
+  };
   render() {
     return (
       <Page
         className="naptien"
         title="Nạp tiền"
         breadcrumbs={[
-          { name: 'quản trị luồng quyên góp' },
+          { name: 'quản trị giao dịch' },
           { name: 'nạp tiền', active: true },
         ]}
       >

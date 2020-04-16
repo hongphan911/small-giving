@@ -65,10 +65,10 @@ class chuyentien extends React.Component {
     return (
       <Page
         className="chuyentien"
-        title="Chuyển tiền"
+        title="Khảo sát"
         breadcrumbs={[
-          { name: 'quản trị luồng quyên góp' },
-          { name: 'chuyển tiền', active: true },
+          { name: 'quản trị giao dịch' },
+          { name: 'Khảo sát', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -76,20 +76,7 @@ class chuyentien extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-                  <Chuyentienthem
-                    show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
-                    size="lg"
-                    className={this.props.className}
-                  />
-                  <Badge
-                    color="danger"
-                    pill
-                    className=" mb-3 p-2 can-click"
-                    onClick={this.handleShowModalThem}
-                  >
-                    + Thêm mới
-                  </Badge>
+
                   <Table {...{ [tableType || 'default']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -98,6 +85,7 @@ class chuyentien extends React.Component {
                         <th>Tài khoản đích</th>
                         <th>Thời gian</th>
                         <th>Số tiền</th>
+                        <th>Tác vụ</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -109,6 +97,37 @@ class chuyentien extends React.Component {
                             <td>{Item.TenNguoiDung}</td>
                             <td>{Item.ThoiGian}</td>
                             <td>{Item.SoTien}</td>
+                            <td>
+                              <Chuyentienthem
+                                show={this.state.showModalThem}
+                                onHide={this.handleCloseModalThem}
+                                size="lg"
+                                className={this.props.className}
+                              />
+                              <Badge
+                                color="danger"
+                                pill
+                                className=" mb-3 p-2 can-click oke"
+                              //onClick={this.handleShowModalThem}
+                              >
+                                Chấp nhận
+                              </Badge>
+                              <Chuyentienthem
+                                show={this.state.showModalThem}
+                                onHide={this.handleCloseModalThem}
+                                size="lg"
+                                className={this.props.className}
+                              />
+                              <Badge
+                                color="danger"
+                                pill
+                                className=" mb-3 p-2 can-click"
+                              //onClick={this.handleShowModalThem}
+                              >
+                                Hủy bỏ
+                              </Badge>
+
+                            </td>
                           </tr>
                         );
                       })}

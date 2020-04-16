@@ -39,6 +39,36 @@ const initialState = {
 
 class Hoatdongsua extends React.Component {
   state = initialState;
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+
+  }
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.props.chooseId,
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/danhsachhoatdong/select.php', config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            id: datashow.idHoatDong,
+            name: datashow.TenHoatDong,
+            startdate: datashow.ThoiGianBD,
+            enddate: datashow.ThoiGianKT,
+            //image: datashow.Anh,
+            content: datashow.NoiDung,
+            address: datashow.DiaChi,
+            total: datashow.ChiDK,
+          },
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -101,8 +131,8 @@ class Hoatdongsua extends React.Component {
                           disabled="true"
                           type="text"
                           name="id"
-                          value={this.props.chooseId}
-                          
+                          value={this.state.id}
+
                         />
                       </FormGroup>
                       <FormGroup>

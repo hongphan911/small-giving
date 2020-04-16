@@ -12,13 +12,19 @@ class nhomnd extends React.Component {
     super(props);
     this.state = {
       data: [],
-    modal_nested: false,    
-    showModalThem: false,
-    showModalSua: false,
-    showModalXoa: false,
-    idNhom:"",
+      modal_nested: false,
+      showModalThem: false,
+      showModalSua: false,
+      showModalXoa: false,
+      idNhom: "",
 
     };
+  }
+  componentDidUpdate(preProps, preState, future) {
+    const { idNhom } = this.state;
+    if (preState.idNhom != idNhom) {
+      this.handleShowModalSua(idNhom);
+    }
   }
   handleShowModalThem = () => {
     this.setState({
@@ -32,8 +38,9 @@ class nhomnd extends React.Component {
   };
   handleShowModalSua = (id) => {
     this.setState({
+      idNhom: id,
       showModalSua: true,
-      idNhom:id,
+
     });
   };
   handleCloseModalSua = () => {
@@ -44,7 +51,7 @@ class nhomnd extends React.Component {
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idNhom:id,
+      idNhom: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -89,55 +96,55 @@ class nhomnd extends React.Component {
           { name: 'nhóm người dùng', active: true },
         ]}
       >
-      {tableTypes.map((tableType, index) => (
-        <Row key={index}>
-          <Col>
-            <Card className="mb-3">
-                    <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click " 
-                      onClick={this.handleShowModalThem}>
-                      + Thêm mới
-                      </Badge>                    
-                        <Nhomndthem
-                        show={this.state.showModalThem}
-                        onHide={this.handleCloseModalThem}
-                        size="lg"
-                        className={this.props.className}
-                        />
-                      <Table {...{ [tableType || 'hover']: true }}>
-                        <thead>
-                          <tr className="table-danger">
-                            
-                            <th>Mã nhóm</th>
-                            <th>Tên nhóm</th>
-                            <th>Tác vụ</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map((Item, index) => {
-                          return (
+        {tableTypes.map((tableType, index) => (
+          <Row key={index}>
+            <Col>
+              <Card className="mb-3">
+                <CardBody>
+                  <Badge color="danger" pill className=" mb-3 p-2 can-click "
+                    onClick={this.handleShowModalThem}>
+                    + Thêm mới
+                      </Badge>
+                  <Nhomndthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
+                    size="lg"
+                    className={this.props.className}
+                  />
+                  <Table {...{ [tableType || 'hover']: true }}>
+                    <thead>
+                      <tr className="table-danger">
+
+                        <th>Mã nhóm</th>
+                        <th>Tên nhóm</th>
+                        <th>Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.data.map((Item, index) => {
+                        return (
                           <tr>
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em" 
-                            onClick={() => this.handleShowModalSua(Item.idNhom)}/>                              
-                                  <Nhomndsua
-                                  show={this.state.showModalSua}
-                                  onHide={this.handleCloseModalSua}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNhom}
-                                  />                                  
-                              <MdDelete className="can-click" size="1.5em" 
-                              onClick={() => this.handleShowModalXoa(Item.idNhom)}/>                              
-                                  <Nhomndxoa
-                                  show={this.state.showModalXoa}
-                                  onHide={this.handleCloseModalXoa}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNhom}
-                                  />                                 
+                              <FaEdit className="can-click " size="1.5em"
+                                onClick={() => this.handleShowModalSua(Item.idNhom)} />
+                              <Nhomndsua
+                                show={this.state.showModalSua}
+                                onHide={this.handleCloseModalSua}
+                                size="lg"
+                                className={this.props.className}
+                                chooseId={this.state.idNhom}
+                              />
+                              <MdDelete className="can-click" size="1.5em"
+                                onClick={() => this.handleShowModalXoa(Item.idNhom)} />
+                              <Nhomndxoa
+                                show={this.state.showModalXoa}
+                                onHide={this.handleCloseModalXoa}
+                                size="lg"
+                                className={this.props.className}
+                                chooseId={this.state.idNhom}
+                              />
                             </td>
                           </tr>
                         );
