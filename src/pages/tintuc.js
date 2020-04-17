@@ -15,6 +15,7 @@ class tintuc extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
+      idTin:"",
     };
   }
   handleShowModalThem = () => {
@@ -27,10 +28,17 @@ class tintuc extends React.Component {
       showModalThem: false,
     });
   };
+<<<<<<< HEAD
   handleShowModalSua = id => {
     this.setState({
       showModalSua: true,
       idTin: id,
+=======
+  handleShowModalSua = (id) => {
+    this.setState({
+      showModalSua: true,
+      idTin:id,
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalSua = () => {
@@ -38,10 +46,17 @@ class tintuc extends React.Component {
       showModalSua: false,
     });
   };
+<<<<<<< HEAD
   handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
       idTin: id,
+=======
+  handleShowModalXoa = (id) => {
+    this.setState({
+      showModalXoa: true,
+      idTin:id,
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalXoa = () => {
@@ -82,20 +97,20 @@ class tintuc extends React.Component {
                 <CardBody>
                   <Tintucthem
                     show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
+                    onHide={() => this.handleCloseModalThem()}
                     size="lg"
                     className={this.props.className}
                   />
                   <Tintucsua
                     show={this.state.showModalSua}
-                    onHide={this.handleCloseModalSua}
+                    onHide={() => this.handleCloseModalSua()}
                     size="lg"
                     className={this.props.className}
                     chooseId={this.state.idTin}
                   />
                   <Tintucxoa
                     show={this.state.showModalXoa}
-                    onHide={this.handleCloseModalXoa}
+                    onHide={() => this.handleCloseModalXoa()}
                     size="lg"
                     className={this.props.className}
                     chooseId={this.state.idTin}
@@ -104,7 +119,7 @@ class tintuc extends React.Component {
                     color="danger"
                     pill
                     className=" mb-3 p-2 can-click"
-                    onClick={this.handleShowModalThem}
+                    onClick={() => this.handleShowModalThem()}
                   >
                     + Thêm mới
                   </Badge>
@@ -128,17 +143,25 @@ class tintuc extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
+<<<<<<< HEAD
                                 onClick={() =>
                                   this.handleShowModalSua(Item.idTin)
                                 }
+=======
+                                onClick={() => this.handleShowModalSua(Item.idTin)}
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                               />
 
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
+<<<<<<< HEAD
                                 onClick={() =>
                                   this.handleShowModalXoa(Item.idTin)
                                 }
+=======
+                                onClick={() => this.handleShowModalXoa(Item.idTin)}
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                               />
                             </td>
                           </tr>

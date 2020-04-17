@@ -127,7 +127,7 @@ class Naptienthem extends React.Component {
                             }}
                           >
                             {this.state.dataselect.map(Item => {
-                              return <option>{Item.TenNguoiDung}</option>;
+                              return <option>{Item.SDT}</option>;
                             })}
                           </Input>
                         </Col>

@@ -19,9 +19,19 @@ class nd extends React.Component {
       idNguoiDung: '',
     };
   }
+  componentDidUpdate(preProps, preState, future) {
+    const { idNguoiDung } = this.state;
+    if (preState.idNguoiDung != idNguoiDung) {
+      this.handleShowModalSua(idNguoiDung);
+    }
+  }
   handleShowModalThem = () => {
     this.setState({
       showModalThem: true,
+<<<<<<< HEAD
+=======
+
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalThem = () => {
@@ -31,8 +41,12 @@ class nd extends React.Component {
   };
   handleShowModalSua = id => {
     this.setState({
-      showModalSua: true,
       idNguoiDung: id,
+      showModalSua: true,
+<<<<<<< HEAD
+      idNguoiDung: id,
+=======
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalSua = () => {
@@ -54,7 +68,6 @@ class nd extends React.Component {
   componentDidMount() {
     this.getdata();
   }
-
   getdata = async () => {
     fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
       .then(response => response.json())
@@ -67,17 +80,17 @@ class nd extends React.Component {
         );
       });
   };
-  // toggle = modalType => () => {
-  //   if (!modalType) {
-  //     return this.setState({
-  //       modal: !this.state.modal,
-  //     });
-  //   }
+  toggle = modalType => () => {
+    if (!modalType) {
+      return this.setState({
+        modal: !this.state.modal,
+      });
+    }
 
-  //   this.setState({
-  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-  //   });
-  // };
+    this.setState({
+      [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
+    });
+  };
   render() {
     return (
       <Page
@@ -93,6 +106,7 @@ class nd extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
+<<<<<<< HEAD
                   <Nguoidungthem
                     show={this.state.showModalThem}
                     onHide={this.handleCloseModalThem}
@@ -120,6 +134,9 @@ class nd extends React.Component {
                   >
                     + Thêm mới
                   </Badge>
+=======
+
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -134,6 +151,7 @@ class nd extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
+<<<<<<< HEAD
                       {this.state.data.map((Item, index) => {
                         return (
                           <tr>
@@ -164,6 +182,44 @@ class nd extends React.Component {
                           </tr>
                         );
                       })}
+=======
+                      {this.state.data.map((Item, index) => (
+                        <tr>
+                          <td>{Item.idNguoiDung}</td>
+                          <td>{Item.TenNguoiDung}</td>
+                          <td>{Item.SDT}</td>
+                          <td>{Item.Email}</td>
+                          <td>{Item.MatKhau}</td>
+                          <td>{Item.SoDuTK}</td>
+                          <td>{Item.HuyHieu}</td>
+                          <td>
+
+                            <FaEdit className="can-click" size="1.5em"
+                              onClick={() => this.handleShowModalSua(Item.idNguoiDung)}
+                            />
+                            <Nguoidungsua
+                              show={this.state.showModalSua}
+                              onHide={() => this.handleCloseModalSua()}
+                              size="lg"
+                              className={this.props.className}
+                              chooseId={this.state.idNguoiDung}
+                            />
+                            <MdDelete className="can-click" size="1.5em"
+                              onClick={() => this.handleShowModalXoa(Item.idNguoiDung)}
+                            />
+                            <Nguoidungxoa
+                              show={this.state.showModalXoa}
+                              onHide={() => this.handleCloseModalXoa()}
+                              size="lg"
+                              className={this.props.className}
+                              chooseId={this.state.idNguoiDung}
+                            />
+
+                          </td>
+                        </tr>
+                      )
+                      )}
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                     </tbody>
                   </Table>
                 </CardBody>

@@ -29,6 +29,31 @@ const initialState = {
 
 class Nhomndthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getdatainsert();
+  }
+  getdatainsert() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        TenNhom: this.state.name,
+      }),
+    };
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+          notifydefeat('this is a notify');
+
+
+        }
+      });
+  }
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -46,10 +71,10 @@ class Nhomndthem extends React.Component {
 
     if (nameError) {
       this.setState({ nameError });
-      notifydefeat('this is a notify');
+
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -70,6 +95,10 @@ class Nhomndthem extends React.Component {
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
             <Row>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
               <Col md={12}>
                 <Card>
                   <CardBody>
@@ -83,18 +112,32 @@ class Nhomndthem extends React.Component {
                       />
                     </Form>
                     <Form>
+<<<<<<< HEAD
                       <Label for="exampleEmail">
                         Tên nhóm <span className="red-text">*</span>{' '}
                       </Label>
                       <div className="error-text">{this.state.nameError}</div>
+=======
+                      <Label for="exampleEmail">Tên nhóm <span className="red-text">*</span> </Label>
+                      <div className="error-text">
+                        {this.state.nameError}
+                      </div>
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                       <Input
                         type="email"
                         name="name"
                         value={this.state.name}
+<<<<<<< HEAD
                         onChange={val => {
                           this.setState({
                             name: val.target.value,
                           });
+=======
+                        onChange={(val) => {
+                          this.setState({
+                            name: val.target.value
+                          })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         }}
                       />
                     </Form>
@@ -104,12 +147,25 @@ class Nhomndthem extends React.Component {
             </Row>
             <div className="center-text-submit">
               <Container>
+<<<<<<< HEAD
                 <Button color="danger" type="submit" pill className="px-4 my-3">
                   Lưu
                 </Button>
                 <NotificationSuccess />
                 <NotificationDefeat />
               </Container>
+=======
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
+                  Lưu
+                  </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
             </div>
           </Form>
         </ModalBody>

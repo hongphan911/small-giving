@@ -2,15 +2,16 @@ import logo200Image from 'assets/img/logo/Anh cut.png';
 import sidebarBgImage from 'assets/img/sidebar/sidebar-6.jpg';
 import SourceLink from 'components/SourceLink';
 import React from 'react';
-import { 
-  FaUserAlt, 
-  FaClipboardList, 
-  FaRegNewspaper, 
-  FaRegMoneyBillAlt, 
-  FaTable } 
+import {
+  FaUserAlt,
+  FaClipboardList,
+  FaRegNewspaper,
+  FaRegMoneyBillAlt,
+  FaTable
+}
   from 'react-icons/fa';
-import{TiThListOutline , TiGroup} from 'react-icons/ti';
-import{GiMoneyStack, GiPayMoney, GiReceiveMoney} from 'react-icons/gi';
+import { TiThListOutline, TiGroup } from 'react-icons/ti';
+import { GiMoneyStack, GiPayMoney, GiReceiveMoney } from 'react-icons/gi';
 import {
   MdAttachMoney,
   MdBrush,
@@ -38,37 +39,37 @@ const sidebarBackground = {
 };
 
 const taikhoan = [
-  { to: '/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup,},
+  { to: '/nhomnd', name: 'Nhóm người dùng', exact: false, Icon: TiGroup, },
   { to: '/nd', name: 'Người dùng', exact: false, Icon: FaUserAlt },
- 
-  
+
+
 ];
 
 const hoatdong = [
-   { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
-    { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
+  { to: '/hoatdong', name: 'Danh sách hoạt động', exact: false, Icon: FaClipboardList },
+  { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
-    { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
-    { to: '/bcnaptien', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
-    { to: '/bcquyengop',name: 'Tổng quyên góp',exact: false, Icon: FaRegMoneyBillAlt },
+  { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
+  { to: '/bcnaptien', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
+  { to: '/bcquyengop', name: 'Tổng quyên góp', exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
   { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
   { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
-  {to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney},
-  { to: '/chuyentien', name: 'Chuyển tiền', exact: false, Icon: GiPayMoney},
+  { to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney },
+  { to: '/chuyentien', name: 'Phê duyệt khảo sát', exact: false, Icon: GiPayMoney },
 ];
 
-const navItems1 = [ 
+const navItems1 = [
   {
-      to: '/phanquyen',
-      name: 'phân quyền',
-      exact: false,
-      Icon: MdSecurity,
-    },
+    to: '/phanquyen',
+    name: 'phân quyền',
+    exact: false,
+    Icon: MdSecurity,
+  },
 
 ];
 
@@ -80,11 +81,11 @@ const bem = bn.create('sidebar');
 
 class Sidebar extends React.Component {
   state = {
-    isOpentaikhoan:false,
-    isOpenhoatdong:false,
-    isOpenbaocao:false,
-    isOpentaitro:false,
-    isOpenluongtien:false,
+    isOpentaikhoan: false,
+    isOpenhoatdong: false,
+    isOpenbaocao: false,
+    isOpentaitro: false,
+    isOpenluongtien: false,
   };
 
   handleClick = name => () => {
@@ -112,7 +113,7 @@ class Sidebar extends React.Component {
                 alt=""
               />
               <span className="text-white">
-                Small Giving 
+                Small Giving
               </span>
             </SourceLink>
           </Navbar>
@@ -293,7 +294,7 @@ class Sidebar extends React.Component {
               </NavItem>
             ))}
 
-          <NavItem
+            <NavItem
               className={bem.e('nav-item')}
               onClick={this.handleClick('baocao')}
             >
