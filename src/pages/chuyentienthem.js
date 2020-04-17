@@ -131,7 +131,11 @@ class Chuyentienthem extends React.Component {
                             type="select"
                             name="fromaccount"
                             value={this.state.fromaccount}
-                            onChange={this.handleChange}
+                            onChange={val => {
+                              this.setState({
+                                fromaccount: val.target.value,
+                              });
+                            }}
                           >
                             {this.state.dataselect.map(Item => {
                               return <option>{Item.TenKhaoSat}</option>;
@@ -180,7 +184,11 @@ class Chuyentienthem extends React.Component {
                             type="number"
                             name="money"
                             value={this.state.money}
-                            onChange={this.handleChange}
+                            onChange={val => {
+                              this.setState({
+                                money: val.target.value,
+                              });
+                            }}
                           />
                         </Col>
                       </Row>

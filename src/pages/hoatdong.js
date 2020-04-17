@@ -29,9 +29,10 @@ class hoatdong extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = () => {
+  handleShowModalSua = id => {
     this.setState({
       showModalSua: true,
+      idHoatDong: id,
     });
   };
   handleCloseModalSua = () => {
@@ -39,9 +40,10 @@ class hoatdong extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = () => {
+  handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
+      idHoatDong: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -77,17 +79,6 @@ class hoatdong extends React.Component {
         );
       });
   };
-  // toggle = modalType => () => {
-  //   if (!modalType) {
-  //     return this.setState({
-  //       modal: !this.state.modal,
-  //     });
-  //   }
-
-  //   this.setState({
-  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-  //   });
-  // };
   render() {
     return (
       <Page
@@ -114,12 +105,14 @@ class hoatdong extends React.Component {
                     onHide={this.handleCloseModalSua}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idHoatDong}
                   />
                   <Hoatdongxoa
                     show={this.state.showModalXoa}
                     onHide={this.handleCloseModalXoa}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idHoatDong}
                   />
                   <Xemdk
                     show={this.state.showModalXem}
@@ -136,7 +129,7 @@ class hoatdong extends React.Component {
                   >
                     + Thêm mới
                   </Badge>
-                  <Table {...{ [tableTypes || 'hover']: true }}>
+                  <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger ">
                         <th>ID</th>
@@ -172,12 +165,16 @@ class hoatdong extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.handleShowModalSua}
+                                onClick={() =>
+                                  this.handleShowModalSua(Item.idHoatDong)
+                                }
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.handleShowModalXoa}
+                                onClick={() =>
+                                  this.handleShowModalXoa(Item.idHoatDong)
+                                }
                               />
                             </td>
                           </tr>

@@ -69,51 +69,49 @@ class Nhomndthem extends React.Component {
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
-              <Row>
-                      
-                  <Col md={12}>
-                      <Card>
-                      <CardBody>
-                          <Form>
-                          <Label for="exampleEmail"> Mã nhóm</Label>
-                              <Input
-                                  disabled="true"
-                                  type="email"
-                                  name="id"
-                                  value={this.state.id}                             
-                              />
-                          </Form>
-                          <Form>
-                              <Label for="exampleEmail">Tên nhóm <span className="red-text">*</span> </Label>
-                              <div className="error-text">
-                                  {this.state.nameError} 
-                              </div>
-                              <Input
-                                  type="email"
-                                  name="name"
-                                  value={this.state.name}
-                                  onChange={(val) => {
-                                    this.setState({
-                                      name: val.target.value
-                                    })
-                                  }}
-                              />
-                          </Form>
-                      </CardBody>
-                      </Card>                     
-                  </Col>   
-              </Row>
-                  <div className="center-text-submit"> 
-                  <Container>
-                    <Button color="danger" type="submit" pill className="px-4 my-3" >
-                    Lưu
-                  </Button>
-                  <NotificationSuccess/>
-                  <NotificationDefeat/>
-                  </Container>  
-
-                  </div>
-        </Form>
+            <Row>
+              <Col md={12}>
+                <Card>
+                  <CardBody>
+                    <Form>
+                      <Label for="exampleEmail"> Mã nhóm</Label>
+                      <Input
+                        disabled="true"
+                        type="email"
+                        name="id"
+                        value={this.state.id}
+                      />
+                    </Form>
+                    <Form>
+                      <Label for="exampleEmail">
+                        Tên nhóm <span className="red-text">*</span>{' '}
+                      </Label>
+                      <div className="error-text">{this.state.nameError}</div>
+                      <Input
+                        type="email"
+                        name="name"
+                        value={this.state.name}
+                        onChange={val => {
+                          this.setState({
+                            name: val.target.value,
+                          });
+                        }}
+                      />
+                    </Form>
+                  </CardBody>
+                </Card>
+              </Col>
+            </Row>
+            <div className="center-text-submit">
+              <Container>
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Lưu
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+            </div>
+          </Form>
         </ModalBody>
       </Modal>
     );

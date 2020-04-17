@@ -102,7 +102,11 @@ class Diemdanhthem extends React.Component {
                               type="text"
                               name="name"
                               value={this.state.name}
-                              onChange={this.handleChange}
+                              onChange={val => {
+                                this.setState({
+                                  name: val.target.value,
+                                });
+                              }}
                             />
                           </Col>
                         </Row>
@@ -124,7 +128,11 @@ class Diemdanhthem extends React.Component {
                               type="number"
                               name="money"
                               value={this.state.money}
-                              onChange={this.handleChange}
+                              onChange={val => {
+                                this.setState({
+                                  money: val.target.value,
+                                });
+                              }}
                             />
                           </Col>
                         </Row>

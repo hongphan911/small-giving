@@ -21,43 +21,42 @@ import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
 
+const initialState = {
+  id: '',
+  name: '',
+  email: '',
+  phone: '',
+  stk: '',
+  dateofbirth: '',
+  password: '',
+  idnhom: '',
 
-const initialState ={
-  id:"",
-  name:"",
-  email:"",
-  phone:"",
-  stk:"",
-  dateofbirth:"",
-  password:"",
-  idnhom:"",
-  
-  emailError:"",
-  phoneError:"",
-  idnhomError:"",
-  passwordError:"",
-  datasua: [],
+  emailError: '',
+  phoneError: '',
+  idnhomError: '',
+  passwordError: '',
+  dataselect: [],
 };
 
 class Nguoidungsua extends React.Component {
   state = initialState;
-  componentDidMount= () =>{
-    console.log("check>>>", this.props.chooseId);
-    this.getdatasua();
-  }
-
-  getdatasua = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php')
+  componentDidMount = () => {
+    console.log('check>>>', this.props.chooseId);
+    this.getdataselect();
+  };
+  getdataselect = async () => {
+    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
       .then(response => response.json())
-      .then(datasua => {
+      .then(dataselect => {
         this.setState(
           {
-            datasua: datasua,
+            dataselect: dataselect,
           },
-          () => console.log('kiemtradulieu', this.state.datasua),
+          () => console.log('kiemtradulieu', this.state.dataselect),
         );
       });
   };
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -111,150 +110,152 @@ class Nguoidungsua extends React.Component {
           Sửa thông tin người dùng
         </ModalHeader>
         <ModalBody>
-          <Form onSubmit={()=>this.handleSubmit()}>
+          <Form onSubmit={this.handleSubmit}>
             <Card>
-              <CardBody> 
-              {this.state.datasua.map((Item, index) => {
-                          return (                       
-                <Row>                  
-                  <Col xl={6} lg={12} md={12}>                    
-                      <Form>
-                        <FormGroup >
+              <CardBody>
+                <Row>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
                         <Label for="exampleText"> Mã người dùng</Label>
-                            <Input
-                              disabled="true"
-                              type="text"
-                              name="id"
-                              value={this.props.chooseId}
-                            />
-                        </FormGroup>
-                        <FormGroup >
-                        <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
+                        <Input
+                          disabled="true"
+                          type="text"
+                          name="id"
+                          value={this.props.chooseId}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleSelect">
+                          Nhóm người dùng <span className="red-text">*</span>
+                        </Label>
 
                         <div className="error-text">
                           {this.state.idnhomError}
                         </div>
-                        <Input 
-                        type="select" 
-                        name="idnhom"
-                        value={this.state.idnhom}
-                        onChange={(val) => {
-                          this.setState({
-                            idnhom: val.target.value
-                          })
-                        }}
-
+                        <Input
+                          type="select"
+                          name="idnhom"
+                          value={this.state.idnhom}
+                          onChange={val => {
+                            this.setState({
+                              idnhom: val.target.value,
+                            });
+                          }}
                         >
-                          <option>Cộng tác viên kế toán</option>
-                          <option>Cộng tác viên viết bài</option>
-                          <option>Chủ nhiệm</option>
-                          <option>Nhà hảo tâm</option>
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenNhom}</option>;
+                          })}
                         </Input>
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleText">
-                          {' '}
                           Số điện thoại <span className="red-text">*</span>
                         </Label>
+                        <Input
+                          type="phone"
+                          name="phone"
+                          value={this.state.phone}
+                          onChange={val => {
+                            this.setState({
+                              phone: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleEmail">
+                          Email <span className="red-text">*</span>
+                        </Label>
                         <div className="error-text">
-                          {this.state.phoneError}
+                          {this.state.emailError}
                         </div>
-                          <Input
-                            type="phone"
-                            name="phone"
-                            value={this.state.phone}
-                            onChange={(val) => {
-                              this.setState({
-                                phone: val.target.value
-                              })
-                            }}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                          <Label for="exampleEmail">Email <span className="red-text">*</span></Label>
-                          <div className="error-text">
-                            {this.state.emailError} 
-                        </div>
-                            <Input
-                              type="email"
-                              name="email"
-                              value={this.state.email}
-                              onChange={(val) => {
-                                this.setState({
-                                  email: val.target.value
-                                })
-                              }}
-                            />
-                        </FormGroup>        
-                      </Form>                       
-                </Col>
-                <Col xl={6} lg={12} md={12}>                      
-                      <Form>
-                      <FormGroup >
-                          <Label for="exampleText"> Họ tên</Label>
-                          <Input
-                            type="text"
-                            name="name"
-                            value={this.state.name}
-                            onChange={(val) => {
-                              this.setState({
-                                name: val.target.value
-                              })
-                            }}
-                          />
-                        </FormGroup>
-                        <FormGroup>
-                            <Label for="exampleDate">Ngày sinh</Label>
-                            <Input
-                              type="date"
-                              name="dateofbirth"
-                              value={this.state.dateofbirth}
-                              onChange={(val) => {
-                                this.setState({
-                                  dateofbirth: val.target.value
-                                })
-                              }}
-                            />
-                          </FormGroup>                              
-                        <FormGroup>
-                            <Label for="exampleText">Số tài khoản</Label>
-                            <Input 
-                            type="text" 
-                            name="stk"
-                            value={this.state.stk}
-                            onChange={(val) => {
-                              this.setState({
-                                stk: val.target.value
-                              })
-                            }}
-                            />
-                          </FormGroup>
-                          <FormGroup>
-                            <Label for="exampleText">Password <span className="red-text">*</span></Label>
-                            <div className="error-text">
-                            {this.state.passwordError} 
-                        </div>
-                            <Input
-                              type="text"
-                              name="password"
-                              value={this.state.password}
-                              onChange={(val) => {
-                                this.setState({
-                                  password: val.target.value
-                                })
-                              }}
-                            />
-                          </FormGroup>                              
-                      </Form>                        
-                  </Col>                                           
-                </Row> 
-                );
-              })}                      
+                        <Input
+                          type="email"
+                          name="email"
+                          value={this.state.email}
+                          onChange={val => {
+                            this.setState({
+                              email: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
+                        <Label for="exampleText"> Họ tên</Label>
+                        <Input
+                          type="text"
+                          name="name"
+                          value={this.state.name}
+                          onChange={val => {
+                            this.setState({
+                              name: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleDate">Ngày sinh</Label>
+                        <Input
+                          type="date"
+                          name="dateofbirth"
+                          value={this.state.dateofbirth}
+                          onChange={val => {
+                            this.setState({
+                              dateofbirth: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">Số tài khoản</Label>
+                        <Input
+                          type="text"
+                          name="stk"
+                          value={this.state.stk}
+                          onChange={val => {
+                            this.setState({
+                              stk: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          Password <span className="red-text">*</span>
+                        </Label>
+                        {/* <div className="error-text">
+                          {this.state.passwordError}
+                        </div> */}
+                        <Input
+                          type="text"
+                          name="password"
+                          value={this.state.password}
+                          onChange={val => {
+                            this.setState({
+                              password: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                    </Form>
+                  </Col>
+                </Row>
               </CardBody>
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button
+                  color="danger"
+                  type="submit"
+                  pill
+                  className="px-4 my-3"
+                  //onClick={() => this.handleUpdate()}
+                >
                   Cập nhật
                 </Button>
                 <NotificationSuccess />

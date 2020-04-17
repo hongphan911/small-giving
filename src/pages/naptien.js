@@ -38,17 +38,6 @@ class naptien extends React.Component {
         );
       });
   };
-  // toggle = modalType => () => {
-  //   if (!modalType) {
-  //     return this.setState({
-  //       modal: !this.state.modal,
-  //     });
-  //   }
-
-  //   this.setState({
-  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-  //   });
-  // };
   render() {
     return (
       <Page

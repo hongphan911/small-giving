@@ -30,6 +30,9 @@ const initialState = {
 
 class Diemdanhsua extends React.Component {
   state = initialState;
+  componentDidMount = () => {
+    console.log('check>>>', this.props.chooseId);
+  };
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -85,23 +88,7 @@ class Diemdanhsua extends React.Component {
                               disabled="true"
                               type="text"
                               name="id"
-                              value={this.state.id}
-                              onChange={this.handleChange}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                      <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText">Tên tài khoản</Label>
-                          </Col>
-                          <Col md={8}>
-                            <Input
-                              type="text"
-                              name="name"
-                              value={this.state.name}
-                              onChange={this.handleChange}
+                              value={this.props.chooseId}
                             />
                           </Col>
                         </Row>
@@ -110,8 +97,28 @@ class Diemdanhsua extends React.Component {
                         <Row>
                           <Col md={4}>
                             <Label for="exampleText">
-                              {' '}
-                              Số tiền cho mỗi lượt{' '}
+                              Tên tài khoản<span className="red-text">*</span>
+                            </Label>
+                          </Col>
+                          <Col md={8}>
+                            <Input
+                              type="text"
+                              name="name"
+                              value={this.state.name}
+                              onChange={val => {
+                                this.setState({
+                                  name: val.target.value,
+                                });
+                              }}
+                            />
+                          </Col>
+                        </Row>
+                      </FormGroup>
+                      <FormGroup>
+                        <Row>
+                          <Col md={4}>
+                            <Label for="exampleText">
+                              Số tiền cho mỗi lượt
                               <span className="red-text">*</span>
                             </Label>
                           </Col>
@@ -123,7 +130,11 @@ class Diemdanhsua extends React.Component {
                               type="number"
                               name="money"
                               value={this.state.money}
-                              onChange={this.handleChange}
+                              onChange={val => {
+                                this.setState({
+                                  money: val.target.value,
+                                });
+                              }}
                             />
                           </Col>
                         </Row>

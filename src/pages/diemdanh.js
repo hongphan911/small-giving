@@ -27,9 +27,10 @@ class diemdanh extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = () => {
+  handleShowModalSua = id => {
     this.setState({
       showModalSua: true,
+      idDiemDanh: id,
     });
   };
   handleCloseModalSua = () => {
@@ -37,9 +38,10 @@ class diemdanh extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = () => {
+  handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
+      idDiemDanh: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -65,17 +67,6 @@ class diemdanh extends React.Component {
         );
       });
   };
-  // toggle = modalType => () => {
-  //   if (!modalType) {
-  //     return this.setState({
-  //       modal: !this.state.modal,
-  //     });
-  //   }
-
-  //   this.setState({
-  //     [`modal_${modalType}`]: !this.state[`modal_${modalType}`],
-  //   });
-  // };
   render() {
     return (
       <Page
@@ -102,12 +93,14 @@ class diemdanh extends React.Component {
                     onHide={this.handleCloseModalSua}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idDiemDanh}
                   />
                   <Diemdanhxoa
                     show={this.state.showModalXoa}
                     onHide={this.handleCloseModalXoa}
                     size="lg"
                     className={this.props.className}
+                    chooseId={this.state.idDiemDanh}
                   />
                   <Badge
                     color="danger"
@@ -141,12 +134,16 @@ class diemdanh extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-                                onClick={this.handleShowModalSua}
+                                onClick={() =>
+                                  this.handleShowModalSua(Item.idDiemDanh)
+                                }
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-                                onClick={this.handleShowModalXoa}
+                                onClick={() =>
+                                  this.handleShowModalSua(Item.idDiemDanh)
+                                }
                               />
                             </td>
                           </tr>

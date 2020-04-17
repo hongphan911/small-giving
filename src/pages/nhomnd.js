@@ -12,12 +12,11 @@ class nhomnd extends React.Component {
     super(props);
     this.state = {
       data: [],
-    modal_nested: false,    
-    showModalThem: false,
-    showModalSua: false,
-    showModalXoa: false,
-    idNhom:"",
-
+      modal_nested: false,
+      showModalThem: false,
+      showModalSua: false,
+      showModalXoa: false,
+      idNhom: '',
     };
   }
   handleShowModalThem = () => {
@@ -30,10 +29,10 @@ class nhomnd extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = (id) => {
+  handleShowModalSua = id => {
     this.setState({
       showModalSua: true,
-      idNhom:id,
+      idNhom: id,
     });
   };
   handleCloseModalSua = () => {
@@ -41,10 +40,10 @@ class nhomnd extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = (id) => {
+  handleShowModalXoa = id => {
     this.setState({
       showModalXoa: true,
-      idNhom:id,
+      idNhom: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -89,55 +88,68 @@ class nhomnd extends React.Component {
           { name: 'nhóm người dùng', active: true },
         ]}
       >
-      {tableTypes.map((tableType, index) => (
-        <Row key={index}>
-          <Col>
-            <Card className="mb-3">
-                    <CardBody>
-                      <Badge color="danger" pill className=" mb-3 p-2 can-click " 
-                      onClick={this.handleShowModalThem}>
-                      + Thêm mới
-                      </Badge>                    
-                        <Nhomndthem
-                        show={this.state.showModalThem}
-                        onHide={this.handleCloseModalThem}
-                        size="lg"
-                        className={this.props.className}
-                        />
-                      <Table {...{ [tableType || 'hover']: true }}>
-                        <thead>
-                          <tr className="table-danger">
-                            
-                            <th>Mã nhóm</th>
-                            <th>Tên nhóm</th>
-                            <th>Tác vụ</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        {this.state.data.map((Item, index) => {
-                          return (
+        {tableTypes.map((tableType, index) => (
+          <Row key={index}>
+            <Col>
+              <Card className="mb-3">
+                <CardBody>
+                  <Nhomndthem
+                    show={this.state.showModalThem}
+                    onHide={this.handleCloseModalThem}
+                    size="lg"
+                    className={this.props.className}
+                  />
+                  <Nhomndsua
+                    show={this.state.showModalSua}
+                    onHide={this.handleCloseModalSua}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNhom}
+                  />
+                  <Nhomndxoa
+                    show={this.state.showModalXoa}
+                    onHide={this.handleCloseModalXoa}
+                    size="lg"
+                    className={this.props.className}
+                    chooseId={this.state.idNhom}
+                  />
+                  <Badge
+                    color="danger"
+                    pill
+                    className=" mb-3 p-2 can-click "
+                    onClick={this.handleShowModalThem}
+                  >
+                    + Thêm mới
+                  </Badge>
+                  <Table {...{ [tableType || 'hover']: true }}>
+                    <thead>
+                      <tr className="table-danger">
+                        <th>Mã nhóm</th>
+                        <th>Tên nhóm</th>
+                        <th>Tác vụ</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.data.map(Item => {
+                        return (
                           <tr>
                             <td>{Item.idNhom}</td>
                             <td>{Item.TenNhom}</td>
                             <td>
-                            <FaEdit className="can-click " size="1.5em" 
-                            onClick={() => this.handleShowModalSua(Item.idNhom)}/>                              
-                                  <Nhomndsua
-                                  show={this.state.showModalSua}
-                                  onHide={this.handleCloseModalSua}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNhom}
-                                  />                                  
-                              <MdDelete className="can-click" size="1.5em" 
-                              onClick={() => this.handleShowModalXoa(Item.idNhom)}/>                              
-                                  <Nhomndxoa
-                                  show={this.state.showModalXoa}
-                                  onHide={this.handleCloseModalXoa}
-                                  size="lg"
-                                  className={this.props.className}
-                                  chooseId={this.state.idNhom}
-                                  />                                 
+                              <FaEdit
+                                className="can-click "
+                                size="1.5em"
+                                onClick={() =>
+                                  this.handleShowModalSua(Item.idNhom)
+                                }
+                              />
+                              <MdDelete
+                                className="can-click"
+                                size="1.5em"
+                                onClick={() =>
+                                  this.handleShowModalXoa(Item.idNhom)
+                                }
+                              />
                             </td>
                           </tr>
                         );

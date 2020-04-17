@@ -2,48 +2,44 @@ import logo200Image from 'assets/img/logo/Anh cut.png';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import { CardContent } from '@material-ui/core';
-import { Col, Row } from 'react-bootstrap';
+//import { Link } from 'react-router-dom';
+//import { CardContent } from '@material-ui/core';
+//import { Col, Row } from 'react-bootstrap';
 import Cookies from 'js-cookie';
-
-
 
 class AuthForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username:"",
-      password:"",
-      usernameError:"",
-      passwordError:"",
+      username: '',
+      password: '',
+      usernameError: '',
+      passwordError: '',
     };
   }
   handleChange = event => {
-    const isCheckbox = event.target.type === "checkbox";
+    const isCheckbox = event.target.type === 'checkbox';
     this.setState({
       [event.target.name]: isCheckbox
-      ? event.target.checked
-      : event.target.value
+        ? event.target.checked
+        : event.target.value,
     });
   };
   validate = () => {
+    let usernameError = '';
+    let passwordError = '';
 
-    let usernameError = "";
-    let passwordError = "";
-
-    if (!this.state.username){
-      usernameError ="Không được bỏ chống!";
+    if (!this.state.username) {
+      usernameError = 'Không được bỏ trống!';
     }
-    if (!this.state.password){
-      passwordError ="Không được bỏ chống!";
+    if (!this.state.password) {
+      passwordError = 'Không được bỏ trống!';
     }
-    if (usernameError || passwordError ){
-      this.setState({ usernameError, passwordError});
+    if (usernameError || passwordError) {
+      this.setState({ usernameError, passwordError });
       return false;
     }
     return true;
-
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -70,27 +66,27 @@ class AuthForm extends React.Component {
   };
   handleLogin() {
     let config = {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify({
         //Email: this.state.username,
         SDT: this.state.username,
         MatKhau: this.state.password,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/dangnhapadmin.php', config)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.token === "Error") {
-          
-          console.log("Đăng nhập thất bại, sai mật khẩu hoặc Email");
-          
+    fetch(
+      'https://misappmobile.000webhostapp.com/trangquantri/dangnhapadmin.php',
+      config,
+    )
+      .then(response => response.json())
+      .then(data => {
+        if (data.token === 'Error') {
+          console.log('Đăng nhập thất bại, sai mật khẩu hoặc Email');
         } else {
           Cookies.set('small-giving', data.token, { expires: 1 });
           this.props.onLogin();
           window.location.reload();
         }
       });
-      
   }
 
   //handleSubmit = event => {
@@ -114,12 +110,12 @@ class AuthForm extends React.Component {
   render() {
     const {
       showLogo,
-  
+
       usernameLabel,
-      usernameInputProps,    
+      usernameInputProps,
       passwordLabel,
       passwordInputProps,
-      children,
+      //children,
       onLogoClick,
     } = this.props;
 
@@ -138,65 +134,53 @@ class AuthForm extends React.Component {
           </div>
         )}
 
-
-
-
-
-
-
-
-
-        
-          <FormGroup className="mg-0">
+        <FormGroup className="mg-0">
           <Label for={usernameLabel}>{usernameLabel}</Label>
-          <div className="error-text">
-                  {this.state.usernameError} 
-                </div> 
-          <Input {...usernameInputProps} 
-          label="username"
-          name="username"
-          value={this.state.username}
-          onChange={(val)=> {
-                    this.setState({
-                      username: val.target.value
-                    })
-                  }}
+          <div className="error-text">{this.state.usernameError}</div>
+          <Input
+            {...usernameInputProps}
+            label="username"
+            name="username"
+            value={this.state.username}
+            onChange={val => {
+              this.setState({
+                username: val.target.value,
+              });
+            }}
           />
         </FormGroup>
 
-        
-        
-        <FormGroup >
+        <FormGroup>
           <Label for={passwordLabel}>{passwordLabel}</Label>
-          <div className="error-text">
-                  {this.state.passwordError} 
-                </div> 
-          <Input {...passwordInputProps} 
-          label="password"
-          name="password"
-          value={this.state.password}
-          onChange={(val) => {
-            this.setState({
-              password: val.target.value
-            })
-          }}
+          <div className="error-text">{this.state.passwordError}</div>
+          <Input
+            {...passwordInputProps}
+            label="password"
+            name="password"
+            value={this.state.password}
+            onChange={val => {
+              this.setState({
+                password: val.target.value,
+              });
+            }}
           />
         </FormGroup>
-        
+
         <FormGroup check>
           <Label check>
-            <Input type="checkbox" />{'Nhớ mật khẩu'}
+            <Input type="checkbox" />
+            {'Nhớ mật khẩu'}
           </Label>
         </FormGroup>
-        <hr />                      
-              <div className="bt-submit">               
-                <Button type="submit" onClick={()=>this.handleLogin()}>Đăng nhập</Button>               
-              </div>
-              <div className="forgot-password">
-                <a href="/">
-                  Quên mật khẩu?
-                </a>
-              </div>
+        <hr />
+        <div className="bt-submit">
+          <Button type="submit" onClick={() => this.handleLogin()}>
+            Đăng nhập
+          </Button>
+        </div>
+        <div className="forgot-password">
+          <a href="/">Quên mật khẩu?</a>
+        </div>
       </Form>
     );
   }
@@ -219,21 +203,17 @@ AuthForm.propTypes = {
 AuthForm.defaultProps = {
   authState: 'Đăng nhập',
   showLogo: true,
-  
-  
+
   usernameInputProps: {
     type: 'text',
     placeholder: 'Email hoặc SĐT',
-    
-    
   },
-  
+
   passwordInputProps: {
     type: 'password',
-    placeholder: 'Mật khẩu',   
-    
+    placeholder: 'Mật khẩu',
   },
-  
+
   onLogoClick: () => {},
 };
 
