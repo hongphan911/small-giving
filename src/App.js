@@ -1,4 +1,4 @@
-import AuthForm,{ STATE_LOGIN} from 'components/AuthForm';
+import AuthForm, { STATE_LOGIN } from 'components/AuthForm';
 import GAListener from 'components/GAListener';
 import { EmptyLayout, LayoutRoute, MainLayout } from 'components/Layout';
 import PageSpinner from 'components/PageSpinner';
@@ -59,6 +59,7 @@ const gopy = React.lazy(() => import('pages/gopy'));
 
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const bctaitro = React.lazy(() => import('pages/bctaitro'));
+const bctaitro2 = React.lazy(() => import('pages/bctaitro2'));
 const bcnaptien = React.lazy(() => import('pages/bcnaptien'));
 
 
@@ -73,7 +74,7 @@ class App extends React.Component {
     authState: STATE_LOGIN,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
     user: []
-    
+
   };
   componentDidMount() {
     this.getUser()
@@ -89,10 +90,10 @@ class App extends React.Component {
       }
       fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             user: data
-          }, ()=>console.log("data>>", data))
+          }, () => console.log("data>>", data))
         })
     }
   }
@@ -109,10 +110,10 @@ class App extends React.Component {
     });
   };
   render() {
-    return (  
-          
+    return (
+
       <div>
-          {this.state.token === ""
+        {this.state.token === ""
           ? <Modal
             isOpen={this.state.showLogin}
             toggle={this.handleLogin}
@@ -129,81 +130,82 @@ class App extends React.Component {
               />
             </ModalBody>
           </Modal>
-      : <BrowserRouter basename={getBasename()}>
-        <GAListener>
-          <Switch>
-            <LayoutRoute
-              exact
-              path="/login"
-              layout={EmptyLayout}
-              component={props => (
-                <AuthPage {...props} authState={STATE_LOGIN} />
-              )}
-            />
-            
+          : <BrowserRouter basename={getBasename()}>
+            <GAListener>
+              <Switch>
+                <LayoutRoute
+                  exact
+                  path="/login"
+                  layout={EmptyLayout}
+                  component={props => (
+                    <AuthPage {...props} authState={STATE_LOGIN} />
+                  )}
+                />
 
-            <MainLayout breakpoint={this.props.breakpoint}>
-              <React.Suspense fallback={<PageSpinner />}>
 
-                <Route exact path="/" component={trangchu} />
-                <Route exact path="/phanquyen" component={Phanquyen} />
-                <Route exact path="/login-modal" component={AuthModalPage} />
+                <MainLayout breakpoint={this.props.breakpoint}>
+                  <React.Suspense fallback={<PageSpinner />}>
 
-                <Route exact path="/nd" component={nd} />
-                <Route exact path="/ndthem" component={ndthem} />
-                <Route exact path="/ndsua" component={ndsua} />
-                <Route exact path="/ndxoa" component={ndxoa} />
+                    <Route exact path="/" component={trangchu} />
+                    <Route exact path="/phanquyen" component={Phanquyen} />
+                    <Route exact path="/login-modal" component={AuthModalPage} />
 
-                <Route exact path="/chuyentien" component={chuyentien} />
-                <Route exact path="/chuyentienthem" component={chuyentienthem} />
+                    <Route exact path="/nd" component={nd} />
+                    <Route exact path="/ndthem" component={ndthem} />
+                    <Route exact path="/ndsua" component={ndsua} />
+                    <Route exact path="/ndxoa" component={ndxoa} />
 
-                <Route exact path="/tintuc" component={tintuc} />
-                <Route exact path="/tintucthem" component={tintucthem} />
-                <Route exact path="/tintucsua" component={tintucsua} />
-                <Route exact path="/tintucxoa" component={tintucxoa} />
+                    <Route exact path="/chuyentien" component={chuyentien} />
+                    <Route exact path="/chuyentienthem" component={chuyentienthem} />
 
-                <Route exact path="/bcnaptien" component={bcnaptien} />
-                <Route exact path="/bcquyengop" component={bcquyengop} />
-                <Route exact path="/bctaitro" component={bctaitro} />
-                
-                <Route exact path="/nhomnd" component={nhomnd}/>
-                <Route exact path="/nhomndthem" component={nhomndthem}/>
-                <Route exact path="/nhomndsua" component={nhomndsua}/>
-                <Route exact path="/nhomndxoa" component={nhomndxoa}/>
-              
-                <Route exact path="/gopy" component={gopy} />
+                    <Route exact path="/tintuc" component={tintuc} />
+                    <Route exact path="/tintucthem" component={tintucthem} />
+                    <Route exact path="/tintucsua" component={tintucsua} />
+                    <Route exact path="/tintucxoa" component={tintucxoa} />
 
-                <Route exact path="/naptien" component={naptien} />
-                <Route exact path="/naptienthem" component={naptienthem} />
+                    <Route exact path="/bcnaptien" component={bcnaptien} />
+                    <Route exact path="/bcquyengop" component={bcquyengop} />
+                    <Route exact path="/bctaitro" component={bctaitro} />
+                    <Route exact path="/bctaitro2" component={bctaitro2} />
 
-                <Route exact path="/khaosat" component={khaosat} />
-                <Route exact path="/khaosatthem" component={khaosatthem} />
-                <Route exact path="/khaosatsua" component={khaosatsua} />
-                <Route exact path="/khaosatxoa" component={khaosatxoa} />
+                    <Route exact path="/nhomnd" component={nhomnd} />
+                    <Route exact path="/nhomndthem" component={nhomndthem} />
+                    <Route exact path="/nhomndsua" component={nhomndsua} />
+                    <Route exact path="/nhomndxoa" component={nhomndxoa} />
 
-                <Route exact path="/diemdanh" component={diemdanh} />
-                <Route exact path="/diemdanhthem" component={diemdanhthem} />
-                <Route exact path="/diemdanhsua" component={diemdanhsua} />
-                <Route exact path="/diemdanhxoa" component={diemdanhxoa} />
+                    <Route exact path="/gopy" component={gopy} />
 
-                <Route exact path="/hoatdong" component={hoatdong} />
-                <Route exact path="/hoatdongthem" component={hoatdongthem} />
-                <Route exact path="/hoatdongsua" component={hoatdongsua} />
-                <Route exact path="/hoatdongxoa" component={hoatdongxoa} />
+                    <Route exact path="/naptien" component={naptien} />
+                    <Route exact path="/naptienthem" component={naptienthem} />
 
-                <Route exact path="/xemdk" component={xemdk} />
-              </React.Suspense>
-            </MainLayout>
-            <ProfileLayout>
-                  <Route exact path="/profile" component={ProfileUser}/>
+                    <Route exact path="/khaosat" component={khaosat} />
+                    <Route exact path="/khaosatthem" component={khaosatthem} />
+                    <Route exact path="/khaosatsua" component={khaosatsua} />
+                    <Route exact path="/khaosatxoa" component={khaosatxoa} />
+
+                    <Route exact path="/diemdanh" component={diemdanh} />
+                    <Route exact path="/diemdanhthem" component={diemdanhthem} />
+                    <Route exact path="/diemdanhsua" component={diemdanhsua} />
+                    <Route exact path="/diemdanhxoa" component={diemdanhxoa} />
+
+                    <Route exact path="/hoatdong" component={hoatdong} />
+                    <Route exact path="/hoatdongthem" component={hoatdongthem} />
+                    <Route exact path="/hoatdongsua" component={hoatdongsua} />
+                    <Route exact path="/hoatdongxoa" component={hoatdongxoa} />
+
+                    <Route exact path="/xemdk" component={xemdk} />
+                  </React.Suspense>
+                </MainLayout>
+                <ProfileLayout>
+                  <Route exact path="/profile" component={ProfileUser} />
                 </ProfileLayout>
-            <Redirect to="/" />
+                <Redirect to="/" />
 
-          </Switch>
-        </GAListener>
-      </BrowserRouter>
-    }
-  </div>
+              </Switch>
+            </GAListener>
+          </BrowserRouter>
+        }
+      </div>
     );
   }
 }

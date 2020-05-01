@@ -62,7 +62,7 @@ class bcnaptien extends React.Component {
         title="Tổng tiền nạp"
         breadcrumbs={[
           { name: 'báo cáo' },
-          { name: 'tổng tiền nạp', active: true },
+          { name: 'giao dịch nạp tiền', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -125,7 +125,7 @@ class bcnaptien extends React.Component {
                         <tr className="table-danger">
                           <th>STT</th>
                           <th>Nhà hảo tâm</th>
-                          <th>Số tiền quyên góp</th>
+                          <th>Số tiền nạp</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -165,6 +165,7 @@ class bcnaptien extends React.Component {
                           <td>200000</td>
                         </tr>
                       </tbody>
+
                     </Table>
                     <Table {...{ [tableType || 'hover']: true }}>
                       <Row>

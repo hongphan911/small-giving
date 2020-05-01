@@ -62,7 +62,7 @@ class bcquyengop extends React.Component {
         title="Tổng quyên góp"
         breadcrumbs={[
           { name: 'báo cáo' },
-          { name: 'tổng quyên góp', active: true },
+          { name: 'giao dịch quyên góp', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -126,7 +126,7 @@ class bcquyengop extends React.Component {
                           <th>STT</th>
                           <th>Tên hoạt động</th>
                           <th> Nhà hảo tâm</th>
-                          <th>Số tiền</th>
+                          <th>Số tiền quyên góp</th>
                         </tr>
                       </thead>
                       <tbody>

@@ -50,9 +50,11 @@ const hoatdong = [
   { to: '/tintuc', name: 'Tin tức', exact: false, Icon: FaRegNewspaper },
 ];
 const baocao = [
-  { to: '/bctaitro', name: 'Nguồn tài trợ', exact: false, Icon: MdTextFields },
-  { to: '/bcnaptien', name: 'Tổng tiền nạp', exact: false, Icon: MdAttachMoney },
-  { to: '/bcquyengop', name: 'Tổng quyên góp', exact: false, Icon: FaRegMoneyBillAlt },
+  { to: '/bcnaptien', name: 'Giao dịch nạp tiền', exact: false, Icon: MdAttachMoney },
+  { to: '/bctaitro', name: 'Giao dịch thực hiện điểm danh', exact: false, Icon: MdTextFields },
+  { to: '/bctaitro2', name: 'Giao dịch thực hiện khảo sát', exact: false, Icon: FaRegMoneyBillAlt },
+
+  { to: '/bcquyengop', name: 'Giao dịch quyên góp', exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
   { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },

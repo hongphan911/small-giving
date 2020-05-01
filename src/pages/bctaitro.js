@@ -85,7 +85,7 @@ class bctaitro extends React.Component {
         title="Nguồn tài trợ"
         breadcrumbs={[
           { name: 'báo cáo' },
-          { name: 'nguồn tài trợ', active: true },
+          { name: 'giao dịch thực hiện điểm danh', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -147,9 +147,9 @@ class bctaitro extends React.Component {
                       <thead>
                         <tr className="table-danger">
                           <th>STT</th>
-                          <th>Nhà tài trợ</th>
-                          <th> Tên khảo sát</th>
-                          <th>Số tiền khảo sát</th>
+                          <th>Quỹ điểm danh</th>
+                          <th>Nhà hảo tâm</th>
+                          <th>Số tiền</th>
                         </tr>
                       </thead>
                       <tbody>
