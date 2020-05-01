@@ -98,10 +98,6 @@ class Tintucthem extends React.Component {
                           type="text"
                           name="id"
                           value={this.state.id}
-<<<<<<< HEAD
-=======
-                          
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         />
                       </FormGroup>
                       <FormGroup>
@@ -113,17 +109,10 @@ class Tintucthem extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
-<<<<<<< HEAD
                           onChange={val => {
                             this.setState({
                               name: val.target.value,
                             });
-=======
-                          onChange={(val) => {
-                            this.setState({
-                              name: val.target.value
-                            })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -138,17 +127,10 @@ class Tintucthem extends React.Component {
                           type="select"
                           name="idhoatdong"
                           value={this.state.idhoatdong}
-<<<<<<< HEAD
                           onChange={val => {
                             this.setState({
                               idhoatdong: val.target.value,
                             });
-=======
-                          onChange={(val) => {
-                            this.setState({
-                              idhoatdong: val.target.value
-                            })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -162,17 +144,10 @@ class Tintucthem extends React.Component {
                           type="file"
                           name="image"
                           value={this.state.image}
-<<<<<<< HEAD
                           onChange={val => {
                             this.setState({
                               image: val.target.value,
                             });
-=======
-                          onChange={(val) => {
-                            this.setState({
-                              image: val.target.value
-                            })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -182,17 +157,10 @@ class Tintucthem extends React.Component {
                           type="text"
                           name="title"
                           value={this.state.title}
-<<<<<<< HEAD
                           onChange={val => {
                             this.setState({
                               title: val.target.value,
                             });
-=======
-                          onChange={(val) => {
-                            this.setState({
-                              title: val.target.value
-                            })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -204,25 +172,12 @@ class Tintucthem extends React.Component {
                           type="select"
                           name="receiver"
                           value={this.state.receiver}
-<<<<<<< HEAD
                           onChange={val => {
                             this.setState({
                               receiver: val.target.value,
                             });
                           }}
                         />
-=======
-                          onChange={(val) => {
-                            this.setState({
-                              receiver: val.target.value
-                            })
-                          }}
-                        >
-                          <option>Tất cả mọi người</option>
-                          <option>Người quyên góp cho hoạt động</option>
-                          <option>người đăng kí nhận thông báo</option>
-                          </Input>
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                       </FormGroup>
                     </Form>
                   </Col>
@@ -238,17 +193,10 @@ class Tintucthem extends React.Component {
                         type="textarea"
                         name="content"
                         value={this.state.content}
-<<<<<<< HEAD
                         onChange={val => {
                           this.setState({
                             content: val.target.value,
                           });
-=======
-                        onChange={(val) => {
-                          this.setState({
-                            content: val.target.value
-                          })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         }}
                       />
                     </Form>
