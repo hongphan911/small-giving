@@ -101,12 +101,7 @@ class Naptienthem extends React.Component {
                           <Label for="exampleEmail"> Mã giao dịch</Label>
                         </Col>
                         <Col md={9}>
-                          <Input
-                            type="email"
-                            name="id"
-                            value={this.state.id}
-                            onChange={this.handleChange}
-                          />
+                          <Input type="email" name="id" value={this.state.id} />
                         </Col>
                       </Row>
                     </Form>
@@ -125,7 +120,11 @@ class Naptienthem extends React.Component {
                             type="select"
                             name="account"
                             value={this.state.account}
-                            onChange={this.handleChange}
+                            onChange={val => {
+                              this.setState({
+                                account: val.target.value,
+                              });
+                            }}
                           >
                             {this.state.dataselect.map(Item => {
                               return <option>{Item.SDT}</option>;
@@ -149,7 +148,11 @@ class Naptienthem extends React.Component {
                             type="number"
                             name="money"
                             value={this.state.money}
-                            onChange={this.handleChange}
+                            onChange={val => {
+                              this.setState({
+                                money: val.target.value,
+                              });
+                            }}
                           />
                         </Col>
                       </Row>

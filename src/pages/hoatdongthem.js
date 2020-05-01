@@ -112,10 +112,17 @@ class Hoatdongthem extends React.Component {
                           type="date"
                           name="startdate"
                           value={this.state.startdate}
+<<<<<<< HEAD
+                          onChange={val => {
+                            this.setState({
+                              startdate: val.target.value,
+                            });
+=======
                           onChange={(val) => {
                             this.setState({
                               startdate: val.target.value
                             })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -125,10 +132,17 @@ class Hoatdongthem extends React.Component {
                           type="text"
                           name="address"
                           value={this.state.address}
+<<<<<<< HEAD
+                          onChange={val => {
+                            this.setState({
+                              address: val.target.value,
+                            });
+=======
                           onChange={(val) => {
                             this.setState({
                               address: val.target.value
                             })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -145,10 +159,17 @@ class Hoatdongthem extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
+<<<<<<< HEAD
+                          onChange={val => {
+                            this.setState({
+                              name: val.target.value,
+                            });
+=======
                           onChange={(val) => {
                             this.setState({
                               name: val.target.value
                             })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -159,10 +180,17 @@ class Hoatdongthem extends React.Component {
                           type="date"
                           name="enddate"
                           value={this.state.enddate}
+<<<<<<< HEAD
+                          onChange={val => {
+                            this.setState({
+                              enddate: val.target.value,
+                            });
+=======
                           onChange={(val) => {
                             this.setState({
                               enddate: val.target.value
                             })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -179,10 +207,17 @@ class Hoatdongthem extends React.Component {
                           type="number"
                           name="total"
                           value={this.state.total}
+<<<<<<< HEAD
+                          onChange={val => {
+                            this.setState({
+                              total: val.target.value,
+                            });
+=======
                           onChange={(val) => {
                             this.setState({
                               total: val.target.value
                             })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -199,10 +234,17 @@ class Hoatdongthem extends React.Component {
                         type="file"
                         name="image"
                         value={this.state.image}
+<<<<<<< HEAD
+                        onChange={val => {
+                          this.setState({
+                            image: val.target.value,
+                          });
+=======
                         onChange={(val) => {
                           this.setState({
                             image: val.target.value
                           })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         }}
                       />
                     </Form>
@@ -217,10 +259,17 @@ class Hoatdongthem extends React.Component {
                         type="textarea"
                         name="content"
                         value={this.state.content}
+<<<<<<< HEAD
+                        onChange={val => {
+                          this.setState({
+                            content: val.target.value,
+                          });
+=======
                         onChange={(val) => {
                           this.setState({
                             content: val.target.value
                           })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         }}
                       />
                     </Form>

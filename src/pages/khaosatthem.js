@@ -114,7 +114,11 @@ class Khaosatthem extends React.Component {
                           type="date"
                           name="startdate"
                           value={this.state.startdate}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              startdate: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
 
@@ -124,7 +128,11 @@ class Khaosatthem extends React.Component {
                           type="email"
                           name="patron"
                           value={this.state.patron}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              patron: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -139,7 +147,11 @@ class Khaosatthem extends React.Component {
                           type="number"
                           name="eachturn"
                           value={this.state.eachturn}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              eachturn: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                     </Form>
@@ -156,7 +168,11 @@ class Khaosatthem extends React.Component {
                           type="text"
                           name="name"
                           value={this.state.name}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              name: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
 
@@ -166,7 +182,11 @@ class Khaosatthem extends React.Component {
                           type="date"
                           name="enddate"
                           value={this.state.enddate}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              enddate: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -178,7 +198,11 @@ class Khaosatthem extends React.Component {
                           type="url"
                           name="url"
                           value={this.state.url}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              url: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                       <FormGroup>
@@ -192,7 +216,11 @@ class Khaosatthem extends React.Component {
                           type="number"
                           name="total"
                           value={this.state.total}
-                          onChange={this.handleChange}
+                          onChange={val => {
+                            this.setState({
+                              total: val.target.value,
+                            });
+                          }}
                         />
                       </FormGroup>
                     </Form>

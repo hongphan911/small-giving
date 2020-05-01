@@ -95,7 +95,10 @@ class Nhomndthem extends React.Component {
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
             <Row>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
               <Col md={12}>
                 <Card>
                   <CardBody>
@@ -109,18 +112,32 @@ class Nhomndthem extends React.Component {
                       />
                     </Form>
                     <Form>
+<<<<<<< HEAD
+                      <Label for="exampleEmail">
+                        Tên nhóm <span className="red-text">*</span>{' '}
+                      </Label>
+                      <div className="error-text">{this.state.nameError}</div>
+=======
                       <Label for="exampleEmail">Tên nhóm <span className="red-text">*</span> </Label>
                       <div className="error-text">
                         {this.state.nameError}
                       </div>
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                       <Input
                         type="email"
                         name="name"
                         value={this.state.name}
+<<<<<<< HEAD
+                        onChange={val => {
+                          this.setState({
+                            name: val.target.value,
+                          });
+=======
                         onChange={(val) => {
                           this.setState({
                             name: val.target.value
                           })
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         }}
                       />
                     </Form>
@@ -130,6 +147,14 @@ class Nhomndthem extends React.Component {
             </Row>
             <div className="center-text-submit">
               <Container>
+<<<<<<< HEAD
+                <Button color="danger" type="submit" pill className="px-4 my-3">
+                  Lưu
+                </Button>
+                <NotificationSuccess />
+                <NotificationDefeat />
+              </Container>
+=======
                 <Button color="danger" type="submit"
                   pill className="px-4 my-3"
                   onClick={() => this.getdatainsert()}
@@ -140,6 +165,7 @@ class Nhomndthem extends React.Component {
                 <NotificationDefeat />
               </Container>
 
+>>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
             </div>
           </Form>
         </ModalBody>
