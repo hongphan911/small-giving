@@ -21,23 +21,7 @@ import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
 
-const initialState = {
-  id: '',
-  name: '',
-  email: '',
-  phone: '',
-  stk: '',
-  dateofbirth: '',
-  password: '',
-  idnhom: '',
 
-<<<<<<< HEAD
-  emailError: '',
-  phoneError: '',
-  idnhomError: '',
-  passwordError: '',
-  dataselect: [],
-=======
 const initialState = {
   id: "",
   name: "",
@@ -54,29 +38,10 @@ const initialState = {
   passwordError: "",
   dataselect: [],
 
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
 };
 
 class Nguoidungsua extends React.Component {
   state = initialState;
-<<<<<<< HEAD
-  componentDidMount = () => {
-    console.log('check>>>', this.props.chooseId);
-    this.getdataselect();
-  };
-  getdataselect = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
-      .then(response => response.json())
-      .then(dataselect => {
-        this.setState(
-          {
-            dataselect: dataselect,
-          },
-          () => console.log('kiemtradulieu', this.state.dataselect),
-        );
-      });
-  };
-=======
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
     this.getdatashow();
@@ -148,7 +113,6 @@ class Nguoidungsua extends React.Component {
       });
   }
 
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
 
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -203,15 +167,6 @@ class Nguoidungsua extends React.Component {
           Sửa thông tin người dùng
         </ModalHeader>
         <ModalBody>
-<<<<<<< HEAD
-          <Form onSubmit={this.handleSubmit}>
-            <Card>
-              <CardBody>
-                <Row>
-                  <Col xl={6} lg={12} md={12}>
-                    <Form>
-                      <FormGroup>
-=======
 
           <Form onSubmit={() => this.handleSubmit()}
           >
@@ -222,27 +177,16 @@ class Nguoidungsua extends React.Component {
                   <Col xl={6} lg={12} md={12}>
                     <Form>
                       <FormGroup >
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         <Label for="exampleText"> Mã người dùng</Label>
                         <Input
                           disabled="true"
                           type="text"
                           name="id"
-<<<<<<< HEAD
-                          value={this.props.chooseId}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleSelect">
-                          Nhóm người dùng <span className="red-text">*</span>
-                        </Label>
-=======
                           value={this.state.id}
                         />
                       </FormGroup>
                       <FormGroup >
                         <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
 
                         <div className="error-text">
                           {this.state.idnhomError}
@@ -250,23 +194,6 @@ class Nguoidungsua extends React.Component {
                         <Input
                           type="select"
                           name="idnhom"
-<<<<<<< HEAD
-                          value={this.state.idnhom}
-                          onChange={val => {
-                            this.setState({
-                              idnhom: val.target.value,
-                            });
-                          }}
-                        >
-                          {this.state.dataselect.map(Item => {
-                            return <option>{Item.TenNhom}</option>;
-                          })}
-                        </Input>
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleText">
-                          Số điện thoại <span className="red-text">*</span>
-=======
 
                           value={this.state.idnhom}
                           onChange={(val) => {
@@ -283,36 +210,8 @@ class Nguoidungsua extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleText">{' '}Số điện thoại <span className="red-text">*</span>
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
-                        </Label>
-                        <Input
-                          type="phone"
-                          name="phone"
-                          value={this.state.phone}
-                          onChange={val => {
-                            this.setState({
-                              phone: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleEmail">
-                          Email <span className="red-text">*</span>
                         </Label>
                         <div className="error-text">
-<<<<<<< HEAD
-                          {this.state.emailError}
-                        </div>
-                        <Input
-                          type="email"
-                          name="email"
-                          value={this.state.email}
-                          onChange={val => {
-                            this.setState({
-                              email: val.target.value,
-                            });
-=======
                           {this.state.phoneError}
                         </div>
                         <Input
@@ -341,7 +240,6 @@ class Nguoidungsua extends React.Component {
                             this.setState({
                               email: val.target.value
                             })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -349,28 +247,17 @@ class Nguoidungsua extends React.Component {
                   </Col>
                   <Col xl={6} lg={12} md={12}>
                     <Form>
-<<<<<<< HEAD
-                      <FormGroup>
-=======
                       <FormGroup >
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         <Label for="exampleText"> Họ tên</Label>
                         <Input
                           type="text"
                           name="name"
                           value={this.state.name}
-<<<<<<< HEAD
-                          onChange={val => {
-                            this.setState({
-                              name: val.target.value,
-                            });
-=======
                           onChange={(val) => {
                             this.setState({
                               name: val.target.value,
 
                             })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -380,17 +267,10 @@ class Nguoidungsua extends React.Component {
                           type="date"
                           name="dateofbirth"
                           value={this.state.dateofbirth}
-<<<<<<< HEAD
-                          onChange={val => {
-                            this.setState({
-                              dateofbirth: val.target.value,
-                            });
-=======
                           onChange={(val) => {
                             this.setState({
                               dateofbirth: val.target.value
                             })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
@@ -400,76 +280,41 @@ class Nguoidungsua extends React.Component {
                           type="text"
                           name="stk"
                           value={this.state.stk}
-<<<<<<< HEAD
-                          onChange={val => {
-                            this.setState({
-                              stk: val.target.value,
-                            });
-=======
                           onChange={(val) => {
                             this.setState({
                               stk: val.target.value
                             })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
                       <FormGroup>
-<<<<<<< HEAD
-                        <Label for="exampleText">
-                          Password <span className="red-text">*</span>
-                        </Label>
-                        {/* <div className="error-text">
-                          {this.state.passwordError}
-                        </div> */}
-=======
                         <Label for="exampleText">Password <span className="red-text">*</span></Label>
                         <div className="error-text">
                           {this.state.passwordError}
                         </div>
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                         <Input
                           type="text"
                           name="password"
                           value={this.state.password}
-<<<<<<< HEAD
-                          onChange={val => {
-                            this.setState({
-                              password: val.target.value,
-                            });
-=======
                           onChange={(val) => {
                             this.setState({
                               password: val.target.value,
 
                             })
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                           }}
                         />
                       </FormGroup>
                     </Form>
                   </Col>
                 </Row>
-<<<<<<< HEAD
-=======
 
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
               </CardBody>
             </Card>
             <div className="center-text-submit">
               <Container>
-<<<<<<< HEAD
-                <Button
-                  color="danger"
-                  type="submit"
-                  pill
-                  className="px-4 my-3"
-                  //onClick={() => this.handleUpdate()}
-=======
                 <Button color="danger" type="submit" pill
                   className="px-4 my-3"
                   onClick={() => this.getdataupdate()}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                 >
                   Cập nhật
                 </Button>

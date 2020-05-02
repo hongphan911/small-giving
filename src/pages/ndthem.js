@@ -19,20 +19,20 @@ import NotificationDefeat, {
   notifydefeat,
 } from '../components/Notification/notificationDefeat';
 
-const initialState ={
-  id:"",
-  name:"",
-  email:"",
-  phone:"",
-  stk:"",
-  dateofbirth:"",
-  password:"",
-  idnhom:"",
-  
-  emailError:"",
-  phoneError:"",
-  idnhomError:"",
-  passwordError:"",
+const initialState = {
+  id: "",
+  name: "",
+  email: "",
+  phone: "",
+  stk: "",
+  dateofbirth: "",
+  password: "",
+  idnhom: "",
+
+  emailError: "",
+  phoneError: "",
+  idnhomError: "",
+  passwordError: "",
 
   dataselect: [],
 };

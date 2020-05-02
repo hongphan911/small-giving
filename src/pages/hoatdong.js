@@ -36,11 +36,7 @@ class hoatdong extends React.Component {
       showModalThem: false,
     });
   };
-<<<<<<< HEAD
-  handleShowModalSua = id => {
-=======
   handleShowModalSua = (id) => {
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     this.setState({
       showModalSua: true,
       idHoatDong: id,
@@ -51,11 +47,7 @@ class hoatdong extends React.Component {
       showModalSua: false,
     });
   };
-<<<<<<< HEAD
-  handleShowModalXoa = id => {
-=======
   handleShowModalXoa = (id) => {
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     this.setState({
       showModalXoa: true,
       idHoatDong: id,
@@ -182,24 +174,13 @@ class hoatdong extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-<<<<<<< HEAD
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idHoatDong)
-                                }
-=======
+
                                 onClick={() => this.handleShowModalSua(Item.idHoatDong)}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                               />
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-<<<<<<< HEAD
-                                onClick={() =>
-                                  this.handleShowModalXoa(Item.idHoatDong)
-                                }
-=======
                                 onClick={() => this.handleShowModalXoa(Item.idHoatDong)}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                               />
                             </td>
                           </tr>

@@ -15,7 +15,7 @@ class tintuc extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
-      idTin:"",
+      idTin: "",
     };
   }
   handleShowModalThem = () => {
@@ -28,17 +28,10 @@ class tintuc extends React.Component {
       showModalThem: false,
     });
   };
-<<<<<<< HEAD
-  handleShowModalSua = id => {
-    this.setState({
-      showModalSua: true,
-      idTin: id,
-=======
   handleShowModalSua = (id) => {
     this.setState({
       showModalSua: true,
-      idTin:id,
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
+      idTin: id,
     });
   };
   handleCloseModalSua = () => {
@@ -46,17 +39,11 @@ class tintuc extends React.Component {
       showModalSua: false,
     });
   };
-<<<<<<< HEAD
-  handleShowModalXoa = id => {
-    this.setState({
-      showModalXoa: true,
-      idTin: id,
-=======
+
   handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
-      idTin:id,
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
+      idTin: id,
     });
   };
   handleCloseModalXoa = () => {
@@ -143,25 +130,17 @@ class tintuc extends React.Component {
                               <FaEdit
                                 className="can-click "
                                 size="1.5em"
-<<<<<<< HEAD
                                 onClick={() =>
                                   this.handleShowModalSua(Item.idTin)
                                 }
-=======
-                                onClick={() => this.handleShowModalSua(Item.idTin)}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
+
                               />
 
                               <MdDelete
                                 className="can-click"
                                 size="1.5em"
-<<<<<<< HEAD
-                                onClick={() =>
-                                  this.handleShowModalXoa(Item.idTin)
-                                }
-=======
+
                                 onClick={() => this.handleShowModalXoa(Item.idTin)}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                               />
                             </td>
                           </tr>

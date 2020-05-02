@@ -16,7 +16,7 @@ class nd extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
-      idNguoiDung: '',
+      idNguoiDung: "",
     };
   }
   componentDidUpdate(preProps, preState, future) {
@@ -28,10 +28,7 @@ class nd extends React.Component {
   handleShowModalThem = () => {
     this.setState({
       showModalThem: true,
-<<<<<<< HEAD
-=======
 
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalThem = () => {
@@ -39,14 +36,10 @@ class nd extends React.Component {
       showModalThem: false,
     });
   };
-  handleShowModalSua = id => {
+  handleShowModalSua = (id) => {
     this.setState({
       idNguoiDung: id,
       showModalSua: true,
-<<<<<<< HEAD
-      idNguoiDung: id,
-=======
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
     });
   };
   handleCloseModalSua = () => {
@@ -54,7 +47,7 @@ class nd extends React.Component {
       showModalSua: false,
     });
   };
-  handleShowModalXoa = id => {
+  handleShowModalXoa = (id) => {
     this.setState({
       showModalXoa: true,
       idNguoiDung: id,
@@ -106,37 +99,7 @@ class nd extends React.Component {
             <Col>
               <Card className="mb-3">
                 <CardBody>
-<<<<<<< HEAD
-                  <Nguoidungthem
-                    show={this.state.showModalThem}
-                    onHide={this.handleCloseModalThem}
-                    className={this.props.className}
-                  />
-                  <Nguoidungsua
-                    show={this.state.showModalSua}
-                    onHide={this.handleCloseModalSua}
-                    size="lg"
-                    className={this.props.className}
-                    chooseId={this.state.idNguoiDung}
-                  />
-                  <Nguoidungxoa
-                    show={this.state.showModalXoa}
-                    onHide={this.handleCloseModalXoa}
-                    size="lg"
-                    className={this.props.className}
-                    chooseId={this.state.idNguoiDung}
-                  />
-                  <Badge
-                    color="danger"
-                    pill
-                    className=" mb-3 p-2 can-click"
-                    onClick={() => this.handleShowModalThem()}
-                  >
-                    + Thêm mới
-                  </Badge>
-=======
 
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
@@ -151,38 +114,6 @@ class nd extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-<<<<<<< HEAD
-                      {this.state.data.map((Item, index) => {
-                        return (
-                          <tr>
-                            <td>{Item.idNguoiDung}</td>
-                            <td>{Item.TenNguoiDung}</td>
-                            <td>{Item.SDT}</td>
-                            <td>{Item.Email}</td>
-                            <td>{Item.MatKhau}</td>
-                            <td>{Item.SoDuTK}</td>
-                            <td>{Item.HuyHieu}</td>
-                            <td>
-                              <FaEdit
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idNguoiDung)
-                                }
-                              />
-
-                              <MdDelete
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalXoa(Item.idNguoiDung)
-                                }
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
-=======
                       {this.state.data.map((Item, index) => (
                         <tr>
                           <td>{Item.idNguoiDung}</td>
@@ -219,7 +150,6 @@ class nd extends React.Component {
                         </tr>
                       )
                       )}
->>>>>>> 47bc1659c20fb18ed2d0dbf973976b7549f50697
                     </tbody>
                   </Table>
                 </CardBody>
