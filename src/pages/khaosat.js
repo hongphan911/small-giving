@@ -15,7 +15,16 @@ class khaosat extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
+      idKhaoSat: "",
     };
+  }
+  componentDidUpdate(preProps, preState, future) {
+    const { idKhaoSat } = this.state;
+    if (preState.idKhaoSat != idKhaoSat) {
+      this.handleShowModalSua(idKhaoSat);
+      // this.handleShowModalXem(idHoatDong);
+    }
+
   }
   handleShowModalThem = () => {
     this.setState({
@@ -54,7 +63,7 @@ class khaosat extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/showkhaosat.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -114,11 +123,12 @@ class khaosat extends React.Component {
                       <tr className="table-danger">
                         <th>ID</th>
                         <th>Tên khảo sát</th>
-                        <th>Bắt đầu</th>
-                        <th>Kết thúc</th>
-                        <th> Số dư</th>
-                        <th> Đã tham gia</th>
-                        <th>Tác vụ</th>
+
+
+                        <th>Số người tham gia</th>
+                        <th>Số tiền mỗi lượt</th>
+                        <th>CTV đăng tải</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -127,10 +137,10 @@ class khaosat extends React.Component {
                           <tr>
                             <td>{Item.idKhaoSat}</td>
                             <td>{Item.TenKhaoSat}</td>
-                            <td>{Item.ThoiGianBD}</td>
-                            <td>{Item.ThoiGianKT}</td>
-                            <td>{Item.SoDuTK}</td>
-                            <td>{Item.SoNguoiThamGia}</td>
+
+                            <td>{Item.SoNguoiTG}</td>
+                            <td>{Item.SoTienML}</td>
+                            <td>{Item.TenNguoiDung}</td>
                             <td>
                               <FaEdit
                                 className="can-click "

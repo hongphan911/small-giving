@@ -37,9 +37,59 @@ const initialState = {
 
 class Tintucsua extends React.Component {
   state = initialState;
-  componentDidMount = () => {
-    console.log('check>>>', this.props.chooseId);
-  };
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+    //this.getdataupdate();
+
+  }
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idTin: this.props.chooseId,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/select.php', config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            id: datashow.idTin,
+            name: datashow.TenTin,
+            content: datashow.NoiDung,
+            //image: datashow.Anh
+
+          },
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
+  getdataupdate() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        idTin: this.state.id,
+        TenTin: this.state.name,
+        NoiDung: this.state.content,
+        Anh: this.state.image,
+
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/update.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+
+
+
+        }
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -56,19 +106,17 @@ class Tintucsua extends React.Component {
     if (!this.state.name) {
       nameError = 'Không được bỏ trống!';
     }
-    if (!this.state.idhoatdong) {
-      idhoatdongError = 'Không được bỏ trống!';
-    }
+
     if (!this.state.content) {
       contentError = 'Không được bỏ trống!';
     }
 
-    if (idhoatdongError || nameError || contentError) {
-      this.setState({ idhoatdongError, nameError, contentError });
+    if (nameError || contentError) {
+      this.setState({ nameError, contentError });
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -102,6 +150,12 @@ class Tintucsua extends React.Component {
                           value={this.props.chooseId}
                         />
                       </FormGroup>
+
+
+                    </Form>
+                  </Col>
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
                       <FormGroup>
                         <Label for="exampleText">
                           Tên tin <span className="red-text">*</span>
@@ -118,73 +172,25 @@ class Tintucsua extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleSelect">
-                          Thuộc hoạt động <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.idhoatdongError}
-                        </div>
-                        <Input
-                          type="select"
-                          name="idhoatdong"
-                          value={this.state.idhoatdong}
-                          onChange={val => {
-                            this.setState({
-                              idhoatdong: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
-                    </Form>
-                  </Col>
-                  <Col xl={6} lg={12} md={12}>
-                    <Form>
-                      <FormGroup>
-                        <Label for="exampleImage"> Hình ảnh / Video</Label>
-                        <Input
-                          type="file"
-                          name="image"
-                          value={this.state.image}
-                          onChange={val => {
-                            this.setState({
-                              image: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleText"> Tiêu đề thông báo</Label>
-                        <Input
-                          type="text"
-                          name="title"
-                          value={this.state.title}
-                          onChange={val => {
-                            this.setState({
-                              title: val.target.value,
-                            });
 
-                          }}
-                        />
-                      </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleSelect">
-                          Đối tượng nhận thông báo
-                        </Label>
-                        <Input
-                          type="select"
-                          name="receiver"
-                          value={this.state.receiver}
-                          onChange={val => {
-                            this.setState({
-                              receiver: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
+
                     </Form>
                   </Col>
                   <Col xl={12}>
+                    <FormGroup>
+                      <Label for="exampleImage"> Hình ảnh / Video</Label>
+                      <Input
+                        type="file"
+                        name="image"
+                        value={this.state.image}
+                        onChange={val => {
+                          this.setState({
+                            image: val.target.value,
+                          });
+                        }}
+                      />
+                    </FormGroup>
                     <Form>
                       <Label for="exampleText">
                         Nội dung <span className="red-text">*</span>
@@ -209,7 +215,10 @@ class Tintucsua extends React.Component {
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdataupdate()}
+                >
                   Cập nhật
                 </Button>
                 <NotificationSuccess />

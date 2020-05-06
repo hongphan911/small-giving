@@ -43,6 +43,7 @@ class Hoatdongsua extends React.Component {
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
     this.getdatashow();
+    //this.getdataupdate();
 
   }
   getdatashow() {
@@ -52,7 +53,7 @@ class Hoatdongsua extends React.Component {
         idHoatDong: this.props.chooseId,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/danhsachhoatdong/select.php', config)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/select.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -68,6 +69,34 @@ class Hoatdongsua extends React.Component {
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
         );
+      });
+  }
+  getdataupdate() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.state.id,
+        TenHoatDong: this.state.name,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        NoiDung: this.state.content,
+        DiaChi: this.state.address,
+        Anh: this.state.image,
+        ChiDK: this.state.total,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/update.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+
+
+
+        }
       });
   }
   handleChange = event => {
@@ -101,7 +130,7 @@ class Hoatdongsua extends React.Component {
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -268,7 +297,10 @@ class Hoatdongsua extends React.Component {
 
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdataupdate()}
+                >
                   Cập nhật
                 </Button>
                 <NotificationSuccess />

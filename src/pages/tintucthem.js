@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
+import Cookies from 'js-cookie';
 //import styled from 'styled-components';
 import NotificationSuccess, {
   notifysuccess,
@@ -30,6 +31,8 @@ const initialState = {
   content: '',
   title: '',
   receiver: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   idhoatdongError: '',
   nameError: '',
@@ -38,6 +41,52 @@ const initialState = {
 
 class Tintucthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    this.getdatainsert();
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenTin: this.state.name,
+        idHoatDong: this.state.idhoatdong,
+        NoiDung: this.state.content,
+        Anh: this.state.image,
+        TieuDeThongBao: this.state.title,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+          notifydefeat('this is a notify');
+        }
+      });
+  }
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -54,19 +103,16 @@ class Tintucthem extends React.Component {
     if (!this.state.name) {
       nameError = 'Không được bỏ trống!';
     }
-    if (!this.state.idhoatdong) {
-      idhoatdongError = 'Không được bỏ trống!';
-    }
     if (!this.state.content) {
       contentError = 'Không được bỏ trống!';
     }
 
-    if (idhoatdongError || nameError || contentError) {
-      this.setState({ idhoatdongError, nameError, contentError });
+    if (nameError || contentError) {
+      this.setState({ nameError, contentError });
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -118,13 +164,11 @@ class Tintucthem extends React.Component {
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleSelect">
-                          Thuộc hoạt động <span className="red-text">*</span>
+                          Thuộc hoạt động
                         </Label>
-                        <div className="error-text">
-                          {this.state.idhoatdongError}
-                        </div>
+
                         <Input
-                          type="select"
+                          type="text"
                           name="idhoatdong"
                           value={this.state.idhoatdong}
                           onChange={val => {
@@ -206,7 +250,10 @@ class Tintucthem extends React.Component {
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
                 <NotificationSuccess />

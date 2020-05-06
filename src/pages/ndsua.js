@@ -95,7 +95,7 @@ class Nguoidungsua extends React.Component {
         STK: this.state.stk,
         NgaySinh: this.state.dateofbirth,
         MatKhau: this.state.password,
-        idNhom: this.state.idNhom,
+        idNhom: this.state.idnhom,
       }),
     };
     fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php', config2)
@@ -203,6 +203,7 @@ class Nguoidungsua extends React.Component {
                           }}
                         >{this.state.dataselect.map((Item, index) => {
                           return (
+
                             <option>{Item.idNhom}</option>
                           );
                         })}

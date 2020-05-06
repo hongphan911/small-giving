@@ -43,8 +43,10 @@ class Header extends React.Component {
     isNotificationConfirmed: false,
     isOpenUserCardPopover: false,
     token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
-    user: [],     
-  }; 
+    user: [],
+    post: '',
+    name: '',
+  };
   componentDidMount() {
     this.getUser()
   }
@@ -57,17 +59,37 @@ class Header extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
-        .then((data)=> {
+        .then((data) => {
           this.setState({
             user: data
-          }, ()=>console.log("data>>", data))
+          }, () => this.getprofile())
         })
     }
   }
-  
-  handleLogout () {
+  getprofile = () => {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNhom: this.state.user.idNhom
+      })
+    }
+    fetch(`https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/select.php`, config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+
+            post: datashow.TenNhom,
+
+          },
+          () => console.log('kiemtradulieu>>', datashow),
+        );
+      });
+  }
+
+  handleLogout() {
     Cookies.remove('small-giving')
     window.location.reload()
   }
@@ -99,7 +121,7 @@ class Header extends React.Component {
     //const { isNotificationConfirmed } = this.state;
 
     return (
-      
+
       <Navbar light expand className={bem.b('bg-white')}>
         <Nav navbar className="mr-2">
           <Button outline onClick={this.handleSidebarControlButton}>
@@ -109,50 +131,50 @@ class Header extends React.Component {
         <Nav navbar>
           <SearchInput />
         </Nav>
-        
+
 
         <Nav navbar className={bem.e('nav-right')}>
-        {this.state.token !== ""
-          ?<NavItem>
-            <NavLink id="Popover2">
-              <Avatar
-                onClick={this.toggleUserCardPopover}
-                className="can-click"
-              />
-            </NavLink>
-            <Popover
-              placement="bottom-end"
-              isOpen={this.state.isOpenUserCardPopover}
-              toggle={this.toggleUserCardPopover}
-              target="Popover2"
-              className="p-0 border-0"
-              style={{ minWidth: 250 }}
-            >
-              
-              <PopoverBody className="p-0 border-light">
-                <UserCard
-                  title={this.state.user.TenNguoiDung}
-                  subtitle="Cộng tác viên kế toán"
-                  className="border-light"
-                >
-                  <ListGroup flush>
-                    <ListGroupItem tag="button" action className="border-light">
-                      <div onClick={() => this.handleLogout()}>
-                        <MdExitToApp /> Đăng xuất
+          {this.state.token !== ""
+            ? <NavItem>
+              <NavLink id="Popover2">
+                <Avatar
+                  onClick={this.toggleUserCardPopover}
+                  className="can-click"
+                />
+              </NavLink>
+              <Popover
+                placement="bottom-end"
+                isOpen={this.state.isOpenUserCardPopover}
+                toggle={this.toggleUserCardPopover}
+                target="Popover2"
+                className="p-0 border-0"
+                style={{ minWidth: 250 }}
+              >
+
+                <PopoverBody className="p-0 border-light">
+                  <UserCard
+                    title={this.state.user.TenNguoiDung}
+                    subtitle={this.state.post}
+                    className="border-light"
+                  >
+                    <ListGroup flush>
+                      <ListGroupItem tag="button" action className="border-light">
+                        <div onClick={() => this.handleLogout()}>
+                          <MdExitToApp /> Đăng xuất
                       </div>
-                    </ListGroupItem>
-                  </ListGroup>
-                </UserCard>
-              </PopoverBody>
-               
-            </Popover>
-          </NavItem>
-          :<NavItem></NavItem>
+                      </ListGroupItem>
+                    </ListGroup>
+                  </UserCard>
+                </PopoverBody>
+
+              </Popover>
+            </NavItem>
+            : <NavItem></NavItem>
           }
         </Nav>
-  
+
       </Navbar>
-    
+
     );
   }
 }

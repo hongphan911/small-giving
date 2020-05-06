@@ -39,9 +39,65 @@ const initialState = {
 
 class Khaosatsua extends React.Component {
   state = initialState;
-  componentDidMount = () => {
-    console.log('check>>>', this.props.chooseId);
-  };
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+    //this.getdataupdate();
+
+  }
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idKhaoSat: this.props.chooseId,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/select.php', config)
+      .then(response => response.json())
+      .then(datashow => {
+        this.setState(
+          {
+            id: datashow.idKhaoSat,
+            name: datashow.TenKhaoSat,
+            url: datashow.Link,
+            patron: datashow.idNhaTaiTro,
+            startdate: datashow.ThoiGianBD,
+            enddate: datashow.ThoiGianKT,
+            eachturn: datashow.SoTienML
+
+          },
+          () => console.log('kiemtradulieu>>', this.state.datashow),
+        );
+      });
+  }
+  getdataupdate() {
+    let config2 = {
+      method: "POST",
+      body: JSON.stringify({
+        idKhaoSat: this.state.id,
+        TenKhaoSat: this.state.name,
+        Link: this.state.url,
+        idNhaTaiTro: this.state.patron,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        SoTienML: this.state.eachturn,
+
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/update.php', config2)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+
+
+
+        }
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -65,15 +121,13 @@ class Khaosatsua extends React.Component {
     if (!this.state.eachturn) {
       eachturnError = 'Không được bỏ trống!';
     }
-    if (!this.state.total) {
-      totalError = 'Không được bỏ trống!';
-    }
-    if (nameError || urlError || eachturnError || totalError) {
-      this.setState({ nameError, urlError, eachturnError, totalError });
+
+    if (nameError || urlError || eachturnError) {
+      this.setState({ nameError, urlError, eachturnError });
       notifydefeat('this is a notify');
       return false;
     } else {
-      notifysuccess('this is a notify');
+
       return true;
     }
   };
@@ -137,25 +191,7 @@ class Khaosatsua extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Số tiền cho mỗi lượt khảo sát{' '}
-                          <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.eachturnError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="eachturn"
-                          value={this.state.eachturn}
-                          onChange={val => {
-                            this.setState({
-                              eachturn: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
 
@@ -192,6 +228,31 @@ class Khaosatsua extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
+                        <Label for="exampleNumber">
+                          Số tiền cho mỗi lượt khảo sát{' '}
+                          <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.eachturnError}
+                        </div>
+                        <Input
+                          type="number"
+                          name="eachturn"
+                          value={this.state.eachturn}
+                          onChange={val => {
+                            this.setState({
+                              eachturn: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+
+                    </Form>
+                  </Col>
+                  <Col>
+                    <Form>
+                      <FormGroup>
                         <Label for="exampleUrl">
                           Link khảo sát <span className="red-text">*</span>
                         </Label>
@@ -207,24 +268,6 @@ class Khaosatsua extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Tổng tiền khảo sát <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.totalError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="total"
-                          value={this.state.total}
-                          onChange={val => {
-                            this.setState({
-                              total: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
                     </Form>
                   </Col>
                 </Row>
@@ -232,7 +275,10 @@ class Khaosatsua extends React.Component {
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdataupdate()}
+                >
                   Cập nhật
                 </Button>
                 <NotificationSuccess />

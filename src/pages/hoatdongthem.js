@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
+import Cookies from 'js-cookie';
 //import styled from 'styled-components';
 import NotificationSuccess, {
   notifysuccess,
@@ -31,6 +32,8 @@ const initialState = {
   content: '',
   address: '',
   total: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   totalError: '',
   nameError: '',
@@ -40,6 +43,58 @@ const initialState = {
 
 class Hoatdongthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    this.getdatainsert();
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+
+  getdatainsert() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiThuHuong: this.state.id,
+        idCTV: this.state.user.idNguoiDung,
+        TenHoatDong: this.state.name,
+        NoiDung: this.state.content,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        DiaChi: this.state.address,
+        Anh: this.state.image,
+        ChiDK: this.state.total,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+          notifydefeat('this is a notify');
+
+
+        }
+      });
+  }
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -71,7 +126,7 @@ class Hoatdongthem extends React.Component {
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -97,12 +152,18 @@ class Hoatdongthem extends React.Component {
                   <Col xl={6} lg={12} md={12}>
                     <Form>
                       <FormGroup>
-                        <Label for="exampleText"> Mã họat động</Label>
+                        <Label for="exampleText"> Người thụ hưởng</Label>
                         <Input
-                          disabled="true"
+
                           type="text"
                           name="id"
                           value={this.state.id}
+                          onChange={val => {
+                            this.setState({
+                              id: val.target.value,
+                            });
+
+                          }}
 
                         />
                       </FormGroup>
@@ -241,7 +302,11 @@ class Hoatdongthem extends React.Component {
 
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger"
+                  type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
                 <NotificationSuccess />

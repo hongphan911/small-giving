@@ -15,6 +15,7 @@ import {
   ModalHeader,
 } from 'reactstrap';
 //import styled from 'styled-components';
+import Cookies from 'js-cookie';
 import NotificationSuccess, {
   notifysuccess,
 } from '../components/Notification/notificationSuccess';
@@ -25,12 +26,64 @@ import NotificationDefeat, {
 const initialState = {
   id: '',
   name: '',
-  money: '',
-  moneyError: '',
+  startdate: '',
+  enddate: '',
+  patron: '',
+  eachturn: '',
+
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
+  nameError: '',
+  eachturnError: '',
 };
 
 class Diemdanhthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    this.getdatainsert();
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenDiemDanh: this.state.name,
+        idNhaTaiTro: this.state.patron,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        SoTienML: this.state.eachturn,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+          notifydefeat('this is a notify');
+        }
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -40,18 +93,22 @@ class Diemdanhthem extends React.Component {
     });
   };
   validate = () => {
-    let moneyError = '';
+    let nameError = '';
+    let eachturnError = '';
 
-    if (!this.state.money) {
-      moneyError = 'Không được bỏ trống!';
+    if (!this.state.name) {
+      nameError = 'Không được bỏ trống!';
+    }
+    if (!this.state.eachturn) {
+      eachturnError = 'Không được bỏ trống!';
     }
 
-    if (moneyError) {
-      this.setState({ moneyError });
+    if (nameError || eachturnError) {
+      this.setState({ nameError, eachturnError });
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -71,81 +128,121 @@ class Diemdanhthem extends React.Component {
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
-            <Row>
-              <Col xl={12} lg={12} md={12}>
-                <Card>
-                  <CardBody className="pd-rancach">
+            <Card>
+              <CardBody>
+                <Row>
+
+
+                  <Col xl={6} lg={12} md={12}>
                     <Form>
                       <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText"> Mã tài khoản</Label>
-                          </Col>
-                          <Col md={8}>
-                            <Input
-                              disabled="true"
-                              type="text"
-                              name="id"
-                              value={this.state.id}
-                              onChange={this.handleChange}
-                            />
-                          </Col>
-                        </Row>
+                        <Label for="exampleText">Mã điểm danh</Label>
+                        <Input
+                          disabled="true"
+                          type="text"
+                          name="id"
+                          value={this.state.id}
+                          onChange={this.handleChange}
+                        />
                       </FormGroup>
                       <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText">Tên tài khoản</Label>
-                          </Col>
-                          <Col md={8}>
-                            <Input
-                              type="text"
-                              name="name"
-                              value={this.state.name}
-                              onChange={val => {
-                                this.setState({
-                                  name: val.target.value,
-                                });
-                              }}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                      <FormGroup>
-                        <Row>
-                          <Col md={4}>
-                            <Label for="exampleText">
-                              {' '}
-                              Số tiền cho mỗi lượt{' '}
-                              <span className="red-text">*</span>
-                            </Label>
-                          </Col>
-                          <Col md={8}>
-                            <div className="error-text">
-                              {this.state.moneyError}
-                            </div>
-                            <Input
-                              type="number"
-                              name="money"
-                              value={this.state.money}
-                              onChange={val => {
-                                this.setState({
-                                  money: val.target.value,
-                                });
-                              }}
-                            />
-                          </Col>
-                        </Row>
-                      </FormGroup>
-                    </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
+                        <Label for="exampleDate">Thời gian bắt đầu</Label>
 
+                        <Input
+                          type="date"
+                          name="startdate"
+                          value={this.state.startdate}
+                          onChange={val => {
+                            this.setState({
+                              startdate: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="exampleEmail"> Thuộc nhà tài trợ</Label>
+                        <Input
+                          type="email"
+                          name="patron"
+                          value={this.state.patron}
+                          onChange={val => {
+                            this.setState({
+                              patron: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+                    </Form>
+                  </Col>
+
+                  <Col xl={6} lg={12} md={12}>
+                    <Form>
+                      <FormGroup>
+                        <Label for="exampleText">
+                          Tên điểm danh <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">{this.state.nameError}</div>
+                        <Input
+                          type="text"
+                          name="name"
+                          value={this.state.name}
+                          onChange={val => {
+                            this.setState({
+                              name: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+                      <FormGroup>
+                        <Label for="exampleDate">Thời gian kết thúc</Label>
+                        <Input
+                          type="date"
+                          name="enddate"
+                          value={this.state.enddate}
+                          onChange={val => {
+                            this.setState({
+                              enddate: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="exampleNumber">
+                          Số tiền cho mỗi lượt điểm danh{' '}
+                          <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.eachturnError}
+                        </div>
+                        <Input
+                          type="number"
+                          name="eachturn"
+                          value={this.state.eachturn}
+                          onChange={val => {
+                            this.setState({
+                              eachturn: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+
+                    </Form>
+
+
+                  </Col>
+                </Row>
+              </CardBody>
+            </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit"
+                  pill className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Lưu
                 </Button>
                 <NotificationSuccess />

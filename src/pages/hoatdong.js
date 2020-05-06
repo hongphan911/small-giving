@@ -18,12 +18,19 @@ class hoatdong extends React.Component {
       showModalXoa: false,
       showModalXem: false,
       idHoatDong: "",
+      idHD: "",
     };
   }
   componentDidUpdate(preProps, preState, future) {
     const { idHoatDong } = this.state;
     if (preState.idHoatDong != idHoatDong) {
       this.handleShowModalSua(idHoatDong);
+      // this.handleShowModalXem(idHoatDong);
+    }
+    const { idHD } = this.state;
+    if (preState.idHD != idHD) {
+      //this.handleShowModalSua(idHoatDong);
+      this.handleShowModalXem(idHD);
     }
   }
   handleShowModalThem = () => {
@@ -61,7 +68,7 @@ class hoatdong extends React.Component {
   handleShowModalXem = (id) => {
     this.setState({
       showModalXem: true,
-      idHoatDong: id,
+      idHD: id,
     });
   };
   handleCloseModalXem = () => {
@@ -75,7 +82,7 @@ class hoatdong extends React.Component {
 
   getdata = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/showhoatdong.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php',
     )
       .then(response => response.json())
       .then(data => {
@@ -127,7 +134,7 @@ class hoatdong extends React.Component {
                     onHide={() => this.handleCloseModalXem()}
                     size="lg"
                     className={this.props.className}
-                    chooseId={this.state.idHoatDong}
+                    chooseId={this.state.idHD}
                   />
 
                   <Badge
@@ -145,10 +152,10 @@ class hoatdong extends React.Component {
                         <th> Tên hoạt động</th>
                         <th> Bắt đầu</th>
                         <th> Kết thúc</th>
-                        <th> Đã quyên góp</th>
                         <th> Lượt quyên góp</th>
+                        <th> CTV đăng tải</th>
                         <th> Xem đăng kí</th>
-                        <th> Tác vụ</th>
+                        <th> </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -159,8 +166,9 @@ class hoatdong extends React.Component {
                             <td>{Item.TenHoatDong}</td>
                             <td>{Item.ThoiGianBD}</td>
                             <td>{Item.ThoiGianKT}</td>
-                            <td>{Item.SoDuTK}</td>
-                            <td>{Item.SoNguoi}</td>
+
+                            <td>{Item.SoNguoiTG}</td>
+                            <td>{Item.TenNguoiDung}</td>
                             <td>
                               <Button
                                 color="link"
@@ -177,11 +185,7 @@ class hoatdong extends React.Component {
 
                                 onClick={() => this.handleShowModalSua(Item.idHoatDong)}
                               />
-                              <MdDelete
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() => this.handleShowModalXoa(Item.idHoatDong)}
-                              />
+
                             </td>
                           </tr>
                         );

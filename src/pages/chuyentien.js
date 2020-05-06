@@ -37,7 +37,7 @@ class chuyentien extends React.Component {
 
   getdata = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/showchuyentien.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/showchuyentien.php',
     )
       .then(response => response.json())
       .then(data => {

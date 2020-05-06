@@ -27,7 +27,7 @@ class naptien extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownaptien.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownaptien.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -85,6 +85,7 @@ class naptien extends React.Component {
                         <th>Tài khoản nạp</th>
                         <th>Thời gian</th>
                         <th>Số tiền</th>
+                        <th>CTV thưc hiện</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -95,6 +96,7 @@ class naptien extends React.Component {
                             <td>{Item.TenNguoiDung}</td>
                             <td>{Item.ThoiGian}</td>
                             <td>{Item.SoTien}</td>
+                            <td>{Item.CTV}</td>
                           </tr>
                         );
                       })}

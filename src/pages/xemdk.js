@@ -19,12 +19,20 @@ class Xemdk extends React.Component {
       data: [],
     };
   }
-  componentDidMount() {
-    this.getdata();
+  componentWillReceiveProps = () => {
+    console.log("check>>>", this.props.chooseId);
+    this.getdatashow();
+
   }
 
-  getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+  getdatashow() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idHoatDong: this.props.chooseId,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/xemdangky.php', config)
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -34,7 +42,7 @@ class Xemdk extends React.Component {
           () => console.log('kiemtradulieu', this.state.data),
         );
       });
-  };
+  }
   render() {
     return (
       <Modal isOpen={this.props.show}>
@@ -51,16 +59,16 @@ class Xemdk extends React.Component {
                       <Table {...{ [tableType || 'hover']: true }}>
                         <thead>
                           <tr className="table-danger">
-                            <th>Mã đăng kí</th>
-                            <th>Tên người tham gia</th>
-                            <th> SĐT</th>
+                            <th>ID</th>
+                            <th>Tên Nhà hảo tâm</th>
+                            <th>SĐT liên hệ</th>
                           </tr>
                         </thead>
                         <tbody>
                           {this.state.data.map(Item => {
                             return (
                               <tr>
-                                <td>{Item.idNguoiDung}</td>
+                                <td>{Item.idDangKy}</td>
                                 <td>{Item.TenNguoiDung}</td>
                                 <td>{Item.SDT}</td>
                               </tr>

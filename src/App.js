@@ -88,7 +88,7 @@ class App extends React.Component {
           token: this.state.token
         })
       }
-      fetch(`https://misappmobile.000webhostapp.com/checktoken.php`, config)
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
         .then((response) => response.json())
         .then((data) => {
           this.setState({

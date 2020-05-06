@@ -15,7 +15,7 @@ class gopy extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/showgopy.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showgopy.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -42,7 +42,7 @@ class gopy extends React.Component {
                     <thead>
                       <tr className="table-danger">
                         <th>ID</th>
-                        <th>Tên người dùng</th>
+                        <th>Tên nhà hảo tâm</th>
                         <th> SĐT</th>
                         <th>Email</th>
                         <th>Nội dung</th>

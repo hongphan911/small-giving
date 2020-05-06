@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalHeader,
 } from 'reactstrap';
+import Cookies from 'js-cookie';
 //import styled from 'styled-components';
 import NotificationSuccess, {
   notifysuccess,
@@ -31,6 +32,8 @@ const initialState = {
   patron: '',
   eachturn: '',
   total: '',
+  token: Cookies.get('small-giving') ? Cookies.get('small-giving') : "",
+  user: [],
 
   nameError: '',
   urlError: '',
@@ -40,6 +43,52 @@ const initialState = {
 
 class Khaosatthem extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getUser()
+    this.getdatainsert();
+  }
+  getUser = () => {
+    if (this.state.token !== "") {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          token: this.state.token
+        })
+      }
+      fetch(`http://smallgiving.cf/mobileapp/checktoken.php`, config)
+        .then((response) => response.json())
+        .then((data) => {
+          this.setState({
+            user: data
+          }, () => this.getdatainsert())
+        })
+    }
+  }
+  getdatainsert() {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenKhaoSat: this.state.name,
+        idNhaTaiTro: this.state.patron,
+        Link: this.state.url,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        SoTienML: this.state.eachturn,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/taokhaosat/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
+
+        } else {
+          notifydefeat('this is a notify');
+        }
+      });
+  }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -63,15 +112,13 @@ class Khaosatthem extends React.Component {
     if (!this.state.eachturn) {
       eachturnError = 'Không được bỏ trống!';
     }
-    if (!this.state.total) {
-      totalError = 'Không được bỏ trống!';
-    }
-    if (nameError || urlError || eachturnError || totalError) {
-      this.setState({ nameError, urlError, eachturnError, totalError });
+
+    if (nameError || urlError || eachturnError) {
+      this.setState({ nameError, urlError, eachturnError });
       notifydefeat('this is a notify');
       return false;
     }
-    notifysuccess('this is a notify');
+
     return true;
   };
   handleSubmit = event => {
@@ -135,25 +182,7 @@ class Khaosatthem extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Số tiền cho mỗi lượt khảo sát{' '}
-                          <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.eachturnError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="eachturn"
-                          value={this.state.eachturn}
-                          onChange={val => {
-                            this.setState({
-                              eachturn: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
 
@@ -190,6 +219,32 @@ class Khaosatthem extends React.Component {
                         />
                       </FormGroup>
                       <FormGroup>
+                        <Label for="exampleNumber">
+                          Số tiền cho mỗi lượt khảo sát{' '}
+                          <span className="red-text">*</span>
+                        </Label>
+                        <div className="error-text">
+                          {this.state.eachturnError}
+                        </div>
+                        <Input
+                          type="number"
+                          name="eachturn"
+                          value={this.state.eachturn}
+                          onChange={val => {
+                            this.setState({
+                              eachturn: val.target.value,
+                            });
+                          }}
+                        />
+                      </FormGroup>
+
+
+                    </Form>
+
+                  </Col>
+                  <Col>
+                    <Form>
+                      <FormGroup>
                         <Label for="exampleUrl">
                           Link khảo sát <span className="red-text">*</span>
                         </Label>
@@ -205,32 +260,19 @@ class Khaosatthem extends React.Component {
                           }}
                         />
                       </FormGroup>
-                      <FormGroup>
-                        <Label for="exampleNumber">
-                          Tổng tiền khảo sát <span className="red-text">*</span>
-                        </Label>
-                        <div className="error-text">
-                          {this.state.totalError}
-                        </div>
-                        <Input
-                          type="number"
-                          name="total"
-                          value={this.state.total}
-                          onChange={val => {
-                            this.setState({
-                              total: val.target.value,
-                            });
-                          }}
-                        />
-                      </FormGroup>
+
                     </Form>
                   </Col>
+
                 </Row>
               </CardBody>
             </Card>
             <div className="center-text-submit">
               <Container>
-                <Button color="danger" type="submit" pill className="px-4 my-3">
+                <Button color="danger" type="submit" pill
+                  className="px-4 my-3"
+                  onClick={() => this.getdatainsert()}
+                >
                   Đăng tải
                 </Button>
                 <NotificationSuccess />

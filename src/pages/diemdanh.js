@@ -15,7 +15,16 @@ class diemdanh extends React.Component {
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
+      idDiemDanh: "",
     };
+  }
+  componentDidUpdate(preProps, preState, future) {
+    const { idDiemDanh } = this.state;
+    if (preState.idDiemDanh != idDiemDanh) {
+      this.handleShowModalSua(idDiemDanh);
+      // this.handleShowModalXem(idHoatDong);
+    }
+
   }
   handleShowModalThem = () => {
     this.setState({
@@ -55,7 +64,7 @@ class diemdanh extends React.Component {
 
   getdata = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/showdiemdanh.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/showdiemdanh.php',
     )
       .then(response => response.json())
       .then(data => {
@@ -114,11 +123,12 @@ class diemdanh extends React.Component {
                     <thead>
                       <tr className="table-danger">
                         <th>ID</th>
-                        <th>Tên tài khoản</th>
-                        <th>Số dư</th>
+                        <th>Tên quỹ điểm danh</th>
+
                         <th>Số người tham gia</th>
-                        <th>Sô tiền</th>
-                        <th>Tác vụ</th>
+                        <th>Sô tiền mỗi lượt</th>
+                        <th>CTV tạo quỹ</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -126,10 +136,11 @@ class diemdanh extends React.Component {
                         return (
                           <tr>
                             <td>{Item.idDiemDanh}</td>
-                            <td>{Item.TenTK}</td>
-                            <td>{Item.SoDuTK}</td>
+                            <td>{Item.TenDiemDanh}</td>
+
                             <td>{Item.SoNguoiTG}</td>
                             <td>{Item.SoTienML}</td>
+                            <td>{Item.TenNguoiDung}</td>
                             <td>
                               <FaEdit
                                 className="can-click "

@@ -18,6 +18,14 @@ class tintuc extends React.Component {
       idTin: "",
     };
   }
+  componentDidUpdate(preProps, preState, future) {
+    const { idTin } = this.state;
+    if (preState.idTin != idTin) {
+      this.handleShowModalSua(idTin);
+      // this.handleShowModalXem(idHoatDong);
+    }
+
+  }
   handleShowModalThem = () => {
     this.setState({
       showModalThem: true,
@@ -56,7 +64,7 @@ class tintuc extends React.Component {
   }
 
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/showtintuc.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showtintuc.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -114,8 +122,9 @@ class tintuc extends React.Component {
                     <thead>
                       <tr className="table-danger ">
                         <th> ID</th>
-                        <th> Tên Tin</th>
+                        <th> Tiêu đề tin tức</th>
                         <th> Tiêu đề thông báo</th>
+                        <th> CTV đăng tải</th>
                         <th> Tác vụ</th>
                       </tr>
                     </thead>
@@ -126,6 +135,7 @@ class tintuc extends React.Component {
                             <td>{Item.idTin}</td>
                             <td>{Item.TenTin}</td>
                             <td>{Item.TieuDeThongBao}</td>
+                            <td>{Item.TenNguoiDung}</td>
                             <td>
                               <FaEdit
                                 className="can-click "

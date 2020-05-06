@@ -57,8 +57,8 @@ const baocao = [
   { to: '/bcquyengop', name: 'Giao dịch quyên góp', exact: false, Icon: FaRegMoneyBillAlt },
 ];
 const taitro = [
-  { to: '/khaosat', name: 'Tạo khảo sát', exact: false, Icon: TiThListOutline, },
-  { to: '/diemdanh', name: 'Tạo tài khoản điểm danh', exact: false, Icon: TiThListOutline, },
+  { to: '/khaosat', name: 'Bài khảo sát', exact: false, Icon: TiThListOutline, },
+  { to: '/diemdanh', name: 'Quỹ điểm danh', exact: false, Icon: TiThListOutline, },
 ];
 const luongtien = [
   { to: '/naptien', name: 'Nạp tiền', exact: false, Icon: GiReceiveMoney },

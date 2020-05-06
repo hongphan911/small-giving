@@ -74,7 +74,7 @@ class AuthForm extends React.Component {
       }),
     };
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/dangnhapadmin.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/dangnhapadmin.php',
       config,
     )
       .then(response => response.json())
@@ -214,7 +214,7 @@ AuthForm.defaultProps = {
     placeholder: 'Mật khẩu',
   },
 
-  onLogoClick: () => {},
+  onLogoClick: () => { },
 };
 
 export default AuthForm;

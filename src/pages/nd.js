@@ -62,7 +62,7 @@ class nd extends React.Component {
     this.getdata();
   }
   getdata = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -108,9 +108,8 @@ class nd extends React.Component {
                         <th>SĐT</th>
                         <th>Email</th>
                         <th>Mật khẩu</th>
-                        <th> Số dư TK</th>
-                        <th> Huy hiệu</th>
-                        <th>Tác vụ</th>
+                        <th>Huy hiệu</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -121,10 +120,8 @@ class nd extends React.Component {
                           <td>{Item.SDT}</td>
                           <td>{Item.Email}</td>
                           <td>{Item.MatKhau}</td>
-                          <td>{Item.SoDuTK}</td>
                           <td>{Item.HuyHieu}</td>
                           <td>
-
                             <FaEdit className="can-click" size="1.5em"
                               onClick={() => this.handleShowModalSua(Item.idNguoiDung)}
                             />
@@ -135,9 +132,7 @@ class nd extends React.Component {
                               className={this.props.className}
                               chooseId={this.state.idNguoiDung}
                             />
-                            <MdDelete className="can-click" size="1.5em"
-                              onClick={() => this.handleShowModalXoa(Item.idNguoiDung)}
-                            />
+
                             <Nguoidungxoa
                               show={this.state.showModalXoa}
                               onHide={() => this.handleCloseModalXoa()}
