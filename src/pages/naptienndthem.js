@@ -28,7 +28,7 @@ const initialState = {
 
   accountError: '',
   moneyError: '',
-  dataselect: [],
+
 };
 class Naptienthem extends React.Component {
   state = initialState;
@@ -67,27 +67,12 @@ class Naptienthem extends React.Component {
       this.setState(initialState);
     }
   };
-  componentDidMount() {
-    this.getdataselect();
-  }
 
-  getdataselect = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
-      .then(response => response.json())
-      .then(dataselect => {
-        this.setState(
-          {
-            dataselect: dataselect,
-          },
-          () => console.log('kiemtradulieu', this.state.dataselect),
-        );
-      });
-  };
   render() {
     return (
       <Modal isOpen={this.props.show}>
         <ModalHeader className="text-danger" toggle={this.props.onHide}>
-          Thêm mới nạp tiền
+          Thêm mới nạp tiền nhà hảo tâm
         </ModalHeader>
         <ModalBody>
           <Form onSubmit={this.handleSubmit}>
@@ -101,7 +86,11 @@ class Naptienthem extends React.Component {
                           <Label for="exampleEmail"> Mã giao dịch</Label>
                         </Col>
                         <Col md={9}>
-                          <Input type="email" name="id" value={this.state.id} />
+                          <Input
+                            disabled="true"
+                            type="email"
+                            name="id"
+                            value={this.state.id} />
                         </Col>
                       </Row>
                     </Form>
@@ -109,7 +98,7 @@ class Naptienthem extends React.Component {
                       <Row>
                         <Col md={3}>
                           <Label for="exampleSelect">
-                            Tài khoản nạp <span className="red-text">*</span>
+                            SDT nhà hảo tâm <span className="red-text">*</span>
                           </Label>
                         </Col>
                         <Col md={9}>
@@ -117,7 +106,7 @@ class Naptienthem extends React.Component {
                             {this.state.accountError}
                           </div>
                           <Input
-                            type="select"
+                            type="text"
                             name="account"
                             value={this.state.account}
                             onChange={val => {
@@ -126,9 +115,6 @@ class Naptienthem extends React.Component {
                               });
                             }}
                           >
-                            {this.state.dataselect.map(Item => {
-                              return <option>{Item.SDT}</option>;
-                            })}
                           </Input>
                         </Col>
                       </Row>
@@ -137,7 +123,7 @@ class Naptienthem extends React.Component {
                       <Row>
                         <Col md={3}>
                           <Label for="exampleNumber">
-                            Số tiền <span className="red-text">*</span>
+                            Số tiền nạp<span className="red-text">*</span>
                           </Label>
                         </Col>
                         <Col md={9}>

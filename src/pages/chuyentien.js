@@ -80,10 +80,10 @@ class chuyentien extends React.Component {
                   <Table {...{ [tableType || 'default']: true }}>
                     <thead>
                       <tr className="table-danger">
-                        <th>Mã giao dịch</th>
+                        <th>ID</th>
                         <th> Tài khoản nguồn</th>
                         <th>Tài khoản đích</th>
-                        <th>Thời gian</th>
+
                         <th>Số tiền</th>
                         <th>Tác vụ</th>
                       </tr>
@@ -95,7 +95,7 @@ class chuyentien extends React.Component {
                             <td>{Item.idGiaoDich}</td>
                             <td>{Item.TenKhaoSat}</td>
                             <td>{Item.TenNguoiDung}</td>
-                            <td>{Item.ThoiGian}</td>
+
                             <td>{Item.SoTien}</td>
                             <td>
                               <Chuyentienthem

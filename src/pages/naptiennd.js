@@ -1,6 +1,6 @@
 import Page from 'components/Page';
 import React from 'react';
-import Naptienthem from 'pages/naptienthem';
+import Naptienthem from 'pages/naptienndthem';
 import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 const tableTypes = ['hover'];
 
@@ -27,7 +27,7 @@ class naptien extends React.Component {
   }
 
   getdata = async () => {
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownaptien.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownaptiennd.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -53,10 +53,10 @@ class naptien extends React.Component {
     return (
       <Page
         className="naptien"
-        title="Nạp tiền"
+        title="Nạp tiền nhà hảo tâm"
         breadcrumbs={[
           { name: 'quản trị giao dịch' },
-          { name: 'nạp tiền', active: true },
+          { name: 'nạp tiền nhà hảo tâm', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -81,10 +81,10 @@ class naptien extends React.Component {
                   <Table {...{ [tableType || 'hover']: true }}>
                     <thead>
                       <tr className="table-danger">
-                        <th>Mã giao dịch</th>
-                        <th>Tài khoản nạp</th>
+                        <th>ID</th>
+                        <th>Tài khoản nhà hảo tâm</th>
                         <th>Thời gian</th>
-                        <th>Số tiền</th>
+                        <th>Số tiền nạp</th>
                         <th>CTV thưc hiện</th>
                       </tr>
                     </thead>

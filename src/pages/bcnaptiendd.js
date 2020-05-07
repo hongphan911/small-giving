@@ -18,29 +18,7 @@ const initialState = {
     enddate: '',
     name: '',
 };
-class bctaitro extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-        };
-    }
-    componentDidMount() {
-        this.getdata();
-    }
-
-    getdata = async () => {
-        fetch('https://misappmobile.000webhostapp.com/trangquantri/showgopy.php')
-            .then(response => response.json())
-            .then(data => {
-                this.setState(
-                    {
-                        data: data,
-                    },
-                    () => console.log('kiemtradulieu', this.state.data),
-                );
-            });
-    };
+class bcnaptien extends React.Component {
     state = initialState;
     handleChange = event => {
         const isCheckbox = event.target.type === 'checkbox';
@@ -78,15 +56,14 @@ class bctaitro extends React.Component {
             //this.setState(initialState);
         }
     };
-
     render() {
         return (
             <Page
-                className="bctaitro"
-                title="Nguồn tài trợ"
+                className="bcnaptien"
+                title="Tổng tiền nạp"
                 breadcrumbs={[
                     { name: 'báo cáo' },
-                    { name: 'giao dịch thực hiện khảo sát', active: true },
+                    { name: 'giao dịch nạp tiền quỹ điểm danh', active: true },
                 ]}
             >
                 {tableTypes.map((tableType, index) => (
@@ -121,7 +98,7 @@ class bctaitro extends React.Component {
                                                     <Row>
                                                         <Col md={3}>
                                                             <Label for="exampleDate">
-                                                                Tài khoản khảo sát <span className="red-text">*</span>
+                                                                Quỹ điểm danh <span className="red-text">*</span>
                                                             </Label>
                                                         </Col>
                                                         <Col md={9}>
@@ -163,67 +140,60 @@ class bctaitro extends React.Component {
                                         </Row>
                                         <Table
                                             {...{ [tableType || 'hover']: true }}
-                                            id="table-to-xls-3"
+                                            id="table-to-xls-1"
                                         >
                                             <thead>
                                                 <tr className="table-danger">
-                                                    <th>STT</th>
-                                                    <th>Bài khảo sát</th>
-                                                    <th>Nhà hảo tâm</th>
-                                                    <th>Số tiền</th>
+                                                    <th>ID</th>
+                                                    <th>Quỹ điểm danh</th>
+                                                    <th>Số tiền nạp</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">1</th>
                                                     <td>Mark</td>
-                                                    <td>Otto</td>
                                                     <td>120000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">2</th>
                                                     <td>Jacob</td>
-                                                    <td>Thornton</td>
                                                     <td>100000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">3</th>
                                                     <td>Larry</td>
-                                                    <td>the Bird</td>
                                                     <td>50000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">4</th>
                                                     <td>Thornton</td>
-                                                    <td>@fat</td>
                                                     <td>60000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">5</th>
                                                     <td>Mark</td>
-                                                    <td>Otto</td>
                                                     <td>60000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">6</th>
                                                     <td>Larry</td>
-                                                    <td>the Bird</td>
                                                     <td>7000</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">7</th>
                                                     <td>Wendy</td>
-                                                    <td>the Magic</td>
                                                     <td>200000</td>
                                                 </tr>
                                             </tbody>
+
                                         </Table>
                                         <Table {...{ [tableType || 'hover']: true }}>
                                             <Row>
-                                                <Col md={8} className="sum-left">
+                                                <Col md={6} className="sum-left">
                                                     <div className="sum"> Tổng tiền</div>
                                                 </Col>
-                                                <Col md={4} className="sum-right">
+                                                <Col md={6} className="sum-right">
                                                     <div className="sum"> 14500000</div>
                                                 </Col>
                                             </Row>
@@ -246,7 +216,7 @@ class bctaitro extends React.Component {
                                                         color="danger"
                                                         size="lg"
                                                         className="btn btn-excel-report"
-                                                        table="table-to-xls-3"
+                                                        table="table-to-xls-1"
                                                         filename="excelfile"
                                                         sheet="sheet 1"
                                                         buttonText="Xuất Excel"
@@ -264,4 +234,4 @@ class bctaitro extends React.Component {
         );
     }
 }
-export default bctaitro;
+export default bcnaptien;

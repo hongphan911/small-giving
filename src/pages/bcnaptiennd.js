@@ -16,6 +16,7 @@ const tableTypes = ['hover'];
 const initialState = {
   startdate: '',
   enddate: '',
+  name: '',
 };
 class bcnaptien extends React.Component {
   state = initialState;
@@ -62,7 +63,7 @@ class bcnaptien extends React.Component {
         title="Tổng tiền nạp"
         breadcrumbs={[
           { name: 'báo cáo' },
-          { name: 'giao dịch nạp tiền', active: true },
+          { name: 'giao dịch nạp tiền nhà hảo tâm', active: true },
         ]}
       >
         {tableTypes.map((tableType, index) => (
@@ -88,6 +89,26 @@ class bcnaptien extends React.Component {
                                 type="date"
                                 name="startdate"
                                 value={this.state.startdate}
+                                onChange={this.handleChange}
+                              />
+                            </Col>
+                          </Row>
+                        </Form>
+                        <Form>
+                          <Row>
+                            <Col md={3}>
+                              <Label for="exampleDate">
+                                Nhà hảo tâm <span className="red-text">*</span>
+                              </Label>
+                            </Col>
+                            <Col md={9}>
+                              <div className="error-text">
+                                {this.state.startdateError}
+                              </div>
+                              <Input
+                                type="select"
+                                name="name"
+                                value={this.state.name}
                                 onChange={this.handleChange}
                               />
                             </Col>
@@ -123,7 +144,7 @@ class bcnaptien extends React.Component {
                     >
                       <thead>
                         <tr className="table-danger">
-                          <th>STT</th>
+                          <th>ID</th>
                           <th>Nhà hảo tâm</th>
                           <th>Số tiền nạp</th>
                         </tr>

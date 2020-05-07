@@ -52,15 +52,21 @@ const hoatdongthem = React.lazy(() => import('pages/hoatdongthem'));
 const hoatdongsua = React.lazy(() => import('pages/hoatdongsua'));
 const hoatdongxoa = React.lazy(() => import('pages/hoatdongxoa'));
 
-const naptien = React.lazy(() => import('pages/naptien'));
-const naptienthem = React.lazy(() => import('pages/naptienthem'));
+const naptiennd = React.lazy(() => import('pages/naptiennd'));
+const naptienks = React.lazy(() => import('pages/naptienks'));
+const naptiendd = React.lazy(() => import('pages/naptiendd'));
+const naptienndthem = React.lazy(() => import('pages/naptienndthem'));
+const naptienksthem = React.lazy(() => import('pages/naptienksthem'));
+const naptienddthem = React.lazy(() => import('pages/naptienddthem'));
 
 const gopy = React.lazy(() => import('pages/gopy'));
 
 const bcquyengop = React.lazy(() => import('pages/bcquyengop'));
 const bctaitro = React.lazy(() => import('pages/bctaitro'));
 const bctaitro2 = React.lazy(() => import('pages/bctaitro2'));
-const bcnaptien = React.lazy(() => import('pages/bcnaptien'));
+const bcnaptiennd = React.lazy(() => import('pages/bcnaptiennd'));
+const bcnaptienks = React.lazy(() => import('pages/bcnaptienks'));
+const bcnaptiendd = React.lazy(() => import('pages/bcnaptiendd'));
 
 
 const getBasename = () => {
@@ -163,7 +169,9 @@ class App extends React.Component {
                     <Route exact path="/tintucsua" component={tintucsua} />
                     <Route exact path="/tintucxoa" component={tintucxoa} />
 
-                    <Route exact path="/bcnaptien" component={bcnaptien} />
+                    <Route exact path="/bcnaptiennd" component={bcnaptiennd} />
+                    <Route exact path="/bcnaptienks" component={bcnaptienks} />
+                    <Route exact path="/bcnaptiendd" component={bcnaptiendd} />
                     <Route exact path="/bcquyengop" component={bcquyengop} />
                     <Route exact path="/bctaitro" component={bctaitro} />
                     <Route exact path="/bctaitro2" component={bctaitro2} />
@@ -175,8 +183,12 @@ class App extends React.Component {
 
                     <Route exact path="/gopy" component={gopy} />
 
-                    <Route exact path="/naptien" component={naptien} />
-                    <Route exact path="/naptienthem" component={naptienthem} />
+                    <Route exact path="/naptiennd" component={naptiennd} />
+                    <Route exact path="/naptienks" component={naptienks} />
+                    <Route exact path="/naptiendd" component={naptiendd} />
+                    <Route exact path="/naptienndthem" component={naptienndthem} />
+                    <Route exact path="/naptienksthem" component={naptienksthem} />
+                    <Route exact path="/naptienddthem" component={naptienddthem} />
 
                     <Route exact path="/khaosat" component={khaosat} />
                     <Route exact path="/khaosatthem" component={khaosatthem} />

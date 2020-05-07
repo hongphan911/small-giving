@@ -16,6 +16,7 @@ const tableTypes = ['hover'];
 const initialState = {
   startdate: '',
   enddate: '',
+  name: '',
 };
 class bcquyengop extends React.Component {
   state = initialState;
@@ -88,6 +89,26 @@ class bcquyengop extends React.Component {
                                 type="date"
                                 name="startdate"
                                 value={this.state.startdate}
+                                onChange={this.handleChange}
+                              />
+                            </Col>
+                          </Row>
+                        </Form>
+                        <Form>
+                          <Row>
+                            <Col md={3}>
+                              <Label for="exampleDate">
+                                Hoạt động thiện nguyện <span className="red-text">*</span>
+                              </Label>
+                            </Col>
+                            <Col md={9}>
+                              <div className="error-text">
+                                {this.state.startdateError}
+                              </div>
+                              <Input
+                                type="select"
+                                name="name"
+                                value={this.state.name}
                                 onChange={this.handleChange}
                               />
                             </Col>
