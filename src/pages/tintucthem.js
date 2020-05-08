@@ -63,28 +63,32 @@ class Tintucthem extends React.Component {
     }
   }
   getdatainsert() {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        idCTV: this.state.user.idNguoiDung,
-        TenTin: this.state.name,
-        idHoatDong: this.state.idhoatdong,
-        NoiDung: this.state.content,
-        Anh: this.state.image,
-        TieuDeThongBao: this.state.title,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          idCTV: this.state.user.idNguoiDung,
+          TenTin: this.state.name,
+          idHoatDong: this.state.idhoatdong,
+          NoiDung: this.state.content,
+          Anh: this.state.image,
+          TieuDeThongBao: this.state.title,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
-          notifydefeat('this is a notify');
-        }
-      });
+          } else {
+            notifydefeat('this is a notify');
+          }
+        });
+      this.setState(initialState);
+    }
   }
 
   handleChange = event => {
@@ -117,12 +121,12 @@ class Tintucthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     return (

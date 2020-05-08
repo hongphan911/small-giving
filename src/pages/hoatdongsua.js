@@ -72,32 +72,36 @@ class Hoatdongsua extends React.Component {
       });
   }
   getdataupdate() {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idHoatDong: this.state.id,
-        TenHoatDong: this.state.name,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        NoiDung: this.state.content,
-        DiaChi: this.state.address,
-        Anh: this.state.image,
-        ChiDK: this.state.total,
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idHoatDong: this.state.id,
+          TenHoatDong: this.state.name,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          NoiDung: this.state.content,
+          DiaChi: this.state.address,
+          Anh: this.state.image,
+          ChiDK: this.state.total,
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
+          } else {
 
 
 
-        }
-      });
+          }
+        });
+      this.setState(initialState);
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -135,12 +139,12 @@ class Hoatdongsua extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     return (

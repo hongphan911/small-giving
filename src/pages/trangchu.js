@@ -94,7 +94,7 @@ class DashboardPage extends React.Component {
   };
   getsumuser = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/soluongnguoidung.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/soluongnguoidung.php',
     )
       .then(response => response.json())
       .then(datasumuser => {
@@ -108,7 +108,7 @@ class DashboardPage extends React.Component {
   };
   getsumact = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/soluonghoatdong.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/soluonghoatdong.php',
     )
       .then(response => response.json())
       .then(datasumact => {
@@ -122,7 +122,7 @@ class DashboardPage extends React.Component {
   };
   getsumsurvey = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/soluottraloiks.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/soluottraloiks.php',
     )
       .then(response => response.json())
       .then(datasumsurvey => {
@@ -136,7 +136,7 @@ class DashboardPage extends React.Component {
   };
   getsumgiving = async () => {
     fetch(
-      'https://misappmobile.000webhostapp.com/trangquantri/soluotquyengop.php',
+      'http://smallgiving.cf/mobileapp/trangquantri/soluotquyengop.php',
     )
       .then(response => response.json())
       .then(datasumgiving => {
@@ -149,7 +149,7 @@ class DashboardPage extends React.Component {
       });
   };
   getnaptien = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/tongnaptien.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/tongnaptien.php')
       .then(response => response.json())
       .then(datanaptien => {
         this.setState(
@@ -161,7 +161,7 @@ class DashboardPage extends React.Component {
       });
   };
   getkhaosat = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/tongkhaosat.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/tongkhaosat.php')
       .then(response => response.json())
       .then(datakhaosat => {
         this.setState(

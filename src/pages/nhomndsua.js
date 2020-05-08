@@ -55,26 +55,30 @@ class Nhomndsua extends React.Component {
       });
   }
   getdataupdate() {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idNhom: this.state.id,
-        TenNhom: this.state.name,
-      }),
-    };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idNhom: this.state.id,
+          TenNhom: this.state.name,
+        }),
+      };
+      fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
+          } else {
 
 
 
-        }
-      });
+          }
+        });
+      this.setState(initialState);
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -101,12 +105,12 @@ class Nhomndsua extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     let { info } = this.state

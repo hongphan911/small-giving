@@ -61,32 +61,36 @@ class Diemdanhsua extends React.Component {
       });
   }
   getdataupdate() {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idDiemDanh: this.state.id,
-        TenDiemDanh: this.state.name,
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idDiemDanh: this.state.id,
+          TenDiemDanh: this.state.name,
 
-        idNhaTaiTro: this.state.patron,
-        ThoiGianBD: this.state.startdate,
-        ThoiGianKT: this.state.enddate,
-        SoTienML: this.state.eachturn,
+          idNhaTaiTro: this.state.patron,
+          ThoiGianBD: this.state.startdate,
+          ThoiGianKT: this.state.enddate,
+          SoTienML: this.state.eachturn,
 
-      }),
-    };
-    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+        }),
+      };
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/diemdanh/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
+          } else {
 
 
 
-        }
-      });
+          }
+        });
+      this.setState(initialState);
+    }
   }
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
@@ -114,7 +118,18 @@ class Diemdanhsua extends React.Component {
     }
 
     return true;
+
   };
+  handleSubmit = event => {
+    event.preventDefault();
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
+  };
+
   render() {
     return (
       <Modal isOpen={this.props.show}>

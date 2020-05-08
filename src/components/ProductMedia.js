@@ -18,7 +18,7 @@ class ProductMedia extends React.Component {
   }
 
   getActivities = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/hoatdongmoi.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/hoatdongmoi.php')
       .then(response => response.json())
       .then(data => {
         this.setState(
@@ -53,8 +53,8 @@ class ProductMedia extends React.Component {
                 {Item.ChiDK && typeof Item.ChiDK === 'string' ? (
                   <Typography type="h4">{Item.ChiDK}</Typography>
                 ) : (
-                  Item.ChiDK
-                )}
+                    Item.ChiDK
+                  )}
               </Media>
             </Media>
           );

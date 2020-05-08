@@ -85,32 +85,37 @@ class Nguoidungsua extends React.Component {
       });
   };
   getdataupdate() {
-    let config2 = {
-      method: "POST",
-      body: JSON.stringify({
-        idNguoiDung: this.state.id,
-        TenNguoiDung: this.state.name,
-        Email: this.state.email,
-        SDT: this.state.phone,
-        STK: this.state.stk,
-        NgaySinh: this.state.dateofbirth,
-        MatKhau: this.state.password,
-        idNhom: this.state.idnhom,
-      }),
-    };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php', config2)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config2 = {
+        method: "POST",
+        body: JSON.stringify({
+          idNguoiDung: this.state.id,
+          TenNguoiDung: this.state.name,
+          Email: this.state.email,
+          SDT: this.state.phone,
+          STK: this.state.stk,
+          NgaySinh: this.state.dateofbirth,
+          MatKhau: this.state.password,
+          idNhom: this.state.idnhom,
+        }),
+      };
+      fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php', config2)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
+          } else {
 
 
 
-        }
-      });
+          }
+        });
+      this.setState(initialState);
+    }
+
   }
 
 
@@ -152,12 +157,12 @@ class Nguoidungsua extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
 
   render() {

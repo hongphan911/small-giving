@@ -33,25 +33,29 @@ class Nhomndthem extends React.Component {
     this.getdatainsert();
   }
   getdatainsert() {
-    let config = {
-      method: "POST",
-      body: JSON.stringify({
-        TenNhom: this.state.name,
-      }),
-    };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/insert.php', config)
-      .then(response => response.json())
-      .then((data) => {
-        if (data.message === "success") {
-          notifysuccess('this is a notify');
-          window.location.reload();
+    const isValid = this.validate();
+    if (isValid) {
+      let config = {
+        method: "POST",
+        body: JSON.stringify({
+          TenNhom: this.state.name,
+        }),
+      };
+      fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nhomnguoidung/insert.php', config)
+        .then(response => response.json())
+        .then((data) => {
+          if (data.message === "success") {
+            notifysuccess('this is a notify');
+            window.location.reload();
 
-        } else {
-          notifydefeat('this is a notify');
+          } else {
+            notifydefeat('this is a notify');
 
 
-        }
-      });
+          }
+        });
+      this.setState(initialState);
+    }
   }
 
   handleChange = event => {
@@ -79,12 +83,12 @@ class Nhomndthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const isValid = this.validate();
-    if (isValid) {
-      console.log(this.state);
-      //clear form
-      this.setState(initialState);
-    }
+    //const isValid = this.validate();
+    //if (isValid) {
+    console.log(this.state);
+    //clear form
+    //this.setState(initialState);
+    //}
   };
   render() {
     return (

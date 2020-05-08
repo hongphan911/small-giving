@@ -399,11 +399,11 @@
 }
 .activities-fix{
   .media-body{
-    max-width: 250px;
-  }
-  .media-right{
-    padding-left: 50px;
-  }
+   width: 250px;
+ }
+ // .media-right{
+ //   padding-left: 50px;
+ // }
 }
 @media (min-width: 576px){
   .modal-dialog {
