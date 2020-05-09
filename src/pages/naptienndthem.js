@@ -32,6 +32,7 @@ const initialState = {
 };
 class Naptienthem extends React.Component {
   state = initialState;
+
   handleChange = event => {
     const isCheckbox = event.target.type === 'checkbox';
     this.setState({
@@ -112,6 +113,7 @@ class Naptienthem extends React.Component {
                             onChange={val => {
                               this.setState({
                                 account: val.target.value,
+                                accountError: ""
                               });
                             }}
                           >

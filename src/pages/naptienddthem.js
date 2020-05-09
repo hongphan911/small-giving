@@ -72,7 +72,7 @@ class Naptienthem extends React.Component {
     }
 
     getdataselect = async () => {
-        fetch('https://misappmobile.000webhostapp.com/trangquantri/shownd.php')
+        fetch('http://smallgiving.cf/mobileapp/trangquantri/showdiemdanh.php')
             .then(response => response.json())
             .then(dataselect => {
                 this.setState(
@@ -131,7 +131,7 @@ class Naptienthem extends React.Component {
                                                         }}
                                                     >
                                                         {this.state.dataselect.map(Item => {
-                                                            return <option>{Item.SDT}</option>;
+                                                            return <option>{Item.TenDiemDanh}</option>;
                                                         })}
                                                     </Input>
                                                 </Col>
@@ -155,6 +155,7 @@ class Naptienthem extends React.Component {
                                                         onChange={val => {
                                                             this.setState({
                                                                 money: val.target.value,
+                                                                moneyError: ""
                                                             });
                                                         }}
                                                     />

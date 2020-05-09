@@ -39,14 +39,28 @@ const initialState = {
   nameError: '',
   imageError: '',
   contentError: '',
+  dataselect: [],
 };
 
 class Hoatdongthem extends React.Component {
   state = initialState;
   componentDidMount() {
     this.getUser()
-    this.getdatainsert();
+    //this.getdatainsert();
+    this.getnth();
   }
+  getnth = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
   getUser = () => {
     if (this.state.token !== "") {
       let config = {
@@ -66,37 +80,37 @@ class Hoatdongthem extends React.Component {
   }
 
   getdatainsert() {
-    const isValid = this.validate();
-    if (isValid) {
-      let config = {
-        method: "POST",
-        body: JSON.stringify({
-          idNguoiThuHuong: this.state.id,
-          idCTV: this.state.user.idNguoiDung,
-          TenHoatDong: this.state.name,
-          NoiDung: this.state.content,
-          ThoiGianBD: this.state.startdate,
-          ThoiGianKT: this.state.enddate,
-          DiaChi: this.state.address,
-          Anh: this.state.image,
-          ChiDK: this.state.total,
-        }),
-      };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
-        .then(response => response.json())
-        .then((data) => {
-          if (data.message === "success") {
-            notifysuccess('this is a notify');
-            window.location.reload();
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idNguoiThuHuong: this.state.id,
+        idCTV: this.state.user.idNguoiDung,
+        TenHoatDong: this.state.name,
+        NoiDung: this.state.content,
+        ThoiGianBD: this.state.startdate,
+        ThoiGianKT: this.state.enddate,
+        DiaChi: this.state.address,
+        Anh: this.state.image,
+        ChiDK: this.state.total,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
 
-          } else {
-            notifydefeat('this is a notify');
+        } else {
+          notifydefeat('this is a notify');
 
 
-          }
-        });
-      this.setState(initialState);
-    }
+        }
+      });
+    //this.setState(initialState);
+    //}
 
   }
 
@@ -136,12 +150,12 @@ class Hoatdongthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    //this.setState(initialState);
-    //}
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      //clear form
+      this.setState(initialState);
+    }
   };
   render() {
     return (
@@ -160,7 +174,7 @@ class Hoatdongthem extends React.Component {
                         <Label for="exampleText"> Người thụ hưởng</Label>
                         <Input
 
-                          type="text"
+                          type="select"
                           name="id"
                           value={this.state.id}
                           onChange={val => {
@@ -170,7 +184,10 @@ class Hoatdongthem extends React.Component {
 
                           }}
 
-                        />
+                        >{this.state.dataselect.map(Item => {
+                          return <option>{Item.TenNguoiDung}</option>;
+                        })}
+                        </Input>
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleDate">Ngày bắt đầu</Label>

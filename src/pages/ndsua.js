@@ -30,11 +30,11 @@ const initialState = {
   stk: "",
   dateofbirth: "",
   password: "",
-  idnhom: "",
+  tennhom: "",
 
   emailError: "",
   phoneError: "",
-  idnhomError: "",
+  tennhomError: "",
   passwordError: "",
   dataselect: [],
 
@@ -42,11 +42,15 @@ const initialState = {
 
 class Nguoidungsua extends React.Component {
   state = initialState;
+  componentDidMount() {
+    this.getdataselect();
+  }
   componentWillReceiveProps = () => {
     console.log("check>>>", this.props.chooseId);
+
+
     this.getdatashow();
-    this.getdataselect();
-    this.getdataupdate();
+    //this.getdataupdate();
   }
   getdatashow() {
     let config = {
@@ -55,7 +59,7 @@ class Nguoidungsua extends React.Component {
         idNguoiDung: this.props.chooseId,
       }),
     };
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/select.php', config)
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testselect.php', config)
       .then(response => response.json())
       .then(datashow => {
         this.setState(
@@ -67,14 +71,14 @@ class Nguoidungsua extends React.Component {
             stk: datashow.STK,
             dateofbirth: datashow.NgaySinh,
             password: datashow.MatKhau,
-            idnhom: datashow.idNhom,
+            tennhom: datashow.TenNhom,
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
         );
       });
   }
   getdataselect = async () => {
-    fetch('https://misappmobile.000webhostapp.com/trangquantri/shownhomnd.php')
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhomnd.php')
       .then((response) => response.json())
       .then((dataselect) => {
         this.setState({
@@ -97,10 +101,10 @@ class Nguoidungsua extends React.Component {
           STK: this.state.stk,
           NgaySinh: this.state.dateofbirth,
           MatKhau: this.state.password,
-          idNhom: this.state.idnhom,
+          TenNhom: this.state.tennhom,
         }),
       };
-      fetch('https://misappmobile.000webhostapp.com/trangquantri/admin/nguoidung/update.php', config2)
+      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/nguoidung/testupdate.php', config2)
         .then(response => response.json())
         .then((data) => {
           if (data.message === "success") {
@@ -130,14 +134,14 @@ class Nguoidungsua extends React.Component {
   validate = () => {
     let emailError = '';
     let phoneError = '';
-    let idnhomError = '';
+    let tennhomError = '';
     let passwordError = '';
 
     if (!this.state.phone) {
       phoneError = 'Không được bỏ trống!';
     }
-    if (!this.state.idnhom) {
-      idnhomError = 'Không được bỏ trống!';
+    if (!this.state.tennhom) {
+      tennhomError = 'Không được bỏ trống!';
     }
     if (!this.state.email) {
       emailError = 'Không được bỏ trống!';
@@ -146,8 +150,8 @@ class Nguoidungsua extends React.Component {
     if (!this.state.password) {
       passwordError = 'Không được bỏ trống!';
     }
-    if (phoneError || idnhomError || emailError || passwordError) {
-      this.setState({ phoneError, idnhomError, emailError, passwordError });
+    if (phoneError || tennhomError || emailError || passwordError) {
+      this.setState({ phoneError, tennhomError, emailError, passwordError });
       notifydefeat('this is a notify');
       return false;
     }
@@ -194,22 +198,22 @@ class Nguoidungsua extends React.Component {
                         <Label for="exampleSelect">Nhóm người dùng <span className="red-text">*</span></Label>
 
                         <div className="error-text">
-                          {this.state.idnhomError}
+                          {this.state.tennhomError}
                         </div>
                         <Input
                           type="select"
-                          name="idnhom"
+                          name="tennhom"
 
-                          value={this.state.idnhom}
+                          value={this.state.tennhom}
                           onChange={(val) => {
                             this.setState({
-                              idnhom: val.target.value
+                              tennhom: val.target.value
                             })
                           }}
                         >{this.state.dataselect.map((Item, index) => {
                           return (
 
-                            <option>{Item.idNhom}</option>
+                            <option>{Item.TenNhom}</option>
                           );
                         })}
                         </Input>

@@ -23,6 +23,7 @@ import NotificationDefeat, {
 
 const initialState = {
   id: '',
+  idnth: '',
   name: '',
   startdate: '',
   enddate: '',
@@ -35,6 +36,7 @@ const initialState = {
   nameError: '',
   imageError: '',
   contentError: '',
+  dataselect: [],
 };
 
 class Hoatdongsua extends React.Component {
@@ -46,6 +48,22 @@ class Hoatdongsua extends React.Component {
     //this.getdataupdate();
 
   }
+  componentDidMount() {
+
+    this.getnth();
+  }
+  getnth = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownth.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
   getdatashow() {
     let config = {
       method: "POST",
@@ -59,6 +77,7 @@ class Hoatdongsua extends React.Component {
         this.setState(
           {
             id: datashow.idHoatDong,
+            idnth: datashow.TenNguoiDung,
             name: datashow.TenHoatDong,
             startdate: datashow.ThoiGianBD,
             enddate: datashow.ThoiGianKT,
@@ -66,6 +85,7 @@ class Hoatdongsua extends React.Component {
             content: datashow.NoiDung,
             address: datashow.DiaChi,
             total: datashow.ChiDK,
+
           },
           () => console.log('kiemtradulieu>>', this.state.datashow),
         );
@@ -78,6 +98,7 @@ class Hoatdongsua extends React.Component {
         method: "POST",
         body: JSON.stringify({
           idHoatDong: this.state.id,
+          TenNguoiDung: this.state.idnth,
           TenHoatDong: this.state.name,
           ThoiGianBD: this.state.startdate,
           ThoiGianKT: this.state.enddate,
@@ -160,13 +181,23 @@ class Hoatdongsua extends React.Component {
                   <Col xl={6} lg={12} md={12}>
                     <Form>
                       <FormGroup>
-                        <Label for="exampleText"> Mã họat động</Label>
+                        <Label for="exampleText"> Người thụ hưởng</Label>
                         <Input
-                          disabled="true"
-                          type="text"
+
+                          type="select"
                           name="id"
-                          value={this.state.id}
-                        />
+                          value={this.state.idnth}
+                          onChange={val => {
+                            this.setState({
+                              idnth: val.target.value,
+                            });
+
+                          }}
+                        >
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenNguoiDung}</option>;
+                          })}
+                        </Input>
                       </FormGroup>
                       <FormGroup>
                         <Label for="exampleDate">Ngày bắt đầu</Label>
@@ -213,6 +244,7 @@ class Hoatdongsua extends React.Component {
                           onChange={val => {
                             this.setState({
                               name: val.target.value,
+                              nameError: ""
                             });
 
                           }}
@@ -249,6 +281,7 @@ class Hoatdongsua extends React.Component {
                           onChange={val => {
                             this.setState({
                               total: val.target.value,
+                              totalError: ""
                             });
 
                           }}
@@ -270,6 +303,7 @@ class Hoatdongsua extends React.Component {
                         onChange={val => {
                           this.setState({
                             image: val.target.value,
+                            imageError: ""
                           });
 
                         }}
@@ -289,6 +323,7 @@ class Hoatdongsua extends React.Component {
                         onChange={val => {
                           this.setState({
                             content: val.target.value,
+                            contentError: ""
                           });
 
                         }}

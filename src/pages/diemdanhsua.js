@@ -26,6 +26,7 @@ const initialState = {
   name: '',
   money: '',
   moneyError: '',
+  dataselect: [],
 };
 
 class Diemdanhsua extends React.Component {
@@ -36,6 +37,21 @@ class Diemdanhsua extends React.Component {
     //this.getdataupdate();
 
   }
+  componentDidMount() {
+    this.getnhataitro();
+  }
+  getnhataitro = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/shownhataitro.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
   getdatashow() {
     let config = {
       method: "POST",
@@ -50,7 +66,7 @@ class Diemdanhsua extends React.Component {
           {
             id: datashow.idDiemDanh,
             name: datashow.TenDiemDanh,
-            patron: datashow.idNhaTaiTro,
+            patron: datashow.TenNguoiDung,
             startdate: datashow.ThoiGianBD,
             enddate: datashow.ThoiGianKT,
             eachturn: datashow.SoTienML
@@ -69,7 +85,7 @@ class Diemdanhsua extends React.Component {
           idDiemDanh: this.state.id,
           TenDiemDanh: this.state.name,
 
-          idNhaTaiTro: this.state.patron,
+          TenNguoiDung: this.state.patron,
           ThoiGianBD: this.state.startdate,
           ThoiGianKT: this.state.enddate,
           SoTienML: this.state.eachturn,
@@ -169,7 +185,7 @@ class Diemdanhsua extends React.Component {
                   <FormGroup>
                     <Label for="exampleEmail"> Thuộc nhà tài trợ</Label>
                     <Input
-                      type="email"
+                      type="select"
                       name="patron"
                       value={this.state.patron}
                       onChange={val => {
@@ -177,7 +193,10 @@ class Diemdanhsua extends React.Component {
                           patron: val.target.value,
                         });
                       }}
-                    />
+                    >{this.state.dataselect.map(Item => {
+                      return <option>{Item.TenNguoiDung}</option>;
+                    })}
+                    </Input>
                   </FormGroup>
 
                 </Form>

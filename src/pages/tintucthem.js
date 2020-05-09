@@ -37,14 +37,28 @@ const initialState = {
   idhoatdongError: '',
   nameError: '',
   contentError: '',
+  dataselect: [],
 };
 
 class Tintucthem extends React.Component {
   state = initialState;
   componentDidMount() {
     this.getUser()
-    this.getdatainsert();
+    //this.getdatainsert();
+    this.gethd();
   }
+  gethd = async () => {
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/showhoatdong.php')
+      .then(response => response.json())
+      .then(dataselect => {
+        this.setState(
+          {
+            dataselect: dataselect,
+          },
+          () => console.log('kiemtradulieu', this.state.dataselect),
+        );
+      });
+  };
   getUser = () => {
     if (this.state.token !== "") {
       let config = {
@@ -63,32 +77,32 @@ class Tintucthem extends React.Component {
     }
   }
   getdatainsert() {
-    const isValid = this.validate();
-    if (isValid) {
-      let config = {
-        method: "POST",
-        body: JSON.stringify({
-          idCTV: this.state.user.idNguoiDung,
-          TenTin: this.state.name,
-          idHoatDong: this.state.idhoatdong,
-          NoiDung: this.state.content,
-          Anh: this.state.image,
-          TieuDeThongBao: this.state.title,
-        }),
-      };
-      fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
-        .then(response => response.json())
-        .then((data) => {
-          if (data.message === "success") {
-            notifysuccess('this is a notify');
-            window.location.reload();
+    //const isValid = this.validate();
+    //if (isValid) {
+    let config = {
+      method: "POST",
+      body: JSON.stringify({
+        idCTV: this.state.user.idNguoiDung,
+        TenTin: this.state.name,
+        idHoatDong: this.state.idhoatdong,
+        NoiDung: this.state.content,
+        Anh: this.state.image,
+        TieuDeThongBao: this.state.title,
+      }),
+    };
+    fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/tintuc/insert.php', config)
+      .then(response => response.json())
+      .then((data) => {
+        if (data.message === "success") {
+          notifysuccess('this is a notify');
+          window.location.reload();
 
-          } else {
-            notifydefeat('this is a notify');
-          }
-        });
-      this.setState(initialState);
-    }
+        } else {
+          notifydefeat('this is a notify');
+        }
+      });
+    //this.setState(initialState);
+    //}
   }
 
   handleChange = event => {
@@ -121,12 +135,12 @@ class Tintucthem extends React.Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    //const isValid = this.validate();
-    //if (isValid) {
-    console.log(this.state);
-    //clear form
-    //this.setState(initialState);
-    //}
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+      //clear form
+      this.setState(initialState);
+    }
   };
   render() {
     return (
@@ -172,7 +186,7 @@ class Tintucthem extends React.Component {
                         </Label>
 
                         <Input
-                          type="text"
+                          type="select"
                           name="idhoatdong"
                           value={this.state.idhoatdong}
                           onChange={val => {
@@ -180,7 +194,11 @@ class Tintucthem extends React.Component {
                               idhoatdong: val.target.value,
                             });
                           }}
-                        />
+                        ><option></option>
+                          {this.state.dataselect.map(Item => {
+                            return <option>{Item.TenHoatDong}</option>;
+                          })}
+                        </Input>
                       </FormGroup>
                     </Form>
                   </Col>
