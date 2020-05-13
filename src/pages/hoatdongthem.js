@@ -259,7 +259,7 @@ class Hoatdongthem extends React.Component {
                       <FormGroup>
                         <Label for="exampleNumber">
                           {' '}
-                          Tổng tiền dự kiến <span className="red-text">*</span>
+                          Kinh phí dự kiến <span className="red-text">*</span>
                         </Label>
                         <div className="error-text">
                           {this.state.totalError}

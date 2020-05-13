@@ -11,12 +11,21 @@ import {
   ModalHeader,
 } from 'reactstrap';
 const tableTypes = ['hover'];
+const dataError = [
+  {
+    id: "",
+    TenNguoiDung: " Chưa có dữ liệu",
+    SDT: "",
+  }
+]
 
 class Xemdk extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataError: [],
+      dataerror: false,
     };
   }
   componentWillReceiveProps = () => {
@@ -35,12 +44,19 @@ class Xemdk extends React.Component {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/hoatdong/xemdangky.php', config)
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+
+        }
+
       });
   }
   render() {
@@ -65,15 +81,24 @@ class Xemdk extends React.Component {
                           </tr>
                         </thead>
                         <tbody>
-                          {this.state.data.map(Item => {
-                            return (
-                              <tr>
-                                <td>{Item.idDangKy}</td>
-                                <td>{Item.TenNguoiDung}</td>
-                                <td>{Item.SDT}</td>
-                              </tr>
-                            );
-                          })}
+                          {this.state.dataerror ?
+                            this.state.dataError.map(Item => {
+                              return (
+                                <tr>
+                                  <td>{Item.id}</td>
+                                  <td>{Item.TenNguoiDung}</td>
+                                  <td>{Item.SDT}</td>
+                                </tr>
+                              );
+                            }) : this.state.data.map(Item => {
+                              return (
+                                <tr>
+                                  <td>{Item.idDangKy}</td>
+                                  <td>{Item.TenNguoiDung}</td>
+                                  <td>{Item.SDT}</td>
+                                </tr>
+                              );
+                            })}
                         </tbody>
                       </Table>
                     </CardBody>

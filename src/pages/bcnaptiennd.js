@@ -18,10 +18,25 @@ const initialState = {
   enddate: '',
   name: '',
   data: [],
+  dataError: [],
   datashow: [],
   tong: [],
-
+  tongError: [],
+  dataerror: false,
 };
+const dataError = [
+  {
+    id: "",
+    TenNguoiDung: " Chưa có dữ liệu",
+    SoTien: "",
+  }
+]
+const tongError = [
+  {
+    id: "1",
+    tong: " 0",
+  }
+]
 class bcnaptien extends React.Component {
   state = initialState;
   componentDidMount() {
@@ -54,14 +69,18 @@ class bcnaptien extends React.Component {
       fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptiennht.php', config)
         .then(response => response.json())
         .then(data => {
+          if (data.message === "No post found") {
+            this.setState({ dataerror: true, dataError: dataError });
+          } else {
+            this.setState(
 
-          this.setState(
-            {
-              data: data,
-            }, () => this.getdatatong(),
-          );
+              {
+                dataerror: false,
+                data: data,
+              }, () => this.getdatatong(),
+            );
+          }
         });
-
     }
   }
   getdatatong() {
@@ -239,31 +258,46 @@ class bcnaptien extends React.Component {
                         </tr>
                       </thead>
                       <tbody>
-                        {this.state.data.map(Item => {
-                          return (
-                            <tr>
-                              <td>{Item.idGiaoDich}</td>
-                              <td>{Item.TenNguoiDung}</td>
-                              <td>{Item.SoTien}</td>
-                            </tr>
-                          );
-                        })}
+                        {this.state.dataerror ?
+                          this.state.dataError.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.id}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          }) : this.state.data.map(Item => {
+                            return (
+                              <tr>
+                                <td>{Item.idGiaoDich}</td>
+                                <td>{Item.TenNguoiDung}</td>
+                                <td>{Item.SoTien}</td>
+                              </tr>
+                            );
+                          })}
                       </tbody>
-
-                    </Table>
-                    <Table {...{ [tableType || 'hover']: true }}>
                       <Row>
                         <Col md={6} className="sum-left">
                           <div className="sum"> Tổng tiền</div>
                         </Col>
                         <Col md={6} className="sum-right">
-                          {this.state.tong.map(Item => {
-                            return (
-                              <div className="sum">{Item.tong}</div>
-                            );
-                          })}
+                          {this.state.dataerror ?
+                            this.state.tongError.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            }) : this.state.tong.map(Item => {
+                              return (
+                                <div className="sum">{Item.tong}</div>
+                              );
+                            })}
                         </Col>
                       </Row>
+
+                    </Table>
+                    <Table {...{ [tableType || 'hover']: true }}>
+
                     </Table>
                     <div className="button-bottom">
                       <Row>

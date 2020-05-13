@@ -35,7 +35,7 @@ const chuyentienthem = React.lazy(() => import('pages/chuyentienthem'));
 const xemdk = React.lazy(() => import('pages/xemdk'));
 const trangchu = React.lazy(() => import('pages/trangchu'));
 const Phanquyen = React.lazy(() => import('pages/phanquyen'));
-const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
+//const ProfileUser = React.lazy(() => import('pages/ProfileUser'));
 
 const khaosat = React.lazy(() => import('pages/khaosat'));
 const khaosatthem = React.lazy(() => import('pages/khaosatthem'));
@@ -208,9 +208,7 @@ class App extends React.Component {
                     <Route exact path="/xemdk" component={xemdk} />
                   </React.Suspense>
                 </MainLayout>
-                <ProfileLayout>
-                  <Route exact path="/profile" component={ProfileUser} />
-                </ProfileLayout>
+
                 <Redirect to="/" />
 
               </Switch>

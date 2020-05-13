@@ -7,11 +7,24 @@ import { Card, CardBody, Col, Row, Table, Badge } from 'reactstrap';
 import { FaEdit } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 const tableTypes = ['hover'];
+const dataError = [
+  {
+    e1: "",
+    e2: "",
+    e3: "Chưa có dữ liệu",
+    e4: "",
+    e5: "",
+    e6: "",
+
+  }
+]
 class khaosat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataError: [],
+      dataerror: false,
       showModalThem: false,
       showModalSua: false,
       showModalXoa: false,
@@ -66,12 +79,19 @@ class khaosat extends React.Component {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/showkhaosat.php')
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+
+        }
+
       });
   };
   render() {
@@ -132,34 +152,49 @@ class khaosat extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.data.map(Item => {
-                        return (
-                          <tr>
-                            <td>{Item.idKhaoSat}</td>
-                            <td>{Item.TenKhaoSat}</td>
+                      {this.state.dataerror ?
+                        this.state.dataError.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.e1}</td>
+                              <td>{Item.e2}</td>
 
-                            <td>{Item.SoNguoiTG}</td>
-                            <td>{Item.SoTienML}</td>
-                            <td>{Item.TenNguoiDung}</td>
-                            <td>
-                              <FaEdit
-                                className="can-click "
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idKhaoSat)
-                                }
-                              />
-                              <MdDelete
-                                className="can-click"
-                                size="1.5em"
-                                onClick={() =>
-                                  this.handleShowModalSua(Item.idKhaoSat)
-                                }
-                              />
-                            </td>
-                          </tr>
-                        );
-                      })}
+                              <td>{Item.e3}</td>
+                              <td>{Item.e4}</td>
+                              <td>{Item.e5}</td>
+                              <td>
+                                {Item.e6}
+                              </td>
+                            </tr>
+                          );
+                        }) : this.state.data.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.idKhaoSat}</td>
+                              <td>{Item.TenKhaoSat}</td>
+
+                              <td>{Item.SoNguoiTG}</td>
+                              <td>{Item.SoTienML}</td>
+                              <td>{Item.TenNguoiDung}</td>
+                              <td>
+                                <FaEdit
+                                  className="can-click "
+                                  size="1.5em"
+                                  onClick={() =>
+                                    this.handleShowModalSua(Item.idKhaoSat)
+                                  }
+                                />
+                                <MdDelete
+                                  className="can-click"
+                                  size="1.5em"
+                                  onClick={() =>
+                                    this.handleShowModalSua(Item.idKhaoSat)
+                                  }
+                                />
+                              </td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </CardBody>

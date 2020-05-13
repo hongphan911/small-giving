@@ -18,9 +18,25 @@ const initialState = {
     enddate: '',
     name: '',
     data: [],
+    dataError: [],
     tong: [],
+    tongError: [],
     datashow: [],
+    dataerror: false,
 };
+const dataError = [
+    {
+        id: "",
+        TenKhaoSat: " Chưa có dữ liệu",
+        SoTien: "",
+    }
+]
+const tongError = [
+    {
+        id: "1",
+        tong: " 0",
+    }
+]
 class bcnaptien extends React.Component {
     state = initialState;
     componentDidMount() {
@@ -52,11 +68,19 @@ class bcnaptien extends React.Component {
             fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptienks.php', config)
                 .then(response => response.json())
                 .then(data => {
-                    this.setState(
-                        {
-                            data: data,
-                        }, () => this.getdatatong(),
-                    );
+                    if (data.message === "No post found") {
+                        this.setState({ dataerror: true, dataError: dataError });
+                    }
+                    else {
+                        this.setState(
+                            {
+                                dataerror: false,
+                                data: data,
+                            }, () => this.getdatatong(),
+                        );
+
+                    }
+
                 });
         }
     }
@@ -228,32 +252,49 @@ class bcnaptien extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {this.state.data.map(Item => {
-                                                    return (
-                                                        <tr>
-                                                            <td>{Item.idGiaoDich}</td>
-                                                            <td>{Item.TenKhaoSat}</td>
-                                                            <td>{Item.SoTien}</td>
-                                                        </tr>
-                                                    );
-                                                })}
+
+                                                {this.state.dataerror ?
+                                                    this.state.dataError.map(Item => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{Item.id}</td>
+                                                                <td>{Item.TenKhaoSat}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
+                                                        );
+                                                    }) : this.state.data.map(Item => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{Item.idGiaoDich}</td>
+                                                                <td>{Item.TenKhaoSat}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
+                                                        );
+                                                    })}
 
                                             </tbody>
-
-                                        </Table>
-                                        <Table {...{ [tableType || 'hover']: true }}>
-                                            <Row>
+                                            <Row className="alig-right">
                                                 <Col md={6} className="sum-left">
                                                     <div className="sum"> Tổng tiền</div>
                                                 </Col>
                                                 <Col md={6} className="sum-right">
-                                                    {this.state.tong.map(Item => {
-                                                        return (
-                                                            <div className="sum">{Item.tong}</div>
-                                                        );
-                                                    })}
+                                                    {this.state.dataerror ?
+                                                        this.state.tongError.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        }) : this.state.tong.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        })
+                                                    }
                                                 </Col>
                                             </Row>
+
+                                        </Table>
+                                        <Table {...{ [tableType || 'hover']: true }}>
+
                                         </Table>
                                         <div className="button-bottom">
                                             <Row>
@@ -275,7 +316,7 @@ class bcnaptien extends React.Component {
                                                         size="lg"
                                                         className="btn btn-excel-report"
                                                         table="table-to-xls-1"
-                                                        filename="excelfile"
+                                                        filename="baocao"
                                                         sheet="sheet 1"
                                                         buttonText="Xuất Excel"
                                                     ></ReactToExcel>

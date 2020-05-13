@@ -18,9 +18,26 @@ const initialState = {
     enddate: '',
     name: '',
     data: [],
+    dataError: [],
     tong: [],
+    tongError: [],
     datashow: [],
+    dataerror: false,
 };
+const dataError = [
+    {
+        id: "",
+        TenDiemDanh: " Chưa có dữ liệu",
+        SoTien: "",
+    }
+]
+const tongError = [
+    {
+        id: "1",
+        tong: " 0",
+    }
+]
+
 class bcnaptien extends React.Component {
     state = initialState;
     componentDidMount() {
@@ -38,6 +55,7 @@ class bcnaptien extends React.Component {
                 );
             });
     };
+
     getdatabaocao() {
         const isValid = this.validate();
         if (isValid) {
@@ -51,15 +69,23 @@ class bcnaptien extends React.Component {
             };
             fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/naptiendd.php', config)
                 .then(response => response.json())
-                .then(data => {
-                    this.setState(
-                        {
-                            data: data,
-                        }, () => this.getdatatong(),
-                    );
+                .then(dataJson => {
+                    console.log(dataJson);
+                    if (dataJson.message === "No post found") {
+                        this.setState({ dataerror: true, dataError: dataError });
+                    }
+                    else {
+                        this.setState(
+                            {
+                                dataerror: false,
+                                data: dataJson,
+                            }, () => this.getdatatong(),
+                        );
+                    }
                 });
         }
     }
+
     getdatatong() {
         let config2 = {
             method: "POST",
@@ -228,31 +254,50 @@ class bcnaptien extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {this.state.data.map(Item => {
-                                                    return (
-                                                        <tr>
-                                                            <td>{Item.idGiaoDich}</td>
-                                                            <td>{Item.TenDiemDanh}</td>
-                                                            <td>{Item.SoTien}</td>
-                                                        </tr>
-                                                    );
-                                                })}
-                                            </tbody>
 
-                                        </Table>
-                                        <Table {...{ [tableType || 'hover']: true }}>
+                                                {this.state.dataerror ?
+                                                    this.state.dataError.map(Item => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{Item.id}</td>
+                                                                <td>{Item.TenDiemDanh}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
+                                                        );
+                                                    }) : this.state.data.map(Item => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{Item.idGiaoDich}</td>
+                                                                <td>{Item.TenDiemDanh}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
+                                                        );
+                                                    })
+                                                }
+
+                                            </tbody>
                                             <Row>
                                                 <Col md={6} className="sum-left">
                                                     <div className="sum"> Tổng tiền</div>
                                                 </Col>
                                                 <Col md={6} className="sum-right">
-                                                    {this.state.tong.map(Item => {
-                                                        return (
-                                                            <div className="sum">{Item.tong}</div>
-                                                        );
-                                                    })}
+                                                    {this.state.dataerror ?
+                                                        this.state.tongError.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        }) : this.state.tong.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        })
+                                                    }
                                                 </Col>
                                             </Row>
+
+                                        </Table>
+                                        <Table {...{ [tableType || 'hover']: true }}>
+
                                         </Table>
                                         <div className="button-bottom">
                                             <Row>

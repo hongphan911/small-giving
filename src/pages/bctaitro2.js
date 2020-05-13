@@ -19,12 +19,28 @@ const initialState = {
     name: '',
     name2: '',
     data: [],
+    dataError: [],
     tong: [],
+    tongError: [],
     datashow: [],
     datashow2: [],
-
+    dataerror: false,
 
 };
+const dataError = [
+    {
+        id: "",
+        TenKhaoSat: " Chưa có dữ liệu",
+        TenNguoiDung: "",
+        SoTien: "",
+    }
+]
+const tongError = [
+    {
+        id: "1",
+        tong: " 0",
+    }
+]
 class bctaitro extends React.Component {
     state = initialState;
     componentDidMount() {
@@ -70,11 +86,18 @@ class bctaitro extends React.Component {
             fetch('http://smallgiving.cf/mobileapp/trangquantri/admin/baocao/thuchienks.php', config)
                 .then(response => response.json())
                 .then(data => {
-                    this.setState(
-                        {
-                            data: data,
-                        }, () => this.getdatatong(),
-                    );
+                    if (data.message === "No post found") {
+                        this.setState({ dataerror: true, dataError: dataError });
+                    } else {
+                        this.setState(
+                            {
+                                dataerror: false,
+                                data: data,
+                            }, () => this.getdatatong(),
+                        );
+
+                    }
+
                 });
         }
     }
@@ -277,32 +300,48 @@ class bctaitro extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {this.state.data.map(Item => {
-                                                    return (
-                                                        <tr>
-                                                            <td>{Item.idGiaoDich}</td>
-                                                            <td>{Item.TenKhaoSat}</td>
-                                                            <td>{Item.TenNguoiDung}</td>
-                                                            <td>{Item.SoTien}</td>
-                                                        </tr>
-                                                    );
-                                                })}
-
-                                            </tbody>
-                                        </Table>
-                                        <Table {...{ [tableType || 'hover']: true }}>
-                                            <Row>
-                                                <Col md={8} className="sum-left">
-                                                    <div className="sum"> Tổng tiền</div>
-                                                </Col>
-                                                <Col md={4} className="sum-right">
-                                                    {this.state.tong.map(Item => {
+                                                {this.state.dataerror ?
+                                                    this.state.dataError.map(Item => {
                                                         return (
-                                                            <div className="sum">{Item.tong}</div>
+                                                            <tr>
+                                                                <td>{Item.id}</td>
+                                                                <td>{Item.TenKhaoSat}</td>
+                                                                <td>{Item.TenNguoiDung}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
+                                                        );
+                                                    }) : this.state.data.map(Item => {
+                                                        return (
+                                                            <tr>
+                                                                <td>{Item.idGiaoDich}</td>
+                                                                <td>{Item.TenKhaoSat}</td>
+                                                                <td>{Item.TenNguoiDung}</td>
+                                                                <td>{Item.SoTien}</td>
+                                                            </tr>
                                                         );
                                                     })}
+
+                                            </tbody>
+                                            <Row>
+                                                <Col md={6} className="sum-left">
+                                                    <div className="sum"> Tổng tiền</div>
+                                                </Col>
+                                                <Col md={6} className="sum-right">
+                                                    {this.state.dataerror ?
+                                                        this.state.tongError.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        }) : this.state.tong.map(Item => {
+                                                            return (
+                                                                <div className="sum">{Item.tong}</div>
+                                                            );
+                                                        })}
                                                 </Col>
                                             </Row>
+                                        </Table>
+                                        <Table {...{ [tableType || 'hover']: true }}>
+
                                         </Table>
                                         <div className="button-bottom">
                                             <Row>

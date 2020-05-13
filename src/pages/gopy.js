@@ -3,11 +3,23 @@ import React from 'react';
 import { Card, CardBody, Col, Row, Table } from 'reactstrap';
 
 const tableTypes = ['hover'];
+const dataError = [
+  {
+    e1: "",
+    e2: "",
+    e3: "Chưa có dữ liệu",
+    e4: "",
+    e5: "",
+
+  }
+]
 class gopy extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: [],
+      dataError: [],
+      dataerror: false,
     };
   }
   componentDidMount() {
@@ -18,12 +30,18 @@ class gopy extends React.Component {
     fetch('http://smallgiving.cf/mobileapp/trangquantri/showgopy.php')
       .then(response => response.json())
       .then(data => {
-        this.setState(
-          {
-            data: data,
-          },
-          () => console.log('kiemtradulieu', this.state.data),
-        );
+        if (data.message === "No post found") {
+          this.setState({ dataerror: true, dataError: dataError });
+        } else {
+          this.setState(
+            {
+              dataerror: false,
+              data: data,
+            },
+            () => console.log('kiemtradulieu', this.state.data),
+          );
+        }
+
       });
   };
   render() {
@@ -49,17 +67,28 @@ class gopy extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      {this.state.data.map(Item => {
-                        return (
-                          <tr>
-                            <td>{Item.idGopY}</td>
-                            <td>{Item.TenNguoiDung}</td>
-                            <td>{Item.SDT}</td>
-                            <td>{Item.Email}</td>
-                            <td>{Item.NoiDung}</td>
-                          </tr>
-                        );
-                      })}
+                      {this.state.dataerror ?
+                        this.state.dataError.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.e1}</td>
+                              <td>{Item.e2}</td>
+                              <td>{Item.e3}</td>
+                              <td>{Item.e4}</td>
+                              <td>{Item.e5}</td>
+                            </tr>
+                          );
+                        }) : this.state.data.map(Item => {
+                          return (
+                            <tr>
+                              <td>{Item.idGopY}</td>
+                              <td>{Item.TenNguoiDung}</td>
+                              <td>{Item.SDT}</td>
+                              <td>{Item.Email}</td>
+                              <td>{Item.NoiDung}</td>
+                            </tr>
+                          );
+                        })}
                     </tbody>
                   </Table>
                 </CardBody>
