@@ -85,7 +85,7 @@ class Hoatdongthem extends React.Component {
     let config = {
       method: "POST",
       body: JSON.stringify({
-        idNguoiThuHuong: this.state.id,
+        TenNguoiDung: this.state.id,
         idCTV: this.state.user.idNguoiDung,
         TenHoatDong: this.state.name,
         NoiDung: this.state.content,
@@ -184,7 +184,7 @@ class Hoatdongthem extends React.Component {
 
                           }}
 
-                        >{this.state.dataselect.map(Item => {
+                        ><option></option>{this.state.dataselect.map(Item => {
                           return <option>{Item.TenNguoiDung}</option>;
                         })}
                         </Input>

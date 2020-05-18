@@ -82,7 +82,7 @@ class Diemdanhthem extends React.Component {
       body: JSON.stringify({
         idCTV: this.state.user.idNguoiDung,
         TenDiemDanh: this.state.name,
-        idNhaTaiTro: this.state.patron,
+        TenNguoiDung: this.state.patron,
         ThoiGianBD: this.state.startdate,
         ThoiGianKT: this.state.enddate,
         SoTienML: this.state.eachturn,
@@ -189,9 +189,10 @@ class Diemdanhthem extends React.Component {
                               patron: val.target.value,
                             });
                           }}
-                        >{this.state.dataselect.map(Item => {
-                          return <option>{Item.TenNguoiDung}</option>;
-                        })}
+                        >
+                          <option></option>{this.state.dataselect.map(Item => {
+                            return <option>{Item.TenNguoiDung}</option>;
+                          })}
                         </Input>
                       </FormGroup>
 

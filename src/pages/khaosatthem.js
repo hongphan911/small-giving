@@ -86,7 +86,7 @@ class Khaosatthem extends React.Component {
       body: JSON.stringify({
         idCTV: this.state.user.idNguoiDung,
         TenKhaoSat: this.state.name,
-        idNhaTaiTro: this.state.patron,
+        TenNguoiDung: this.state.patron,
         Link: this.state.url,
         ThoiGianBD: this.state.startdate,
         ThoiGianKT: this.state.enddate,
@@ -145,7 +145,7 @@ class Khaosatthem extends React.Component {
     if (isValid) {
       console.log(this.state);
       //clear form
-      this.setState(initialState);
+      //this.setState(initialState);
     }
   };
 
@@ -198,7 +198,7 @@ class Khaosatthem extends React.Component {
                               patron: val.target.value,
                             });
                           }}
-                        >{this.state.dataselect.map(Item => {
+                        ><option></option>{this.state.dataselect.map(Item => {
                           return <option>{Item.TenNguoiDung}</option>;
                         })}
                         </Input>

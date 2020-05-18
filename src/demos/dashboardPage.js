@@ -130,34 +130,34 @@ export const todosData = [
 ];
 
 export const chartjs = {
-  
+
   bar: {
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aut','Sep','Oct','Nov','Dec'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aut', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
         {
           label: 'Expense for this year',
           backgroundColor: '#545454',
           stack: 'Expense',
-          data: [10000, 30000, 50000, 80000, 60000, 20000, 10000,2000,300,400,900,1700],
+          data: [10000, 30000, 50000, 80000, 60000, 20000, 10000, 2000, 300, 400, 900, 1700],
         },
         {
           label: 'Expense for last year',
           backgroundColor: '#ae1f17',
           stack: 'Expense',
-          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000, 1000, 100, 100, 500, 1200],
         },
         {
           label: 'Expense for last year',
           backgroundColor: '#000000',
           stack: 'Expense',
-          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000, 1000, 100, 100, 500, 1200],
         },
         {
           label: 'Expense for last year',
           backgroundColor: '#aaaaaa',
           stack: 'Expense',
-          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000,1000,100,100,500,1200],
+          data: [30000, 80000, 50000, 100000, 60000, 40000, 90000, 1000, 100, 100, 500, 1200],
         },
       ],
     },
@@ -224,23 +224,23 @@ export const chartjs = {
   },
   line: {
     data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','Aut','Sep','Oct','Nov','Dec'],
+      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'Aut', 'Sep', 'Oct', 'Nov', 'Dec'],
       datasets: [
         {
           label: 'Revenue for this year',
           borderColor: '#545454',
           backgroundColor: '#545454',
-          
-          data: [0, 1300, 2200, 3400, 4600, 3500, 3000,5000,6000,2000,8000,3000],
+
+          data: [0, 1300, 2200, 3400, 4600, 3500, 3000, 5000, 6000, 2000, 8000, 3000],
         },
 
         {
           label: 'Revenue for last year',
           borderColor: '#ae1f17',
           backgroundColor: '#ae1f17',
-          data: [0, 1300, 2200, 3400, 4600, 3500, 3000,4000,2000,1000,6000,1500],
+          data: [0, 1300, 2200, 3400, 4600, 3500, 3000, 4000, 2000, 1000, 6000, 1500],
         },
-        
+
       ],
     },
     options: {

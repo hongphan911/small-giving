@@ -84,7 +84,7 @@ class Tintucthem extends React.Component {
       body: JSON.stringify({
         idCTV: this.state.user.idNguoiDung,
         TenTin: this.state.name,
-        idHoatDong: this.state.idhoatdong,
+        TenHoatDong: this.state.idhoatdong,
         NoiDung: this.state.content,
         Anh: this.state.image,
         TieuDeThongBao: this.state.title,
